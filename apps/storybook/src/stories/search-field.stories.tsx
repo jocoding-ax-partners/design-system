@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import {
-  Button,
-  Description,
-  FieldError,
-  Form,
-  Kbd,
-  Label,
-  SearchField,
-  Spinner,
-} from "@shared/ui";
-import React from "react";
+import { Button } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Kbd } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+
+import { SearchField } from "@heroui/react";
 
 const meta: Meta<typeof SearchField> = {
   component: SearchField,
@@ -18,7 +16,7 @@ const meta: Meta<typeof SearchField> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Forms/SearchField",
+  title: "SearchField",
 };
 
 export default meta;
@@ -285,6 +283,7 @@ export const FormExample: Story = {
 
       // Simulate API call
       setTimeout(() => {
+        // eslint-disable-next-line no-console
         console.log("Search submitted:", { query: value });
         setValue("");
         setIsSubmitting(false);

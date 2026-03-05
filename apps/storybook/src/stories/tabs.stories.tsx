@@ -1,6 +1,9 @@
+import type { Key } from "@heroui/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { cn, Tabs, type Key } from "@shared/ui";
+import { cn } from "tailwind-variants";
+
+import { Tabs } from "@heroui/react";
 
 const meta = {
   argTypes: {},
@@ -8,7 +11,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Navigation/Tabs",
+  title: "Tabs",
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -233,10 +236,10 @@ const CustomStyleTemplate = (args: Story["args"]) => {
   );
 };
 
-const WithoutSeparatorTemplate = (args: Story["args"]) => {
+const WithSeparatorTemplate = (args: Story["args"]) => {
   return (
     <div className="w-[600px]">
-      <Tabs {...args} hideSeparator>
+      <Tabs {...args}>
         <Tabs.ListContainer>
           <Tabs.List aria-label="Options">
             <Tabs.Tab id="overview">
@@ -244,10 +247,12 @@ const WithoutSeparatorTemplate = (args: Story["args"]) => {
               <Tabs.Indicator />
             </Tabs.Tab>
             <Tabs.Tab id="analytics">
+              <Tabs.Separator />
               Analytics
               <Tabs.Indicator />
             </Tabs.Tab>
             <Tabs.Tab id="reports">
+              <Tabs.Separator />
               Reports
               <Tabs.Indicator />
             </Tabs.Tab>
@@ -486,11 +491,11 @@ export const WithCustomStyle: Story = {
   render: CustomStyleTemplate,
 };
 
-export const WithoutSeparator: Story = {
+export const WithSeparator: Story = {
   args: {
     children: null,
   },
-  render: WithoutSeparatorTemplate,
+  render: WithSeparatorTemplate,
 };
 
 export const Showcase1: Story = {

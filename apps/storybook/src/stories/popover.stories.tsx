@@ -1,7 +1,12 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Avatar, Button, Card, Popover } from "@shared/ui";
+
+import { Avatar } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { Card } from "@heroui/react";
+
+import { Popover } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -40,7 +45,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Overlays/Popover",
+  title: "Popover",
 } as Meta<typeof Popover>;
 
 const defaultArgs: Omit<Popover["ContentProps"], "children"> = {};

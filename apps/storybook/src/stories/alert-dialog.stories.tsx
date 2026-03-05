@@ -1,8 +1,12 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { useOverlayState, AlertDialog, Button } from "@shared/ui";
-import React, { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+
+import { useOverlayState } from "@heroui/react";
+import { Button } from "@heroui/react";
+
+import { AlertDialog } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -11,7 +15,7 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Overlays/AlertDialog",
+  title: "AlertDialog",
 } as Meta<typeof AlertDialog>;
 
 export const Default = () => {

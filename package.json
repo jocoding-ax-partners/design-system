@@ -10,6 +10,7 @@
     "check-types": "turbo run check-types",
     "storybook": "pnpm --filter storybook run storybook",
     "build-storybook": "pnpm --filter storybook run build-storybook",
+    "extract-stories": "tsx scripts/extract-heroui-stories.ts",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "tsx": "^4.21.0",
     "turbo": "^2.7.5",
     "typescript": "5.9.2"
   },

@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Description, FieldError, Form, Label, NumberField, Spinner } from "@shared/ui";
+import { Button } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+
+import { NumberField } from "@heroui/react";
 
 const meta: Meta<typeof NumberField> = {
   component: NumberField,
@@ -8,7 +15,7 @@ const meta: Meta<typeof NumberField> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Forms/NumberField",
+  title: "NumberField",
 };
 
 export default meta;
@@ -484,6 +491,7 @@ export const FormExample: Story = {
 
       // Simulate API call
       setTimeout(() => {
+        // eslint-disable-next-line no-console
         console.log("Order submitted:", { quantity: value });
         setValue(undefined);
         setIsSubmitting(false);

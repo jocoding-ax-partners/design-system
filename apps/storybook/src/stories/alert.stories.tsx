@@ -1,4 +1,8 @@
-import { Alert, Button, CloseButton, Spinner } from "@shared/ui";
+import { Button } from "@heroui/react";
+import { CloseButton } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+
+import { Alert } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -6,7 +10,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Feedback/Alert",
+  title: "Alert",
 };
 
 const defaultArgs = {};

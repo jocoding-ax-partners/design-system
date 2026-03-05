@@ -1,6 +1,7 @@
+import type { SpinnerProps } from "@heroui/react";
 import type { Meta } from "@storybook/react-vite";
 
-import { Spinner, type SpinnerProps } from "@shared/ui";
+import { Spinner } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -17,7 +18,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Feedback/Spinner",
+  title: "Spinner",
 } as Meta<typeof Spinner>;
 
 const defaultArgs: SpinnerProps = {};

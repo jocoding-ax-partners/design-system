@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Input, Surface } from "@shared/ui";
+import { Surface } from "@heroui/react";
+
+import { Input } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -8,7 +10,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Forms/Input",
+  title: "Input",
 } as Meta<typeof Input>;
 
 type Story = StoryObj<typeof Input>;
@@ -22,15 +24,6 @@ export const Variants: Story = {
     <div className="flex w-[240px] flex-col gap-2">
       <Input fullWidth placeholder="Primary input" variant="primary" />
       <Input fullWidth placeholder="Secondary input" variant="secondary" />
-    </div>
-  ),
-};
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex w-[240px] flex-col gap-3">
-      <Input fullWidth placeholder="Small" size="sm" />
-      <Input fullWidth placeholder="Large (default)" size="lg" />
     </div>
   ),
 };

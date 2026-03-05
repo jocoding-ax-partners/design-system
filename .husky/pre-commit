@@ -1,1 +1,1 @@
-pnpm exec turbo run lint-staged --filter='[HEAD^1]' --concurrency=1
+pnpm exec turbo run lint-staged --filter='[HEAD^1]' --concurrency=1 2>/dev/null || pnpm exec turbo run lint-staged --concurrency=1

@@ -1,8 +1,11 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { buttonVariants, Button, Spinner } from "@shared/ui";
-import React, { useState } from "react";
+import { useState } from "react";
+
+import { Spinner } from "@heroui/react";
+
+import { Button, buttonVariants } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -22,7 +25,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Buttons/Button",
+  title: "Button",
 } as Meta<typeof Button>;
 
 const defaultArgs: Button["RootProps"] = {

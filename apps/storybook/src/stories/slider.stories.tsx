@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Label, Slider } from "@shared/ui";
+import { Label } from "@heroui/react";
+
+import { Slider } from "@heroui/react";
 
 const meta: Meta<typeof Slider> = {
   argTypes: {
@@ -24,7 +26,7 @@ const meta: Meta<typeof Slider> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Controls/Slider",
+  title: "Slider",
 };
 
 export default meta;

@@ -1,18 +1,18 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import {
-  useOverlayState,
-  Button,
-  Input,
-  Label,
-  Modal,
-  Radio,
-  RadioGroup,
-  Surface,
-  TextField,
-} from "@shared/ui";
-import React, { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+
+import { useOverlayState } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { Input } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Radio } from "@heroui/react";
+import { RadioGroup } from "@heroui/react";
+import { Surface } from "@heroui/react";
+import { TextField } from "@heroui/react";
+
+import { Modal } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -21,7 +21,7 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Overlays/Modal",
+  title: "Modal",
 } as Meta<typeof Modal>;
 
 export const Default = () => {

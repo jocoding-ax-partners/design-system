@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Breadcrumbs, BreadcrumbsItem } from "@shared/ui";
+
+import { Breadcrumbs, BreadcrumbsItem } from "@heroui/react";
 
 const meta: Meta<typeof Breadcrumbs> = {
   component: Breadcrumbs,
@@ -9,7 +10,7 @@ const meta: Meta<typeof Breadcrumbs> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Navigation/Breadcrumbs",
+  title: "Breadcrumbs",
 };
 
 export default meta;

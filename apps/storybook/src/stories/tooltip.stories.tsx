@@ -1,7 +1,11 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Button, Card, Tooltip } from "@shared/ui";
+
+import { Button } from "@heroui/react";
+import { Card } from "@heroui/react";
+
+import { Tooltip } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -40,7 +44,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Overlays/Tooltip",
+  title: "Tooltip",
 } as Meta<typeof Tooltip>;
 
 const defaultArgs: Omit<Tooltip["ContentProps"], "children"> = {

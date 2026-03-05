@@ -1,7 +1,9 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { cn, Accordion } from "@shared/ui";
+import { cn } from "tailwind-variants";
+
+import { Accordion } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -20,7 +22,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Navigation/Accordion",
+  title: "Accordion",
 } as Meta<typeof Accordion>;
 
 const defaultArgs: Accordion["RootProps"] = {

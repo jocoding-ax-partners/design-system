@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Label, Switch, SwitchGroup } from "@shared/ui";
+import { Button } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Switch } from "@heroui/react";
+
+import { SwitchGroup } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -8,7 +12,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Controls/SwitchGroup",
+  title: "SwitchGroup",
 } as Meta<typeof SwitchGroup>;
 
 type Story = StoryObj<typeof SwitchGroup>;

@@ -1,17 +1,16 @@
+import type { DisclosureGroupProps } from "@heroui/react";
 import type { ButtonProps } from "@heroui/react";
 import type { Meta } from "@storybook/react-vite";
 import type { SVGProps } from "react";
 
 import { Icon } from "@iconify/react";
-import {
-  cn,
-  useDisclosureGroupNavigation,
-  Button,
-  Disclosure,
-  DisclosureGroup,
-  Separator,
-  type DisclosureGroupProps,
-} from "@shared/ui";
+import { cn } from "tailwind-variants";
+
+import { Button } from "@heroui/react";
+import { Disclosure } from "@heroui/react";
+import { Separator } from "@heroui/react";
+
+import { DisclosureGroup, useDisclosureGroupNavigation } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -30,7 +29,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Navigation/DisclosureGroup",
+  title: "DisclosureGroup",
 } as Meta<typeof DisclosureGroup>;
 
 const defaultArgs: DisclosureGroupProps = {

@@ -1,18 +1,13 @@
+import type { Key } from "@heroui/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import {
-  useListData,
-  Avatar,
-  Description,
-  EmptyState,
-  ErrorMessage,
-  Label,
-  Tag,
-  TagGroup,
-  type Key,
-} from "@shared/ui";
 import { useMemo, useState } from "react";
+
+import { Avatar, Description, EmptyState, ErrorMessage, Label, Tag } from "@heroui/react";
+import { useListData } from "@heroui/react";
+
+import { TagGroup } from "@heroui/react";
 
 const meta: Meta<typeof TagGroup> = {
   component: TagGroup,
@@ -20,7 +15,7 @@ const meta: Meta<typeof TagGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Collections/TagGroup",
+  title: "TagGroup",
 };
 
 export default meta;

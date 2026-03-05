@@ -11,7 +11,7 @@ import eslintConfig from "@nijesmik/eslint-config";
 
 export default defineConfig([
   ...eslintConfig,
-  globalIgnores(["dist"]),
+  globalIgnores(["dist", "src/stories/**"]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [

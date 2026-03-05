@@ -1,7 +1,11 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Button, Chip, Disclosure } from "@shared/ui";
+
+import { Button } from "@heroui/react";
+import { Chip } from "@heroui/react";
+
+import { Disclosure } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -20,7 +24,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Navigation/Disclosure",
+  title: "Disclosure",
 } as Meta<typeof Disclosure>;
 
 const defaultArgs: Disclosure["RootProps"] = {

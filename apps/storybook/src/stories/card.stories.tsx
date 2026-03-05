@@ -1,7 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Avatar, Button, Card, CloseButton, Form, Input, Label, Link, TextField } from "@shared/ui";
+
+import { Avatar } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { CloseButton } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Input } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Link } from "@heroui/react";
+import { TextField } from "@heroui/react";
+
+import { Card } from "@heroui/react";
 
 const meta = {
   argTypes: {
@@ -14,7 +24,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Layout/Card",
+  title: "Card",
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -248,11 +258,7 @@ export const WithImages: Story = {
                 </div>
               </Card.Header>
               <Card.Footer>
-                <Link
-                  aria-label="Go to settings"
-                  href="card.stories.tsx#"
-                  rel="noopener noreferrer"
-                >
+                <Link aria-label="Go to settings" href="#" rel="noopener noreferrer">
                   Go to settings
                   <Link.Icon aria-hidden="true" />
                 </Link>
@@ -488,7 +494,7 @@ export const WithForm: Story = {
             <Button className="w-full" type="submit">
               Sign In
             </Button>
-            <Link className="text-center text-sm" href="card.stories.tsx#">
+            <Link className="text-center text-sm" href="#">
               Forgot password?
             </Link>
           </Card.Footer>

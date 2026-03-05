@@ -1,6 +1,7 @@
+import type { SkeletonProps } from "@heroui/react";
 import type { Meta } from "@storybook/react-vite";
 
-import { Skeleton, type SkeletonProps } from "@shared/ui";
+import { Skeleton } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -13,7 +14,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Feedback/Skeleton",
+  title: "Skeleton",
 } as Meta<typeof Skeleton>;
 
 const defaultArgs: SkeletonProps = {};

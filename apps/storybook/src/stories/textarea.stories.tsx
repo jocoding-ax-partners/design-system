@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Surface, TextArea } from "@shared/ui";
+import { Surface } from "@heroui/react";
+
+import { TextArea } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -8,7 +10,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Forms/Textarea",
+  title: "Textarea",
 } as Meta<typeof TextArea>;
 
 type Story = StoryObj<typeof TextArea>;

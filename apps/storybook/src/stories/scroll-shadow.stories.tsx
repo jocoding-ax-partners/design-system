@@ -1,10 +1,15 @@
+import type { ScrollShadowVisibility } from "@heroui/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Card, ScrollShadow, type ScrollShadowVisibility } from "@shared/ui";
 import { useState } from "react";
 
+import { Button } from "@heroui/react";
+import { Card } from "@heroui/react";
+
+import { ScrollShadow } from "@heroui/react";
+
 const meta: Meta<typeof ScrollShadow> = {
-  title: "Components/Utilities/ScrollShadow",
+  title: "ScrollShadow",
   component: ScrollShadow,
   tags: ["autodocs"],
   parameters: {

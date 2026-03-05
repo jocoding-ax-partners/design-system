@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Kbd } from "@shared/ui";
+import { Kbd } from "@heroui/react";
 
 const meta: Meta<typeof Kbd> = {
-  title: "Components/Typography/Kbd",
+  title: "Kbd",
   component: Kbd,
   parameters: {
     layout: "centered",

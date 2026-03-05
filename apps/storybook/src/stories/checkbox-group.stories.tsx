@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Checkbox, CheckboxGroup, Description, FieldError, Form, Label } from "@shared/ui";
-import React from "react";
+import { Button } from "@heroui/react";
+import { Checkbox } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Label } from "@heroui/react";
+
+import { CheckboxGroup } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -9,7 +15,7 @@ export default {
     layout: "centered",
   },
   component: CheckboxGroup,
-  title: "Components/Forms/CheckboxGroup",
+  title: "CheckboxGroup",
 } as Meta<typeof CheckboxGroup>;
 
 type Story = StoryObj<typeof CheckboxGroup>;

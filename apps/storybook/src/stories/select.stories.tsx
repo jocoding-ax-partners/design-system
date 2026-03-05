@@ -1,26 +1,23 @@
+import type { Key } from "@heroui/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
 import { useAsyncList } from "@react-stately/data";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Button,
-  Chip,
-  Collection,
-  Description,
-  FieldError,
-  Form,
-  Header,
-  Label,
-  ListBox,
-  ListBoxLoadMoreItem,
-  Select,
-  Separator,
-  Spinner,
-  type Key,
-} from "@shared/ui";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { Chip } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Header } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { ListBox } from "@heroui/react";
+import { Collection, ListBoxLoadMoreItem } from "@heroui/react";
+import { Separator } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+
+import { Select } from "@heroui/react";
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -28,7 +25,7 @@ const meta: Meta<typeof Select> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Pickers/Select",
+  title: "Select",
 };
 
 export default meta;
@@ -661,7 +658,7 @@ export const CustomValueMultiple: Story = {
                       <AvatarImage src={selectedItem.avatarUrl} />
                       <AvatarFallback>{selectedItem.fallback}</AvatarFallback>
                     </Avatar>
-                    <span>{selectedItem.name}</span>
+                    <Chip.Label>{selectedItem.name}</Chip.Label>
                   </Chip>
                 );
               });

@@ -2,8 +2,17 @@ import type { Selection } from "@react-types/shared";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Avatar, Button, Description, Dropdown, Header, Kbd, Label, Separator } from "@shared/ui";
 import * as React from "react";
+
+import { Avatar } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { Header } from "@heroui/react";
+import { Kbd } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Separator } from "@heroui/react";
+
+import { Dropdown } from "@heroui/react";
 
 const meta: Meta<typeof Dropdown> = {
   component: Dropdown,
@@ -11,7 +20,7 @@ const meta: Meta<typeof Dropdown> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Collections/Dropdown",
+  title: "Dropdown",
 };
 
 export default meta;

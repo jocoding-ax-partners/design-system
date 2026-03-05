@@ -1,30 +1,29 @@
+import type { Key } from "@heroui/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
 import { useAsyncList } from "@react-stately/data";
-import {
-  Autocomplete,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Button,
-  Description,
-  EmptyState,
-  FieldError,
-  Form,
-  Header,
-  Label,
-  ListBox,
-  SearchField,
-  Separator,
-  Spinner,
-  Surface,
-  Tag,
-  TagGroup,
-  type Key,
-} from "@shared/ui";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFilter } from "react-aria-components";
+import { cn } from "tailwind-variants";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { EmptyState } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Header } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { ListBox } from "@heroui/react";
+import { SearchField } from "@heroui/react";
+import { Separator } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+import { Surface } from "@heroui/react";
+import { Tag } from "@heroui/react";
+import { TagGroup } from "@heroui/react";
+
+import { Autocomplete } from "@heroui/react";
 
 const meta: Meta<typeof Autocomplete> = {
   component: Autocomplete,
@@ -32,7 +31,7 @@ const meta: Meta<typeof Autocomplete> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Pickers/Autocomplete",
+  title: "Autocomplete",
 };
 
 export default meta;
@@ -67,14 +66,14 @@ export const Default: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search animals..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               {items.map((item) => (
                 <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                   {item.name}
@@ -119,14 +118,14 @@ export const WithClearButton: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search animals..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               {items.map((item) => (
                 <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                   {item.name}
@@ -160,7 +159,7 @@ export const WithOnClearCallback: Story = {
     const handleClear = () => {
       setClearCount((prev) => prev + 1);
       setLastClearedAt(new Date().toLocaleTimeString());
-
+      // eslint-disable-next-line no-console
       console.log("onClear callback triggered!");
     };
 
@@ -184,14 +183,14 @@ export const WithOnClearCallback: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search animals..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {items.map((item) => (
                   <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                     {item.name}
@@ -266,14 +265,14 @@ export const Variants: Story = {
               </Autocomplete.Trigger>
               <Autocomplete.Popover>
                 <Autocomplete.Filter filter={contains}>
-                  <SearchField autoFocus name="search">
+                  <SearchField autoFocus name="search" variant="secondary">
                     <SearchField.Group>
                       <SearchField.SearchIcon />
                       <SearchField.Input placeholder="Search..." />
                       <SearchField.ClearButton />
                     </SearchField.Group>
                   </SearchField>
-                  <ListBox>
+                  <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                     {items.map((item) => (
                       <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                         {item.name}
@@ -300,14 +299,14 @@ export const Variants: Story = {
               </Autocomplete.Trigger>
               <Autocomplete.Popover>
                 <Autocomplete.Filter filter={contains}>
-                  <SearchField autoFocus name="search">
+                  <SearchField autoFocus name="search" variant="secondary">
                     <SearchField.Group>
                       <SearchField.SearchIcon />
                       <SearchField.Input placeholder="Search..." />
                       <SearchField.ClearButton />
                     </SearchField.Group>
                   </SearchField>
-                  <ListBox>
+                  <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                     {items.map((item) => (
                       <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                         {item.name}
@@ -365,7 +364,7 @@ export const Variants: Story = {
               </Autocomplete.Trigger>
               <Autocomplete.Popover>
                 <Autocomplete.Filter filter={contains}>
-                  <SearchField autoFocus name="search">
+                  <SearchField autoFocus name="search" variant="secondary">
                     <SearchField.Group>
                       <SearchField.SearchIcon />
                       <SearchField.Input placeholder="Search..." />
@@ -425,7 +424,7 @@ export const Variants: Story = {
               </Autocomplete.Trigger>
               <Autocomplete.Popover>
                 <Autocomplete.Filter filter={contains}>
-                  <SearchField autoFocus name="search">
+                  <SearchField autoFocus name="search" variant="secondary">
                     <SearchField.Group>
                       <SearchField.SearchIcon />
                       <SearchField.Input placeholder="Search..." />
@@ -510,7 +509,7 @@ export const MultipleSelect: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search..." />
@@ -564,14 +563,14 @@ export const FullWidth: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search states..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {items.map((item) => (
                   <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                     {item.name}
@@ -617,14 +616,14 @@ export const WithDescription: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search states..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               {items.map((item) => (
                 <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                   {item.name}
@@ -661,14 +660,14 @@ export const WithSections: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search countries..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               <ListBox.Section>
                 <Header>North America</Header>
                 <ListBox.Item id="usa" textValue="United States">
@@ -758,14 +757,14 @@ export const WithDisabledOptions: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search animals..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               <ListBox.Item id="dog" textValue="Dog">
                 Dog
                 <ListBox.ItemIndicator />
@@ -830,14 +829,14 @@ export const CustomIndicator: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search states..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               {items.map((item) => (
                 <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                   {item.name}
@@ -904,14 +903,14 @@ export const Required: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search states..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {states.map((state) => (
                   <ListBox.Item key={state.id} id={state.id} textValue={state.name}>
                     {state.name}
@@ -938,14 +937,14 @@ export const Required: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search countries..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {countries.map((country) => (
                   <ListBox.Item key={country.id} id={country.id} textValue={country.name}>
                     {country.name}
@@ -996,14 +995,14 @@ export const Controlled: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search states..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {states.map((state) => (
                   <ListBox.Item key={state.id} id={state.id} textValue={state.name}>
                     {state.name}
@@ -1051,14 +1050,14 @@ export const ControlledOpenState: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search states..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {items.map((item) => (
                   <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                     {item.name}
@@ -1106,14 +1105,19 @@ export const AsynchronousFiltering: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter inputValue={list.filterText} onInputChange={list.setFilterText}>
-            <SearchField autoFocus className="sticky top-0 z-10" name="search">
+            <SearchField autoFocus className="sticky top-0 z-10" name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search characters..." />
-                <SearchField.ClearButton />
-                {!!list.isLoading && (
-                  <Spinner className="absolute top-1/2 right-2 -translate-y-1/2" size="sm" />
-                )}
+                <Spinner
+                  size="sm"
+                  className={cn("absolute top-1/2 right-2 -translate-y-1/2", {
+                    "pointer-events-none opacity-0": !list.isLoading,
+                  })}
+                />
+                <SearchField.ClearButton
+                  className={cn({ "pointer-events-none opacity-0": !!list.isLoading })}
+                />
               </SearchField.Group>
             </SearchField>
             <ListBox
@@ -1174,14 +1178,14 @@ export const Disabled: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search states..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {items.map((item) => (
                   <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                     {item.name}
@@ -1207,14 +1211,14 @@ export const Disabled: Story = {
           </Autocomplete.Trigger>
           <Autocomplete.Popover>
             <Autocomplete.Filter filter={contains}>
-              <SearchField autoFocus name="search">
+              <SearchField autoFocus name="search" variant="secondary">
                 <SearchField.Group>
                   <SearchField.SearchIcon />
                   <SearchField.Input placeholder="Search countries..." />
                   <SearchField.ClearButton />
                 </SearchField.Group>
               </SearchField>
-              <ListBox>
+              <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
                 {countries.map((country) => (
                   <ListBox.Item key={country.id} id={country.id} textValue={country.name}>
                     {country.name}
@@ -1317,14 +1321,14 @@ export const UserSelection: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search users..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               {users.map((user) => (
                 <ListBox.Item key={user.id} id={user.id} textValue={user.name}>
                   <Avatar size="sm">
@@ -1442,14 +1446,14 @@ export const UserSelectionMultiple: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search users..." />
                 <SearchField.ClearButton />
               </SearchField.Group>
             </SearchField>
-            <ListBox>
+            <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
               {users.map((user) => (
                 <ListBox.Item key={user.id} id={user.id} textValue={user.name}>
                   <Avatar size="sm">
@@ -1520,7 +1524,7 @@ export const LocationSearch: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={customFilter}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search cities..." />
@@ -1611,7 +1615,7 @@ export const TagGroupSelection: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search tags..." />
@@ -1636,22 +1640,10 @@ export const TagGroupSelection: Story = {
 export const EmailRecipients: Story = {
   render: () => {
     const emails = [
-      {
-        id: "alice@example.com",
-        name: "Alice Johnson",
-        email: "alice@example.com",
-      },
+      { id: "alice@example.com", name: "Alice Johnson", email: "alice@example.com" },
       { id: "bob@example.com", name: "Bob Smith", email: "bob@example.com" },
-      {
-        id: "charlie@example.com",
-        name: "Charlie Brown",
-        email: "charlie@example.com",
-      },
-      {
-        id: "diana@example.com",
-        name: "Diana Prince",
-        email: "diana@example.com",
-      },
+      { id: "charlie@example.com", name: "Charlie Brown", email: "charlie@example.com" },
+      { id: "diana@example.com", name: "Diana Prince", email: "diana@example.com" },
       { id: "eve@example.com", name: "Eve Wilson", email: "eve@example.com" },
     ];
 
@@ -1704,7 +1696,7 @@ export const EmailRecipients: Story = {
         </Autocomplete.Trigger>
         <Autocomplete.Popover>
           <Autocomplete.Filter filter={contains}>
-            <SearchField autoFocus name="search">
+            <SearchField autoFocus name="search" variant="secondary">
               <SearchField.Group>
                 <SearchField.SearchIcon />
                 <SearchField.Input placeholder="Search emails..." />

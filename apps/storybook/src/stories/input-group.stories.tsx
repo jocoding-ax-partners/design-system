@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import {
-  Button,
-  Chip,
-  Description,
-  FieldError,
-  InputGroup,
-  Kbd,
-  Label,
-  Spinner,
-  TextField,
-  Tooltip,
-} from "@shared/ui";
-import React, { useState } from "react";
+import { useState } from "react";
+
+import { Button } from "@heroui/react";
+import { Chip } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Kbd } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+import { TextField } from "@heroui/react";
+import { Tooltip } from "@heroui/react";
+
+import { InputGroup } from "@heroui/react";
 
 const meta: Meta<typeof InputGroup> = {
   component: InputGroup,
@@ -21,7 +21,7 @@ const meta: Meta<typeof InputGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Forms/InputGroup",
+  title: "InputGroup",
 };
 
 export default meta;

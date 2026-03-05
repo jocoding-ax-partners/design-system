@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Input, Label, Surface, TextField } from "@shared/ui";
+import { Input } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { TextField } from "@heroui/react";
+
+import { Surface } from "@heroui/react";
 
 const meta: Meta<typeof Surface> = {
   argTypes: {},
@@ -8,7 +12,7 @@ const meta: Meta<typeof Surface> = {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Layout/Surface",
+  title: "Surface",
 };
 
 export default meta;

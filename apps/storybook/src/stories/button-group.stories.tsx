@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Button, ButtonGroup, Chip, Description, Dropdown, Label } from "@shared/ui";
+
+import { Button } from "@heroui/react";
+import { Chip } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { Dropdown } from "@heroui/react";
+import { Label } from "@heroui/react";
+
+import { ButtonGroup } from "@heroui/react";
 
 const meta: Meta<typeof ButtonGroup> = {
   component: ButtonGroup,
@@ -9,7 +16,7 @@ const meta: Meta<typeof ButtonGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Components/Buttons/ButtonGroup",
+  title: "ButtonGroup",
 };
 
 export default meta;

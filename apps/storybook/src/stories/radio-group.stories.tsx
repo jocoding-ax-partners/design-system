@@ -1,8 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { cn, Button, Description, FieldError, Form, Label, Radio, RadioGroup } from "@shared/ui";
-import React from "react";
+import { cx } from "tailwind-variants";
+
+import { Button } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { FieldError } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Radio } from "@heroui/react";
+
+import { RadioGroup } from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -10,7 +18,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Forms/RadioGroup",
+  title: "RadioGroup",
 } as Meta<typeof RadioGroup>;
 
 type Story = StoryObj<typeof RadioGroup>;
@@ -428,7 +436,7 @@ export const DeliveryAndPaymentExample: Story = {
                 <Radio
                   key={option.value}
                   value={option.value}
-                  className={cn(
+                  className={cx(
                     "group bg-surface-tertiary data-[selected=true]:border-accent data-[selected=true]:bg-accent/10 relative flex-col gap-4 rounded-xl px-5 py-4 transition-all",
                     "data-[focus-visible=true]:bg-accent/10",
                   )}
@@ -458,7 +466,7 @@ export const DeliveryAndPaymentExample: Story = {
                 <Radio
                   key={option.value}
                   value={option.value}
-                  className={cn(
+                  className={cx(
                     "group bg-surface-tertiary relative flex-col gap-4 rounded-xl px-5 py-4 transition-all",
                     "data-[selected=true]:bg-accent/10",
                   )}

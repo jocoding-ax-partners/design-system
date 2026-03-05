@@ -1,8 +1,10 @@
+import type { CloseButtonProps } from "@heroui/react";
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { CloseButton, type CloseButtonProps } from "@shared/ui";
 import { useState } from "react";
+
+import { CloseButton } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -18,7 +20,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Buttons/CloseButton",
+  title: "CloseButton",
 } as Meta<typeof CloseButton>;
 
 const defaultArgs: CloseButtonProps = {

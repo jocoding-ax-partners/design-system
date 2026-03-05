@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Description, Form, InputOTP, Label, Link, REGEXP_ONLY_CHARS, Spinner, } from "@shared/ui";
-import React from "react";
+import { Button } from "@heroui/react";
+import { Description } from "@heroui/react";
+import { Form } from "@heroui/react";
+import { Label } from "@heroui/react";
+import { Link } from "@heroui/react";
+import { Spinner } from "@heroui/react";
+
+import { InputOTP, REGEXP_ONLY_CHARS } from "@heroui/react";
 
 const meta: Meta<typeof InputOTP> = {
   argTypes: {
@@ -19,7 +25,7 @@ const meta: Meta<typeof InputOTP> = {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Forms/InputOTP",
+  title: "InputOTP",
 };
 
 export default meta;
@@ -47,7 +53,9 @@ export const Default: Story = {
       </InputOTP>
       <div className="flex items-center gap-[5px] px-1 pt-1">
         <p className="text-muted text-sm">Didn&apos;t receive a code?</p>
-        <Link className="text-foreground">Resend</Link>
+        <Link className="text-foreground" underline="always">
+          Resend
+        </Link>
       </div>
     </div>
   ),
@@ -265,7 +273,7 @@ export const OnComplete: Story = {
 
     const handleComplete = (code: string) => {
       setIsComplete(true);
-
+      // eslint-disable-next-line no-console
       console.log("Code complete:", code);
     };
 
@@ -348,6 +356,7 @@ export const FormExample: Story = {
       // Simulate API call
       setTimeout(() => {
         if (value === "123456") {
+          // eslint-disable-next-line no-console
           console.log("Code verified successfully!");
           setValue("");
         } else {
@@ -406,7 +415,9 @@ export const FormExample: Story = {
         </Button>
         <div className="flex items-center justify-center gap-1">
           <p className="text-muted text-sm">Having trouble?</p>
-          <Link className="text-foreground text-sm">Use backup code</Link>
+          <Link className="text-foreground text-sm" underline="always">
+            Use backup code
+          </Link>
         </div>
       </Form>
     );

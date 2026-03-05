@@ -1,7 +1,11 @@
+import type { AvatarRootProps, AvatarVariants } from "@heroui/react";
 import type { Meta } from "@storybook/react-vite";
 
 import { Icon } from "@iconify/react";
-import { Avatar, Separator, type AvatarRootProps, type AvatarVariants } from "@shared/ui";
+
+import { Separator } from "@heroui/react";
+
+import { Avatar } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -18,7 +22,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Components/Media/Avatar",
+  title: "Avatar",
 } as Meta<typeof Avatar>;
 
 const defaultArgs: Avatar["RootProps"] = {};
@@ -314,11 +318,7 @@ const VariantsTemplate = (props: AvatarRootProps) => {
     { label: "letter", type: "letter", content: "AG" },
     { label: "letter soft", type: "letter-soft", content: "AG" },
     { label: "icon", type: "icon", content: <Icon icon="gravity-ui:person" /> },
-    {
-      label: "icon soft",
-      type: "icon-soft",
-      content: <Icon icon="gravity-ui:person" />,
-    },
+    { label: "icon soft", type: "icon-soft", content: <Icon icon="gravity-ui:person" /> },
     {
       label: "img",
       type: "img",
