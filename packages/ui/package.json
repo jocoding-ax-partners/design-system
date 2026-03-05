@@ -1,0 +1,40 @@
+{
+  "name": "@shared/ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.css": "stylelint --fix"
+  },
+  "sideEffects": ["*.css"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": {
+      "types": "./src/styles/index.d.ts",
+      "default": "./src/styles/index.css"
+    }
+  },
+  "dependencies": {
+    "@heroui/react": "3.0.0-beta.5",
+    "@heroui/styles": "3.0.0-beta.5"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4"
+  },
+  "devDependencies": {
+    "@stylistic/stylelint-plugin": "^5.0.1",
+    "@tsconfig/create-react-app": "^2.0.10",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "stylelint": "^17.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "tailwindcss": "^4.1.18"
+  }
+}

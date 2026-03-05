@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+@source "../components/**/*.tsx";
+
+body {
+  @apply bg-background text-foreground;
+}
+
+@layer components {
+  .button--sm {
+    @apply rounded-lg;
+  }
+
+  .button--md {
+    @apply h-10;
+
+    border-radius: calc(var(--radius) * 1.25);
+  }
+
+  .button--md.button--icon-only {
+    @apply w-10;
+  }
+
+  .button--lg {
+    @apply rounded-xl h-12;
+  }
+
+  .button--lg.button--icon-only {
+    @apply w-12;
+  }
+}

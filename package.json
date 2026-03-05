@@ -1,0 +1,29 @@
+{
+  "name": "frontend-init",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "storybook": "pnpm --filter storybook run storybook",
+    "build-storybook": "pnpm --filter storybook run build-storybook",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@nijesmik/eslint-config": "^0.1.1",
+    "eslint": "^9.39.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "turbo": "^2.7.5",
+    "typescript": "5.9.2"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=24"
+  }
+}
