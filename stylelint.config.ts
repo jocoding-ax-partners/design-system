@@ -35,5 +35,8 @@ export default {
 
     // 연속 빈 줄 최대 1개
     "@stylistic/max-empty-lines": 1,
+
+    // 들여쓰기 2칸
+    "@stylistic/indentation": 2,
   },
 } satisfies Config;

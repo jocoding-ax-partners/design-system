@@ -11,6 +11,9 @@ importers:
       '@nijesmik/eslint-config':
         specifier: ^0.1.1
         version: 0.1.1(@typescript-eslint/eslint-plugin@8.50.0(@typescript-eslint/parser@8.50.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2))(@typescript-eslint/parser@8.50.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.2)
+      '@stylistic/stylelint-plugin':
+        specifier: ^5.0.1
+        version: 5.0.1(stylelint@17.0.0(typescript@5.9.2))
       eslint:
         specifier: ^9.39.1
         version: 9.39.1(jiti@2.6.1)
@@ -26,6 +29,12 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.2
         version: 0.7.2(prettier@3.7.4)
+      stylelint:
+        specifier: ^17.0.0
+        version: 17.0.0(typescript@5.9.2)
+      stylelint-config-standard:
+        specifier: ^40.0.0
+        version: 40.0.0(stylelint@17.0.0(typescript@5.9.2))
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -172,9 +181,6 @@ importers:
       '@heroui/styles':
         specifier: 3.0.0-beta.8
         version: 3.0.0-beta.8(tailwind-merge@3.4.0)(tailwindcss@4.1.18)
-      '@stylistic/stylelint-plugin':
-        specifier: ^5.0.1
-        version: 5.0.1(stylelint@17.0.0(typescript@5.9.3))
       '@tsconfig/create-react-app':
         specifier: ^2.0.10
         version: 2.0.10
@@ -184,12 +190,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.9)
-      stylelint:
-        specifier: ^17.0.0
-        version: 17.0.0(typescript@5.9.3)
-      stylelint-config-standard:
-        specifier: ^40.0.0
-        version: 40.0.0(stylelint@17.0.0(typescript@5.9.3))
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
@@ -7467,7 +7467,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stylistic/stylelint-plugin@5.0.1(stylelint@17.0.0(typescript@5.9.3))':
+  '@stylistic/stylelint-plugin@5.0.1(stylelint@17.0.0(typescript@5.9.2))':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
@@ -7476,7 +7476,7 @@ snapshots:
       postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
       style-search: 0.1.0
-      stylelint: 17.0.0(typescript@5.9.3)
+      stylelint: 17.0.0(typescript@5.9.2)
 
   '@swc/core-darwin-arm64@1.15.11':
     optional: true
@@ -8255,14 +8255,14 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cosmiconfig@9.0.0(typescript@5.9.3):
+  cosmiconfig@9.0.0(typescript@5.9.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 5.9.2
 
   cross-spawn@7.0.6:
     dependencies:
@@ -9986,16 +9986,16 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-recommended@18.0.0(stylelint@17.0.0(typescript@5.9.3)):
+  stylelint-config-recommended@18.0.0(stylelint@17.0.0(typescript@5.9.2)):
     dependencies:
-      stylelint: 17.0.0(typescript@5.9.3)
+      stylelint: 17.0.0(typescript@5.9.2)
 
-  stylelint-config-standard@40.0.0(stylelint@17.0.0(typescript@5.9.3)):
+  stylelint-config-standard@40.0.0(stylelint@17.0.0(typescript@5.9.2)):
     dependencies:
-      stylelint: 17.0.0(typescript@5.9.3)
-      stylelint-config-recommended: 18.0.0(stylelint@17.0.0(typescript@5.9.3))
+      stylelint: 17.0.0(typescript@5.9.2)
+      stylelint-config-recommended: 18.0.0(stylelint@17.0.0(typescript@5.9.2))
 
-  stylelint@17.0.0(typescript@5.9.3):
+  stylelint@17.0.0(typescript@5.9.2):
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-syntax-patches-for-csstree': 1.0.25
@@ -10005,7 +10005,7 @@ snapshots:
       '@csstools/selector-specificity': 6.0.0(postcss-selector-parser@7.1.1)
       balanced-match: 3.0.1
       colord: 2.9.3
-      cosmiconfig: 9.0.0(typescript@5.9.3)
+      cosmiconfig: 9.0.0(typescript@5.9.2)
       css-functions-list: 3.2.3
       css-tree: 3.1.0
       debug: 4.4.3

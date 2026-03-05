@@ -11,7 +11,10 @@
       "prettier --write",
       "eslint --fix"
     ],
-    "*.css": "stylelint --fix"
+    "*.css": [
+      "prettier --write",
+      "stylelint --fix"
+    ]
   },
   "sideEffects": ["*.css"],
   "exports": {
@@ -22,19 +25,19 @@
     }
   },
   "dependencies": {
-    "@heroui/react": "3.0.0-beta.5",
-    "@heroui/styles": "3.0.0-beta.5"
+    "@shared/core": "workspace:^"
   },
   "peerDependencies": {
+    "@heroui/react": "^3.0.0-beta.8",
+    "@heroui/styles": "^3.0.0-beta.8",
     "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@stylistic/stylelint-plugin": "^5.0.1",
+    "@heroui/react": "3.0.0-beta.8",
+    "@heroui/styles": "3.0.0-beta.8",
     "@tsconfig/create-react-app": "^2.0.10",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
-    "stylelint": "^17.0.0",
-    "stylelint-config-standard": "^40.0.0",
     "tailwindcss": "^4.1.18"
   }
 }
