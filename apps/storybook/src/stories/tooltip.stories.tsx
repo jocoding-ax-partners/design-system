@@ -1,11 +1,11 @@
-import type { Meta } from "@storybook/react-vite";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Button } from "@heroui/react";
-import { Card } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Card} from "@heroui/react";
 
-import { Tooltip } from "@heroui/react";
+import {Tooltip} from "@heroui/react";
 
 export default {
   argTypes: {
@@ -69,7 +69,7 @@ const TemplateWithTrigger = (props: Tooltip["ContentProps"]) => (
   <div className="flex items-center gap-3">
     <Tooltip delay={0}>
       <Tooltip.Trigger aria-label="Tooltip trigger">
-        <div className="bg-accent-soft rounded-full p-2">
+        <div className="rounded-full bg-accent-soft p-2">
           <Icon icon="gravity-ui:circle-info" />
         </div>
       </Tooltip.Trigger>

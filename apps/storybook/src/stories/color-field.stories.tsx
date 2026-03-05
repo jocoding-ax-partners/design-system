@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { Color } from "react-aria-components";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Color} from "react-aria-components";
 
-import { useState } from "react";
+import {useState} from "react";
 
-import { Button } from "@heroui/react";
-import { ColorSwatch } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { parseColor } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {ColorSwatch} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {parseColor} from "@heroui/react";
 
-import { ColorField } from "@heroui/react";
+import {ColorField} from "@heroui/react";
 
 const meta: Meta<typeof ColorField> = {
   component: ColorField,
@@ -209,7 +209,7 @@ export const ChannelEditing: Story = {
 
     return (
       <div className="flex flex-col gap-4">
-        <p className="text-muted text-sm">Edit individual HSL channels:</p>
+        <p className="text-sm text-muted">Edit individual HSL channels:</p>
         <div className="flex gap-4">
           <ColorField
             channel="hue"
@@ -236,7 +236,7 @@ export const ChannelEditing: Story = {
             <ColorField.Group>
               <ColorField.Input />
               <ColorField.Suffix>
-                <span className="text-muted text-sm">%</span>
+                <span className="text-sm text-muted">%</span>
               </ColorField.Suffix>
             </ColorField.Group>
           </ColorField>
@@ -252,7 +252,7 @@ export const ChannelEditing: Story = {
             <ColorField.Group>
               <ColorField.Input />
               <ColorField.Suffix>
-                <span className="text-muted text-sm">%</span>
+                <span className="text-sm text-muted">%</span>
               </ColorField.Suffix>
             </ColorField.Group>
           </ColorField>
@@ -272,7 +272,7 @@ export const RGBChannels: Story = {
 
     return (
       <div className="flex flex-col gap-4">
-        <p className="text-muted text-sm">Edit individual RGB channels:</p>
+        <p className="text-sm text-muted">Edit individual RGB channels:</p>
         <div className="flex gap-4">
           <ColorField
             channel="red"
@@ -341,7 +341,7 @@ export const FormExample: Story = {
       // Simulate API call
       setTimeout(() => {
         // eslint-disable-next-line no-console
-        console.log("Color submitted:", { color: value.toString("hex") });
+        console.log("Color submitted:", {color: value.toString("hex")});
         setValue(null);
         setIsSubmitting(false);
       }, 1500);

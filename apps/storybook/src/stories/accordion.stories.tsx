@@ -1,9 +1,9 @@
-import type { Meta } from "@storybook/react-vite";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { cn } from "tailwind-variants";
+import {Icon} from "@iconify/react";
+import {cn} from "tailwind-variants";
 
-import { Accordion } from "@heroui/react";
+import {Accordion} from "@heroui/react";
 
 export default {
   argTypes: {
@@ -30,7 +30,7 @@ const defaultArgs: Accordion["RootProps"] = {
   isDisabled: false,
 };
 
-const Wrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+const Wrapper = ({children, className}: {children: React.ReactNode; className?: string}) => (
   <div className={cn("w-full max-w-md", className)}>{children}</div>
 );
 
@@ -42,7 +42,7 @@ const Template = (props: Accordion["RootProps"]) => (
           <Accordion.Heading>
             <Accordion.Trigger>
               {item.icon ? (
-                <Icon className="text-muted mr-3 size-4 shrink-0" icon={item.icon} />
+                <Icon className="mr-3 size-4 shrink-0 text-muted" icon={item.icon} />
               ) : null}
               {item.title}
               <Accordion.Indicator>
@@ -64,14 +64,14 @@ const CustomTemplate = (props: Accordion["RootProps"]) => (
     <div className="w-full max-w-2xl">
       <div className="flex flex-col gap-1">
         <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-        <p className="text-muted mb-4 text-lg font-medium">
+        <p className="mb-4 text-lg font-medium text-muted">
           Everything you need to know about licensing and usage.
         </p>
       </div>
       <div className="mt-2 flex flex-col gap-6">
         {categories.map((category) => (
           <div key={category.title}>
-            <p className="text-md text-muted mb-2 font-medium">{category.title}</p>
+            <p className="text-md mb-2 font-medium text-muted">{category.title}</p>
             <div key={category.title}>
               <Accordion {...props} className="w-full" variant="surface">
                 {category.items.map((item, index) => (
@@ -131,7 +131,7 @@ export const Custom = {
   ),
 };
 
-const WithoutSeparatorTemplate = ({ hideSeparator = true, ...props }: Accordion["RootProps"]) => (
+const WithoutSeparatorTemplate = ({hideSeparator = true, ...props}: Accordion["RootProps"]) => (
   <Wrapper>
     <Accordion hideSeparator={hideSeparator} {...props}>
       {items.map((item, index) => (
@@ -139,7 +139,7 @@ const WithoutSeparatorTemplate = ({ hideSeparator = true, ...props }: Accordion[
           <Accordion.Heading>
             <Accordion.Trigger>
               {item.icon ? (
-                <Icon className="text-muted mr-3 size-4 shrink-0" icon={item.icon} />
+                <Icon className="mr-3 size-4 shrink-0 text-muted" icon={item.icon} />
               ) : null}
               {item.title}
               <Accordion.Indicator>

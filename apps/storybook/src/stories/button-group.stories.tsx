@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Button } from "@heroui/react";
-import { Chip } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { Dropdown } from "@heroui/react";
-import { Label } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Chip} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {Dropdown} from "@heroui/react";
+import {Label} from "@heroui/react";
 
-import { ButtonGroup } from "@heroui/react";
+import {ButtonGroup} from "@heroui/react";
 
 const meta: Meta<typeof ButtonGroup> = {
   component: ButtonGroup,
@@ -37,7 +37,7 @@ export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Small</p>
+        <p className="text-sm text-muted">Small</p>
         <ButtonGroup size="sm">
           <Button>First</Button>
           <Button>Second</Button>
@@ -45,7 +45,7 @@ export const Sizes: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Medium (default)</p>
+        <p className="text-sm text-muted">Medium (default)</p>
         <ButtonGroup size="md">
           <Button>First</Button>
           <Button>Second</Button>
@@ -53,7 +53,7 @@ export const Sizes: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Large</p>
+        <p className="text-sm text-muted">Large</p>
         <ButtonGroup size="lg">
           <Button>First</Button>
           <Button>Second</Button>
@@ -91,7 +91,7 @@ export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Primary</p>
+        <p className="text-sm text-muted">Primary</p>
         <ButtonGroup variant="primary">
           <Button>First</Button>
           <Button>Second</Button>
@@ -99,7 +99,7 @@ export const Variants: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Secondary</p>
+        <p className="text-sm text-muted">Secondary</p>
         <ButtonGroup variant="secondary">
           <Button>First</Button>
           <Button>Second</Button>
@@ -107,7 +107,7 @@ export const Variants: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Tertiary</p>
+        <p className="text-sm text-muted">Tertiary</p>
         <ButtonGroup variant="tertiary">
           <Button>First</Button>
           <Button>Second</Button>
@@ -115,7 +115,7 @@ export const Variants: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Outline</p>
+        <p className="text-sm text-muted">Outline</p>
         <ButtonGroup variant="outline">
           <Button>First</Button>
           <Button>Second</Button>
@@ -123,7 +123,7 @@ export const Variants: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Ghost</p>
+        <p className="text-sm text-muted">Ghost</p>
         <ButtonGroup variant="ghost">
           <Button>First</Button>
           <Button>Second</Button>
@@ -131,7 +131,7 @@ export const Variants: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Danger</p>
+        <p className="text-sm text-muted">Danger</p>
         <ButtonGroup variant="danger">
           <Button>First</Button>
           <Button>Second</Button>
@@ -146,7 +146,7 @@ export const Disabled: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">All buttons disabled</p>
+        <p className="text-sm text-muted">All buttons disabled</p>
         <ButtonGroup isDisabled>
           <Button>First</Button>
           <Button>Second</Button>
@@ -154,7 +154,7 @@ export const Disabled: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Group disabled, but one button overrides</p>
+        <p className="text-sm text-muted">Group disabled, but one button overrides</p>
         <ButtonGroup isDisabled>
           <Button>First</Button>
           <Button>Second</Button>
@@ -169,7 +169,7 @@ export const WithIcons: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">With icons</p>
+        <p className="text-sm text-muted">With icons</p>
         <ButtonGroup variant="secondary">
           <Button>
             <Icon icon="gravity-ui:globe" />
@@ -186,7 +186,7 @@ export const WithIcons: Story = {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Icon only buttons</p>
+        <p className="text-sm text-muted">Icon only buttons</p>
         <ButtonGroup variant="tertiary">
           <Button isIconOnly>
             <Icon icon="gravity-ui:globe" />
@@ -218,7 +218,7 @@ export const Examples: Story = {
     <div className="flex flex-col items-start gap-8">
       {/* Single button with dropdown */}
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Single button with dropdown</p>
+        <p className="text-sm text-muted">Single button with dropdown</p>
         <ButtonGroup>
           <Button>Merge pull request</Button>
           <Dropdown>
@@ -266,7 +266,7 @@ export const Examples: Story = {
 
       {/* Individual buttons */}
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Individual buttons</p>
+        <p className="text-sm text-muted">Individual buttons</p>
         <div className="flex gap-2">
           <ButtonGroup variant="tertiary">
             <Button>
@@ -320,7 +320,7 @@ export const Examples: Story = {
 
       {/* Previous/Next Button Group */}
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Previous/Next navigation</p>
+        <p className="text-sm text-muted">Previous/Next navigation</p>
         <ButtonGroup variant="tertiary">
           <Button>
             <Icon icon="gravity-ui:chevron-left" />
@@ -335,7 +335,7 @@ export const Examples: Story = {
 
       {/* Content Selection Button Group */}
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Content selection</p>
+        <p className="text-sm text-muted">Content selection</p>
         <ButtonGroup variant="tertiary">
           <Button>
             <Icon icon="gravity-ui:picture" />
@@ -353,7 +353,7 @@ export const Examples: Story = {
 
       {/* Text Alignment Button Group */}
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Text alignment</p>
+        <p className="text-sm text-muted">Text alignment</p>
         <ButtonGroup variant="tertiary">
           <Button>Left</Button>
           <Button>Center</Button>
@@ -363,7 +363,7 @@ export const Examples: Story = {
 
       {/* Icon-Only Alignment Button Group */}
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Icon-only alignment</p>
+        <p className="text-sm text-muted">Icon-only alignment</p>
         <ButtonGroup variant="tertiary">
           <Button isIconOnly>
             <Icon icon="gravity-ui:text-align-left" />

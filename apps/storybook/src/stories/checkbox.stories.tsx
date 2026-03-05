@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { cx } from "tailwind-variants";
+import {Icon} from "@iconify/react";
+import {cx} from "tailwind-variants";
 
-import { CheckboxGroup } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { Label } from "@heroui/react";
+import {CheckboxGroup} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {Label} from "@heroui/react";
 
-import { Checkbox } from "@heroui/react";
+import {Checkbox} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -37,7 +37,7 @@ export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Primary variant</p>
+        <p className="text-sm font-medium text-muted">Primary variant</p>
         <Checkbox id="primary" variant="primary">
           <Checkbox.Control>
             <Checkbox.Indicator />
@@ -49,7 +49,7 @@ export const Variants: Story = {
         </Checkbox>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary variant</p>
+        <p className="text-sm font-medium text-muted">Secondary variant</p>
         <Checkbox id="secondary" variant="secondary">
           <Checkbox.Control>
             <Checkbox.Indicator />
@@ -84,7 +84,7 @@ export const WithCustomIndicator: Story = {
       <Checkbox defaultSelected id="heart">
         <Checkbox.Control>
           <Checkbox.Indicator>
-            {({ isSelected }) =>
+            {({isSelected}) =>
               isSelected ? (
                 <svg fill="fill" viewBox="0 0 24 24">
                   <path
@@ -103,7 +103,7 @@ export const WithCustomIndicator: Story = {
       <Checkbox defaultSelected id="plus">
         <Checkbox.Control>
           <Checkbox.Indicator>
-            {({ isSelected }) =>
+            {({isSelected}) =>
               isSelected ? (
                 <svg fill="none" viewBox="0 0 24 24">
                   <path
@@ -132,7 +132,7 @@ export const WithCustomIndicator: Story = {
       <Checkbox isIndeterminate id="indeterminate">
         <Checkbox.Control>
           <Checkbox.Indicator>
-            {({ isIndeterminate }) =>
+            {({isIndeterminate}) =>
               isIndeterminate ? (
                 <svg stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
                   <line x1="21" x2="3" y1="12" y2="12" />
@@ -193,7 +193,7 @@ export const Controlled: Story = {
             <Label htmlFor="notifications">Email notifications</Label>
           </Checkbox.Content>
         </Checkbox>
-        <p className="text-muted mt-2 text-sm">
+        <p className="mt-2 text-sm text-muted">
           Status: <span className="font-medium">{isSelected ? "Enabled" : "Disabled"}</span>
         </p>
       </div>
@@ -204,7 +204,7 @@ export const Controlled: Story = {
 export const RenderProps: Story = {
   render: () => (
     <Checkbox id="terms">
-      {({ isSelected }) => (
+      {({isSelected}) => (
         <>
           <Checkbox.Control>
             <Checkbox.Indicator />
@@ -325,7 +325,7 @@ export const FeaturesAndAddOnsExample: Story = {
                   id={addon.value}
                   value={addon.value}
                   className={cx(
-                    "group bg-surface-tertiary relative flex-col gap-4 rounded-3xl px-5 py-4 transition-all",
+                    "group relative flex-col gap-4 rounded-3xl bg-surface-tertiary px-5 py-4 transition-all",
                     "data-[selected=true]:bg-accent/10",
                   )}
                 >
@@ -333,7 +333,7 @@ export const FeaturesAndAddOnsExample: Story = {
                     <Checkbox.Indicator />
                   </Checkbox.Control>
                   <Checkbox.Content className="flex flex-row items-start justify-start gap-4">
-                    <Icon className="text-accent size-5" icon={addon.icon} />
+                    <Icon className="size-5 text-accent" icon={addon.icon} />
                     <div className="flex flex-col gap-1">
                       <Label>{addon.title}</Label>
                       <Description>{addon.description}</Description>

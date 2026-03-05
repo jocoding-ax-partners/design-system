@@ -1,11 +1,11 @@
-import type { Meta } from "@storybook/react-vite";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Button } from "@heroui/react";
-import { Chip } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Chip} from "@heroui/react";
 
-import { Disclosure } from "@heroui/react";
+import {Disclosure} from "@heroui/react";
 
 export default {
   argTypes: {
@@ -46,8 +46,8 @@ const Template = (props: Disclosure["RootProps"]) => {
           </Button>
         </Disclosure.Heading>
         <Disclosure.Content>
-          <Disclosure.Body className="bg-surface shadow-surface flex flex-col items-center rounded-3xl p-2 p-4 text-center">
-            <p className="text-muted text-sm">
+          <Disclosure.Body className="flex flex-col items-center rounded-3xl bg-surface p-2 p-4 text-center shadow-surface">
+            <p className="text-sm text-muted">
               Scan this QR code with your camera app to preview the HeroUI native components.
             </p>
             <img
@@ -55,7 +55,7 @@ const Template = (props: Disclosure["RootProps"]) => {
               className="aspect-square w-full max-w-54 object-cover"
               src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/qr-code-native.png"
             />
-            <p className="text-muted text-sm">Expo must be installed on your device.</p>
+            <p className="text-sm text-muted">Expo must be installed on your device.</p>
             <Button className="mt-4" variant="primary">
               <Icon icon="tabler:brand-apple-filled" />
               Download on App Store

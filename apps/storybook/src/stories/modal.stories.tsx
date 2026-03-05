@@ -1,18 +1,18 @@
-import type { Meta } from "@storybook/react-vite";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useCallback, useRef, useState } from "react";
+import {Icon} from "@iconify/react";
+import {useCallback, useRef, useState} from "react";
 
-import { useOverlayState } from "@heroui/react";
-import { Button } from "@heroui/react";
-import { Input } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { Radio } from "@heroui/react";
-import { RadioGroup } from "@heroui/react";
-import { Surface } from "@heroui/react";
-import { TextField } from "@heroui/react";
+import {useOverlayState} from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Input} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {Radio} from "@heroui/react";
+import {RadioGroup} from "@heroui/react";
+import {Surface} from "@heroui/react";
+import {TextField} from "@heroui/react";
 
-import { Modal } from "@heroui/react";
+import {Modal} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -241,7 +241,7 @@ export const DismissBehavior = () => (
   <div className="flex max-w-sm flex-col gap-6">
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">isDismissable</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         Controls whether the modal can be dismissed by clicking the overlay backdrop. Defaults to{" "}
         <code>true</code>. Set to <code>false</code> to require explicit close action.
       </p>
@@ -256,7 +256,7 @@ export const DismissBehavior = () => (
                   <Icon className="size-5" icon="gravity-ui:circle-info" />
                 </Modal.Icon>
                 <Modal.Heading>isDismissable = false</Modal.Heading>
-                <p className="text-muted text-sm leading-5">
+                <p className="text-sm leading-5 text-muted">
                   Clicking the backdrop won't close this modal
                 </p>
               </Modal.Header>
@@ -279,7 +279,7 @@ export const DismissBehavior = () => (
 
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">isKeyboardDismissDisabled</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         Controls whether the ESC key can dismiss the modal. When set to <code>true</code>, the ESC
         key will be disabled and users must use explicit close actions.
       </p>
@@ -294,7 +294,7 @@ export const DismissBehavior = () => (
                   <Icon className="size-5" icon="gravity-ui:circle-info" />
                 </Modal.Icon>
                 <Modal.Heading>isKeyboardDismissDisabled = true</Modal.Heading>
-                <p className="text-muted text-sm leading-5">ESC key is disabled</p>
+                <p className="text-sm leading-5 text-muted">ESC key is disabled</p>
               </Modal.Header>
               <Modal.Body>
                 <p>
@@ -319,7 +319,7 @@ export const CloseMethods = () => (
   <div className="flex max-w-2xl flex-col gap-8">
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">Using slot="close"</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         The simplest way to close a modal. Add <code>slot="close"</code> to any Button component
         within the modal. When clicked, it will automatically close the modal.
       </p>
@@ -354,7 +354,7 @@ export const CloseMethods = () => (
 
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">Using Dialog render props</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         Access the <code>close</code> method from the Dialog's render props. This gives you full
         control over when and how to close the modal, allowing you to add custom logic before
         closing.
@@ -429,13 +429,13 @@ export const ScrollComparison = () => {
                 <Modal.Heading>
                   Scroll: {scroll.charAt(0).toUpperCase() + scroll.slice(1)}
                 </Modal.Heading>
-                <p className="text-muted text-sm leading-5">
+                <p className="text-sm leading-5 text-muted">
                   Compare scroll behaviors - inside keeps content scrollable within the modal,
                   outside allows page scrolling
                 </p>
               </Modal.Header>
               <Modal.Body>
-                {Array.from({ length: 30 }).map((_, i) => (
+                {Array.from({length: 30}).map((_, i) => (
                   <p key={i} className="mb-3">
                     Paragraph {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Nullam pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
@@ -466,16 +466,16 @@ export const Controlled = () => {
   return (
     <div className="flex max-w-md flex-col gap-8">
       <div className="flex flex-col gap-3">
-        <h3 className="text-foreground text-lg font-semibold">With React.useState()</h3>
-        <p className="text-muted text-sm leading-relaxed text-pretty">
+        <h3 className="text-lg font-semibold text-foreground">With React.useState()</h3>
+        <p className="text-sm leading-relaxed text-pretty text-muted">
           Control the modal using React's <code className="text-foreground">useState</code> hook for
           simple state management. Perfect for basic use cases.
         </p>
-        <div className="bg-surface flex flex-col items-start gap-3 rounded-2xl p-4 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <div className="flex w-full items-center justify-between">
-            <p className="text-muted text-xs">
+            <p className="text-xs text-muted">
               Status:{" "}
-              <span className="text-foreground font-mono font-medium">
+              <span className="font-mono font-medium text-foreground">
                 {isOpen ? "open" : "closed"}
               </span>
             </p>
@@ -519,17 +519,17 @@ export const Controlled = () => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3 className="text-foreground text-lg font-semibold">With useOverlayState()</h3>
-        <p className="text-muted text-sm leading-relaxed text-pretty">
+        <h3 className="text-lg font-semibold text-foreground">With useOverlayState()</h3>
+        <p className="text-sm leading-relaxed text-pretty text-muted">
           Use the <code className="text-foreground">useOverlayState</code> hook for a cleaner API
           with convenient methods like <code>open()</code>, <code>close()</code>, and{" "}
           <code>toggle()</code>.
         </p>
-        <div className="bg-surface flex flex-col items-start gap-3 rounded-2xl p-4 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <div className="flex w-full items-center justify-between">
-            <p className="text-muted text-xs">
+            <p className="text-xs text-muted">
               Status:{" "}
-              <span className="text-foreground font-mono font-medium">
+              <span className="font-mono font-medium text-foreground">
                 {state.isOpen ? "open" : "closed"}
               </span>
             </p>
@@ -588,7 +588,7 @@ export const WithForm = () => (
               <Icon className="size-5" icon="gravity-ui:envelope" />
             </Modal.Icon>
             <Modal.Heading>Contact Us</Modal.Heading>
-            <p className="text-muted mt-1.5 text-sm leading-5">
+            <p className="mt-1.5 text-sm leading-5 text-muted">
               Fill out the form below and we'll get back to you. The modal adapts automatically when
               the keyboard appears on mobile.
             </p>
@@ -633,13 +633,13 @@ export const WithForm = () => (
 
 export const CustomTrigger = () => (
   <Modal>
-    <Modal.Trigger className="group bg-surface hover:bg-surface-secondary flex items-center gap-3 rounded-2xl p-4 shadow-xs select-none">
-      <div className="bg-accent-soft text-accent-soft-foreground flex size-12 shrink-0 items-center justify-center rounded-xl">
+    <Modal.Trigger className="group flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xs select-none hover:bg-surface-secondary">
+      <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent-soft-foreground">
         <Icon className="size-6" icon="gravity-ui:gear" />
       </div>
       <div className="flex flex-1 flex-col gap-0.5">
         <p className="text-sm font-semibold">Settings</p>
-        <p className="text-muted text-xs">Manage your preferences</p>
+        <p className="text-xs text-muted">Manage your preferences</p>
       </div>
     </Modal.Trigger>
     <Modal.Backdrop>
@@ -728,7 +728,7 @@ export const CustomAnimations = () => {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {animations.map(({ classNames, description, icon, name }) => (
+      {animations.map(({classNames, description, icon, name}) => (
         <Modal key={name}>
           <Button variant="secondary">{name}</Button>
           <Modal.Backdrop className={classNames.backdrop}>
@@ -774,16 +774,16 @@ export const CustomPortal = () => {
         <p className="text-sm">
           Render modals inside a custom container instead of <code>document.body</code>
         </p>
-        <p className="text-muted text-sm">
+        <p className="text-sm text-muted">
           Apply <code className="rounded px-1 py-0.5 text-xs">transform: translateZ(0)</code> to the
           container to create a new stacking context.
         </p>
       </div>
       <div
         ref={setPortalRef}
-        className="bg-muted/20 relative flex h-[380px] items-center justify-center overflow-hidden rounded"
+        className="relative flex h-[380px] items-center justify-center overflow-hidden rounded bg-muted/20"
         // new stacking context
-        style={{ transform: "translate(0)" }}
+        style={{transform: "translate(0)"}}
       >
         {!!portalContainer && (
           <Modal>
@@ -796,17 +796,17 @@ export const CustomPortal = () => {
                     <Modal.Heading>Custom Portal</Modal.Heading>
                   </Modal.Header>
                   <Modal.Body>
-                    <p className="text-muted text-sm">
+                    <p className="text-sm text-muted">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                       nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
-                    <p className="text-muted text-sm">
+                    <p className="text-sm text-muted">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                       nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
-                    <p className="text-muted text-sm">
+                    <p className="text-sm text-muted">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                       nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

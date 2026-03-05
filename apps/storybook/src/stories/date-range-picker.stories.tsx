@@ -1,19 +1,19 @@
-import type { DateValue } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {DateValue} from "@internationalized/date";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { getLocalTimeZone, today } from "@internationalized/date";
-import { useState } from "react";
+import {Icon} from "@iconify/react";
+import {getLocalTimeZone, today} from "@internationalized/date";
+import {useState} from "react";
 
-import { Button } from "@heroui/react";
-import { DateField } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { RangeCalendar } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {DateField} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {RangeCalendar} from "@heroui/react";
 
-import { DateRangePicker } from "@heroui/react";
+import {DateRangePicker} from "@heroui/react";
 
 const meta: Meta<typeof DateRangePicker> = {
   component: DateRangePicker,
@@ -52,13 +52,13 @@ const RangeCalendarContent = () => (
     </RangeCalendar.Grid>
     <RangeCalendar.YearPickerGrid>
       <RangeCalendar.YearPickerGridBody>
-        {({ year }) => <RangeCalendar.YearPickerCell year={year} />}
+        {({year}) => <RangeCalendar.YearPickerCell year={year} />}
       </RangeCalendar.YearPickerGridBody>
     </RangeCalendar.YearPickerGrid>
   </RangeCalendar>
 );
 
-const DateRangePickerField = ({ showDescription = false }: { showDescription?: boolean }) => (
+const DateRangePickerField = ({showDescription = false}: {showDescription?: boolean}) => (
   <>
     <Label>Trip dates</Label>
     <DateField.Group fullWidth>
@@ -93,7 +93,7 @@ export const Default: Story = {
 export const Controlled: Story = {
   render: () => {
     const start = today(getLocalTimeZone());
-    const [value, setValue] = useState<DateRange | null>({ end: start.add({ days: 4 }), start });
+    const [value, setValue] = useState<DateRange | null>({end: start.add({days: 4}), start});
 
     return (
       <div className="flex w-[320px] flex-col gap-2">
@@ -124,7 +124,7 @@ export const Disabled: Story = {
         className="w-[320px]"
         endName="endDate"
         startName="startDate"
-        value={{ end: start.add({ days: 4 }), start }}
+        value={{end: start.add({days: 4}), start}}
       >
         <DateRangePickerField />
       </DateRangePicker>

@@ -1,12 +1,12 @@
-import type { Meta } from "@storybook/react-vite";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useCallback, useRef, useState } from "react";
+import {Icon} from "@iconify/react";
+import {useCallback, useRef, useState} from "react";
 
-import { useOverlayState } from "@heroui/react";
-import { Button } from "@heroui/react";
+import {useOverlayState} from "@heroui/react";
+import {Button} from "@heroui/react";
 
-import { AlertDialog } from "@heroui/react";
+import {AlertDialog} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -101,7 +101,7 @@ export const Statuses = () => {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {examples.map(({ actions, body, classNames, header, status, trigger }) => (
+      {examples.map(({actions, body, classNames, header, status, trigger}) => (
         <AlertDialog key={status}>
           <Button className={classNames}>{trigger}</Button>
           <AlertDialog.Backdrop>
@@ -343,7 +343,7 @@ export const DismissBehavior = () => (
   <div className="flex max-w-sm flex-col gap-6">
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">isDismissable</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         Controls whether the alert dialog can be dismissed by clicking the overlay backdrop. Alert
         dialogs typically require explicit action, so this defaults to <code>false</code>. Set to{" "}
         <code>true</code> for less critical confirmations.
@@ -359,7 +359,7 @@ export const DismissBehavior = () => (
                   <Icon className="size-5" icon="gravity-ui:circle-info" />
                 </AlertDialog.Icon>
                 <AlertDialog.Heading>isDismissable = false</AlertDialog.Heading>
-                <p className="text-muted text-sm leading-5">
+                <p className="text-sm leading-5 text-muted">
                   Clicking the backdrop won't close this alert dialog
                 </p>
               </AlertDialog.Header>
@@ -383,7 +383,7 @@ export const DismissBehavior = () => (
 
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">isKeyboardDismissDisabled</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         Controls whether the ESC key can dismiss the alert dialog. Alert dialogs typically require
         explicit action, so this defaults to <code>true</code>. When set to <code>false</code>, the
         ESC key will be enabled.
@@ -399,7 +399,7 @@ export const DismissBehavior = () => (
                   <Icon className="size-5" icon="gravity-ui:circle-info" />
                 </AlertDialog.Icon>
                 <AlertDialog.Heading>isKeyboardDismissDisabled = true</AlertDialog.Heading>
-                <p className="text-muted text-sm leading-5">ESC key is disabled</p>
+                <p className="text-sm leading-5 text-muted">ESC key is disabled</p>
               </AlertDialog.Header>
               <AlertDialog.Body>
                 <p>
@@ -425,7 +425,7 @@ export const CloseMethods = () => (
   <div className="flex max-w-2xl flex-col gap-8">
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">Using slot="close"</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         The simplest way to close a dialog. Add <code>slot="close"</code> to any Button component
         within the dialog. When clicked, it will automatically close the dialog.
       </p>
@@ -458,7 +458,7 @@ export const CloseMethods = () => (
 
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-semibold">Using Dialog render props</h3>
-      <p className="text-muted text-sm">
+      <p className="text-sm text-muted">
         Access the <code>close</code> method from the Dialog's render props. This gives you full
         control over when and how to close the dialog, allowing you to add custom logic before
         closing.
@@ -504,16 +504,16 @@ export const Controlled = () => {
   return (
     <div className="flex max-w-md flex-col gap-8">
       <div className="flex flex-col gap-3">
-        <h3 className="text-foreground text-lg font-semibold">With React.useState()</h3>
-        <p className="text-muted text-sm leading-relaxed text-pretty">
+        <h3 className="text-lg font-semibold text-foreground">With React.useState()</h3>
+        <p className="text-sm leading-relaxed text-pretty text-muted">
           Control the alert dialog using React's <code className="text-foreground">useState</code>{" "}
           hook for simple state management. Perfect for basic use cases.
         </p>
-        <div className="bg-surface flex flex-col items-start gap-3 rounded-2xl p-4 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <div className="flex w-full items-center justify-between">
-            <p className="text-muted text-xs">
+            <p className="text-xs text-muted">
               Status:{" "}
-              <span className="text-foreground font-mono font-medium">
+              <span className="font-mono font-medium text-foreground">
                 {isOpen ? "open" : "closed"}
               </span>
             </p>
@@ -555,17 +555,17 @@ export const Controlled = () => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3 className="text-foreground text-lg font-semibold">With useOverlayState()</h3>
-        <p className="text-muted text-sm leading-relaxed text-pretty">
+        <h3 className="text-lg font-semibold text-foreground">With useOverlayState()</h3>
+        <p className="text-sm leading-relaxed text-pretty text-muted">
           Use the <code className="text-foreground">useOverlayState</code> hook for a cleaner API
           with convenient methods like <code>open()</code>, <code>close()</code>, and{" "}
           <code>toggle()</code>.
         </p>
-        <div className="bg-surface flex flex-col items-start gap-3 rounded-2xl p-4 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <div className="flex w-full items-center justify-between">
-            <p className="text-muted text-xs">
+            <p className="text-xs text-muted">
               Status:{" "}
-              <span className="text-foreground font-mono font-medium">
+              <span className="font-mono font-medium text-foreground">
                 {state.isOpen ? "open" : "closed"}
               </span>
             </p>
@@ -612,13 +612,13 @@ export const Controlled = () => {
 
 export const CustomTrigger = () => (
   <AlertDialog>
-    <AlertDialog.Trigger className="group bg-surface hover:bg-surface-secondary flex items-center gap-3 rounded-2xl p-4 shadow-xs select-none">
-      <div className="bg-danger-soft text-danger-soft-foreground flex size-12 shrink-0 items-center justify-center rounded-xl">
+    <AlertDialog.Trigger className="group flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xs select-none hover:bg-surface-secondary">
+      <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-danger-soft text-danger-soft-foreground">
         <Icon className="size-6" icon="gravity-ui:trash-bin" />
       </div>
       <div className="flex flex-1 flex-col gap-0.5">
         <p className="text-sm font-semibold">Delete Item</p>
-        <p className="text-muted text-xs">Permanently remove this item</p>
+        <p className="text-xs text-muted">Permanently remove this item</p>
       </div>
     </AlertDialog.Trigger>
     <AlertDialog.Backdrop>
@@ -709,7 +709,7 @@ export const CustomAnimations = () => {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {animations.map(({ classNames, description, icon, name }) => (
+      {animations.map(({classNames, description, icon, name}) => (
         <AlertDialog key={name}>
           <Button variant="secondary">{name}</Button>
           <AlertDialog.Backdrop className={classNames.backdrop}>
@@ -755,16 +755,16 @@ export const CustomPortal = () => {
         <p className="text-sm">
           Render alert dialogs inside a custom container instead of <code>document.body</code>
         </p>
-        <p className="text-muted text-sm">
+        <p className="text-sm text-muted">
           Apply <code className="rounded px-1 py-0.5 text-xs">transform: translateZ(0)</code> to the
           container to create a new stacking context.
         </p>
       </div>
       <div
         ref={setPortalRef}
-        className="bg-muted/20 relative flex h-[380px] items-center justify-center overflow-hidden rounded"
+        className="relative flex h-[380px] items-center justify-center overflow-hidden rounded bg-muted/20"
         // new stacking context
-        style={{ transform: "translate(0)" }}
+        style={{transform: "translate(0)"}}
       >
         {!!portalContainer && (
           <AlertDialog>
@@ -778,17 +778,17 @@ export const CustomPortal = () => {
                     <AlertDialog.Heading>Custom Portal</AlertDialog.Heading>
                   </AlertDialog.Header>
                   <AlertDialog.Body>
-                    <p className="text-muted text-sm">
+                    <p className="text-sm text-muted">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                       nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
-                    <p className="text-muted text-sm">
+                    <p className="text-sm text-muted">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                       nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
-                    <p className="text-muted text-sm">
+                    <p className="text-sm text-muted">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                       nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

@@ -1,17 +1,17 @@
-import type { TimeValue } from "@heroui/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {TimeValue} from "@heroui/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { Time, getLocalTimeZone, now, parseTime } from "@internationalized/date";
-import { useState } from "react";
+import {Icon} from "@iconify/react";
+import {Time, getLocalTimeZone, now, parseTime} from "@internationalized/date";
+import {useState} from "react";
 
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
 
-import { TimeField } from "@heroui/react";
+import {TimeField} from "@heroui/react";
 
 const meta: Meta<typeof TimeField> = {
   component: TimeField,
@@ -49,11 +49,11 @@ export const FullWidth: Story = {
         <Label>Time</Label>
         <TimeField.Group fullWidth>
           <TimeField.Prefix>
-            <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+            <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
           </TimeField.Prefix>
           <TimeField.Input>{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
           <TimeField.Suffix>
-            <Icon className="text-muted size-4" icon="gravity-ui:chevron-down" />
+            <Icon className="size-4 text-muted" icon="gravity-ui:chevron-down" />
           </TimeField.Suffix>
         </TimeField.Group>
       </TimeField>
@@ -230,7 +230,7 @@ export const WithPrefixIcon: Story = {
       <Label>Time</Label>
       <TimeField.Group>
         <TimeField.Prefix>
-          <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
         </TimeField.Prefix>
         <TimeField.Input>{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
       </TimeField.Group>
@@ -245,7 +245,7 @@ export const WithSuffixIcon: Story = {
       <TimeField.Group>
         <TimeField.Input>{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
         <TimeField.Suffix>
-          <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
         </TimeField.Suffix>
       </TimeField.Group>
     </TimeField>
@@ -258,11 +258,11 @@ export const WithPrefixAndSuffix: Story = {
       <Label>Time</Label>
       <TimeField.Group>
         <TimeField.Prefix>
-          <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
         </TimeField.Prefix>
         <TimeField.Input>{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
         <TimeField.Suffix>
-          <Icon className="text-muted size-4" icon="gravity-ui:chevron-down" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:chevron-down" />
         </TimeField.Suffix>
       </TimeField.Group>
       <Description>Enter a time</Description>
@@ -290,7 +290,7 @@ export const FormExample: Story = {
       // Simulate API call
       setTimeout(() => {
         // eslint-disable-next-line no-console
-        console.log("Time submitted:", { time: value });
+        console.log("Time submitted:", {time: value});
         setValue(null);
         setIsSubmitting(false);
       }, 1500);
@@ -311,7 +311,7 @@ export const FormExample: Story = {
           <Label>Appointment time</Label>
           <TimeField.Group>
             <TimeField.Prefix>
-              <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
             </TimeField.Prefix>
             <TimeField.Input>
               {(segment) => <TimeField.Segment segment={segment} />}
@@ -345,7 +345,7 @@ export const AllVariations: Story = {
           <Label>Time</Label>
           <TimeField.Group>
             <TimeField.Prefix>
-              <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
             </TimeField.Prefix>
             <TimeField.Input>
               {(segment) => <TimeField.Segment segment={segment} />}
@@ -361,7 +361,7 @@ export const AllVariations: Story = {
               {(segment) => <TimeField.Segment segment={segment} />}
             </TimeField.Input>
             <TimeField.Suffix>
-              <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
             </TimeField.Suffix>
           </TimeField.Group>
           <Description>Enter a time</Description>
@@ -371,13 +371,13 @@ export const AllVariations: Story = {
           <Label>Time</Label>
           <TimeField.Group>
             <TimeField.Prefix>
-              <Icon className="text-muted size-4" icon="gravity-ui:clock" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:clock" />
             </TimeField.Prefix>
             <TimeField.Input>
               {(segment) => <TimeField.Segment segment={segment} />}
             </TimeField.Input>
             <TimeField.Suffix>
-              <Icon className="text-muted size-4" icon="gravity-ui:chevron-down" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:chevron-down" />
             </TimeField.Suffix>
           </TimeField.Group>
           <Description>Enter a time</Description>

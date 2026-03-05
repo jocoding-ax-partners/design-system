@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Separator } from "@heroui/react";
+
+import {Separator} from "@heroui/react";
 
 const meta: Meta<typeof Separator> = {
   title: "Separator",
@@ -10,7 +11,7 @@ const meta: Meta<typeof Separator> = {
   },
   argTypes: {
     orientation: {
-      control: { type: "radio" },
+      control: {type: "radio"},
       options: ["horizontal", "vertical"],
     },
   },
@@ -71,14 +72,14 @@ const items = [
 
 export const WithContent: Story = {
   render: () => (
-    <div className="bg-surface shadow-surface max-w-md space-y-4 rounded-3xl p-4">
+    <div className="max-w-md space-y-4 rounded-3xl bg-surface p-4 shadow-surface">
       {items.map((item, index) => (
         <div key={index}>
           <div className="flex items-center gap-3">
             <img alt={item.title} className="size-12" src={item.iconUrl} />
             <div className="flex-1 space-y-0">
               <h4 className="text-small font-medium">{item.title}</h4>
-              <p className="text-muted text-sm">{item.subtitle}</p>
+              <p className="text-sm text-muted">{item.subtitle}</p>
             </div>
           </div>
           {index < items.length - 1 && <Separator className="my-4" />}

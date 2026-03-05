@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Input } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { TextArea } from "@heroui/react";
-import { TextField } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Input} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {TextArea} from "@heroui/react";
+import {TextField} from "@heroui/react";
 
-import { Fieldset } from "@heroui/react";
+import {Fieldset} from "@heroui/react";
 
 const meta: Meta<typeof Fieldset> = {
   component: Fieldset,

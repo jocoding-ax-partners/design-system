@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Breadcrumbs, BreadcrumbsItem } from "@heroui/react";
+import {Breadcrumbs, BreadcrumbsItem} from "@heroui/react";
 
 const meta: Meta<typeof Breadcrumbs> = {
   component: Breadcrumbs,

@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Surface } from "@heroui/react";
 
-import { Input } from "@heroui/react";
+import {Surface} from "@heroui/react";
+
+import {Input} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -32,7 +33,7 @@ export const FullWidth: Story = {
   render: () => (
     <div className="w-[400px] space-y-3">
       <Input fullWidth placeholder="Full width input" />
-      <div className="bg-surface flex h-[180px] items-center justify-center rounded-3xl p-4">
+      <div className="flex h-[180px] items-center justify-center rounded-3xl bg-surface p-4">
         <Surface className="w-full">
           <Input fullWidth placeholder="Full width input on surface" variant="secondary" />
         </Surface>
@@ -45,7 +46,7 @@ export const OnSurfaces: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Default Surface</p>
+        <p className="text-sm font-medium text-muted">Default Surface</p>
         <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="default">
           <Input className="w-full" placeholder="Your name" variant="primary" />
           <Input className="w-full" placeholder="Your name" variant="secondary" />
@@ -53,7 +54,7 @@ export const OnSurfaces: Story = {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary Surface</p>
+        <p className="text-sm font-medium text-muted">Secondary Surface</p>
         <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="secondary">
           <Input className="w-full" placeholder="Your name" variant="primary" />
           <Input className="w-full" placeholder="Your name" variant="secondary" />
@@ -61,7 +62,7 @@ export const OnSurfaces: Story = {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Tertiary Surface</p>
+        <p className="text-sm font-medium text-muted">Tertiary Surface</p>
         <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="tertiary">
           <Input className="w-full" placeholder="Your name" variant="primary" />
           <Input className="w-full" placeholder="Your name" variant="secondary" />
@@ -69,7 +70,7 @@ export const OnSurfaces: Story = {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Transparent Surface</p>
+        <p className="text-sm font-medium text-muted">Transparent Surface</p>
         <Surface
           className="flex min-w-[320px] flex-col gap-3 rounded-3xl border p-6"
           variant="transparent"

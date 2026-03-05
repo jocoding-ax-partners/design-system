@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { parseColor } from "@heroui/react";
+import {parseColor} from "@heroui/react";
 
-import { ColorSwatchPicker } from "@heroui/react";
+import {ColorSwatchPicker} from "@heroui/react";
 
 export default {
   argTypes: {
@@ -59,7 +59,7 @@ const SizesTemplate = () => {
     <div className="flex flex-col gap-8">
       {sizes.map((size) => (
         <div key={size} className="flex flex-col gap-2">
-          <span className="text-muted text-sm font-medium capitalize">{size}</span>
+          <span className="text-sm font-medium text-muted capitalize">{size}</span>
           <ColorSwatchPicker size={size}>
             {defaultColors.map((color) => (
               <ColorSwatchPicker.Item key={color} color={color}>
@@ -85,7 +85,7 @@ const VariantsTemplate = () => {
     <div className="flex flex-col gap-8">
       {variants.map((variant) => (
         <div key={variant} className="flex flex-col gap-2">
-          <span className="text-muted text-sm font-medium capitalize">{variant}</span>
+          <span className="text-sm font-medium text-muted capitalize">{variant}</span>
           <ColorSwatchPicker variant={variant}>
             {defaultColors.map((color) => (
               <ColorSwatchPicker.Item key={color} color={color}>
@@ -111,7 +111,7 @@ const LayoutsTemplate = () => {
     <div className="flex flex-col gap-8">
       {layouts.map((layout) => (
         <div key={layout} className="flex flex-col gap-2">
-          <span className="text-muted text-sm font-medium capitalize">{layout}</span>
+          <span className="text-sm font-medium text-muted capitalize">{layout}</span>
           <ColorSwatchPicker layout={layout}>
             {defaultColors.map((color) => (
               <ColorSwatchPicker.Item key={color} color={color}>
@@ -138,10 +138,10 @@ const AllVariantsTemplate = () => {
     <div className="flex gap-16">
       {variants.map((variant) => (
         <div key={variant} className="flex flex-col gap-6">
-          <span className="text-muted text-sm font-semibold capitalize">{variant}</span>
+          <span className="text-sm font-semibold text-muted capitalize">{variant}</span>
           {sizes.map((size) => (
             <div key={size} className="flex items-center gap-4">
-              <span className="text-muted w-8 text-sm">{size}</span>
+              <span className="w-8 text-sm text-muted">{size}</span>
               <ColorSwatchPicker size={size} variant={variant}>
                 {defaultColors.map((color) => (
                   <ColorSwatchPicker.Item key={color} color={color}>
@@ -176,7 +176,7 @@ export const Controlled: Story = {
             </ColorSwatchPicker.Item>
           ))}
         </ColorSwatchPicker>
-        <p className="text-muted text-sm">
+        <p className="text-sm text-muted">
           Selected: <span className="font-medium">{value.toString("hex")}</span>
         </p>
       </div>

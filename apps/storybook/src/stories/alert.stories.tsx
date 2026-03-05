@@ -1,8 +1,9 @@
-import { Button } from "@heroui/react";
-import { CloseButton } from "@heroui/react";
-import { Spinner } from "@heroui/react";
 
-import { Alert } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {CloseButton} from "@heroui/react";
+import {Spinner} from "@heroui/react";
+
+import {Alert} from "@heroui/react";
 
 export default {
   argTypes: {},

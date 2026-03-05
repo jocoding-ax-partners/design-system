@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { cx } from "tailwind-variants";
+import {Icon} from "@iconify/react";
+import {cx} from "tailwind-variants";
 
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { Radio } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {Radio} from "@heroui/react";
 
-import { RadioGroup } from "@heroui/react";
+import {RadioGroup} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -65,7 +65,7 @@ export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-8 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Primary variant</p>
+        <p className="text-sm font-medium text-muted">Primary variant</p>
         <RadioGroup defaultValue="option1" name="primary-plan" variant="primary">
           <Radio value="option1">
             <Radio.Control>
@@ -88,7 +88,7 @@ export const Variants: Story = {
         </RadioGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary variant</p>
+        <p className="text-sm font-medium text-muted">Secondary variant</p>
         <RadioGroup defaultValue="option1" name="secondary-plan" variant="secondary">
           <Radio value="option1">
             <Radio.Control>
@@ -123,8 +123,8 @@ export const WithCustomIndicator: Story = {
         <Radio value="basic">
           <Radio.Control>
             <Radio.Indicator>
-              {({ isSelected }) =>
-                isSelected ? <span className="text-background text-xs leading-none">✓</span> : null
+              {({isSelected}) =>
+                isSelected ? <span className="text-xs leading-none text-background">✓</span> : null
               }
             </Radio.Indicator>
           </Radio.Control>
@@ -136,8 +136,8 @@ export const WithCustomIndicator: Story = {
         <Radio value="premium">
           <Radio.Control>
             <Radio.Indicator>
-              {({ isSelected }) =>
-                isSelected ? <span className="text-background text-xs leading-none">✓</span> : null
+              {({isSelected}) =>
+                isSelected ? <span className="text-xs leading-none text-background">✓</span> : null
               }
             </Radio.Indicator>
           </Radio.Control>
@@ -149,8 +149,8 @@ export const WithCustomIndicator: Story = {
         <Radio value="business">
           <Radio.Control>
             <Radio.Indicator>
-              {({ isSelected }) =>
-                isSelected ? <span className="text-background text-xs leading-none">✓</span> : null
+              {({isSelected}) =>
+                isSelected ? <span className="text-xs leading-none text-background">✓</span> : null
               }
             </Radio.Indicator>
           </Radio.Control>
@@ -288,7 +288,7 @@ export const Controlled: Story = {
             </Radio.Content>
           </Radio>
         </RadioGroup>
-        <p className="text-muted mt-2 text-sm">
+        <p className="mt-2 text-sm text-muted">
           Selected plan: <span className="font-medium">{value}</span>
         </p>
       </div>
@@ -336,7 +336,7 @@ export const Uncontrolled: Story = {
             </Radio.Content>
           </Radio>
         </RadioGroup>
-        <p className="text-muted mt-2 text-sm">
+        <p className="mt-2 text-sm text-muted">
           Last chosen plan: <span className="font-medium">{selection}</span>
         </p>
       </div>
@@ -437,7 +437,7 @@ export const DeliveryAndPaymentExample: Story = {
                   key={option.value}
                   value={option.value}
                   className={cx(
-                    "group bg-surface-tertiary data-[selected=true]:border-accent data-[selected=true]:bg-accent/10 relative flex-col gap-4 rounded-xl px-5 py-4 transition-all",
+                    "group relative flex-col gap-4 rounded-xl bg-surface-tertiary px-5 py-4 transition-all data-[selected=true]:border-accent data-[selected=true]:bg-accent/10",
                     "data-[focus-visible=true]:bg-accent/10",
                   )}
                 >
@@ -467,7 +467,7 @@ export const DeliveryAndPaymentExample: Story = {
                   key={option.value}
                   value={option.value}
                   className={cx(
-                    "group bg-surface-tertiary relative flex-col gap-4 rounded-xl px-5 py-4 transition-all",
+                    "group relative flex-col gap-4 rounded-xl bg-surface-tertiary px-5 py-4 transition-all",
                     "data-[selected=true]:bg-accent/10",
                   )}
                 >
@@ -475,7 +475,7 @@ export const DeliveryAndPaymentExample: Story = {
                     <Radio.Indicator />
                   </Radio.Control>
                   <Radio.Content className="flex flex-row items-start justify-start gap-4">
-                    <Icon className="text-accent size-6" icon={option.icon} />
+                    <Icon className="size-6 text-accent" icon={option.icon} />
                     <div className="flex flex-col gap-1">
                       <Label>{option.title}</Label>
                       <Description>{option.description}</Description>

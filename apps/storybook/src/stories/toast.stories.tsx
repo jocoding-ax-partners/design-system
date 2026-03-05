@@ -1,10 +1,10 @@
-import type { ToastContentValue, ToastVariants } from "@heroui/react";
-import type { HeroUIToastOptions } from "@heroui/react";
-import type { Meta } from "@storybook/react-vite";
+import type {ToastContentValue, ToastVariants} from "@heroui/react";
+import type {HeroUIToastOptions} from "@heroui/react";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Button } from "@heroui/react";
+import {Button} from "@heroui/react";
 
 import {
   Toast,
@@ -75,7 +75,7 @@ const Template = () => {
           variant="secondary"
           onPress={() =>
             toast.info("You have 2 credits left", {
-              actionProps: { children: "Upgrade", onPress: noop },
+              actionProps: {children: "Upgrade", onPress: noop},
               description: "Get a paid plan for more credits",
             })
           }
@@ -121,7 +121,7 @@ const Template = () => {
           variant="danger-soft"
           onPress={() =>
             toast.danger("Storage is full", {
-              actionProps: { children: "Remove", onPress: noop, variant: "danger" },
+              actionProps: {children: "Remove", onPress: noop, variant: "danger"},
               description:
                 "Remove files to release space. Adding more text to demonstrate longer content display",
               indicator: <Icon icon="gravity-ui:hard-drive" />,
@@ -144,7 +144,7 @@ const placements = ["top start", "top", "top end", "bottom start", "bottom", "bo
 
 // Create a separate queue for each placement
 const placementQueues = Object.fromEntries(
-  placements.map((p) => [p, new ToastQueue({ maxVisibleToasts: 3 })]),
+  placements.map((p) => [p, new ToastQueue({maxVisibleToasts: 3})]),
 ) as Record<Placement, ToastQueue>;
 
 const PlacementsTemplate = () => {
@@ -213,9 +213,9 @@ export const SimpleToast = {
 
 // Promise Toast - Async operations with loading/success/error states
 const PromiseToastTemplate = () => {
-  const uploadFile = (): Promise<{ filename: string; size: number }> => {
+  const uploadFile = (): Promise<{filename: string; size: number}> => {
     return new Promise((resolve) => {
-      setTimeout(() => resolve({ filename: "document.pdf", size: 1024 }), 2000);
+      setTimeout(() => resolve({filename: "document.pdf", size: 1024}), 2000);
     });
   };
 
@@ -225,11 +225,11 @@ const PromiseToastTemplate = () => {
     });
   };
 
-  const saveData = (): Promise<{ count: number }> => {
+  const saveData = (): Promise<{count: number}> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (Math.random() > 0.5) {
-          resolve({ count: 42 });
+          resolve({count: 42});
         } else {
           reject(new Error("Failed to save data"));
         }
@@ -237,9 +237,9 @@ const PromiseToastTemplate = () => {
     });
   };
 
-  const fetchUser = (): Promise<{ name: string; email: string }> => {
+  const fetchUser = (): Promise<{name: string; email: string}> => {
     return new Promise((resolve) => {
-      setTimeout(() => resolve({ name: "John Doe", email: "john@example.com" }), 2000);
+      setTimeout(() => resolve({name: "John Doe", email: "john@example.com"}), 2000);
     });
   };
 
@@ -407,14 +407,14 @@ export const LoadingState = {
 
 // With Callbacks - Timeout and onClose
 const WithCallbacksTemplate = () => {
-  const [closedHistory, setClosedHistory] = React.useState<
-    Array<{ message: string; time: string }>
-  >([]);
+  const [closedHistory, setClosedHistory] = React.useState<Array<{message: string; time: string}>>(
+    [],
+  );
 
   const addToHistory = (message: string) => {
     const time = new Date().toLocaleTimeString();
 
-    setClosedHistory((prev) => [{ message, time }, ...prev].slice(0, 5));
+    setClosedHistory((prev) => [{message, time}, ...prev].slice(0, 5));
   };
 
   return (
@@ -496,23 +496,23 @@ const WithCallbacksTemplate = () => {
             </Button>
           )}
         </div>
-        <div className="border-border bg-surface min-h-[120px] space-y-2 rounded-lg border p-4">
+        <div className="min-h-[120px] space-y-2 rounded-lg border border-border bg-surface p-4">
           {closedHistory.length === 0 ? (
-            <p className="text-muted text-sm">No toasts closed yet. Try closing one above!</p>
+            <p className="text-sm text-muted">No toasts closed yet. Try closing one above!</p>
           ) : (
             closedHistory.map((item, index) => (
               <div
                 key={`${item.time}-${index}`}
-                className="animate-in border-border bg-default fade-in slide-in-from-top-2 flex items-start justify-between gap-3 rounded-md border px-3 py-2 text-sm duration-200"
+                className="flex animate-in items-start justify-between gap-3 rounded-md border border-border bg-default px-3 py-2 text-sm duration-200 fade-in slide-in-from-top-2"
                 style={{
                   animationDelay: `${index * 50}ms`,
                 }}
               >
                 <div className="flex-1">
                   <span className="font-medium">{item.message}</span>
-                  <span className="text-muted ml-2 text-xs">({item.time})</span>
+                  <span className="ml-2 text-xs text-muted">({item.time})</span>
                 </div>
-                <div className="bg-success/10 text-success flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success/10 text-success">
                   <svg
                     className="size-3"
                     fill="none"
@@ -543,12 +543,12 @@ const CustomToastTemplate = () => {
   return (
     <div className="flex h-full max-w-xl flex-col items-center justify-center">
       <Toast.Provider placement="bottom" queue={customQueue}>
-        {({ toast: toastItem }) => {
+        {({toast: toastItem}) => {
           const content = toastItem.content as ToastContentValue;
 
           return (
             <Toast
-              className="border-border rounded-xl border"
+              className="rounded-xl border border-border"
               toast={toastItem}
               variant={content.variant}
             >
@@ -593,9 +593,9 @@ export const CustomToast = {
 
 // Custom Queue - Multiple queue instances
 const CustomQueueTemplate = () => {
-  const notificationQueue = new ToastQueue({ maxVisibleToasts: 2 });
-  const errorQueue = new ToastQueue({ maxVisibleToasts: 3 });
-  const successQueue = new ToastQueue({ maxVisibleToasts: 1 });
+  const notificationQueue = new ToastQueue({maxVisibleToasts: 2});
+  const errorQueue = new ToastQueue({maxVisibleToasts: 3});
+  const successQueue = new ToastQueue({maxVisibleToasts: 1});
 
   return (
     <div className="flex h-full max-w-4xl items-center justify-center gap-4">

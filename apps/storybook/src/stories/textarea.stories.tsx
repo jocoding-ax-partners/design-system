@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Surface } from "@heroui/react";
 
-import { TextArea } from "@heroui/react";
+import {Surface} from "@heroui/react";
+
+import {TextArea} from "@heroui/react";
 
 export default {
   argTypes: {},

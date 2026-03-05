@@ -1,10 +1,10 @@
-import type { CloseButtonProps } from "@heroui/react";
-import type { Meta } from "@storybook/react-vite";
+import type {CloseButtonProps} from "@heroui/react";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useState } from "react";
+import {Icon} from "@iconify/react";
+import {useState} from "react";
 
-import { CloseButton } from "@heroui/react";
+import {CloseButton} from "@heroui/react";
 
 export default {
   argTypes: {

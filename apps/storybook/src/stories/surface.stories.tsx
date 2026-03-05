@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Input } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { TextField } from "@heroui/react";
 
-import { Surface } from "@heroui/react";
+import {Input} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {TextField} from "@heroui/react";
+
+import {Surface} from "@heroui/react";
 
 const meta: Meta<typeof Surface> = {
   argTypes: {},
@@ -22,57 +23,57 @@ export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Transparent</p>
+        <p className="text-sm font-medium text-muted">Transparent</p>
         <Surface
           className="flex min-w-[320px] flex-col gap-3 rounded-3xl border p-6"
           variant="transparent"
         >
-          <h3 className="text-foreground text-base font-semibold">Surface Content</h3>
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
           <TextField isRequired name="email" type="email">
             <Label>Email</Label>
             <Input className="w-[280px]" placeholder="john@example.com" />
           </TextField>
-          <p className="text-muted text-sm">
+          <p className="text-sm text-muted">
             This is a default surface variant. It uses bg-surface styling.
           </p>
         </Surface>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Default</p>
+        <p className="text-sm font-medium text-muted">Default</p>
         <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="default">
-          <h3 className="text-foreground text-base font-semibold">Surface Content</h3>
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
           <TextField isRequired name="email" type="email" variant="secondary">
             <Label>Email</Label>
-            <Input className="border-border/20 w-[280px] border" placeholder="john@example.com" />
+            <Input className="w-[280px] border border-border/20" placeholder="john@example.com" />
           </TextField>
-          <p className="text-muted text-sm">
+          <p className="text-sm text-muted">
             This is a default surface variant. It uses bg-surface styling.
           </p>
         </Surface>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary</p>
+        <p className="text-sm font-medium text-muted">Secondary</p>
         <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="secondary">
-          <h3 className="text-foreground text-base font-semibold">Surface Content</h3>
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
           <TextField isRequired name="email" type="email">
             <Label>Email</Label>
             <Input className="w-[280px]" placeholder="john@example.com" />
           </TextField>
-          <p className="text-muted text-sm">
+          <p className="text-sm text-muted">
             This is a secondary surface variant. It uses bg-surface-secondary styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Tertiary</p>
+        <p className="text-sm font-medium text-muted">Tertiary</p>
         <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="tertiary">
-          <h3 className="text-foreground text-base font-semibold">Surface Content</h3>
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
           <TextField isRequired name="email" type="email">
             <Label>Email</Label>
             <Input className="w-[280px]" placeholder="john@example.com" />
           </TextField>
-          <p className="text-muted text-sm">
+          <p className="text-sm text-muted">
             This is a tertiary surface variant. It uses bg-surface-tertiary styling.
           </p>
         </Surface>

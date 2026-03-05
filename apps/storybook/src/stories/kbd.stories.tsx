@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Kbd } from "@heroui/react";
+
+import {Kbd} from "@heroui/react";
 
 const meta: Meta<typeof Kbd> = {
   title: "Kbd",

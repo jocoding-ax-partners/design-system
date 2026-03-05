@@ -1,11 +1,11 @@
-import type { PaginationProps } from "@heroui/react";
-import type { Meta } from "@storybook/react-vite";
+import type {PaginationProps} from "@heroui/react";
+import type {Meta} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Separator } from "@heroui/react";
+import {Separator} from "@heroui/react";
 
-import { Pagination } from "@heroui/react";
+import {Pagination} from "@heroui/react";
 
 export default {
   argTypes: {
@@ -72,7 +72,7 @@ const SizesTemplate = (props: PaginationProps) => {
       {sizes.map((size, index) => (
         <React.Fragment key={size}>
           <div className="flex flex-col gap-2">
-            <span className="text-muted text-sm font-semibold capitalize">{size}</span>
+            <span className="text-sm font-semibold text-muted capitalize">{size}</span>
             <Pagination {...props} size={size}>
               <Pagination.Content>
                 <Pagination.Item>

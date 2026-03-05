@@ -1,28 +1,28 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { useState } from "react";
+import {useState} from "react";
 
-import { ColorSwatch } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { parseColor } from "@heroui/react";
+import {ColorSwatch} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {parseColor} from "@heroui/react";
 
-import { ColorSlider } from "@heroui/react";
+import {ColorSlider} from "@heroui/react";
 
 const meta: Meta<typeof ColorSlider> = {
   argTypes: {
     isDisabled: {
-      control: { type: "boolean" },
+      control: {type: "boolean"},
     },
     colorSpace: {
-      control: { type: "select" },
+      control: {type: "select"},
       options: ["hsl", "hsb", "rgb"],
     },
     channel: {
-      control: { type: "select" },
+      control: {type: "select"},
       options: ["hue", "saturation", "brightness", "lightness", "alpha", "red", "green", "blue"],
     },
     orientation: {
-      control: { type: "select" },
+      control: {type: "select"},
       options: ["horizontal", "vertical"],
     },
   },
@@ -239,7 +239,7 @@ export const Controlled: Story = {
         </div>
         <div className="mt-3 flex w-[350px] items-center gap-3">
           <ColorSwatch color={color} size="lg" />
-          <p className="text-muted text-sm">
+          <p className="text-sm text-muted">
             Current color: <span className="font-mono">{color.toString("hsl")}</span>
           </p>
         </div>

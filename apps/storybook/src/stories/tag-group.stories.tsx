@@ -1,13 +1,13 @@
-import type { Key } from "@heroui/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Key} from "@heroui/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useMemo, useState } from "react";
+import {Icon} from "@iconify/react";
+import {useMemo, useState} from "react";
 
-import { Avatar, Description, EmptyState, ErrorMessage, Label, Tag } from "@heroui/react";
-import { useListData } from "@heroui/react";
+import {Avatar, Description, EmptyState, ErrorMessage, Label, Tag} from "@heroui/react";
+import {useListData} from "@heroui/react";
 
-import { TagGroup } from "@heroui/react";
+import {TagGroup} from "@heroui/react";
 
 const meta: Meta<typeof TagGroup> = {
   component: TagGroup,
@@ -290,20 +290,20 @@ export const WithPrefix: Story = {
 
 export const WithRemoveButton: Story = {
   render: () => {
-    type Tag = { id: string; name: string };
+    type Tag = {id: string; name: string};
 
     const [tags, setTags] = useState<Tag[]>([
-      { id: "news", name: "News" },
-      { id: "travel", name: "Travel" },
-      { id: "gaming", name: "Gaming" },
-      { id: "shopping", name: "Shopping" },
+      {id: "news", name: "News"},
+      {id: "travel", name: "Travel"},
+      {id: "gaming", name: "Gaming"},
+      {id: "shopping", name: "Shopping"},
     ]);
 
     const [frameworks, setFrameworks] = useState<Tag[]>([
-      { id: "react", name: "React" },
-      { id: "vue", name: "Vue" },
-      { id: "angular", name: "Angular" },
-      { id: "svelte", name: "Svelte" },
+      {id: "react", name: "React"},
+      {id: "vue", name: "Vue"},
+      {id: "angular", name: "Angular"},
+      {id: "svelte", name: "Svelte"},
     ]);
 
     const onRemoveTags = (keys: Set<Key>) => {
@@ -466,7 +466,7 @@ export const WithListData: Story = {
         </TagGroup>
         {list.selectedKeys !== "all" && Array.from(list.selectedKeys).length > 0 && (
           <div className="mt-4 flex flex-col gap-2">
-            <p className="text-muted text-sm font-medium">Selected:</p>
+            <p className="text-sm font-medium text-muted">Selected:</p>
             <div className="flex flex-wrap gap-2">
               {Array.from(list.selectedKeys).map((key) => {
                 const user = list.getItem(key);
@@ -476,7 +476,7 @@ export const WithListData: Story = {
                 return (
                   <div
                     key={`${user.id}-selected`}
-                    className="bg-surface-tertiary flex items-center gap-2 rounded-lg px-2 py-1"
+                    className="flex items-center gap-2 rounded-lg bg-surface-tertiary px-2 py-1"
                   >
                     <Avatar className="size-4" size="sm">
                       <Avatar.Image src={user.avatar} />

@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
+import {Icon} from "@iconify/react";
 
-import { Description } from "@heroui/react";
-import { Label } from "@heroui/react";
+import {Description} from "@heroui/react";
+import {Label} from "@heroui/react";
 
-import { Switch } from "@heroui/react";
+import {Switch} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -81,7 +81,7 @@ export const Controlled: Story = {
             <Label className="text-sm">Enable notifications</Label>
           </Switch.Content>
         </Switch>
-        <p className="text-muted text-sm">Switch is {isSelected ? "on" : "off"}</p>
+        <p className="text-sm text-muted">Switch is {isSelected ? "on" : "off"}</p>
       </div>
     );
   },
@@ -158,7 +158,7 @@ export const WithDescription: Story = {
 export const WithCustomStyles: Story = {
   render: () => (
     <Switch>
-      {({ isSelected }) => (
+      {({isSelected}) => (
         <>
           <Switch.Control
             className={`h-[31px] w-[51px] bg-blue-500 ${isSelected ? "bg-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.5)]" : ""}`}
@@ -219,7 +219,7 @@ export const WithIcons: Story = {
       <div className="flex gap-3">
         {Object.entries(icons).map(([key, value]) => (
           <Switch key={key} defaultSelected size="lg">
-            {({ isSelected }) => (
+            {({isSelected}) => (
               <>
                 <Switch.Control className={isSelected ? value.selectedControlClass : ""}>
                   <Switch.Thumb>
@@ -243,7 +243,7 @@ export const WithIcons: Story = {
 export const RenderProps: Story = {
   render: () => (
     <Switch>
-      {({ isSelected }) => (
+      {({isSelected}) => (
         <>
           <Switch.Control>
             <Switch.Thumb />

@@ -55,6 +55,13 @@ function main() {
     process.exit(1);
   }
 
+  console.log(`Cleaning existing stories...`);
+  for (const file of readdirSync(OUTPUT_DIR)) {
+    if (file.endsWith(".stories.tsx")) {
+      rmSync(join(OUTPUT_DIR, file));
+    }
+  }
+
   const componentDirs = readdirSync(componentsDir, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name);

@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { Selection, SortDescriptor } from "react-aria-components";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Selection, SortDescriptor} from "react-aria-components";
 
-import { cn } from "@heroui/styles";
-import { Icon } from "@iconify/react";
+import {cn} from "@heroui/styles";
+import {Icon} from "@iconify/react";
 
-import { Avatar } from "@heroui/react";
-import { Button } from "@heroui/react";
-import { Checkbox } from "@heroui/react";
-import { Chip } from "@heroui/react";
-import { EmptyState } from "@heroui/react";
-import { Pagination } from "@heroui/react";
-import { Spinner } from "@heroui/react";
+import {Avatar} from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Checkbox} from "@heroui/react";
+import {Chip} from "@heroui/react";
+import {EmptyState} from "@heroui/react";
+import {Pagination} from "@heroui/react";
+import {Spinner} from "@heroui/react";
 
-import { Table } from "@heroui/react";
+import {Table} from "@heroui/react";
 
 export default {
   component: Table,
@@ -142,16 +142,16 @@ const users: User[] = [
 ];
 
 const columns = [
-  { id: "name", isRowHeader: true, name: "Name" },
-  { id: "role", name: "Role" },
-  { id: "status", name: "Status" },
-  { id: "email", name: "Email" },
+  {id: "name", isRowHeader: true, name: "Name"},
+  {id: "role", name: "Role"},
+  {id: "status", name: "Status"},
+  {id: "email", name: "Email"},
 ];
 
 /* -------------------------------------------------------------------------------------------------
  * Wrapper
  * -----------------------------------------------------------------------------------------------*/
-const Wrapper = ({ children }: { children: React.ReactNode }) => (
+const Wrapper = ({children}: {children: React.ReactNode}) => (
   <div className="w-full max-w-4xl">{children}</div>
 );
 
@@ -173,12 +173,12 @@ function usePagination<T>(items: T[], rowsPerPage = ROWS_PER_PAGE) {
   const start = (page - 1) * rowsPerPage + 1;
   const end = Math.min(page * rowsPerPage, items.length);
 
-  return { end, page, paginatedItems, setPage, start, total: items.length, totalPages };
+  return {end, page, paginatedItems, setPage, start, total: items.length, totalPages};
 }
 
-function TablePaginationFooter({ pagination }: { pagination: ReturnType<typeof usePagination> }) {
-  const { end, page, setPage, start, total, totalPages } = pagination;
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+function TablePaginationFooter({pagination}: {pagination: ReturnType<typeof usePagination>}) {
+  const {end, page, setPage, start, total, totalPages} = pagination;
+  const pages = Array.from({length: totalPages}, (_, i) => i + 1);
 
   return (
     <Pagination size="sm">
@@ -252,7 +252,7 @@ function SortableColumnHeader({
 /**
  * Shared template for Default and SecondaryVariant stories.
  */
-function DefaultTableTemplate({ variant = "primary" }: { variant?: "primary" | "secondary" }) {
+function DefaultTableTemplate({variant = "primary"}: {variant?: "primary" | "secondary"}) {
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set());
   const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
     column: "name",
@@ -298,24 +298,24 @@ function DefaultTableTemplate({ variant = "primary" }: { variant?: "primary" | "
                 </Checkbox>
               </Table.Column>
               <Table.Column allowsSorting isRowHeader className="after:hidden" id="id">
-                {({ sortDirection }) => (
+                {({sortDirection}) => (
                   <SortableColumnHeader sortDirection={sortDirection}>
                     Worker ID
                   </SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column allowsSorting id="name">
-                {({ sortDirection }) => (
+                {({sortDirection}) => (
                   <SortableColumnHeader sortDirection={sortDirection}>Member</SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column allowsSorting id="role">
-                {({ sortDirection }) => (
+                {({sortDirection}) => (
                   <SortableColumnHeader sortDirection={sortDirection}>Role</SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column allowsSorting id="status">
-                {({ sortDirection }) => (
+                {({sortDirection}) => (
                   <SortableColumnHeader sortDirection={sortDirection}>Status</SortableColumnHeader>
                 )}
               </Table.Column>
@@ -339,7 +339,7 @@ function DefaultTableTemplate({ variant = "primary" }: { variant?: "primary" | "
                     <div className="flex items-center gap-2">
                       #{user.id.toString()}{" "}
                       <Button isIconOnly size="sm" variant="ghost">
-                        <Icon className="text-muted size-4" icon="gravity-ui:copy" />
+                        <Icon className="size-4 text-muted" icon="gravity-ui:copy" />
                       </Button>
                     </div>
                   </Table.Cell>
@@ -356,7 +356,7 @@ function DefaultTableTemplate({ variant = "primary" }: { variant?: "primary" | "
                       </Avatar>
                       <div className="flex flex-col">
                         <span className="text-xs">{user.name}</span>
-                        <span className="text-muted text-xs">{user.email}</span>
+                        <span className="text-xs text-muted">{user.email}</span>
                       </div>
                     </div>
                   </Table.Cell>
@@ -399,7 +399,7 @@ export const Default: Story = {
   args: {
     variant: "primary",
   },
-  render: ({ variant }) => <DefaultTableTemplate variant={variant} />,
+  render: ({variant}) => <DefaultTableTemplate variant={variant} />,
 };
 
 /**
@@ -416,7 +416,7 @@ export const EmptyStateDemo: Story = {
   args: {
     variant: "primary",
   },
-  render: ({ variant }) => (
+  render: ({variant}) => (
     <Wrapper>
       <Table className="min-h-[200px] min-w-[600px]" variant={variant}>
         <Table.ScrollContainer>
@@ -431,8 +431,8 @@ export const EmptyStateDemo: Story = {
             <Table.Body
               renderEmptyState={() => (
                 <EmptyState className="flex h-full w-full flex-col items-center justify-center gap-4 text-center">
-                  <Icon className="text-muted size-6" icon="gravity-ui:tray" />
-                  <span className="text-muted text-sm">No results found</span>
+                  <Icon className="size-6 text-muted" icon="gravity-ui:tray" />
+                  <span className="text-sm text-muted">No results found</span>
                 </EmptyState>
               )}
             >
@@ -624,22 +624,22 @@ function useAsyncUsers() {
     }, 1500);
   }, [hasMore]);
 
-  return { hasMore, isLoading, items, loadMore };
+  return {hasMore, isLoading, items, loadMore};
 }
 
 export const AsyncLoading: Story = {
   args: {
     variant: "primary",
   },
-  render: ({ variant }) => {
-    const { hasMore, isLoading, items, loadMore } = useAsyncUsers();
+  render: ({variant}) => {
+    const {hasMore, isLoading, items, loadMore} = useAsyncUsers();
 
     return (
       <Wrapper>
         <Table variant={variant}>
           <Table.ScrollContainer className="h-[280px] overflow-y-auto">
             <Table.Content aria-label="Async loading" className="min-w-[600px]">
-              <Table.Header className="bg-surface-secondary sticky top-0 z-10">
+              <Table.Header className="sticky top-0 z-10 bg-surface-secondary">
                 {columns.map((col) => (
                   <Table.Column key={col.id} id={col.id} isRowHeader={col.isRowHeader}>
                     {col.name}

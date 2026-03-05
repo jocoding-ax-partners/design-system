@@ -1,10 +1,11 @@
-import type { LinkProps } from "@heroui/react";
-import type { Meta } from "@storybook/react-vite";
+import type {LinkProps} from "@heroui/react";
+import type {Meta} from "@storybook/react-vite";
 
-import { buttonVariants } from "@heroui/react";
-import { ExternalLinkIcon } from "@heroui/react";
 
-import { Link } from "@heroui/react";
+import {buttonVariants} from "@heroui/react";
+import {ExternalLinkIcon} from "@heroui/react";
+
+import {Link} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -76,7 +77,7 @@ const IconPlacementTemplate = (_props: Link["RootProps"]) => (
 const UnderlineVariantsTemplate = (_props: LinkProps) => (
   <div className="flex flex-col gap-6">
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm">Always visible underline</p>
+      <p className="text-sm text-muted">Always visible underline</p>
       <Link className="underline" href="#">
         Underline always visible
         <Link.Icon />
@@ -84,7 +85,7 @@ const UnderlineVariantsTemplate = (_props: LinkProps) => (
     </div>
 
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm">Underline visible on hover</p>
+      <p className="text-sm text-muted">Underline visible on hover</p>
       <Link className="no-underline hover:underline" href="#">
         Hover to see the underline
         <Link.Icon />
@@ -92,7 +93,7 @@ const UnderlineVariantsTemplate = (_props: LinkProps) => (
     </div>
 
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm">No underline</p>
+      <p className="text-sm text-muted">No underline</p>
       <Link className="no-underline" href="#">
         Link without any underline
         <Link.Icon />
@@ -100,7 +101,7 @@ const UnderlineVariantsTemplate = (_props: LinkProps) => (
     </div>
 
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm">Changing the underline offset</p>
+      <p className="text-sm text-muted">Changing the underline offset</p>
       <div className="flex flex-col gap-3">
         <Link className="underline-offset-1 hover:underline" href="#">
           Offset 1 (1px space)

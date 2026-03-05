@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Button } from "@heroui/react";
-import { Checkbox } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
 
-import { CheckboxGroup } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Checkbox} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+
+import {CheckboxGroup} from "@heroui/react";
 
 export default {
   argTypes: {},
@@ -64,7 +65,7 @@ export const WithCustomIndicator: Story = {
       <Checkbox value="notifications">
         <Checkbox.Control>
           <Checkbox.Indicator>
-            {({ isSelected }) =>
+            {({isSelected}) =>
               isSelected ? (
                 <svg
                   aria-hidden="true"
@@ -88,7 +89,7 @@ export const WithCustomIndicator: Story = {
       <Checkbox value="newsletter">
         <Checkbox.Control>
           <Checkbox.Indicator>
-            {({ isSelected }) =>
+            {({isSelected}) =>
               isSelected ? (
                 <svg
                   aria-hidden="true"
@@ -253,7 +254,7 @@ export const Controlled: Story = {
             <Label>Writing</Label>
           </Checkbox.Content>
         </Checkbox>
-        <Label className="text-muted my-4 text-sm">Selected: {selected.join(", ") || "None"}</Label>
+        <Label className="my-4 text-sm text-muted">Selected: {selected.join(", ") || "None"}</Label>
       </CheckboxGroup>
     );
   },

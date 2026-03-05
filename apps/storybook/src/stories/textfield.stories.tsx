@@ -1,12 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Input } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { TextArea } from "@heroui/react";
 
-import { TextField } from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Input} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {TextArea} from "@heroui/react";
+
+import {TextField} from "@heroui/react";
 
 const meta: Meta<typeof TextField> = {
   component: TextField,
@@ -67,7 +68,7 @@ export const WithTextArea: Story = {
           className="w-[280px]"
           placeholder="Share your experience..."
           rows={6}
-          style={{ resize: "vertical" }}
+          style={{resize: "vertical"}}
         />
         <Description>Resizable vertically</Description>
       </TextField>

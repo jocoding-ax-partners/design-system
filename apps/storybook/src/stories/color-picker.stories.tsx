@@ -1,20 +1,20 @@
-import type { ColorChannel, ColorSpace } from "@heroui/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {ColorChannel, ColorSpace} from "@heroui/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { parseColor } from "react-aria-components";
+import {Icon} from "@iconify/react";
+import {parseColor} from "react-aria-components";
 
-import { Button } from "@heroui/react";
-import { ColorArea } from "@heroui/react";
-import { ColorField } from "@heroui/react";
-import { ColorSlider } from "@heroui/react";
-import { ColorSwatch } from "@heroui/react";
-import { ColorSwatchPicker } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { ListBox } from "@heroui/react";
-import { Select } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {ColorArea} from "@heroui/react";
+import {ColorField} from "@heroui/react";
+import {ColorSlider} from "@heroui/react";
+import {ColorSwatch} from "@heroui/react";
+import {ColorSwatchPicker} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {ListBox} from "@heroui/react";
+import {Select} from "@heroui/react";
 
-import { ColorPicker } from "@heroui/react";
+import {ColorPicker} from "@heroui/react";
 
 const colorPresets = [
   "#ef4444", // red-500
@@ -136,7 +136,7 @@ export const Controlled: Story = {
             </ColorField>
           </ColorPicker.Popover>
         </ColorPicker>
-        <p className="text-muted w-60 text-sm">
+        <p className="w-60 text-sm text-muted">
           Selected: <span className="font-medium">{color.toString("hex")}</span>
         </p>
       </div>

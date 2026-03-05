@@ -1,20 +1,20 @@
-import type { DateValue } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {DateValue} from "@internationalized/date";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { getLocalTimeZone, parseDate, parseZonedDateTime, today } from "@internationalized/date";
-import { useState } from "react";
+import {Icon} from "@iconify/react";
+import {getLocalTimeZone, parseDate, parseZonedDateTime, today} from "@internationalized/date";
+import {useState} from "react";
 
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { ListBox } from "@heroui/react";
-import { Select } from "@heroui/react";
-import { Tooltip } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {ListBox} from "@heroui/react";
+import {Select} from "@heroui/react";
+import {Tooltip} from "@heroui/react";
 
-import { DateField } from "@heroui/react";
+import {DateField} from "@heroui/react";
 
 const meta: Meta<typeof DateField> = {
   component: DateField,
@@ -71,11 +71,11 @@ export const FullWidth: Story = {
         <Label>Date</Label>
         <DateField.Group>
           <DateField.Prefix>
-            <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+            <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
           </DateField.Prefix>
           <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
           <DateField.Suffix>
-            <Icon className="text-muted size-4" icon="gravity-ui:chevron-down" />
+            <Icon className="size-4 text-muted" icon="gravity-ui:chevron-down" />
           </DateField.Suffix>
         </DateField.Group>
       </DateField>
@@ -234,7 +234,7 @@ export const WithPrefixIcon: Story = {
       <Label>Date</Label>
       <DateField.Group>
         <DateField.Prefix>
-          <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
         </DateField.Prefix>
         <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
       </DateField.Group>
@@ -249,7 +249,7 @@ export const WithSuffixIcon: Story = {
       <DateField.Group>
         <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         <DateField.Suffix>
-          <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
         </DateField.Suffix>
       </DateField.Group>
     </DateField>
@@ -262,11 +262,11 @@ export const WithPrefixAndSuffix: Story = {
       <Label>Date</Label>
       <DateField.Group>
         <DateField.Prefix>
-          <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
         </DateField.Prefix>
         <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         <DateField.Suffix>
-          <Icon className="text-muted size-4" icon="gravity-ui:chevron-down" />
+          <Icon className="size-4 text-muted" icon="gravity-ui:chevron-down" />
         </DateField.Suffix>
       </DateField.Group>
       <Description>Enter a date</Description>
@@ -293,7 +293,7 @@ export const FormExample: Story = {
       // Simulate API call
       setTimeout(() => {
         // eslint-disable-next-line no-console
-        console.log("Date submitted:", { date: value });
+        console.log("Date submitted:", {date: value});
         setValue(null);
         setIsSubmitting(false);
       }, 1500);
@@ -313,7 +313,7 @@ export const FormExample: Story = {
           <Label>Appointment date</Label>
           <DateField.Group>
             <DateField.Prefix>
-              <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
             </DateField.Prefix>
             <DateField.Input>
               {(segment) => <DateField.Segment segment={segment} />}
@@ -342,10 +342,10 @@ export const FormExample: Story = {
 export const Granularity: Story = {
   render: () => {
     const granularityOptions = [
-      { id: "day", label: "Day" },
-      { id: "hour", label: "Hour" },
-      { id: "minute", label: "Minute" },
-      { id: "second", label: "Second" },
+      {id: "day", label: "Day"},
+      {id: "hour", label: "Hour"},
+      {id: "minute", label: "Minute"},
+      {id: "second", label: "Second"},
     ] as const;
 
     const [granularity, setGranularity] = useState<"day" | "hour" | "minute" | "second">("day");
@@ -380,7 +380,7 @@ export const Granularity: Story = {
             <Label>Granularity</Label>
             <Tooltip delay={0}>
               <Tooltip.Trigger aria-label="Granularity information">
-                <Icon className="text-muted size-4" icon="gravity-ui:circle-question" />
+                <Icon className="size-4 text-muted" icon="gravity-ui:circle-question" />
               </Tooltip.Trigger>
               <Tooltip.Content placement="bottom start">
                 <p>
@@ -426,7 +426,7 @@ export const AllVariations: Story = {
           <Label>Date</Label>
           <DateField.Group>
             <DateField.Prefix>
-              <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
             </DateField.Prefix>
             <DateField.Input>
               {(segment) => <DateField.Segment segment={segment} />}
@@ -442,7 +442,7 @@ export const AllVariations: Story = {
               {(segment) => <DateField.Segment segment={segment} />}
             </DateField.Input>
             <DateField.Suffix>
-              <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
             </DateField.Suffix>
           </DateField.Group>
           <Description>Enter a date</Description>
@@ -452,13 +452,13 @@ export const AllVariations: Story = {
           <Label>Date</Label>
           <DateField.Group>
             <DateField.Prefix>
-              <Icon className="text-muted size-4" icon="gravity-ui:calendar" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:calendar" />
             </DateField.Prefix>
             <DateField.Input>
               {(segment) => <DateField.Segment segment={segment} />}
             </DateField.Input>
             <DateField.Suffix>
-              <Icon className="text-muted size-4" icon="gravity-ui:chevron-down" />
+              <Icon className="size-4 text-muted" icon="gravity-ui:chevron-down" />
             </DateField.Suffix>
           </DateField.Group>
           <Description>Enter a date</Description>

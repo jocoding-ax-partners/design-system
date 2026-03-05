@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { Link } from "@heroui/react";
-import { Spinner } from "@heroui/react";
 
-import { InputOTP, REGEXP_ONLY_CHARS } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {Link} from "@heroui/react";
+import {Spinner} from "@heroui/react";
+
+import {InputOTP, REGEXP_ONLY_CHARS} from "@heroui/react";
 
 const meta: Meta<typeof InputOTP> = {
   argTypes: {
@@ -36,7 +37,7 @@ export const Default: Story = {
     <div className="flex w-[280px] flex-col gap-2">
       <div className="flex flex-col gap-1">
         <Label>Verify account</Label>
-        <p className="text-muted text-sm">We&apos;ve sent a code to a****@gmail.com</p>
+        <p className="text-sm text-muted">We&apos;ve sent a code to a****@gmail.com</p>
       </div>
       <InputOTP {...args} maxLength={6}>
         <InputOTP.Group>
@@ -52,7 +53,7 @@ export const Default: Story = {
         </InputOTP.Group>
       </InputOTP>
       <div className="flex items-center gap-[5px] px-1 pt-1">
-        <p className="text-muted text-sm">Didn&apos;t receive a code?</p>
+        <p className="text-sm text-muted">Didn&apos;t receive a code?</p>
         <Link className="text-foreground" underline="always">
           Resend
         </Link>
@@ -185,7 +186,7 @@ export const Controlled: Story = {
             <>
               Value: {value} ({value.length}/6) •{" "}
               <button
-                className="text-foreground font-medium underline"
+                className="font-medium text-foreground underline"
                 onClick={() => setValue("")}
               >
                 Clear
@@ -414,8 +415,8 @@ export const FormExample: Story = {
           )}
         </Button>
         <div className="flex items-center justify-center gap-1">
-          <p className="text-muted text-sm">Having trouble?</p>
-          <Link className="text-foreground text-sm" underline="always">
+          <p className="text-sm text-muted">Having trouble?</p>
+          <Link className="text-sm text-foreground" underline="always">
             Use backup code
           </Link>
         </div>

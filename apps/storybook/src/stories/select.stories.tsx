@@ -1,23 +1,23 @@
-import type { Key } from "@heroui/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Key} from "@heroui/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useAsyncList } from "@react-stately/data";
+import {Icon} from "@iconify/react";
+import {useAsyncList} from "@react-stately/data";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@heroui/react";
-import { Button } from "@heroui/react";
-import { Chip } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Header } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { ListBox } from "@heroui/react";
-import { Collection, ListBoxLoadMoreItem } from "@heroui/react";
-import { Separator } from "@heroui/react";
-import { Spinner } from "@heroui/react";
+import {Avatar, AvatarFallback, AvatarImage} from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Chip} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Header} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {ListBox} from "@heroui/react";
+import {Collection, ListBoxLoadMoreItem} from "@heroui/react";
+import {Separator} from "@heroui/react";
+import {Spinner} from "@heroui/react";
 
-import { Select } from "@heroui/react";
+import {Select} from "@heroui/react";
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -536,7 +536,7 @@ export const CustomValue: Story = {
         <Label>User</Label>
         <Select.Trigger>
           <Select.Value>
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
@@ -638,7 +638,7 @@ export const CustomValueMultiple: Story = {
         <Label>Users</Label>
         <Select.Trigger>
           <Select.Value className="no-truncate flex flex-wrap gap-2">
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
@@ -745,7 +745,7 @@ export const Controlled: Story = {
             </ListBox>
           </Select.Popover>
         </Select>
-        <p className="text-muted text-sm">Selected: {selectedState?.name || "None"}</p>
+        <p className="text-sm text-muted">Selected: {selectedState?.name || "None"}</p>
       </div>
     );
   },
@@ -798,7 +798,7 @@ export const ControlledMultiple: Story = {
             </ListBox>
           </Select.Popover>
         </Select>
-        <p className="text-muted text-sm">
+        <p className="text-sm text-muted">
           Selected: {selected.length > 0 ? selected.join(", ") : "None"}
         </p>
       </div>
@@ -853,7 +853,7 @@ export const ControlledOpenState: Story = {
           </Select.Popover>
         </Select>
         <Button onPress={() => setIsOpen(!isOpen)}>{isOpen ? "Close" : "Open"} Select</Button>
-        <p className="text-muted text-sm">Select is {isOpen ? "open" : "closed"}</p>
+        <p className="text-sm text-muted">Select is {isOpen ? "open" : "closed"}</p>
       </div>
     );
   },
@@ -866,8 +866,8 @@ interface Pokemon {
 export const AsynchronousLoading: Story = {
   render: () => {
     const list = useAsyncList<Pokemon>({
-      async load({ cursor, signal }) {
-        const res = await fetch(cursor || `https://pokeapi.co/api/v2/pokemon`, { signal });
+      async load({cursor, signal}) {
+        const res = await fetch(cursor || `https://pokeapi.co/api/v2/pokemon`, {signal});
         const json = await res.json();
 
         return {
@@ -900,7 +900,7 @@ export const AsynchronousLoading: Story = {
             >
               <div className="flex items-center justify-center gap-2 py-2">
                 <Spinner size="sm" />
-                <span className="text-muted text-sm">Loading more...</span>
+                <span className="text-sm text-muted">Loading more...</span>
               </div>
             </ListBoxLoadMoreItem>
           </ListBox>

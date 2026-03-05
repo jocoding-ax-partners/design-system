@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Button } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { Switch } from "@heroui/react";
 
-import { SwitchGroup } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {Switch} from "@heroui/react";
+
+import {SwitchGroup} from "@heroui/react";
 
 export default {
   argTypes: {},

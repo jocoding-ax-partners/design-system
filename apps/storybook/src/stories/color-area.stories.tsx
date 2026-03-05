@@ -1,10 +1,11 @@
-import type { ColorAreaRootProps } from "@heroui/react";
-import type { Meta } from "@storybook/react-vite";
+import type {ColorAreaRootProps} from "@heroui/react";
+import type {Meta} from "@storybook/react-vite";
 
-import { ColorSwatch } from "@heroui/react";
-import { parseColor } from "@heroui/react";
 
-import { ColorArea } from "@heroui/react";
+import {ColorSwatch} from "@heroui/react";
+import {parseColor} from "@heroui/react";
+
+import {ColorArea} from "@heroui/react";
 
 export default {
   argTypes: {
@@ -47,7 +48,7 @@ const ControlledTemplate = (_props: ColorAreaRootProps) => {
       <ColorArea value={color} onChange={setColor}>
         <ColorArea.Thumb />
       </ColorArea>
-      <p className="text-muted w-full min-w-[300px] text-sm">
+      <p className="w-full min-w-[300px] text-sm text-muted">
         Current color: <span className="font-medium">{color.toString("hsl")}</span>
       </p>
     </div>
@@ -57,19 +58,19 @@ const ControlledTemplate = (_props: ColorAreaRootProps) => {
 const ColorChannelsTemplate = (_props: ColorAreaRootProps) => (
   <div className="flex flex-col gap-8">
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm font-medium">HSB: Saturation vs Brightness (default)</p>
+      <p className="text-sm font-medium text-muted">HSB: Saturation vs Brightness (default)</p>
       <ColorArea defaultValue="hsl(30, 100%, 50%)">
         <ColorArea.Thumb />
       </ColorArea>
     </div>
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm font-medium">RGB: Red vs Green</p>
+      <p className="text-sm font-medium text-muted">RGB: Red vs Green</p>
       <ColorArea defaultValue="rgb(255, 100, 50)" xChannel="red" yChannel="green">
         <ColorArea.Thumb />
       </ColorArea>
     </div>
     <div className="flex flex-col gap-2">
-      <p className="text-muted text-sm font-medium">RGB: Blue vs Green</p>
+      <p className="text-sm font-medium text-muted">RGB: Blue vs Green</p>
       <ColorArea defaultValue="rgb(50, 100, 255)" xChannel="blue" yChannel="green">
         <ColorArea.Thumb />
       </ColorArea>
@@ -97,7 +98,7 @@ const WithColorPreviewTemplate = (_props: ColorAreaRootProps) => {
         <ColorSwatch color={color.toString("css")} size="lg" />
         <div className="flex flex-col gap-0.5">
           <span className="text-sm font-medium">{color.toString("hsl")}</span>
-          <span className="text-muted text-xs">{color.toString("hex")}</span>
+          <span className="text-xs text-muted">{color.toString("hex")}</span>
         </div>
       </div>
     </div>

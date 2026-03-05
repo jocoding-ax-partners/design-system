@@ -1,5 +1,5 @@
-import type { DateValue } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {DateValue} from "@internationalized/date";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {
   getLocalTimeZone,
@@ -10,14 +10,14 @@ import {
   startOfWeek,
   today,
 } from "@internationalized/date";
-import { useState } from "react";
-import { I18nProvider, RangeCalendarStateContext, useLocale } from "react-aria-components";
+import {useState} from "react";
+import {I18nProvider, RangeCalendarStateContext, useLocale} from "react-aria-components";
 
-import { Button } from "@heroui/react";
-import { ButtonGroup } from "@heroui/react";
-import { Description } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {ButtonGroup} from "@heroui/react";
+import {Description} from "@heroui/react";
 
-import { RangeCalendar } from "@heroui/react";
+import {RangeCalendar} from "@heroui/react";
 
 const meta: Meta<typeof RangeCalendar> = {
   argTypes: {
@@ -95,7 +95,7 @@ const RangeCalendarTemplateWithYearPicker = (
     </RangeCalendar.Grid>
     <RangeCalendar.YearPickerGrid>
       <RangeCalendar.YearPickerGridBody>
-        {({ year }) => <RangeCalendar.YearPickerCell year={year} />}
+        {({year}) => <RangeCalendar.YearPickerCell year={year} />}
       </RangeCalendar.YearPickerGridBody>
     </RangeCalendar.YearPickerGrid>
   </RangeCalendar>
@@ -104,14 +104,14 @@ const RangeCalendarTemplateWithYearPicker = (
 /* -------------------------------------------------------------------------------------------------
  * Helper component to render individual month heading for multi-month calendars
  * -----------------------------------------------------------------------------------------------*/
-const RangeCalendarMonthHeading = ({ offset = 0 }: { offset?: number }) => {
+const RangeCalendarMonthHeading = ({offset = 0}: {offset?: number}) => {
   const state = React.useContext(RangeCalendarStateContext)!;
-  const { locale } = useLocale();
+  const {locale} = useLocale();
 
   const startDate = state.visibleRange.start;
-  const monthDate = startDate.add({ months: offset });
+  const monthDate = startDate.add({months: offset});
   const dateObj = monthDate.toDate(getLocalTimeZone());
-  const monthYear = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" }).format(
+  const monthYear = new Intl.DateTimeFormat(locale, {month: "long", year: "numeric"}).format(
     dateObj,
   );
 
@@ -134,7 +134,7 @@ export const DefaultValue: Story = {
     <RangeCalendarTemplate
       {...args}
       aria-label="Trip dates"
-      defaultValue={{ end: parseDate("2025-02-12"), start: parseDate("2025-02-03") }}
+      defaultValue={{end: parseDate("2025-02-12"), start: parseDate("2025-02-03")}}
     />
   ),
 };
@@ -143,7 +143,7 @@ export const Controlled: Story = {
   render: (args) => {
     const [value, setValue] = useState<DateRange | null>(null);
     const [focusedDate, setFocusedDate] = useState<DateValue>(parseDate("2025-12-25"));
-    const { locale } = useLocale();
+    const {locale} = useLocale();
 
     return (
       <div className="flex flex-col items-center gap-4">
@@ -152,7 +152,7 @@ export const Controlled: Story = {
             onPress={() => {
               const start = today(getLocalTimeZone());
 
-              setValue({ end: start.add({ days: 6 }), start });
+              setValue({end: start.add({days: 6}), start});
               setFocusedDate(start);
             }}
           >
@@ -160,12 +160,9 @@ export const Controlled: Story = {
           </Button>
           <Button
             onPress={() => {
-              const nextWeekStart = startOfWeek(
-                today(getLocalTimeZone()).add({ weeks: 1 }),
-                locale,
-              );
+              const nextWeekStart = startOfWeek(today(getLocalTimeZone()).add({weeks: 1}), locale);
 
-              setValue({ end: nextWeekStart.add({ days: 6 }), start: nextWeekStart });
+              setValue({end: nextWeekStart.add({days: 6}), start: nextWeekStart});
               setFocusedDate(nextWeekStart);
             }}
           >
@@ -173,9 +170,9 @@ export const Controlled: Story = {
           </Button>
           <Button
             onPress={() => {
-              const nextMonthStart = startOfMonth(today(getLocalTimeZone()).add({ months: 1 }));
+              const nextMonthStart = startOfMonth(today(getLocalTimeZone()).add({months: 1}));
 
-              setValue({ end: nextMonthStart.add({ days: 9 }), start: nextMonthStart });
+              setValue({end: nextMonthStart.add({days: 9}), start: nextMonthStart});
               setFocusedDate(nextMonthStart);
             }}
           >
@@ -201,7 +198,7 @@ export const Controlled: Story = {
             onPress={() => {
               const start = today(getLocalTimeZone());
 
-              setValue({ end: start.add({ days: 6 }), start });
+              setValue({end: start.add({days: 6}), start});
               setFocusedDate(start);
             }}
           >
@@ -213,7 +210,7 @@ export const Controlled: Story = {
             onPress={() => {
               const start = parseDate("2025-12-20");
 
-              setValue({ end: parseDate("2025-12-31"), start });
+              setValue({end: parseDate("2025-12-31"), start});
               setFocusedDate(start);
             }}
           >
@@ -232,14 +229,14 @@ export const MinMaxDates: Story = {
   render: (args) => {
     const now = today(getLocalTimeZone());
     const minDate = now;
-    const maxDate = now.add({ months: 3 });
+    const maxDate = now.add({months: 3});
 
     return (
       <div className="flex flex-col items-center gap-4">
         <RangeCalendar
           {...args}
           aria-label="Trip dates"
-          defaultValue={{ end: now.add({ days: 5 }), start: now.add({ days: 2 }) }}
+          defaultValue={{end: now.add({days: 5}), start: now.add({days: 2})}}
           maxValue={maxDate}
           minValue={minDate}
         >
@@ -261,7 +258,7 @@ export const MinMaxDates: Story = {
           </RangeCalendar.Grid>
           <RangeCalendar.YearPickerGrid>
             <RangeCalendar.YearPickerGridBody>
-              {({ year }) => <RangeCalendar.YearPickerCell year={year} />}
+              {({year}) => <RangeCalendar.YearPickerCell year={year} />}
             </RangeCalendar.YearPickerGridBody>
           </RangeCalendar.YearPickerGrid>
         </RangeCalendar>
@@ -277,8 +274,8 @@ export const UnavailableDates: Story = {
   render: (args) => {
     const now = today(getLocalTimeZone());
     const blockedRanges = [
-      [now.add({ days: 2 }), now.add({ days: 5 })],
-      [now.add({ days: 12 }), now.add({ days: 13 })],
+      [now.add({days: 2}), now.add({days: 5})],
+      [now.add({days: 12}), now.add({days: 13})],
     ] as const;
 
     const isDateUnavailable = (date: DateValue) => {
@@ -292,7 +289,7 @@ export const UnavailableDates: Story = {
         <RangeCalendarTemplate
           {...args}
           aria-label="Trip dates"
-          defaultValue={{ end: now.add({ days: 9 }), start: now.add({ days: 6 }) }}
+          defaultValue={{end: now.add({days: 9}), start: now.add({days: 6})}}
           isDateUnavailable={isDateUnavailable}
         />
         <Description className="text-center">Some days are unavailable</Description>
@@ -305,8 +302,8 @@ export const AllowsNonContiguousRanges: Story = {
   render: (args) => {
     const now = today(getLocalTimeZone());
     const blockedRanges = [
-      [now.add({ days: 2 }), now.add({ days: 5 })],
-      [now.add({ days: 12 }), now.add({ days: 13 })],
+      [now.add({days: 2}), now.add({days: 5})],
+      [now.add({days: 12}), now.add({days: 13})],
     ] as const;
 
     const isDateUnavailable = (date: DateValue) => {
@@ -321,7 +318,7 @@ export const AllowsNonContiguousRanges: Story = {
           {...args}
           allowsNonContiguousRanges
           aria-label="Trip dates"
-          defaultValue={{ end: now.add({ days: 9 }), start: now.add({ days: 1 }) }}
+          defaultValue={{end: now.add({days: 9}), start: now.add({days: 1})}}
           isDateUnavailable={isDateUnavailable}
         />
         <Description className="text-center">
@@ -340,7 +337,7 @@ export const Disabled: Story = {
         isDisabled
         aria-label="Trip dates"
         defaultValue={{
-          end: today(getLocalTimeZone()).add({ days: 4 }),
+          end: today(getLocalTimeZone()).add({days: 4}),
           start: today(getLocalTimeZone()),
         }}
       />
@@ -357,7 +354,7 @@ export const ReadOnly: Story = {
         isReadOnly
         aria-label="Trip dates"
         defaultValue={{
-          end: today(getLocalTimeZone()).add({ days: 4 }),
+          end: today(getLocalTimeZone()).add({days: 4}),
           start: today(getLocalTimeZone()),
         }}
       />
@@ -370,8 +367,8 @@ export const Invalid: Story = {
   render: (args) => {
     const now = today(getLocalTimeZone());
     const [value, setValue] = useState<DateRange>({
-      end: now.add({ days: 14 }),
-      start: now.add({ days: 6 }),
+      end: now.add({days: 14}),
+      start: now.add({days: 6}),
     });
     const isInvalid = value.end.compare(value.start) > 7;
 
@@ -385,7 +382,7 @@ export const Invalid: Story = {
           onChange={setValue}
         />
         {isInvalid ? (
-          <p className="text-danger text-sm">Maximum stay duration is 1 week</p>
+          <p className="text-sm text-danger">Maximum stay duration is 1 week</p>
         ) : (
           <Description className="text-center">Select a stay of up to 7 days</Description>
         )}
@@ -453,7 +450,7 @@ export const WithIndicators: Story = {
         <RangeCalendar.GridBody>
           {(date) => (
             <RangeCalendar.Cell date={date}>
-              {({ formattedDate }) => (
+              {({formattedDate}) => (
                 <>
                   {formattedDate}
                   {(isToday(date, getLocalTimeZone()) || datesWithEvents.includes(date.day)) && (
@@ -475,7 +472,7 @@ export const MultipleMonths: Story = {
       {...args}
       aria-label="Trip dates"
       className="@container-normal w-auto overflow-x-auto"
-      visibleDuration={{ months: 2 }}
+      visibleDuration={{months: 2}}
     >
       <RangeCalendar.Heading className="sr-only" />
       <div className="flex w-max gap-8">
@@ -500,7 +497,7 @@ export const MultipleMonths: Story = {
             <RangeCalendarMonthHeading offset={1} />
             <RangeCalendar.NavButton slot="next" />
           </RangeCalendar.Header>
-          <RangeCalendar.Grid offset={{ months: 1 }}>
+          <RangeCalendar.Grid offset={{months: 1}}>
             <RangeCalendar.GridHeader>
               {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
@@ -520,7 +517,7 @@ export const ThreeMonths: Story = {
       {...args}
       aria-label="Vacation planning"
       className="@container-normal w-auto overflow-x-auto"
-      visibleDuration={{ months: 3 }}
+      visibleDuration={{months: 3}}
     >
       <RangeCalendar.Heading className="sr-only" />
       <div className="flex w-max gap-7">
@@ -545,7 +542,7 @@ export const ThreeMonths: Story = {
             <RangeCalendarMonthHeading offset={1} />
             <div className="size-6" />
           </RangeCalendar.Header>
-          <RangeCalendar.Grid offset={{ months: 1 }}>
+          <RangeCalendar.Grid offset={{months: 1}}>
             <RangeCalendar.GridHeader>
               {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
@@ -560,7 +557,7 @@ export const ThreeMonths: Story = {
             <RangeCalendarMonthHeading offset={2} />
             <RangeCalendar.NavButton slot="next" />
           </RangeCalendar.Header>
-          <RangeCalendar.Grid offset={{ months: 2 }}>
+          <RangeCalendar.Grid offset={{months: 2}}>
             <RangeCalendar.GridHeader>
               {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
@@ -581,7 +578,7 @@ export const InternationalCalendar: Story = {
         {...args}
         aria-label="Trip dates"
         defaultValue={{
-          end: today(getLocalTimeZone()).add({ days: 7 }),
+          end: today(getLocalTimeZone()).add({days: 7}),
           start: today(getLocalTimeZone()),
         }}
       />
@@ -592,7 +589,7 @@ export const InternationalCalendar: Story = {
 export const BookingCalendar: Story = {
   render: (args) => {
     const [selectedRange, setSelectedRange] = useState<DateRange | null>(null);
-    const { locale } = useLocale();
+    const {locale} = useLocale();
 
     // Simulated blocked dates
     const blockedDates = [5, 6, 12, 13, 14, 20];
@@ -624,7 +621,7 @@ export const BookingCalendar: Story = {
             <RangeCalendar.GridBody>
               {(date) => (
                 <RangeCalendar.Cell date={date}>
-                  {({ formattedDate, isUnavailable }) => (
+                  {({formattedDate, isUnavailable}) => (
                     <>
                       {formattedDate}
                       {!isUnavailable &&
@@ -638,12 +635,12 @@ export const BookingCalendar: Story = {
           </RangeCalendar.Grid>
         </RangeCalendar>
         <div className="flex flex-col gap-2 text-center">
-          <div className="text-muted flex items-center justify-center gap-4 text-xs">
+          <div className="flex items-center justify-center gap-4 text-xs text-muted">
             <span className="flex items-center gap-1">
-              <span className="bg-muted size-2 rounded-full" /> Blocked dates
+              <span className="size-2 rounded-full bg-muted" /> Blocked dates
             </span>
             <span className="flex items-center gap-1">
-              <span className="bg-default size-2 rounded-full" /> Weekend/Unavailable
+              <span className="size-2 rounded-full bg-default" /> Weekend/Unavailable
             </span>
           </div>
           {selectedRange ? (

@@ -1,24 +1,24 @@
-import type { Key } from "@heroui/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Key} from "@heroui/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useAsyncList } from "@react-stately/data";
+import {Icon} from "@iconify/react";
+import {useAsyncList} from "@react-stately/data";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@heroui/react";
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { EmptyState } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Header } from "@heroui/react";
-import { Input } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { ListBox } from "@heroui/react";
-import { Collection, ListBoxLoadMoreItem } from "@heroui/react";
-import { Separator } from "@heroui/react";
-import { Spinner } from "@heroui/react";
+import {Avatar, AvatarFallback, AvatarImage} from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {EmptyState} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Header} from "@heroui/react";
+import {Input} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {ListBox} from "@heroui/react";
+import {Collection, ListBoxLoadMoreItem} from "@heroui/react";
+import {Separator} from "@heroui/react";
+import {Spinner} from "@heroui/react";
 
-import { ComboBox } from "@heroui/react";
+import {ComboBox} from "@heroui/react";
 
 const meta: Meta<typeof ComboBox> = {
   component: ComboBox,
@@ -539,7 +539,7 @@ export const Controlled: Story = {
             </ListBox>
           </ComboBox.Popover>
         </ComboBox>
-        <p className="text-muted text-sm">Selected: {selectedAnimal?.name || "None"}</p>
+        <p className="text-sm text-muted">Selected: {selectedAnimal?.name || "None"}</p>
       </div>
     );
   },
@@ -586,7 +586,7 @@ export const ControlledInputValue: Story = {
             </ListBox>
           </ComboBox.Popover>
         </ComboBox>
-        <p className="text-muted text-sm">Input value: {inputValue || "(empty)"}</p>
+        <p className="text-sm text-muted">Input value: {inputValue || "(empty)"}</p>
       </div>
     );
   },
@@ -599,7 +599,7 @@ interface Character {
 export const AsynchronousLoading: Story = {
   render: () => {
     const list = useAsyncList<Character>({
-      async load({ cursor, filterText, signal }) {
+      async load({cursor, filterText, signal}) {
         if (cursor) {
           cursor = cursor.replace(/^http:\/\//i, "https://");
         }
@@ -660,11 +660,11 @@ export const AsynchronousLoading: Story = {
 export const CustomFiltering: Story = {
   render: () => {
     const animals = [
-      { id: "cat", name: "Cat" },
-      { id: "dog", name: "Dog" },
-      { id: "bird", name: "Bird" },
-      { id: "fish", name: "Fish" },
-      { id: "hamster", name: "Hamster" },
+      {id: "cat", name: "Cat"},
+      {id: "dog", name: "Dog"},
+      {id: "bird", name: "Bird"},
+      {id: "fish", name: "Fish"},
+      {id: "hamster", name: "Hamster"},
     ];
 
     return (
@@ -781,7 +781,7 @@ export const MenuTrigger: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Focus (default)</p>
+        <p className="text-sm font-medium text-muted">Focus (default)</p>
         <ComboBox className="w-[256px]" menuTrigger="focus">
           <Label>Favorite Animal</Label>
           <ComboBox.InputGroup>
@@ -821,7 +821,7 @@ export const MenuTrigger: Story = {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Input</p>
+        <p className="text-sm font-medium text-muted">Input</p>
         <ComboBox className="w-[256px]" menuTrigger="input">
           <Label>Favorite Animal</Label>
           <ComboBox.InputGroup>
@@ -861,7 +861,7 @@ export const MenuTrigger: Story = {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Manual</p>
+        <p className="text-sm font-medium text-muted">Manual</p>
         <ComboBox className="w-[256px]" menuTrigger="manual">
           <Label>Favorite Animal</Label>
           <ComboBox.InputGroup>

@@ -1,19 +1,19 @@
-import type { DateValue } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {DateValue} from "@internationalized/date";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { getLocalTimeZone, today } from "@internationalized/date";
-import { useState } from "react";
+import {Icon} from "@iconify/react";
+import {getLocalTimeZone, today} from "@internationalized/date";
+import {useState} from "react";
 
-import { Button } from "@heroui/react";
-import { Calendar } from "@heroui/react";
-import { DateField } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Calendar} from "@heroui/react";
+import {DateField} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
 
-import { DatePicker } from "@heroui/react";
+import {DatePicker} from "@heroui/react";
 
 const meta: Meta<typeof DatePicker> = {
   component: DatePicker,
@@ -45,13 +45,13 @@ const CalendarContent = () => (
     </Calendar.Grid>
     <Calendar.YearPickerGrid>
       <Calendar.YearPickerGridBody>
-        {({ year }) => <Calendar.YearPickerCell year={year} />}
+        {({year}) => <Calendar.YearPickerCell year={year} />}
       </Calendar.YearPickerGridBody>
     </Calendar.YearPickerGrid>
   </Calendar>
 );
 
-const DatePickerField = ({ showDescription = false }: { showDescription?: boolean }) => (
+const DatePickerField = ({showDescription = false}: {showDescription?: boolean}) => (
   <>
     <Label>Date</Label>
     <DateField.Group fullWidth>

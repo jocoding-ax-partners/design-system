@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { Spinner } from "@heroui/react";
 
-import { NumberField } from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {Spinner} from "@heroui/react";
+
+import {NumberField} from "@heroui/react";
 
 const meta: Meta<typeof NumberField> = {
   component: NumberField,
@@ -86,7 +87,7 @@ export const WithDescription: Story = {
       </NumberField>
       <NumberField
         defaultValue={0.5}
-        formatOptions={{ style: "percent" }}
+        formatOptions={{style: "percent"}}
         maxValue={1}
         minValue={0}
         name="percentage"
@@ -142,7 +143,7 @@ export const Invalid: Story = {
       </NumberField>
       <NumberField
         isInvalid
-        formatOptions={{ style: "percent" }}
+        formatOptions={{style: "percent"}}
         maxValue={1}
         minValue={0}
         name="percentage"
@@ -176,7 +177,7 @@ export const Disabled: Story = {
       <NumberField
         isDisabled
         defaultValue={0.5}
-        formatOptions={{ style: "percent" }}
+        formatOptions={{style: "percent"}}
         maxValue={1}
         minValue={0}
         name="percentage"
@@ -231,7 +232,7 @@ export const WithValidation: Story = {
       <div className="flex flex-col gap-4">
         <NumberField
           isRequired
-          formatOptions={{ style: "percent" }}
+          formatOptions={{style: "percent"}}
           isInvalid={isInvalid}
           maxValue={1}
           minValue={0}
@@ -331,7 +332,7 @@ export const WithFormatOptions: Story = {
       </NumberField>
       <NumberField
         defaultValue={0.5}
-        formatOptions={{ style: "percent" }}
+        formatOptions={{style: "percent"}}
         maxValue={1}
         minValue={0}
         name="percentage"
@@ -434,7 +435,7 @@ export const WithChevrons: Story = {
       <Label>Number field with chevrons</Label>
       <NumberField.Group>
         <NumberField.Input />
-        <div className="border-field-placeholder/15 flex h-[calc(100%+2px)] flex-col border-l">
+        <div className="flex h-[calc(100%+2px)] flex-col border-l border-field-placeholder/15">
           <NumberField.IncrementButton className="-ml-px flex h-1/2 w-6 flex-1 rounded-none border-r-0 border-l-0 pt-0.5 text-sm">
             <svg
               aria-hidden="true"
@@ -492,7 +493,7 @@ export const FormExample: Story = {
       // Simulate API call
       setTimeout(() => {
         // eslint-disable-next-line no-console
-        console.log("Order submitted:", { quantity: value });
+        console.log("Order submitted:", {quantity: value});
         setValue(undefined);
         setIsSubmitting(false);
       }, 1500);

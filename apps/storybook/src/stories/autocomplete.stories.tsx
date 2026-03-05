@@ -1,29 +1,29 @@
-import type { Key } from "@heroui/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {Key} from "@heroui/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import { Icon } from "@iconify/react";
-import { useAsyncList } from "@react-stately/data";
-import { useState } from "react";
-import { useFilter } from "react-aria-components";
-import { cn } from "tailwind-variants";
+import {Icon} from "@iconify/react";
+import {useAsyncList} from "@react-stately/data";
+import {useState} from "react";
+import {useFilter} from "react-aria-components";
+import {cn} from "tailwind-variants";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@heroui/react";
-import { Button } from "@heroui/react";
-import { Description } from "@heroui/react";
-import { EmptyState } from "@heroui/react";
-import { FieldError } from "@heroui/react";
-import { Form } from "@heroui/react";
-import { Header } from "@heroui/react";
-import { Label } from "@heroui/react";
-import { ListBox } from "@heroui/react";
-import { SearchField } from "@heroui/react";
-import { Separator } from "@heroui/react";
-import { Spinner } from "@heroui/react";
-import { Surface } from "@heroui/react";
-import { Tag } from "@heroui/react";
-import { TagGroup } from "@heroui/react";
+import {Avatar, AvatarFallback, AvatarImage} from "@heroui/react";
+import {Button} from "@heroui/react";
+import {Description} from "@heroui/react";
+import {EmptyState} from "@heroui/react";
+import {FieldError} from "@heroui/react";
+import {Form} from "@heroui/react";
+import {Header} from "@heroui/react";
+import {Label} from "@heroui/react";
+import {ListBox} from "@heroui/react";
+import {SearchField} from "@heroui/react";
+import {Separator} from "@heroui/react";
+import {Spinner} from "@heroui/react";
+import {Surface} from "@heroui/react";
+import {Tag} from "@heroui/react";
+import {TagGroup} from "@heroui/react";
 
-import { Autocomplete } from "@heroui/react";
+import {Autocomplete} from "@heroui/react";
 
 const meta: Meta<typeof Autocomplete> = {
   component: Autocomplete,
@@ -40,15 +40,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "cat", name: "Cat" },
-      { id: "dog", name: "Dog" },
-      { id: "elephant", name: "Elephant" },
-      { id: "lion", name: "Lion" },
-      { id: "tiger", name: "Tiger" },
-      { id: "giraffe", name: "Giraffe" },
+      {id: "cat", name: "Cat"},
+      {id: "dog", name: "Dog"},
+      {id: "elephant", name: "Elephant"},
+      {id: "lion", name: "Lion"},
+      {id: "tiger", name: "Tiger"},
+      {id: "giraffe", name: "Giraffe"},
     ];
 
     return (
@@ -91,15 +91,15 @@ export const Default: Story = {
 export const WithClearButton: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "cat", name: "Cat" },
-      { id: "dog", name: "Dog" },
-      { id: "elephant", name: "Elephant" },
-      { id: "lion", name: "Lion" },
-      { id: "tiger", name: "Tiger" },
-      { id: "giraffe", name: "Giraffe" },
+      {id: "cat", name: "Cat"},
+      {id: "dog", name: "Dog"},
+      {id: "elephant", name: "Elephant"},
+      {id: "lion", name: "Lion"},
+      {id: "tiger", name: "Tiger"},
+      {id: "giraffe", name: "Giraffe"},
     ];
 
     return (
@@ -145,15 +145,15 @@ export const WithOnClearCallback: Story = {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
     const [clearCount, setClearCount] = useState(0);
     const [lastClearedAt, setLastClearedAt] = useState<string | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "cat", name: "Cat" },
-      { id: "dog", name: "Dog" },
-      { id: "elephant", name: "Elephant" },
-      { id: "lion", name: "Lion" },
-      { id: "tiger", name: "Tiger" },
-      { id: "giraffe", name: "Giraffe" },
+      {id: "cat", name: "Cat"},
+      {id: "dog", name: "Dog"},
+      {id: "elephant", name: "Elephant"},
+      {id: "lion", name: "Lion"},
+      {id: "tiger", name: "Tiger"},
+      {id: "giraffe", name: "Giraffe"},
     ];
 
     const handleClear = () => {
@@ -201,9 +201,9 @@ export const WithOnClearCallback: Story = {
             </Autocomplete.Filter>
           </Autocomplete.Popover>
         </Autocomplete>
-        <div className="border-border space-y-2 rounded-xl border p-4">
+        <div className="space-y-2 rounded-xl border border-border p-4">
           <p className="text-sm font-medium">onClear Callback Info:</p>
-          <div className="text-muted space-y-1 text-sm">
+          <div className="space-y-1 text-sm text-muted">
             <p>Clear button clicked: {clearCount} time(s)</p>
             {!!lastClearedAt && <p>Last cleared at: {lastClearedAt}</p>}
             {!!selectedItem && (
@@ -227,13 +227,13 @@ export const Variants: Story = {
     const [selectedKey2, setSelectedKey2] = useState<Key | null>(null);
     const [selectedKeys1, setSelectedKeys1] = useState<Key[]>([]);
     const [selectedKeys2, setSelectedKeys2] = useState<Key[]>([]);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "option1", name: "Option 1" },
-      { id: "option2", name: "Option 2" },
-      { id: "option3", name: "Option 3" },
-      { id: "option4", name: "Option 4" },
+      {id: "option1", name: "Option 1"},
+      {id: "option2", name: "Option 2"},
+      {id: "option3", name: "Option 3"},
+      {id: "option4", name: "Option 4"},
     ];
 
     const onRemoveTags1 = (keys: Set<Key>) => {
@@ -333,7 +333,7 @@ export const Variants: Story = {
               <Label>Primary variant</Label>
               <Autocomplete.Trigger>
                 <Autocomplete.Value>
-                  {({ defaultChildren, isPlaceholder, state }) => {
+                  {({defaultChildren, isPlaceholder, state}) => {
                     if (isPlaceholder || state.selectedItems.length === 0) {
                       return defaultChildren;
                     }
@@ -393,7 +393,7 @@ export const Variants: Story = {
               <Label>Secondary variant</Label>
               <Autocomplete.Trigger>
                 <Autocomplete.Value>
-                  {({ defaultChildren, isPlaceholder, state }) => {
+                  {({defaultChildren, isPlaceholder, state}) => {
                     if (isPlaceholder || state.selectedItems.length === 0) {
                       return defaultChildren;
                     }
@@ -452,15 +452,15 @@ export const Variants: Story = {
 export const MultipleSelect: Story = {
   render: () => {
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "florida", name: "Florida" },
-      { id: "new-york", name: "New York" },
-      { id: "illinois", name: "Illinois" },
-      { id: "pennsylvania", name: "Pennsylvania" },
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "florida", name: "Florida"},
+      {id: "new-york", name: "New York"},
+      {id: "illinois", name: "Illinois"},
+      {id: "pennsylvania", name: "Pennsylvania"},
     ];
 
     const onRemoveTags = (keys: Set<Key>) => {
@@ -478,7 +478,7 @@ export const MultipleSelect: Story = {
         <Label>States</Label>
         <Autocomplete.Trigger>
           <Autocomplete.Value>
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
@@ -534,15 +534,15 @@ export const MultipleSelect: Story = {
 export const FullWidth: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "florida", name: "Florida" },
-      { id: "delaware", name: "Delaware" },
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "new-york", name: "New York" },
-      { id: "washington", name: "Washington" },
+      {id: "florida", name: "Florida"},
+      {id: "delaware", name: "Delaware"},
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "new-york", name: "New York"},
+      {id: "washington", name: "Washington"},
     ];
 
     return (
@@ -589,15 +589,15 @@ export const FullWidth: Story = {
 export const WithDescription: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "florida", name: "Florida" },
-      { id: "delaware", name: "Delaware" },
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "new-york", name: "New York" },
-      { id: "washington", name: "Washington" },
+      {id: "florida", name: "Florida"},
+      {id: "delaware", name: "Delaware"},
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "new-york", name: "New York"},
+      {id: "washington", name: "Washington"},
     ];
 
     return (
@@ -642,7 +642,7 @@ export const WithDescription: Story = {
 export const WithSections: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     return (
       <Autocomplete
@@ -738,7 +738,7 @@ export const WithSections: Story = {
 export const WithDisabledOptions: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     return (
       <Autocomplete
@@ -800,15 +800,15 @@ export const WithDisabledOptions: Story = {
 export const CustomIndicator: Story = {
   render: () => {
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "florida", name: "Florida" },
-      { id: "delaware", name: "Delaware" },
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "new-york", name: "New York" },
-      { id: "washington", name: "Washington" },
+      {id: "florida", name: "Florida"},
+      {id: "delaware", name: "Delaware"},
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "new-york", name: "New York"},
+      {id: "washington", name: "Washington"},
     ];
 
     return (
@@ -866,24 +866,24 @@ export const Required: Story = {
       alert("Form submitted successfully!");
     };
 
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const states = [
-      { id: "florida", name: "Florida" },
-      { id: "delaware", name: "Delaware" },
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "new-york", name: "New York" },
-      { id: "washington", name: "Washington" },
+      {id: "florida", name: "Florida"},
+      {id: "delaware", name: "Delaware"},
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "new-york", name: "New York"},
+      {id: "washington", name: "Washington"},
     ];
 
     const countries = [
-      { id: "usa", name: "United States" },
-      { id: "canada", name: "Canada" },
-      { id: "mexico", name: "Mexico" },
-      { id: "uk", name: "United Kingdom" },
-      { id: "france", name: "France" },
-      { id: "germany", name: "Germany" },
+      {id: "usa", name: "United States"},
+      {id: "canada", name: "Canada"},
+      {id: "mexico", name: "Mexico"},
+      {id: "uk", name: "United Kingdom"},
+      {id: "france", name: "France"},
+      {id: "germany", name: "Germany"},
     ];
 
     return (
@@ -965,16 +965,16 @@ export const Required: Story = {
 export const Controlled: Story = {
   render: () => {
     const states = [
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "florida", name: "Florida" },
-      { id: "new-york", name: "New York" },
-      { id: "illinois", name: "Illinois" },
-      { id: "pennsylvania", name: "Pennsylvania" },
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "florida", name: "Florida"},
+      {id: "new-york", name: "New York"},
+      {id: "illinois", name: "Illinois"},
+      {id: "pennsylvania", name: "Pennsylvania"},
     ];
 
     const [state, setState] = React.useState<Key | null>("california");
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const selectedState = states.find((s) => s.id === state);
 
@@ -1013,7 +1013,7 @@ export const Controlled: Story = {
             </Autocomplete.Filter>
           </Autocomplete.Popover>
         </Autocomplete>
-        <p className="text-muted text-sm">Selected: {selectedState?.name || "None"}</p>
+        <p className="text-sm text-muted">Selected: {selectedState?.name || "None"}</p>
       </div>
     );
   },
@@ -1022,15 +1022,15 @@ export const Controlled: Story = {
 export const ControlledOpenState: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "florida", name: "Florida" },
-      { id: "delaware", name: "Delaware" },
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "new-york", name: "New York" },
-      { id: "washington", name: "Washington" },
+      {id: "florida", name: "Florida"},
+      {id: "delaware", name: "Delaware"},
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "new-york", name: "New York"},
+      {id: "washington", name: "Washington"},
     ];
 
     return (
@@ -1069,7 +1069,7 @@ export const ControlledOpenState: Story = {
           </Autocomplete.Popover>
         </Autocomplete>
         <Button onPress={() => setIsOpen(!isOpen)}>{isOpen ? "Close" : "Open"} Autocomplete</Button>
-        <p className="text-muted text-sm">Autocomplete is {isOpen ? "open" : "closed"}</p>
+        <p className="text-sm text-muted">Autocomplete is {isOpen ? "open" : "closed"}</p>
       </div>
     );
   },
@@ -1082,7 +1082,7 @@ interface Pokemon {
 export const AsynchronousFiltering: Story = {
   render: () => {
     const list = useAsyncList<Pokemon>({
-      async load({ filterText, signal }) {
+      async load({filterText, signal}) {
         const res = await fetch(`https://swapi.py4e.com/api/people/?search=${filterText}`, {
           signal,
         });
@@ -1116,7 +1116,7 @@ export const AsynchronousFiltering: Story = {
                   })}
                 />
                 <SearchField.ClearButton
-                  className={cn({ "pointer-events-none opacity-0": !!list.isLoading })}
+                  className={cn({"pointer-events-none opacity-0": !!list.isLoading})}
                 />
               </SearchField.Group>
             </SearchField>
@@ -1141,24 +1141,24 @@ export const AsynchronousFiltering: Story = {
 
 export const Disabled: Story = {
   render: () => {
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const items = [
-      { id: "florida", name: "Florida" },
-      { id: "delaware", name: "Delaware" },
-      { id: "california", name: "California" },
-      { id: "texas", name: "Texas" },
-      { id: "new-york", name: "New York" },
-      { id: "washington", name: "Washington" },
+      {id: "florida", name: "Florida"},
+      {id: "delaware", name: "Delaware"},
+      {id: "california", name: "California"},
+      {id: "texas", name: "Texas"},
+      {id: "new-york", name: "New York"},
+      {id: "washington", name: "Washington"},
     ];
 
     const countries = [
-      { id: "argentina", name: "Argentina" },
-      { id: "venezuela", name: "Venezuela" },
-      { id: "japan", name: "Japan" },
-      { id: "france", name: "France" },
-      { id: "italy", name: "Italy" },
-      { id: "spain", name: "Spain" },
+      {id: "argentina", name: "Argentina"},
+      {id: "venezuela", name: "Venezuela"},
+      {id: "japan", name: "Japan"},
+      {id: "france", name: "France"},
+      {id: "italy", name: "Italy"},
+      {id: "spain", name: "Spain"},
     ];
 
     return (
@@ -1275,7 +1275,7 @@ export const UserSelection: Story = {
     ];
 
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     return (
       <Autocomplete
@@ -1288,7 +1288,7 @@ export const UserSelection: Story = {
         <Label>User</Label>
         <Autocomplete.Trigger>
           <Autocomplete.Value>
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
@@ -1391,7 +1391,7 @@ export const UserSelectionMultiple: Story = {
     ];
 
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const onRemoveTags = (keys: Set<Key>) => {
       setSelectedKeys((prev) => prev.filter((key) => !keys.has(key)));
@@ -1409,7 +1409,7 @@ export const UserSelectionMultiple: Story = {
         <Label>Users</Label>
         <Autocomplete.Trigger>
           <Autocomplete.Value>
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
@@ -1483,21 +1483,21 @@ interface City {
 export const LocationSearch: Story = {
   render: () => {
     const allCities: City[] = [
-      { name: "New York", country: "USA" },
-      { name: "Los Angeles", country: "USA" },
-      { name: "Chicago", country: "USA" },
-      { name: "London", country: "UK" },
-      { name: "Paris", country: "France" },
-      { name: "Tokyo", country: "Japan" },
-      { name: "Sydney", country: "Australia" },
-      { name: "Toronto", country: "Canada" },
-      { name: "Berlin", country: "Germany" },
-      { name: "Madrid", country: "Spain" },
+      {name: "New York", country: "USA"},
+      {name: "Los Angeles", country: "USA"},
+      {name: "Chicago", country: "USA"},
+      {name: "London", country: "UK"},
+      {name: "Paris", country: "France"},
+      {name: "Tokyo", country: "Japan"},
+      {name: "Sydney", country: "Australia"},
+      {name: "Toronto", country: "Canada"},
+      {name: "Berlin", country: "Germany"},
+      {name: "Madrid", country: "Spain"},
     ];
 
     const [selectedKey, setSelectedKey] = useState<Key | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     // Simulate async filtering
     const customFilter = (text: string, inputValue: string) => {
@@ -1556,18 +1556,18 @@ export const LocationSearch: Story = {
 export const TagGroupSelection: Story = {
   render: () => {
     const tags = [
-      { id: "react", name: "React" },
-      { id: "typescript", name: "TypeScript" },
-      { id: "javascript", name: "JavaScript" },
-      { id: "nodejs", name: "Node.js" },
-      { id: "python", name: "Python" },
-      { id: "vue", name: "Vue" },
-      { id: "angular", name: "Angular" },
-      { id: "nextjs", name: "Next.js" },
+      {id: "react", name: "React"},
+      {id: "typescript", name: "TypeScript"},
+      {id: "javascript", name: "JavaScript"},
+      {id: "nodejs", name: "Node.js"},
+      {id: "python", name: "Python"},
+      {id: "vue", name: "Vue"},
+      {id: "angular", name: "Angular"},
+      {id: "nextjs", name: "Next.js"},
     ];
 
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const onRemoveTags = (keys: Set<Key>) => {
       setSelectedKeys((prev) => prev.filter((key) => !keys.has(key)));
@@ -1584,7 +1584,7 @@ export const TagGroupSelection: Story = {
         <Label>Tags</Label>
         <Autocomplete.Trigger>
           <Autocomplete.Value>
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
@@ -1640,15 +1640,15 @@ export const TagGroupSelection: Story = {
 export const EmailRecipients: Story = {
   render: () => {
     const emails = [
-      { id: "alice@example.com", name: "Alice Johnson", email: "alice@example.com" },
-      { id: "bob@example.com", name: "Bob Smith", email: "bob@example.com" },
-      { id: "charlie@example.com", name: "Charlie Brown", email: "charlie@example.com" },
-      { id: "diana@example.com", name: "Diana Prince", email: "diana@example.com" },
-      { id: "eve@example.com", name: "Eve Wilson", email: "eve@example.com" },
+      {id: "alice@example.com", name: "Alice Johnson", email: "alice@example.com"},
+      {id: "bob@example.com", name: "Bob Smith", email: "bob@example.com"},
+      {id: "charlie@example.com", name: "Charlie Brown", email: "charlie@example.com"},
+      {id: "diana@example.com", name: "Diana Prince", email: "diana@example.com"},
+      {id: "eve@example.com", name: "Eve Wilson", email: "eve@example.com"},
     ];
 
     const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
-    const { contains } = useFilter({ sensitivity: "base" });
+    const {contains} = useFilter({sensitivity: "base"});
 
     const onRemoveTags = (keys: Set<Key>) => {
       setSelectedKeys((prev) => prev.filter((key) => !keys.has(key)));
@@ -1665,7 +1665,7 @@ export const EmailRecipients: Story = {
         <Label>To</Label>
         <Autocomplete.Trigger>
           <Autocomplete.Value>
-            {({ defaultChildren, isPlaceholder, state }) => {
+            {({defaultChildren, isPlaceholder, state}) => {
               if (isPlaceholder || state.selectedItems.length === 0) {
                 return defaultChildren;
               }
