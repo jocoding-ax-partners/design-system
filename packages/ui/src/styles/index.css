@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "@heroui/styles";
-
-@source "../components/**/*.tsx";
+@import "@shared/core/styles";
 
 body {
   @apply bg-background text-foreground;
@@ -14,8 +13,7 @@ body {
 
   .button--md {
     @apply h-10;
-
-    border-radius: calc(var(--radius) * 1.25);
+    @apply rounded-base;
   }
 
   .button--md.button--icon-only {
@@ -23,10 +21,20 @@ body {
   }
 
   .button--lg {
-    @apply rounded-xl h-12;
+    @apply h-12 px-5;
+    @apply rounded-xl;
   }
 
   .button--lg.button--icon-only {
     @apply w-12;
+  }
+
+  .button--primary {
+    &[data-softened="true"] {
+      --button-bg: var(--color-accent-soft);
+      --button-bg-hover: var(--color-accent-soft-hover);
+      --button-bg-pressed: var(--color-accent-soft-hover);
+      --button-fg: var(--color-accent-soft-foreground);
+    }
   }
 }
