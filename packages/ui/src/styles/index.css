@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "@heroui/styles";
-@import "@shared/core/styles";
+@import "@demodev-ui/core/styles";
 
 body {
   @apply bg-background text-foreground;

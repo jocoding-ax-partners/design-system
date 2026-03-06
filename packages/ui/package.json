@@ -1,5 +1,5 @@
 {
-  "name": "@shared/ui",
+  "name": "@demodev-ui/ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -25,7 +25,7 @@
     }
   },
   "dependencies": {
-    "@shared/core": "workspace:^"
+    "@demodev-ui/core": "workspace:^"
   },
   "peerDependencies": {
     "@heroui/react": "^3.0.0-beta.8",

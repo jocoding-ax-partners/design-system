@@ -1,1 +1,1 @@
-declare module "@shared/ui/styles";
+declare module "@demodev-ui/ui/styles";
