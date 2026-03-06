@@ -46,7 +46,7 @@ importers:
     dependencies:
       '@demodev-ui/react':
         specifier: workspace:^
-        version: link:../../packages/ui
+        version: link:../../packages/react
       '@heroui/react':
         specifier: 3.0.0-beta.8
         version: 3.0.0-beta.8(@types/react-dom@19.2.3(@types/react@19.2.9))(@types/react@19.2.9)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)
@@ -166,7 +166,7 @@ importers:
         specifier: ^4.1.18
         version: 4.1.18
 
-  packages/ui:
+  packages/react:
     dependencies:
       '@demodev-ui/core':
         specifier: workspace:^
