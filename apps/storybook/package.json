@@ -24,7 +24,7 @@
     "@iconify/react": "^6.0.2",
     "@internationalized/date": "^3.10.1",
     "@react-stately/data": "^3.15.0",
-    "@demodev-ui/ui": "workspace:^",
+    "@demodev-ui/react": "workspace:^",
     "react": "^19.2.0",
     "react-aria-components": "^1.14.0",
     "react-dom": "^19.2.0",

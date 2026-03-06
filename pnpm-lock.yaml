@@ -44,7 +44,7 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@demodev-ui/ui':
+      '@demodev-ui/react':
         specifier: workspace:^
         version: link:../../packages/ui
       '@heroui/react':

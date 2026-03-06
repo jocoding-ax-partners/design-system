@@ -1,1 +1,1 @@
-declare module "@demodev-ui/ui/styles";
+declare module "@demodev-ui/react/styles";
