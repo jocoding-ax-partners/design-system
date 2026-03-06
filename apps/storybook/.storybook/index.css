@@ -1,0 +1,8 @@
+@import "@shared/ui/styles";
+
+@layer base {
+  :root {
+    --accent: #ffda58;
+    --accent-foreground: var(--black);
+  }
+}

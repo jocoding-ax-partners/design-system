@@ -1,7 +1,7 @@
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
-import "@shared/ui/styles";
 
+import "./index.css";
 import "./docs.css";
 
 const preview: Preview = {
