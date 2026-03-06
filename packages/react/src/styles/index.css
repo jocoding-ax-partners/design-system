@@ -21,7 +21,7 @@ body {
   }
 
   .button--lg {
-    @apply h-12 px-5;
+    @apply h-12 px-6;
     @apply rounded-xl;
   }
 
