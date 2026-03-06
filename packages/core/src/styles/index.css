@@ -1,0 +1,7 @@
+@theme {
+  --radius-base: 0.625rem;  /* 10px */
+
+  /* Colors */
+  --background: #fff;
+  --danger: #ef1026
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@shared/core",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": ["*.css"],
+  "exports": {
+    "./styles": {
+      "types": "./src/styles/index.d.ts",
+      "default": "./src/styles/index.css"
+    }
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.18"
+  }
+}
