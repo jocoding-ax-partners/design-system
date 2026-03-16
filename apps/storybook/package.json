@@ -19,8 +19,8 @@
     ]
   },
   "dependencies": {
-    "@heroui/react": "3.0.0-beta.8",
-    "@heroui/styles": "3.0.0-beta.8",
+    "@heroui/react": "catalog:",
+    "@heroui/styles": "catalog:",
     "@iconify/react": "^6.0.2",
     "@internationalized/date": "^3.10.1",
     "@react-stately/data": "^3.15.0",

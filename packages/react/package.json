@@ -28,13 +28,13 @@
     "@demodev-ui/core": "workspace:^"
   },
   "peerDependencies": {
-    "@heroui/react": "^3.0.0-beta.8",
-    "@heroui/styles": "^3.0.0-beta.8",
+    "@heroui/react": "catalog:",
+    "@heroui/styles": "catalog:",
     "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@heroui/react": "3.0.0-beta.8",
-    "@heroui/styles": "3.0.0-beta.8",
+    "@heroui/react": "catalog:",
+    "@heroui/styles": "catalog:",
     "@tsconfig/create-react-app": "^2.0.10",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
