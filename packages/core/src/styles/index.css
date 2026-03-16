@@ -1,6 +1,6 @@
 @theme {
-  --radius-lg-plus: 0.625rem;  /* 10px */
-  --radius-2xl-plus: 1.25rem;  /* 20px */
+  --radius-lg-plus: 0.625rem; /* 10px */
+  --radius-2xl-plus: 1.25rem; /* 20px */
 
   /* Gray Colors */
   --color-gray-50: oklch(96.4% 0.001 287.3deg);
@@ -23,6 +23,18 @@
   --default: var(--color-gray-100);
 }
 
-@utility button-size-sm {
+@utility chip-size-sm {
+  @apply h-6 rounded-md px-2 text-xs;
+}
+
+@utility chip-size-md {
+  @apply h-8 rounded-lg px-3 text-sm;
+}
+
+@utility chip-size-lg {
   @apply h-9 rounded-lg px-3 text-sm;
+}
+
+@utility button-size-sm {
+  @apply chip-size-lg;
 }

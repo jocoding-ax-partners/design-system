@@ -3,6 +3,7 @@
 @import "@demodev-ui/core/styles";
 
 @import "./button.css";
+@import "./chip.css";
 @import "./toggle-button.css";
 
 body {

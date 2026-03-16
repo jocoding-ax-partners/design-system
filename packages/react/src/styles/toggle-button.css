@@ -1,4 +1,10 @@
 @layer components {
+  .toggle-button {
+    & svg {
+      @apply size-4;
+    }
+  }
+
   .toggle-button--default {
     --toggle-button-bg-selected: var(--color-accent);
     --toggle-button-fg-selected: var(--color-accent-foreground);
@@ -16,24 +22,28 @@
 
   /* Size variants */
   .toggle-button--sm {
-    @apply h-6 gap-1.5 rounded-md px-2 text-xs;
+    @apply chip-size-sm gap-1.5;
 
     & svg {
-      @apply size-3;
+      @apply ml-0 size-3;
     }
   }
 
   .toggle-button--md {
-    @apply h-8 rounded-lg px-3;
+    @apply chip-size-md;
   }
 
   .toggle-button--lg {
-    @apply button-size-sm;
+    @apply chip-size-lg;
   }
 
   /* Icon-only modifier */
   .toggle-button--icon-only.toggle-button--sm {
     @apply w-6;
+
+    & svg {
+      @apply -ml-0.5;
+    }
   }
 
   .toggle-button--icon-only.toggle-button--md {
