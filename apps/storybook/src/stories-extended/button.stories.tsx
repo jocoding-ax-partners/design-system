@@ -23,11 +23,11 @@ export default {
   title: "Button",
 } as Meta<typeof Button>;
 
-export const Softened = {
+export const Soft = {
   args: { size: "md" },
   render: ({ isDisabled, size }: Button["RootProps"]) => (
     <div className="flex gap-3">
-      <Button data-softened="true" isDisabled={isDisabled} size={size}>
+      <Button data-soft="true" isDisabled={isDisabled} size={size}>
         Primary
       </Button>
     </div>

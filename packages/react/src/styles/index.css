@@ -30,7 +30,7 @@ body {
   }
 
   .button--primary {
-    &[data-softened="true"] {
+    &[data-soft="true"] {
       --button-bg: var(--color-accent-soft);
       --button-bg-hover: var(--color-accent-soft-hover);
       --button-bg-pressed: var(--color-accent-soft-hover);
