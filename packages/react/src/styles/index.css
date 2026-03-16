@@ -13,7 +13,7 @@ body {
 
   .button--md {
     @apply h-10;
-    @apply rounded-base;
+    @apply rounded-lg-plus;
   }
 
   .button--md.button--icon-only {
@@ -35,6 +35,18 @@ body {
       --button-bg-hover: var(--color-accent-soft-hover);
       --button-bg-pressed: var(--color-accent-soft-hover);
       --button-fg: var(--color-accent-soft-foreground);
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        --button-bg: var(--color-gray-100);
+        --button-fg: var(--color-gray-400);
+      }
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      --button-bg: var(--color-gray-200);
+      --button-fg: var(--color-gray-500);
     }
   }
 }

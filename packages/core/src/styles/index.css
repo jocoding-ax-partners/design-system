@@ -1,7 +1,21 @@
 @theme {
-  --radius-base: 0.625rem;  /* 10px */
+  --radius-lg-plus: 0.625rem;  /* 10px */
+  --radius-2xl-plus: 1.25rem;  /* 20px */
 
   /* Colors */
   --background: #fff;
-  --danger: #ef1026
+  --danger: #ef1026;
+
+  /* Gray Colors */
+  --color-gray-50: oklch(96.4% 0.001 287.3deg);
+  --color-gray-100: oklch(93.2% 0.003 286.78deg);
+  --color-gray-200: oklch(85.3% 0.007 286.41deg);
+  --color-gray-300: oklch(78.5% 0.01 286.27deg);
+  --color-gray-400: oklch(71.2% 0.013 286.14deg);
+  --color-gray-500: oklch(61.4% 0.016 285.95deg);
+  --color-gray-600: oklch(51.9% 0.022 285.64deg);
+  --color-gray-700: oklch(42.2% 0.023 285.39deg);
+  --color-gray-800: oklch(32.9% 0.018 285.42deg);
+  --color-gray-900: oklch(23.4% 0.013 285.34deg);
+  --color-gray-950: oklch(18.9% 0.01 285.42deg);
 }
