@@ -1,6 +1,6 @@
 @layer components {
   .button--sm {
-    @apply rounded-lg;
+    @apply button-size-sm;
   }
 
   .button--md {

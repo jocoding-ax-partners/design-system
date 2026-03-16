@@ -3,6 +3,7 @@
 @import "@demodev-ui/core/styles";
 
 @import "./button.css";
+@import "./toggle-button.css";
 
 body {
   @apply bg-background text-foreground;

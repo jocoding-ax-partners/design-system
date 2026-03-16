@@ -22,3 +22,7 @@
   --warning: #ffdc18;
   --default: var(--color-gray-100);
 }
+
+@utility button-size-sm {
+  @apply h-9 rounded-lg px-3 text-sm;
+}
