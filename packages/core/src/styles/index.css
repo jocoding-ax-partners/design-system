@@ -5,6 +5,8 @@
   /* Colors */
   --background: #fff;
   --danger: #ef1026;
+  --success: #27c961;
+  --warning: #ffdc18;
 
   /* Gray Colors */
   --color-gray-50: oklch(96.4% 0.001 287.3deg);
