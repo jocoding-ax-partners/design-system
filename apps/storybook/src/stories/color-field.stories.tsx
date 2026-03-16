@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 import type {Color} from "react-aria-components";
 
-import {useState} from "react";
+import React, {useState} from "react";
 
 import {Button} from "@heroui/react";
 import {ColorSwatch} from "@heroui/react";

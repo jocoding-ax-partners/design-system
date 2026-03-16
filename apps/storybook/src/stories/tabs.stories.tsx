@@ -1,6 +1,7 @@
 import type {Key} from "@heroui/react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import React from "react";
 import {cn} from "tailwind-variants";
 
 import {Tabs} from "@heroui/react";

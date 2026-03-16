@@ -2,6 +2,7 @@ import type {ColorChannel, ColorSpace} from "@heroui/react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
+import React from "react";
 import {parseColor} from "react-aria-components";
 
 import {Button} from "@heroui/react";

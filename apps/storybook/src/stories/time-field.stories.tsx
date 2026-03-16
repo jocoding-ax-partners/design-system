@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
 import {Time, getLocalTimeZone, now, parseTime} from "@internationalized/date";
-import {useState} from "react";
+import React, {useState} from "react";
 
 import {Button} from "@heroui/react";
 import {Description} from "@heroui/react";

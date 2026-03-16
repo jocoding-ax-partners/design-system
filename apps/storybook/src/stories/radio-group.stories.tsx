@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
+import React from "react";
 import {cx} from "tailwind-variants";
 
 import {Button} from "@heroui/react";

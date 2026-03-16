@@ -1,5 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import React from "react";
 
 import {Description} from "@heroui/react";
 import {FieldError} from "@heroui/react";

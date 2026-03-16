@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {useState} from "react";
+import React, {useState} from "react";
 
 import {ColorSwatch} from "@heroui/react";
 import {Label} from "@heroui/react";

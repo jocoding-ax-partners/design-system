@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
 import {useAsyncList} from "@react-stately/data";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useFilter} from "react-aria-components";
 import {cn} from "tailwind-variants";
 

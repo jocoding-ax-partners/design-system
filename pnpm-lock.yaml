@@ -23,6 +23,9 @@ importers:
       '@nijesmik/stylelint-config':
         specifier: ^0.1.0
         version: 0.1.0(stylelint@16.26.1(typescript@5.9.2))(tailwindcss@4.1.18)
+      '@types/node':
+        specifier: ^24.10.9
+        version: 24.10.9
       eslint:
         specifier: ^9.39.1
         version: 9.39.1(jiti@2.6.1)

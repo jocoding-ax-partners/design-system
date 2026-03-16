@@ -2,6 +2,7 @@ import type {BadgeProps} from "@heroui/react";
 import type {Meta} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
+import React from "react";
 
 import {Avatar} from "@heroui/react";
 import {Separator} from "@heroui/react";

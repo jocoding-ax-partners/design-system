@@ -2,7 +2,7 @@ import type {Key} from "@heroui/react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
-import {useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 
 import {Avatar, Description, EmptyState, ErrorMessage, Label, Tag} from "@heroui/react";
 import {useListData} from "@heroui/react";

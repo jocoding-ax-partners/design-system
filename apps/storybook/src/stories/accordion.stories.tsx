@@ -1,6 +1,7 @@
 import type {Meta} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
+import React from "react";
 import {cn} from "tailwind-variants";
 
 import {Accordion} from "@heroui/react";

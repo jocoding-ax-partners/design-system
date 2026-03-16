@@ -3,6 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
 import {useAsyncList} from "@react-stately/data";
+import React from "react";
 
 import {Avatar, AvatarFallback, AvatarImage} from "@heroui/react";
 import {Button} from "@heroui/react";

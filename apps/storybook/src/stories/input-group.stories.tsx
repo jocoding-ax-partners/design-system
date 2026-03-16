@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
-import {useState} from "react";
+import React, {useState} from "react";
 
 import {Button} from "@heroui/react";
 import {Chip} from "@heroui/react";

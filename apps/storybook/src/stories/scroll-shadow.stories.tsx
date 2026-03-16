@@ -1,7 +1,7 @@
 import type {ScrollShadowVisibility} from "@heroui/react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
-import {useState} from "react";
+import React, {useState} from "react";
 
 import {Button} from "@heroui/react";
 import {Card} from "@heroui/react";

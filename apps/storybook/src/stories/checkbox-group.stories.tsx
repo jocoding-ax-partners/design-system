@@ -1,5 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
+import React from "react";
 
 import {Button} from "@heroui/react";
 import {Checkbox} from "@heroui/react";

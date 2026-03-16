@@ -1,6 +1,7 @@
 import type {Meta} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
+import React from "react";
 
 import {Button} from "@heroui/react";
 import {Input} from "@heroui/react";

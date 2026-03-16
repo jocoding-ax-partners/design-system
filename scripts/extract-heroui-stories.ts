@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -19,8 +19,8 @@ function replaceRelativeImports(content: string): string {
       /from\s+["']@storybook\/react["']/g,
       'from "@storybook/react-vite"',
     )
-    .replace(/^import React(?:,\s*\{([^}]+)\})?\s*from\s*["']react["'];?\n?/gm, (_match, named) =>
-      named ? `import {${named}} from "react";\n` : "",
+    .replace(/^import React\s+from\s*["']react["'];?\n?/gm, (match) =>
+      /\bReact\.\w+/.test(content) ? match : "",
     );
 }
 

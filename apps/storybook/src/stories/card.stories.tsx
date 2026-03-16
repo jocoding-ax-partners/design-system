@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
+import React from "react";
 
 import {Avatar} from "@heroui/react";
 import {Button} from "@heroui/react";

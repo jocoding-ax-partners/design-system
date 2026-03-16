@@ -1,6 +1,7 @@
 import type {ColorAreaRootProps} from "@heroui/react";
 import type {Meta} from "@storybook/react-vite";
 
+import React from "react";
 
 import {ColorSwatch} from "@heroui/react";
 import {parseColor} from "@heroui/react";
