@@ -11,4 +11,9 @@
   .chip--lg {
     @apply chip-size-lg;
   }
+
+  /* Variant styles */
+  .chip--tertiary {
+    @apply border-border border;
+  }
 }

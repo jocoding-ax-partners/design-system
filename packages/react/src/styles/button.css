@@ -11,8 +11,7 @@
   }
 
   .button--md {
-    @apply h-10;
-    @apply rounded-lg-plus;
+    @apply rounded-lg-plus h-10;
   }
 
   .button--md.button--icon-only {
@@ -20,8 +19,7 @@
   }
 
   .button--lg {
-    @apply h-12 px-6;
-    @apply rounded-xl;
+    @apply h-12 gap-2.5 rounded-xl px-6;
   }
 
   .button--lg.button--icon-only {
