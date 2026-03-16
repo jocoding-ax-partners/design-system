@@ -22,19 +22,6 @@
   }
 
   .button--primary {
-    &[data-soft="true"] {
-      --button-bg: var(--color-accent-soft);
-      --button-bg-hover: var(--color-accent-soft-hover);
-      --button-bg-pressed: var(--color-accent-soft-hover);
-      --button-fg: var(--color-accent-soft-foreground);
-
-      &:disabled,
-      &[aria-disabled="true"] {
-        --button-bg: var(--color-gray-100);
-        --button-fg: var(--color-gray-400);
-      }
-    }
-
     &:disabled,
     &[aria-disabled="true"] {
       --button-bg: var(--color-gray-200);
@@ -42,21 +29,54 @@
     }
   }
 
+  .button--secondary {
+    --button-bg: var(--color-accent-soft);
+    --button-bg-hover: var(--color-accent-soft-hover);
+    --button-bg-pressed: var(--color-accent-soft-hover);
+    --button-fg: var(--color-accent-soft-foreground);
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      --button-bg: var(--color-gray-100);
+      --button-fg: var(--color-gray-400);
+    }
+  }
+
   .button--outline {
     &[data-color="accent"] {
-      --button-fg: var(--color-accent);
+      @apply border-accent;
+
+      --button-bg: var(--color-accent-soft);
+      --button-bg-hover: var(--color-accent-soft-hover);
+      --button-bg-pressed: var(--color-accent-soft-hover);
+      --button-fg: var(--color-accent-soft-foreground);
     }
 
     &[data-color="danger"] {
-      --button-fg: var(--color-danger);
+      @apply border-danger;
+
+      --button-bg: var(--color-danger-soft);
+      --button-bg-hover: var(--color-danger-soft-hover);
+      --button-bg-pressed: var(--color-danger-soft-hover);
+      --button-fg: var(--color-danger-soft-foreground);
     }
 
     &[data-color="success"] {
-      --button-fg: var(--color-success);
+      @apply border-success;
+
+      --button-bg: var(--color-success-soft);
+      --button-bg-hover: var(--color-success-soft-hover);
+      --button-bg-pressed: var(--color-success-soft-hover);
+      --button-fg: var(--color-success-soft-foreground);
     }
 
     &[data-color="warning"] {
-      --button-fg: var(--color-warning);
+      @apply border-warning;
+
+      --button-bg: var(--color-warning-soft);
+      --button-bg-hover: var(--color-warning-soft-hover);
+      --button-bg-pressed: var(--color-warning-soft-hover);
+      --button-fg: var(--color-warning-soft-foreground);
     }
   }
 

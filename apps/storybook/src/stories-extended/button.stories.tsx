@@ -23,21 +23,13 @@ export default {
   title: "Button",
 } as Meta<typeof Button>;
 
-export const Soft = {
-  args: { size: "md" },
-  render: ({ isDisabled, size }: Button["RootProps"]) => (
-    <div className="flex gap-3">
-      <Button data-soft="true" isDisabled={isDisabled} size={size}>
-        Primary
-      </Button>
-    </div>
-  ),
-};
-
 export const Outline = {
   args: { size: "md" },
   render: ({ isDisabled, size }: Button["RootProps"]) => (
     <div className="flex gap-3">
+      <Button isDisabled={isDisabled} size={size} variant="outline">
+        Default
+      </Button>
       <Button data-color="accent" isDisabled={isDisabled} size={size} variant="outline">
         Accent
       </Button>
@@ -58,6 +50,9 @@ export const Ghost = {
   args: { size: "md" },
   render: ({ isDisabled, size }: Button["RootProps"]) => (
     <div className="flex gap-3">
+      <Button isDisabled={isDisabled} size={size} variant="ghost">
+        Default
+      </Button>
       <Button data-color="accent" isDisabled={isDisabled} size={size} variant="ghost">
         Accent
       </Button>

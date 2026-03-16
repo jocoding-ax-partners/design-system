@@ -2,12 +2,6 @@
   --radius-lg-plus: 0.625rem;  /* 10px */
   --radius-2xl-plus: 1.25rem;  /* 20px */
 
-  /* Colors */
-  --background: #fff;
-  --danger: #ef1026;
-  --success: #27c961;
-  --warning: #ffdc18;
-
   /* Gray Colors */
   --color-gray-50: oklch(96.4% 0.001 287.3deg);
   --color-gray-100: oklch(93.2% 0.003 286.78deg);
@@ -20,4 +14,11 @@
   --color-gray-800: oklch(32.9% 0.018 285.42deg);
   --color-gray-900: oklch(23.4% 0.013 285.34deg);
   --color-gray-950: oklch(18.9% 0.01 285.42deg);
+
+  /* Colors */
+  --background: #fff;
+  --danger: #ef1026;
+  --success: #27c961;
+  --warning: #ffdc18;
+  --default: var(--color-gray-100);
 }

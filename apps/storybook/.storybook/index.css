@@ -1,8 +1,1 @@
 @import "@demodev-ui/react/styles";
-
-@layer base {
-  :root {
-    --accent: #ffda58;
-    --accent-foreground: var(--black);
-  }
-}
