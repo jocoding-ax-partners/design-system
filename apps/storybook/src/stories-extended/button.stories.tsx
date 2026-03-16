@@ -4,6 +4,9 @@ import { Button } from "@heroui/react";
 
 export default {
   argTypes: {
+    isDisabled: {
+      control: "boolean",
+    },
     size: {
       control: "select",
       options: ["sm", "md", "lg"],
@@ -22,21 +25,50 @@ export default {
 
 export const Softened = {
   args: { size: "md" },
-  render: ({ size }: Button["RootProps"]) => (
+  render: ({ isDisabled, size }: Button["RootProps"]) => (
     <div className="flex gap-3">
-      <Button data-softened="true" size={size}>
+      <Button data-softened="true" isDisabled={isDisabled} size={size}>
         Primary
       </Button>
     </div>
   ),
 };
 
-export const SoftenedDisabled = {
+export const Outline = {
   args: { size: "md" },
-  render: ({ size }: Button["RootProps"]) => (
+  render: ({ isDisabled, size }: Button["RootProps"]) => (
     <div className="flex gap-3">
-      <Button isDisabled data-softened="true" size={size}>
-        Primary
+      <Button data-color="accent" isDisabled={isDisabled} size={size} variant="outline">
+        Accent
+      </Button>
+      <Button data-color="danger" isDisabled={isDisabled} size={size} variant="outline">
+        Danger
+      </Button>
+      <Button data-color="success" isDisabled={isDisabled} size={size} variant="outline">
+        Success
+      </Button>
+      <Button data-color="warning" isDisabled={isDisabled} size={size} variant="outline">
+        Warning
+      </Button>
+    </div>
+  ),
+};
+
+export const Ghost = {
+  args: { size: "md" },
+  render: ({ isDisabled, size }: Button["RootProps"]) => (
+    <div className="flex gap-3">
+      <Button data-color="accent" isDisabled={isDisabled} size={size} variant="ghost">
+        Accent
+      </Button>
+      <Button data-color="danger" isDisabled={isDisabled} size={size} variant="ghost">
+        Danger
+      </Button>
+      <Button data-color="success" isDisabled={isDisabled} size={size} variant="ghost">
+        Success
+      </Button>
+      <Button data-color="warning" isDisabled={isDisabled} size={size} variant="ghost">
+        Warning
       </Button>
     </div>
   ),

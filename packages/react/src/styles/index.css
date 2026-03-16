@@ -49,4 +49,44 @@ body {
       --button-fg: var(--color-gray-500);
     }
   }
+
+  .button--outline {
+    &[data-color="accent"] {
+      --button-fg: var(--color-accent);
+    }
+
+    &[data-color="danger"] {
+      --button-fg: var(--color-danger);
+    }
+
+    &[data-color="success"] {
+      --button-fg: var(--color-success);
+    }
+
+    &[data-color="warning"] {
+      --button-fg: var(--color-warning);
+    }
+  }
+
+  .button--ghost {
+    &[data-color="accent"] {
+      --button-bg-hover: var(--color-accent-soft);
+      --button-fg: var(--color-accent);
+    }
+
+    &[data-color="danger"] {
+      --button-bg-hover: var(--color-danger-soft);
+      --button-fg: var(--color-danger);
+    }
+
+    &[data-color="success"] {
+      --button-bg-hover: var(--color-success-soft);
+      --button-fg: var(--color-success);
+    }
+
+    &[data-color="warning"] {
+      --button-bg-hover: var(--color-warning-soft);
+      --button-fg: var(--color-warning);
+    }
+  }
 }
