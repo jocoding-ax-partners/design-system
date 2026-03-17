@@ -1,0 +1,21 @@
+@custom-variant light {
+  &:is(.light, .light *, [data-theme="light"], [data-theme="light"] *) {
+    @slot;
+
+    &::before,
+    &::after {
+      @slot;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    &:not(:is(.light, .light *, [data-theme="light"], [data-theme="light"] *)) & {
+      @slot;
+
+      &::before,
+      &::after {
+        @slot;
+      }
+    }
+  }
+}
