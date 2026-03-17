@@ -1,0 +1,13 @@
+@layer components {
+  /* Variants */
+  .close-button--default {
+    @apply bg-transparent;
+
+    @media (hover: hover) {
+      &:hover,
+      &[data-hovered="true"] {
+        @apply bg-gray-900/5;
+      }
+    }
+  }
+}
