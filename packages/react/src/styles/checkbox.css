@@ -1,0 +1,53 @@
+@layer components {
+  .checkbox__control {
+    @apply rounded-sm;
+
+    &::before {
+      @apply rounded-sm;
+    }
+
+    /* Size */
+    &[data-size="md"] {
+      @apply size-5;
+
+      &::before {
+        @apply size-5;
+      }
+
+      [data-slot="checkbox-default-indicator--checkmark"] {
+        @apply size-3;
+      }
+
+      [data-slot="checkbox-default-indicator--indeterminate"] {
+        @apply size-3;
+      }
+    }
+
+    /* Rounded */
+    &[data-rounded="true"] {
+      @apply rounded-full;
+
+      &::before {
+        @apply rounded-full;
+      }
+
+      [data-slot="checkbox-default-indicator--checkmark"] {
+        @apply size-2;
+      }
+
+      [data-slot="checkbox-default-indicator--indeterminate"] {
+        @apply size-2 stroke-[4px];
+      }
+    }
+
+    &[data-rounded="true"][data-size="md"] {
+      [data-slot="checkbox-default-indicator--checkmark"] {
+        @apply size-2.5;
+      }
+
+      [data-slot="checkbox-default-indicator--indeterminate"] {
+        @apply size-2.5;
+      }
+    }
+  }
+}
