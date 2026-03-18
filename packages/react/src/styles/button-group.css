@@ -1,0 +1,79 @@
+@layer components {
+  /* Apply border radius to first button (start edge) */
+  .button-group--horizontal .button:first-child {
+    @apply rounded-s-lg;
+
+    &.button--sm {
+      @apply rounded-s-md;
+    }
+
+    &.button--lg {
+      @apply rounded-s-lg-plus;
+    }
+  }
+
+  /* Apply border radius to last button (end edge) */
+  .button-group--horizontal .button:last-child {
+    @apply rounded-e-lg;
+
+    &.button--sm {
+      @apply rounded-e-md;
+    }
+
+    &.button--lg {
+      @apply rounded-e-lg-plus;
+    }
+  }
+
+  /* If only one button, apply both rounded edges */
+  .button-group--horizontal .button:first-child:last-child {
+    @apply rounded-lg;
+
+    &.button--sm {
+      @apply rounded-md;
+    }
+
+    &.button--lg {
+      @apply rounded-lg-plus;
+    }
+  }
+
+  /* Apply border radius to first button (top edge) in vertical */
+  .button-group--vertical .button:first-child {
+    @apply rounded-t-lg;
+
+    &.button--sm {
+      @apply rounded-t-md;
+    }
+
+    &.button--lg {
+      @apply rounded-t-lg-plus;
+    }
+  }
+
+  /* Apply border radius to last button (bottom edge) in vertical */
+  .button-group--vertical .button:last-child {
+    @apply rounded-b-lg;
+
+    &.button--sm {
+      @apply rounded-b-md;
+    }
+
+    &.button--lg {
+      @apply rounded-b-lg-plus;
+    }
+  }
+
+  /* If only one button in vertical, apply all rounded edges */
+  .button-group--vertical .button:first-child:last-child {
+    @apply rounded-lg;
+
+    &.button--sm {
+      @apply rounded-md;
+    }
+
+    &.button--lg {
+      @apply rounded-lg-plus;
+    }
+  }
+}
