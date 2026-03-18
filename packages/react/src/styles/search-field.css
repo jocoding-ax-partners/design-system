@@ -1,0 +1,33 @@
+@layer components {
+  .search-field {
+    @apply field-gap;
+  }
+
+  .search-field__group {
+    @apply input-size-lg px-0;
+  }
+
+  .search-field--primary .search-field__group {
+    @apply input-group-style-primary;
+  }
+
+  .search-field__search-icon {
+    @apply ml-4;
+  }
+
+  .search-field__clear-button {
+    @apply bg-default mr-3;
+  }
+
+  .search-field__input {
+    @apply input-text-lg;
+
+    .search-field__group:has([data-slot="search-field-search-icon"]) & {
+      @apply pl-3;
+    }
+
+    .search-field__group:has([slot="clear"]) & {
+      @apply pr-3;
+    }
+  }
+}

@@ -66,6 +66,18 @@
   }
 }
 
+@utility input-group-style-primary {
+  &:not([data-invalid="true"]) {
+    @apply input-style-primary;
+  }
+
+  /* Focus within state */
+  &[data-focus-within="true"],
+  &:focus-within {
+    @apply outline-none;
+  }
+}
+
 @utility field-gap {
   @apply gap-2;
 }

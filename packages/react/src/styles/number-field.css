@@ -19,14 +19,6 @@
   }
 
   .number-field--primary .number-field__group {
-    &:not([data-invalid="true"]) {
-      @apply input-style-primary;
-    }
-
-    /* Focus within state */
-    &[data-focus-within="true"],
-    &:focus-within {
-      @apply outline-none;
-    }
+    @apply input-group-style-primary;
   }
 }
