@@ -43,3 +43,11 @@
 @utility button-size-sm {
   @apply chip-size-lg;
 }
+
+@utility button-size-lg {
+  @apply h-12 rounded-xl text-base;
+}
+
+@utility input-style-primary {
+  @apply outline-border shadow-none outline-1 outline-solid;
+}

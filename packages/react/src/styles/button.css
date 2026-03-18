@@ -19,7 +19,7 @@
   }
 
   .button--lg {
-    @apply h-12 gap-2.5 rounded-xl px-6;
+    @apply button-size-lg gap-2.5 px-6;
   }
 
   .button--lg.button--icon-only {

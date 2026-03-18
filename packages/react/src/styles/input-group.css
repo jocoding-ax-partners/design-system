@@ -1,0 +1,25 @@
+@layer components {
+  .input-group {
+    @apply min-h-12;
+  }
+
+  .input-group__input {
+    @apply px-4 text-base;
+  }
+
+  .input-group--primary {
+    @apply input-style-primary;
+  }
+
+  .input-group__prefix {
+    @apply px-4;
+  }
+
+  .input-group__suffix {
+    @apply px-4;
+
+    &:has(button) {
+      @apply pr-1.5;
+    }
+  }
+}

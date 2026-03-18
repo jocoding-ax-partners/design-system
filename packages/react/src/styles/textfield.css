@@ -1,0 +1,5 @@
+@layer components {
+  .textfield {
+    @apply gap-2;
+  }
+}
