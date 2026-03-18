@@ -1,0 +1,32 @@
+@layer components {
+  .number-field {
+    @apply field-gap;
+  }
+
+  .number-field__group {
+    @apply input-size-lg px-0;
+
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .number-field__input {
+    @apply input-text-lg;
+  }
+
+  .number-field__increment-button,
+  .number-field__decrement-button {
+    @apply w-12;
+  }
+
+  .number-field--primary .number-field__group {
+    &:not([data-invalid="true"]) {
+      @apply input-style-primary;
+    }
+
+    /* Focus within state */
+    &[data-focus-within="true"],
+    &:focus-within {
+      @apply outline-none;
+    }
+  }
+}

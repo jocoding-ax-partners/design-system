@@ -45,11 +45,15 @@
 }
 
 @utility button-size-lg {
-  @apply min-h-12 rounded-xl text-base;
+  @apply input-size-lg;
 }
 
 @utility input-size-lg {
-  @apply button-size-lg px-4;
+  @apply input-text-lg min-h-12 rounded-xl;
+}
+
+@utility input-text-lg {
+  @apply px-4 text-base;
 }
 
 @utility input-style-primary {
@@ -60,4 +64,8 @@
   &[aria-disabled="true"] {
     @apply light:bg-gray-50/50;
   }
+}
+
+@utility field-gap {
+  @apply gap-2;
 }
