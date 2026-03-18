@@ -1,15 +1,9 @@
 @layer components {
   .input {
-    @apply button-size-lg px-4;
+    @apply input-size-lg;
   }
 
   .input--primary {
     @apply input-style-primary;
-
-    /* Disabled state */
-    &[data-disabled="true"],
-    &[aria-disabled="true"] {
-      @apply light:bg-gray-50/50;
-    }
   }
 }

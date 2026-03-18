@@ -45,9 +45,19 @@
 }
 
 @utility button-size-lg {
-  @apply h-12 rounded-xl text-base;
+  @apply min-h-12 rounded-xl text-base;
+}
+
+@utility input-size-lg {
+  @apply button-size-lg px-4;
 }
 
 @utility input-style-primary {
   @apply outline-border shadow-none outline-1 outline-solid;
+
+  /* Disabled state */
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply light:bg-gray-50/50;
+  }
 }
