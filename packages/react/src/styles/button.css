@@ -26,25 +26,11 @@
     @apply w-12;
   }
 
-  .button--primary {
-    &:disabled,
-    &[aria-disabled="true"] {
-      --button-bg: var(--color-gray-200);
-      --button-fg: var(--color-gray-500);
-    }
-  }
-
   .button--secondary {
     --button-bg: var(--color-accent-soft);
     --button-bg-hover: var(--color-accent-soft-hover);
     --button-bg-pressed: var(--color-accent-soft-hover);
     --button-fg: var(--color-accent-soft-foreground);
-
-    &:disabled,
-    &[aria-disabled="true"] {
-      --button-bg: var(--color-gray-100);
-      --button-fg: var(--color-gray-400);
-    }
   }
 
   .button--outline {
