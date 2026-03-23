@@ -11,5 +11,6 @@ export default {
         ignoreAtRules: ["else", "import"],
       },
     ],
+    "comment-empty-line-before": null,
   },
 } satisfies Config;

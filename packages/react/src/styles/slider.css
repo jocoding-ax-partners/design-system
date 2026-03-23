@@ -1,0 +1,42 @@
+@layer components {
+  .slider {
+    &[data-orientation="horizontal"] {
+      @apply gap-y-2;
+
+      .slider__track {
+        /* Add transparent borders to provide space for thumb at edges */
+        /* Thumb width is 1.5rem (24px), so half is 0.75rem (12px) */
+        @apply h-2 border-x-6;
+      }
+
+      .slider__thumb {
+        @apply slider-thumb;
+      }
+    }
+
+    &[data-orientation="vertical"] {
+      .label {
+        @apply justify-self-center;
+      }
+
+      .slider__track {
+        /* Add transparent borders to provide space for thumb at edges */
+        /* Thumb width is 1.5rem (24px), so half is 0.75rem (12px) */
+        @apply w-2 border-y-6;
+      }
+
+      .slider__thumb {
+        @apply slider-thumb;
+      }
+    }
+  }
+}
+
+@utility slider-thumb {
+  /* Thumb width + border width */
+  @apply size-3;
+
+  &::after {
+    @apply outline-accent size-3 outline-2;
+  }
+}

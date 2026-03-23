@@ -10,6 +10,7 @@ export const stories = [
   "../src/stories/input-group.stories.@(ts|tsx)",
   "../src/stories/number-field.stories.@(ts|tsx)",
   "../src/stories/search-field.stories.@(ts|tsx)",
+  "../src/stories/slider.stories.@(ts|tsx)",
   "../src/stories/spinner.stories.@(ts|tsx)",
   "../src/stories/textarea.stories.@(ts|tsx)",
   "../src/stories/textfield.stories.@(ts|tsx)",
