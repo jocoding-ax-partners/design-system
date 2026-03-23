@@ -1,4 +1,5 @@
 export const stories = [
+  "../src/stories/accordion.stories.@(ts|tsx)",
   "../src/stories/avatar.stories.@(ts|tsx)",
   "../src/stories/button.stories.@(ts|tsx)",
   "../src/stories/button-group.stories.@(ts|tsx)",
@@ -9,6 +10,7 @@ export const stories = [
   "../src/stories/input.stories.@(ts|tsx)",
   "../src/stories/input-group.stories.@(ts|tsx)",
   "../src/stories/number-field.stories.@(ts|tsx)",
+  "../src/stories/radio-group.stories.@(ts|tsx)",
   "../src/stories/search-field.stories.@(ts|tsx)",
   "../src/stories/slider.stories.@(ts|tsx)",
   "../src/stories/spinner.stories.@(ts|tsx)",

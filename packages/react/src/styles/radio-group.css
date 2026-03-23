@@ -1,0 +1,16 @@
+@layer components {
+  .radio__control {
+    &[data-size="md"] {
+      @apply size-5;
+    }
+  }
+
+  .radio-group--primary .radio__control {
+    @apply shadow-none;
+
+    /* Default indicator color (unselected) */
+    .radio:not([aria-checked="true"], [data-selected="true"]) & .radio__indicator:empty::before {
+      @apply border-border border-2;
+    }
+  }
+}
