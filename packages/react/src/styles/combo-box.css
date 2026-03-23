@@ -1,0 +1,25 @@
+@layer components {
+  .combo-box__trigger {
+    @apply pr-3;
+  }
+
+  .combo-box__popover {
+    @apply input-radius-lg;
+
+    .list-box {
+      @apply gap-0.5 p-1;
+    }
+
+    [data-slot="list-box-item"] {
+      @apply rounded-lg px-3 py-2.5 text-base;
+    }
+
+    .list-box-item__indicator {
+      @apply right-3 size-4.5 transition-none;
+
+      &[data-visible="true"] {
+        @apply bg-accent text-accent-foreground rounded-full;
+      }
+    }
+  }
+}

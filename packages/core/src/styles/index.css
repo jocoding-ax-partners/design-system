@@ -48,8 +48,12 @@
   @apply input-size-lg;
 }
 
+@utility input-radius-lg {
+  @apply rounded-xl;
+}
+
 @utility input-size-lg {
-  @apply input-text-lg min-h-12 rounded-xl;
+  @apply input-text-lg input-radius-lg min-h-12;
 }
 
 @utility input-text-lg {
