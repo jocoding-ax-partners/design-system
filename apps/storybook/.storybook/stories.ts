@@ -17,6 +17,7 @@ export const stories = [
   "../src/stories/tabs.stories.@(ts|tsx)",
   "../src/stories/textarea.stories.@(ts|tsx)",
   "../src/stories/textfield.stories.@(ts|tsx)",
+  "../src/stories/toast.stories.@(ts|tsx)",
   "../src/stories/toggle-button.stories.@(ts|tsx)",
   "../src/stories/tooltip.stories.@(ts|tsx)",
   "../src/stories-extended/**/*.stories.@(ts|tsx)",

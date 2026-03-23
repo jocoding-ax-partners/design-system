@@ -1,0 +1,13 @@
+@layer components {
+  .toast {
+    @apply rounded-2xl;
+  }
+
+  .toast__action {
+    @apply self-end sm:self-center;
+  }
+
+  .close-button {
+    @apply sm:bg-background;
+  }
+}
