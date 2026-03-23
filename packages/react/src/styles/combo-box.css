@@ -4,18 +4,22 @@
   }
 
   .combo-box__popover {
-    @apply input-radius-lg;
+    @apply popover-radius;
 
     .list-box {
-      @apply gap-0.5 p-1;
+      @apply popover-list-box;
     }
 
     [data-slot="list-box-item"] {
-      @apply rounded-lg px-3 py-2.5 text-base;
+      @apply popover-list-box-item;
     }
 
     .list-box-item__indicator {
-      @apply right-3 size-4.5 transition-none;
+      @apply right-2.5 size-4 transition-none;
+
+      svg {
+        @apply size-2 stroke-3;
+      }
 
       &[data-visible="true"] {
         @apply bg-accent text-accent-foreground rounded-full;

@@ -1,0 +1,13 @@
+@layer components {
+  .dropdown__popover {
+    @apply popover-radius;
+
+    [data-slot="dropdown-menu"] {
+      @apply popover-list-box;
+    }
+
+    [data-slot="menu-item"] {
+      @apply popover-list-box-item;
+    }
+  }
+}

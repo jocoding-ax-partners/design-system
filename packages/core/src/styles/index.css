@@ -97,3 +97,15 @@
 @utility field-gap {
   @apply gap-2;
 }
+
+@utility popover-radius {
+  @apply rounded-xl;
+}
+
+@utility popover-list-box {
+  @apply gap-0.5 p-1;
+}
+
+@utility popover-list-box-item {
+  @apply rounded-lg px-3 py-2;
+}

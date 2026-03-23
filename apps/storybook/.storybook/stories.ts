@@ -7,6 +7,7 @@ export const stories = [
   "../src/stories/chip.stories.@(ts|tsx)",
   "../src/stories/close-button.stories.@(ts|tsx)",
   "../src/stories/combo-box.stories.@(ts|tsx)",
+  "../src/stories/dropdown.stories.@(ts|tsx)",
   "../src/stories/input.stories.@(ts|tsx)",
   "../src/stories/input-group.stories.@(ts|tsx)",
   "../src/stories/number-field.stories.@(ts|tsx)",
