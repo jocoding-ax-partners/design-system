@@ -14,6 +14,7 @@ export const stories = [
   "../src/stories/search-field.stories.@(ts|tsx)",
   "../src/stories/slider.stories.@(ts|tsx)",
   "../src/stories/spinner.stories.@(ts|tsx)",
+  "../src/stories/tabs.stories.@(ts|tsx)",
   "../src/stories/textarea.stories.@(ts|tsx)",
   "../src/stories/textfield.stories.@(ts|tsx)",
   "../src/stories/toggle-button.stories.@(ts|tsx)",

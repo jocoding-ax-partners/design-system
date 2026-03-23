@@ -11,7 +11,7 @@
   }
 
   .button--md {
-    @apply rounded-lg-plus h-10;
+    @apply button-size-md;
   }
 
   .button--md.button--icon-only {

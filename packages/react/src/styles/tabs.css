@@ -1,0 +1,13 @@
+@layer components {
+  .tabs__list {
+    @apply button-radius-lg;
+  }
+
+  .tabs__tab {
+    @apply button-size-md;
+  }
+
+  .tabs__indicator {
+    @apply button-radius-md;
+  }
+}

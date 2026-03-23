@@ -44,12 +44,24 @@
   @apply chip-size-lg;
 }
 
+@utility button-size-md {
+  @apply button-radius-md h-10;
+}
+
 @utility button-size-lg {
   @apply input-size-lg;
 }
 
-@utility input-radius-lg {
+@utility button-radius-md {
+  @apply rounded-lg-plus;
+}
+
+@utility button-radius-lg {
   @apply rounded-xl;
+}
+
+@utility input-radius-lg {
+  @apply button-radius-lg;
 }
 
 @utility input-size-lg {
