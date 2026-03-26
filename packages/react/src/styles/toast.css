@@ -1,13 +1,13 @@
 @layer components {
   .toast {
-    @apply rounded-2xl;
+    @apply toast-radius;
+
+    .close-button {
+      @apply light:sm:bg-background;
+    }
   }
 
   .toast__action {
-    @apply self-end sm:self-center;
-  }
-
-  .close-button {
-    @apply sm:bg-background;
+    @apply my-1 self-end sm:self-center;
   }
 }

@@ -1,0 +1,11 @@
+@utility chip-size-sm {
+  @apply h-6 rounded-md px-2 text-xs;
+}
+
+@utility chip-size-md {
+  @apply h-8 rounded-lg px-3 text-sm;
+}
+
+@utility chip-size-lg {
+  @apply h-9 rounded-lg px-3 text-sm;
+}

@@ -1,0 +1,21 @@
+/* size */
+@utility button-size-sm {
+  @apply chip-size-lg;
+}
+
+@utility button-size-md {
+  @apply button-radius-md h-10;
+}
+
+@utility button-size-lg {
+  @apply input-size-lg;
+}
+
+/* radius */
+@utility button-radius-md {
+  @apply rounded-lg-plus;
+}
+
+@utility button-radius-lg {
+  @apply rounded-xl;
+}

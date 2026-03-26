@@ -1,0 +1,21 @@
+@utility input-radius-lg {
+  @apply button-radius-lg;
+}
+
+@utility input-text-lg {
+  @apply px-4 text-base;
+}
+
+@utility input-size-lg {
+  @apply input-text-lg input-radius-lg min-h-12;
+}
+
+@utility input-style-primary {
+  @apply outline-border shadow-none outline-1 outline-solid;
+
+  /* Disabled state */
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply light:bg-gray-50/50;
+  }
+}

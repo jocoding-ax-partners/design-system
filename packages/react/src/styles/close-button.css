@@ -1,7 +1,7 @@
 @layer components {
   /* Variants */
   .close-button--default {
-    @apply bg-transparent;
+    @apply light:bg-transparent;
 
     @media (hover: hover) {
       &:hover,
