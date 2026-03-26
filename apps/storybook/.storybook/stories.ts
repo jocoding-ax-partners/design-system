@@ -13,6 +13,7 @@ export const stories = [
   "../src/stories/number-field.stories.@(ts|tsx)",
   "../src/stories/radio-group.stories.@(ts|tsx)",
   "../src/stories/search-field.stories.@(ts|tsx)",
+  "../src/stories/select.stories.@(ts|tsx)",
   "../src/stories/slider.stories.@(ts|tsx)",
   "../src/stories/spinner.stories.@(ts|tsx)",
   "../src/stories/tabs.stories.@(ts|tsx)",

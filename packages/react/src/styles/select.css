@@ -1,0 +1,56 @@
+@layer components {
+  .select {
+    @apply field-gap;
+  }
+
+  .select--primary .select__trigger {
+    @apply input-style-primary;
+  }
+
+  .select__trigger {
+    @apply input-size-lg;
+
+    &:has(.select__indicator) {
+      @apply pr-8;
+    }
+
+    &[data-pressed="true"] {
+      @apply status-focused;
+
+      border-color: var(--color-field-border-focus);
+      background-color: var(--color-field-focus);
+
+      --tw-ring-offset-width: 0px;
+    }
+  }
+
+  .select--secondary .select__trigger {
+    &[data-pressed="true"] {
+      background-color: var(--color-default);
+    }
+  }
+
+  .select__value {
+    @apply input-text-lg flex items-center px-0;
+  }
+
+  .select__indicator {
+    @apply right-3;
+  }
+
+  .select__popover {
+    @apply popover-radius;
+
+    [data-slot="list-box"] {
+      @apply popover-list-box;
+    }
+
+    [data-slot="list-box-item"] {
+      @apply popover-list-box-item;
+    }
+  }
+
+  .list-box-item__indicator {
+    @apply popover-list-box-item-indicator;
+  }
+}
