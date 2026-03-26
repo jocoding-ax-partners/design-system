@@ -10,6 +10,10 @@
     @apply button-size-sm;
   }
 
+  .button--sm.button--icon-only {
+    @apply w-9;
+  }
+
   .button--md {
     @apply button-size-md;
   }

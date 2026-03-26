@@ -1,4 +1,20 @@
 @layer components {
+  .checkbox--primary {
+    .checkbox__control {
+      @apply outline-border shadow-none outline-2 -outline-offset-1 outline-solid;
+    }
+
+    &:is([data-selected="true"], [data-indeterminate="true"]) .checkbox__control {
+      @apply outline-accent;
+
+      transition: outline-color 500ms;
+    }
+
+    &[data-invalid="true"] .checkbox__control {
+      @apply outline-danger outline-2!;
+    }
+  }
+
   .checkbox__control {
     @apply rounded-sm;
 
