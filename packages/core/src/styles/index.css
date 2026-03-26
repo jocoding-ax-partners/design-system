@@ -6,17 +6,17 @@
   --radius-2xl-plus: 1.25rem; /* 20px */
 
   /* Gray Colors */
-  --color-gray-50: oklch(96.4% 0.001 287.3deg);
-  --color-gray-100: oklch(93.2% 0.003 286.78deg);
-  --color-gray-200: oklch(85.3% 0.007 286.41deg);
-  --color-gray-300: oklch(78.5% 0.01 286.27deg);
-  --color-gray-400: oklch(71.2% 0.013 286.14deg);
-  --color-gray-500: oklch(61.4% 0.016 285.95deg);
-  --color-gray-600: oklch(51.9% 0.022 285.64deg);
-  --color-gray-700: oklch(42.2% 0.023 285.39deg);
-  --color-gray-800: oklch(32.9% 0.018 285.42deg);
-  --color-gray-900: oklch(23.4% 0.013 285.34deg);
-  --color-gray-950: oklch(18.9% 0.01 285.42deg);
+  --color-gray-50: oklch(97.3% 0.001 287.31deg);
+  --color-gray-100: oklch(94% 0.001 287.27deg);
+  --color-gray-200: oklch(85.2% 0.004 286.57deg);
+  --color-gray-300: oklch(75.8% 0.006 286.43deg);
+  --color-gray-400: oklch(67.2% 0.009 286.26deg);
+  --color-gray-500: oklch(58.5% 0.011 286.14deg);
+  --color-gray-600: oklch(49.2% 0.013 285.97deg);
+  --color-gray-700: oklch(40.5% 0.013 285.83deg);
+  --color-gray-800: oklch(31.9% 0.011 285.82deg);
+  --color-gray-900: oklch(22.4% 0.008 285.8deg);
+  --color-gray-950: oklch(17.9% 0.004 286.04deg);
 
   /* Colors */
   --danger: #ef1026;
@@ -26,5 +26,4 @@
 
 :root:not([data-theme="dark"]) {
   --background: #fff;
-  --default: var(--color-gray-100);
 }

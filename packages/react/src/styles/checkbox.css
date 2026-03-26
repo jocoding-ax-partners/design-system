@@ -1,7 +1,7 @@
 @layer components {
   .checkbox--primary {
     .checkbox__control {
-      @apply outline-border shadow-none outline-2 -outline-offset-1 outline-solid;
+      @apply outline-border bg-transparent shadow-none outline-2 -outline-offset-1 outline-solid;
     }
 
     &:is([data-selected="true"], [data-indeterminate="true"]) .checkbox__control {
