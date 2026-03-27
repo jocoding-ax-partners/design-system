@@ -1,16 +1,16 @@
 @layer components {
   .alert-dialog__dialog--sm,
   .modal__dialog--sm {
-    @apply dialog-size-sm;
+    @apply max-w-md;
   }
 
   .alert-dialog__dialog--md,
   .modal__dialog--md {
-    @apply dialog-size-md;
+    @apply max-w-2xl;
   }
 
   .alert-dialog__dialog--lg,
   .modal__dialog--lg {
-    @apply dialog-size-lg;
+    @apply max-w-3xl;
   }
 }
