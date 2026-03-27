@@ -11,15 +11,22 @@
     "storybook": "pnpm --filter storybook run storybook",
     "build-storybook": "pnpm --filter storybook run build-storybook",
     "extract-stories": "tsx scripts/extract-heroui-stories.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.30.0",
     "@nijesmik/eslint-config": "^0.1.1",
     "@nijesmik/stylelint-config": "^0.1.0",
     "@types/node": "^24.10.9",
     "eslint": "^9.39.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "postcss": "^8.5.8",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "stylelint": "^16.26.1",

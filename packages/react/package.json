@@ -1,9 +1,9 @@
 {
   "name": "@demodev-ui/react",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "build": "postcss src/styles/index.css -o dist/styles/index.css && cp src/styles/index.d.ts dist/styles/index.d.ts",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
@@ -16,23 +16,25 @@
       "stylelint --fix"
     ]
   },
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
-    ".": "./src/index.ts",
     "./styles": {
-      "types": "./src/styles/index.d.ts",
-      "default": "./src/styles/index.css"
+      "types": "./dist/styles/index.d.ts",
+      "default": "./dist/styles/index.css"
     }
   },
-  "dependencies": {
-    "@demodev-ui/core": "workspace:^"
-  },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "@heroui/react": "catalog:",
     "@heroui/styles": "catalog:",
     "tailwindcss": "^4"
   },
   "devDependencies": {
+    "@demodev-ui/core": "workspace:^",
     "@heroui/react": "catalog:",
     "@heroui/styles": "catalog:",
     "@tsconfig/create-react-app": "^2.0.10",
