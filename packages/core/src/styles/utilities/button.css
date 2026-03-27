@@ -1,10 +1,10 @@
 /* size */
 @utility button-size-sm {
-  @apply rounded-button-sm h-9 px-3 text-sm;
+  @apply rounded-button-sm h-button-sm px-3 text-sm;
 }
 
 @utility button-size-md {
-  @apply rounded-button-md h-10;
+  @apply rounded-button-md h-button-md;
 }
 
 @utility button-size-lg {

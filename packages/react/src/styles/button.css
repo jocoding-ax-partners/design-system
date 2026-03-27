@@ -2,32 +2,32 @@
   .button {
     /* SVG icon styling - exclude spinner and link-icon svgs */
     & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
-      @apply size-4;
+      @apply size-button-icon-sm;
     }
   }
 
   .button--sm {
     @apply button-size-sm;
-  }
 
-  .button--sm.button--icon-only {
-    @apply w-9;
+    &.button--icon-only {
+      @apply w-button-sm;
+    }
   }
 
   .button--md {
     @apply button-size-md;
-  }
 
-  .button--md.button--icon-only {
-    @apply w-10;
+    &.button--icon-only {
+      @apply w-button-md;
+    }
   }
 
   .button--lg {
     @apply button-size-lg gap-2.5 px-6;
-  }
 
-  .button--lg.button--icon-only {
-    @apply w-12;
+    &.button--icon-only {
+      @apply w-button-lg;
+    }
   }
 
   .button--secondary {
