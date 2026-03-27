@@ -1,6 +1,6 @@
 @layer components {
   .search-field {
-    @apply field-gap;
+    @apply gap-field;
   }
 
   .search-field__group {

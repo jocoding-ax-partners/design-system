@@ -1,6 +1,6 @@
 @layer components {
   .select {
-    @apply field-gap;
+    @apply gap-field;
   }
 
   .select--primary .select__trigger {

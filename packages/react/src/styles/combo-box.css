@@ -1,6 +1,6 @@
 @layer components {
   .combo-box {
-    @apply field-gap;
+    @apply gap-field;
 
     [data-slot="input"] {
       &:has(+ .combo-box__trigger) {

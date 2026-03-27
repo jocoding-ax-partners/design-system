@@ -1,6 +1,6 @@
 @layer components {
   .number-field {
-    @apply field-gap;
+    @apply gap-field;
   }
 
   .number-field__group {
