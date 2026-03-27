@@ -23,7 +23,7 @@
   }
 
   .button--lg {
-    @apply button-size-lg gap-2.5 px-6;
+    @apply button-size-lg;
 
     &.button--icon-only {
       @apply w-button-lg;

@@ -1,6 +1,6 @@
-/* size */
 @utility button-size-sm {
-  @apply rounded-button-sm h-button-sm px-3 text-sm;
+  @apply rounded-button-sm h-button-sm;
+  @apply px-3 text-sm;
 }
 
 @utility button-size-md {
@@ -8,5 +8,6 @@
 }
 
 @utility button-size-lg {
-  @apply input-size-lg;
+  @apply rounded-button-lg h-button-lg;
+  @apply gap-3 px-6;
 }
