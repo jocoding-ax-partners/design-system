@@ -10,11 +10,3 @@
 @utility button-size-lg {
   @apply input-size-lg;
 }
-
-/* radius */
-@theme {
-  --radius-button-xs: var(--radius-md);
-  --radius-button-sm: var(--radius-lg);
-  --radius-button-md: var(--radius-lg-plus);
-  --radius-button-lg: var(--radius-xl);
-}

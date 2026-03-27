@@ -1,6 +1,6 @@
 @layer components {
   .toast {
-    @apply toast-radius;
+    @apply rounded-toast;
 
     .close-button {
       @apply light:sm:bg-background;

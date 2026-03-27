@@ -1,0 +1,18 @@
+@theme {
+  --radius-lg-plus: 0.625rem; /* 10px */
+  --radius-2xl-plus: 1.25rem; /* 20px */
+
+  /* button */
+  --radius-button-xs: var(--radius-md);
+  --radius-button-sm: var(--radius-lg);
+  --radius-button-md: var(--radius-lg-plus);
+  --radius-button-lg: var(--radius-xl);
+
+  /* chip */
+  --radius-chip-sm: var(--radius-md);
+  --radius-chip-md: var(--radius-lg);
+  --radius-chip-lg: var(--radius-button-sm);
+
+  /* toast */
+  --radius-toast: var(--radius-2xl);
+}

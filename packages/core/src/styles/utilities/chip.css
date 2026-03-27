@@ -9,9 +9,3 @@
 @utility chip-size-lg {
   @apply button-size-sm;
 }
-
-@theme {
-  --radius-chip-sm: var(--radius-md);
-  --radius-chip-md: var(--radius-lg);
-  --radius-chip-lg: var(--radius-button-sm);
-}
