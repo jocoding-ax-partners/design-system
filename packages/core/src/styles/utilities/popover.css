@@ -1,13 +1,9 @@
-@utility popover-radius {
-  @apply rounded-xl;
-}
-
 @utility popover-list-box {
   @apply gap-0.5 p-1;
 }
 
 @utility popover-list-box-item {
-  @apply rounded-lg px-3 py-2;
+  @apply rounded-list-box-item px-3 py-2;
 }
 
 @utility popover-list-box-item-indicator {

@@ -14,7 +14,7 @@
   }
 
   .combo-box__popover {
-    @apply popover-radius;
+    @apply rounded-list-box;
 
     .list-box {
       @apply popover-list-box;

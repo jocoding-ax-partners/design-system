@@ -1,6 +1,6 @@
 @layer components {
   .dropdown__popover {
-    @apply popover-radius;
+    @apply rounded-list-box;
 
     [data-slot="dropdown-menu"] {
       @apply popover-list-box;
