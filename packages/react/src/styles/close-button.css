@@ -6,7 +6,7 @@
     @media (hover: hover) {
       &:hover,
       &[data-hovered="true"] {
-        @apply light:bg-gray-100;
+        @apply light:bg-default;
       }
     }
   }

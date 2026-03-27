@@ -1,7 +1,7 @@
 @layer components {
   .toggle-button {
     & svg {
-      @apply size-4;
+      @apply mx-0;
     }
   }
 
@@ -22,11 +22,7 @@
 
   /* Size variants */
   .toggle-button--sm {
-    @apply chip-size-sm gap-1.5;
-
-    & svg {
-      @apply ml-0 size-3;
-    }
+    @apply chip-size-sm;
   }
 
   .toggle-button--md {
@@ -39,18 +35,14 @@
 
   /* Icon-only modifier */
   .toggle-button--icon-only.toggle-button--sm {
-    @apply w-6;
-
-    & svg {
-      @apply -ml-0.5;
-    }
+    @apply w-chip-sm;
   }
 
   .toggle-button--icon-only.toggle-button--md {
-    @apply w-8;
+    @apply w-chip-md;
   }
 
   .toggle-button--icon-only.toggle-button--lg {
-    @apply w-9;
+    @apply w-chip-lg;
   }
 }

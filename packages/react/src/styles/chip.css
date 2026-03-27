@@ -1,11 +1,11 @@
 @layer components {
   .chip {
-    @apply chip-size-md gap-1.5;
+    @apply chip-size-md;
   }
 
   /* Size variants */
   .chip--sm {
-    @apply chip-size-sm gap-1;
+    @apply chip-size-sm;
   }
 
   .chip--lg {

@@ -1,11 +1,23 @@
 @utility chip-size-sm {
-  @apply rounded-chip-sm h-6 px-2 text-xs;
+  @apply rounded-chip-sm h-chip-sm gap-1 px-2 text-xs;
+
+  svg {
+    @apply size-chip-icon-sm;
+  }
 }
 
 @utility chip-size-md {
-  @apply rounded-chip-md h-8 px-3 text-sm;
+  @apply rounded-chip-md h-chip-md gap-1.5 px-2.5 text-sm;
+
+  svg {
+    @apply size-chip-icon-md;
+  }
 }
 
 @utility chip-size-lg {
-  @apply button-size-sm;
+  @apply button-size-sm gap-1.5;
+
+  svg {
+    @apply size-chip-icon-lg;
+  }
 }
