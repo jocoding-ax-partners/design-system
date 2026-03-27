@@ -12,6 +12,10 @@
 }
 
 /* radius */
+@utility button-radius-sm {
+  @apply chip-radius-lg;
+}
+
 @utility button-radius-md {
   @apply rounded-lg-plus;
 }

@@ -38,7 +38,7 @@ export const stories = [
   // "../src/stories/meter.stories.@(ts|tsx)",
   "../src/stories/modal.stories.@(ts|tsx)",
   "../src/stories/number-field.stories.@(ts|tsx)",
-  // "../src/stories/pagination.stories.@(ts|tsx)",
+  "../src/stories/pagination.stories.@(ts|tsx)",
   // "../src/stories/popover.stories.@(ts|tsx)",
   // "../src/stories/progress-bar.stories.@(ts|tsx)",
   // "../src/stories/progress-circle.stories.@(ts|tsx)",

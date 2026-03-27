@@ -7,5 +7,9 @@
 }
 
 @utility chip-size-lg {
-  @apply h-9 rounded-lg px-3 text-sm;
+  @apply chip-radius-lg h-9 px-3 text-sm;
+}
+
+@utility chip-radius-lg {
+  @apply rounded-lg;
 }

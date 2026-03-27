@@ -1,0 +1,21 @@
+@layer components {
+  .pagination__link {
+    @apply button-radius-sm;
+
+    &[data-active="true"] {
+      @apply bg-accent text-accent-foreground;
+    }
+  }
+
+  .pagination--sm {
+    .pagination__link {
+      @apply rounded-md;
+    }
+  }
+
+  .pagination--lg {
+    .pagination__link {
+      @apply button-radius-md;
+    }
+  }
+}
