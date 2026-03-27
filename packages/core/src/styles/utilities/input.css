@@ -1,5 +1,5 @@
 @utility input-radius-lg {
-  @apply button-radius-lg;
+  @apply rounded-button-lg;
 }
 
 @utility input-text-lg {

@@ -1,15 +1,17 @@
 @utility chip-size-sm {
-  @apply h-6 rounded-md px-2 text-xs;
+  @apply rounded-chip-sm h-6 px-2 text-xs;
 }
 
 @utility chip-size-md {
-  @apply h-8 rounded-lg px-3 text-sm;
+  @apply rounded-chip-md h-8 px-3 text-sm;
 }
 
 @utility chip-size-lg {
-  @apply chip-radius-lg h-9 px-3 text-sm;
+  @apply button-size-sm;
 }
 
-@utility chip-radius-lg {
-  @apply rounded-lg;
+@theme {
+  --radius-chip-sm: var(--radius-md);
+  --radius-chip-md: var(--radius-lg);
+  --radius-chip-lg: var(--radius-button-sm);
 }

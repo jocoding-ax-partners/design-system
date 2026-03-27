@@ -24,6 +24,7 @@
 @import "./textfield.css";
 @import "./toast.css";
 @import "./toggle-button.css";
+@import "./toggle-button-group.css";
 @import "./tooltip.css";
 
 body {

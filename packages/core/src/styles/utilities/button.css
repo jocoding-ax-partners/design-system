@@ -1,10 +1,10 @@
 /* size */
 @utility button-size-sm {
-  @apply chip-size-lg;
+  @apply rounded-button-sm h-9 px-3 text-sm;
 }
 
 @utility button-size-md {
-  @apply button-radius-md h-10;
+  @apply rounded-button-md h-10;
 }
 
 @utility button-size-lg {
@@ -12,14 +12,9 @@
 }
 
 /* radius */
-@utility button-radius-sm {
-  @apply chip-radius-lg;
-}
-
-@utility button-radius-md {
-  @apply rounded-lg-plus;
-}
-
-@utility button-radius-lg {
-  @apply rounded-xl;
+@theme {
+  --radius-button-xs: var(--radius-md);
+  --radius-button-sm: var(--radius-lg);
+  --radius-button-md: var(--radius-lg-plus);
+  --radius-button-lg: var(--radius-xl);
 }

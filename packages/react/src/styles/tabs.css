@@ -1,6 +1,6 @@
 @layer components {
   .tabs__list {
-    @apply button-radius-lg;
+    @apply rounded-button-lg;
   }
 
   .tabs__tab {
@@ -8,6 +8,6 @@
   }
 
   .tabs__indicator {
-    @apply button-radius-md;
+    @apply rounded-button-md;
   }
 }
