@@ -1,17 +1,27 @@
 @layer components {
   .tag:is([data-selected="true"], [aria-selected="true"]) {
-    @apply bg-accent text-accent-foreground;
+    &.tag--default {
+      @apply bg-accent text-accent-foreground;
 
-    /* Selected + Hover state */
-    @media (hover: hover) {
-      &:is(:hover, [data-hovered="true"]) {
-        @apply bg-accent-hover;
+      /* Selected + Hover state */
+      @media (hover: hover) {
+        &:is(:hover, [data-hovered="true"]) {
+          @apply bg-accent-hover;
+        }
       }
+    }
+
+    &.tag--surface {
+      @apply border-accent;
     }
 
     .tag__remove-button {
       @apply bg-transparent;
     }
+  }
+
+  .tag--surface {
+    @apply border-border border;
   }
 
   .tag__remove-button {
