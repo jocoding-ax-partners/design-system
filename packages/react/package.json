@@ -21,8 +21,16 @@
   ],
   "exports": {
     "./styles": {
-      "types": "./dist/styles/index.d.ts",
-      "default": "./dist/styles/index.css"
+      "types": "./src/styles/index.d.ts",
+      "default": "./src/styles/index.css"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      "./styles": {
+        "types": "./dist/styles/index.d.ts",
+        "default": "./dist/styles/index.css"
+      }
     }
   },
   "files": [
