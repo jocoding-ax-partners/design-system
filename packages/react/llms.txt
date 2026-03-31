@@ -1,0 +1,420 @@
+# @demodev-ui/react
+
+> CSS-only design system built on HeroUI v3. This package has NO component exports. All React components come from `@heroui/react`. This package only provides style overrides via a single CSS import.
+
+## Install
+
+```bash
+npm install @demodev-ui/react @heroui/react@3.0.1 @heroui/styles@3.0.1 tailwindcss@^4 @tailwindcss/vite
+```
+
+## Setup
+
+CSS entry file (import order matters):
+```css
+@import "tailwindcss";
+@import "@heroui/styles";
+@import "@demodev-ui/react/styles";
+@source "../node_modules/@heroui/react/dist";
+```
+
+Vite config:
+```ts
+import tailwindcss from "@tailwindcss/vite";
+export default defineConfig({ plugins: [tailwindcss(), react()] });
+```
+
+App root — must include Toast.Provider:
+```tsx
+<div className="min-h-screen bg-background text-foreground">
+  {/* app */}
+  <Toast.Provider />
+</div>
+```
+
+## Critical Rules
+
+### 1. Import source
+```tsx
+// CORRECT — always import from @heroui/react
+import { Button, Input, Modal } from "@heroui/react";
+// WRONG — @demodev-ui/react has NO component exports
+import { Button } from "@demodev-ui/react"; // ❌ does not exist
+```
+
+### 2. Collection components must be inside their parent
+Runtime crash if rendered outside collection context:
+- ListBox.Item → inside <ListBox>
+- Tag → inside <TagGroup.List>
+- Dropdown.Item → inside <Dropdown.Menu>
+- Tabs.Tab → inside <Tabs.List>
+
+### 3. Trigger button nesting
+Some Triggers render their own <button>. Nesting <Button> inside creates invalid HTML:
+- Modal.Trigger → renders <div> → ✅ can contain <Button>
+- AlertDialog.Trigger → renders <div> → ✅ can contain <Button>
+- Dropdown.Trigger → renders <div> → ✅ can contain <Button>
+- Tooltip.Trigger → renders <button> → ❌ use <span> as child
+- ComboBox.Trigger → renders <button> → ❌
+
+### 4. Button color via data attribute
+Button has no `color` prop. Use `data-color` for outline/ghost variants:
+```tsx
+<Button variant="outline" data-color="accent">Accent</Button>
+// Available: "accent" | "danger" | "success" | "warning"
+```
+
+## Components
+
+All imports: `import { ComponentName } from "@heroui/react";`
+
+### Button
+- Variants: "primary" | "secondary" | "outline" | "ghost" | "danger" | "danger-soft" | "tertiary"
+- Sizes: "sm" | "md" | "lg"
+- Props: variant, size, isIconOnly, isDisabled, data-color (for outline/ghost)
+```tsx
+<Button variant="primary" size="md">Click</Button>
+<Button variant="outline" data-color="danger">Danger</Button>
+<Button size="sm" isIconOnly>+</Button>
+```
+
+### ButtonGroup
+- Props: orientation ("horizontal" | "vertical"), size
+```tsx
+<ButtonGroup>
+  <Button>Left</Button>
+  <ButtonGroup.Separator />
+  <Button>Right</Button>
+</ButtonGroup>
+```
+
+### Input
+- Variants: "primary" | "secondary"
+```tsx
+<Input placeholder="Text" variant="primary" />
+```
+
+### TextField
+- Compound: TextField > Label + Input + Description
+```tsx
+<TextField variant="primary" isRequired>
+  <Label>Email</Label>
+  <Input placeholder="you@example.com" />
+  <Description>Helper text</Description>
+</TextField>
+```
+
+### InputGroup
+- Compound: InputGroup > Prefix/Suffix + Input
+```tsx
+<InputGroup variant="primary">
+  <InputGroup.Prefix>https://</InputGroup.Prefix>
+  <InputGroup.Input placeholder="example.com" />
+</InputGroup>
+```
+
+### TextArea
+- Use inside TextField
+```tsx
+<TextField variant="primary">
+  <Label>Message</Label>
+  <TextArea placeholder="Type..." />
+</TextField>
+```
+
+### NumberField
+```tsx
+<NumberField variant="primary" defaultValue={5} minValue={0} maxValue={100}>
+  <Label>Qty</Label>
+  <NumberField.Group>
+    <NumberField.DecrementButton>-</NumberField.DecrementButton>
+    <NumberField.Input />
+    <NumberField.IncrementButton>+</NumberField.IncrementButton>
+  </NumberField.Group>
+</NumberField>
+```
+
+### SearchField
+```tsx
+<SearchField variant="primary">
+  <Label>Search</Label>
+  <SearchField.Group>
+    <SearchField.SearchIcon />
+    <SearchField.Input placeholder="Search..." />
+    <SearchField.ClearButton />
+  </SearchField.Group>
+</SearchField>
+```
+
+### ComboBox
+```tsx
+<ComboBox variant="primary">
+  <Label>Fruit</Label>
+  <ComboBox.InputGroup>
+    <Input placeholder="Select..." />
+    <ComboBox.Trigger />
+  </ComboBox.InputGroup>
+  <ComboBox.Popover>
+    <ListBox>
+      <ListBox.Item id="apple" textValue="Apple">
+        Apple
+        <ListBox.ItemIndicator />
+      </ListBox.Item>
+    </ListBox>
+  </ComboBox.Popover>
+</ComboBox>
+```
+
+### Select
+- Variants: "primary" | "secondary"
+```tsx
+<Select variant="primary">
+  <Label>Country</Label>
+  <Select.Trigger>
+    <Select.Value>Select</Select.Value>
+    <Select.Indicator />
+  </Select.Trigger>
+  <Select.Popover>
+    <ListBox>
+      <ListBox.Item id="kr" textValue="Korea">
+        Korea
+        <ListBox.ItemIndicator />
+      </ListBox.Item>
+    </ListBox>
+  </Select.Popover>
+</Select>
+```
+
+### Checkbox
+- Variants: "primary" | "secondary"
+```tsx
+<Checkbox variant="primary" id="terms">
+  <Checkbox.Control />
+  <Checkbox.Content>
+    <Label>Accept terms</Label>
+    <Description>You agree to the terms</Description>
+  </Checkbox.Content>
+</Checkbox>
+```
+
+### RadioGroup
+```tsx
+<RadioGroup variant="primary" defaultValue="opt1">
+  <Label>Choose</Label>
+  <Radio value="opt1">
+    <Radio.Control><Radio.Indicator /></Radio.Control>
+    <Radio.Content><Label>Option 1</Label></Radio.Content>
+  </Radio>
+  <Radio value="opt2">
+    <Radio.Control><Radio.Indicator /></Radio.Control>
+    <Radio.Content><Label>Option 2</Label></Radio.Content>
+  </Radio>
+</RadioGroup>
+```
+
+### ToggleButton
+- Variants: "default" | "ghost"
+- Sizes: "sm" | "md" | "lg"
+```tsx
+<ToggleButton size="md" variant="default">Toggle</ToggleButton>
+```
+
+### ToggleButtonGroup
+- selectionMode: "single" | "multiple"
+- isDetached: boolean (detached style)
+```tsx
+<ToggleButtonGroup selectionMode="single" defaultSelectedKeys={["bold"]}>
+  <ToggleButton id="bold">B</ToggleButton>
+  <ToggleButton id="italic">I</ToggleButton>
+</ToggleButtonGroup>
+```
+
+### Tag + TagGroup
+- Tag MUST be inside TagGroup.List
+- Sizes: "sm" | "md" | "lg"
+- Variants: "default" | "surface"
+```tsx
+<TagGroup selectionMode="multiple">
+  <Label>Tags</Label>
+  <TagGroup.List>
+    <Tag id="t1" size="sm">Tag 1</Tag>
+    <Tag id="t2" size="md">Tag 2</Tag>
+  </TagGroup.List>
+</TagGroup>
+
+// Removable
+<TagGroup onRemove={(keys) => {}}>
+  <TagGroup.List>
+    <Tag id="r1">Tag<Tag.RemoveButton /></Tag>
+  </TagGroup.List>
+</TagGroup>
+```
+
+### Chip
+- Variants: "primary" | "secondary" | "tertiary"
+- Sizes: "sm" | "md" | "lg"
+- Colors: "accent" | "success" | "warning" | "danger"
+```tsx
+<Chip size="md" variant="primary" color="accent"><Chip.Label>Accent</Chip.Label></Chip>
+```
+
+### Modal
+- Modal.Trigger renders <div> → safe to put <Button> inside
+- Container sizes: "sm" | "md" | "lg"
+```tsx
+<Modal>
+  <Modal.Trigger><Button variant="outline">Open</Button></Modal.Trigger>
+  <Modal.Backdrop />
+  <Modal.Container size="md">
+    <Modal.Dialog>
+      <Modal.Header>
+        <Modal.Heading>Title</Modal.Heading>
+        <Modal.CloseTrigger />
+      </Modal.Header>
+      <Modal.Body><p>Content</p></Modal.Body>
+      <Modal.Footer>
+        <Button variant="ghost">Cancel</Button>
+        <Button variant="primary">Confirm</Button>
+      </Modal.Footer>
+    </Modal.Dialog>
+  </Modal.Container>
+</Modal>
+```
+
+### AlertDialog
+- AlertDialog.Trigger renders <div> → safe to put <Button> inside
+- AlertDialog.Icon status: "danger" | "success" | "warning"
+```tsx
+<AlertDialog>
+  <AlertDialog.Trigger><Button variant="danger">Delete</Button></AlertDialog.Trigger>
+  <AlertDialog.Backdrop />
+  <AlertDialog.Container size="sm">
+    <AlertDialog.Dialog>
+      <AlertDialog.Header>
+        <AlertDialog.Icon status="danger" />
+        <AlertDialog.Heading>Delete?</AlertDialog.Heading>
+      </AlertDialog.Header>
+      <AlertDialog.Body>This cannot be undone.</AlertDialog.Body>
+      <AlertDialog.Footer>
+        <Button variant="ghost">Cancel</Button>
+        <Button variant="danger">Delete</Button>
+      </AlertDialog.Footer>
+    </AlertDialog.Dialog>
+  </AlertDialog.Container>
+</AlertDialog>
+```
+
+### Dropdown
+- Dropdown.Trigger renders <div> → safe to put <Button> inside
+```tsx
+<Dropdown>
+  <Dropdown.Trigger>
+    <Button variant="outline">Menu</Button>
+  </Dropdown.Trigger>
+  <Dropdown.Popover>
+    <Dropdown.Menu onAction={(key) => console.log(key)}>
+      <Dropdown.Item id="edit">Edit</Dropdown.Item>
+      <Dropdown.Item id="delete">Delete</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown.Popover>
+</Dropdown>
+```
+
+### Tooltip
+- ❌ Tooltip.Trigger IS a <button> — use <span> as child, not <Button>
+```tsx
+<Tooltip>
+  <Tooltip.Trigger><span>Hover me</span></Tooltip.Trigger>
+  <Tooltip.Content showArrow>Tooltip text</Tooltip.Content>
+</Tooltip>
+```
+
+### Toast
+- Add <Toast.Provider /> once at app root
+```tsx
+Toast.toast("Message")
+Toast.toast.success("Done!")
+Toast.toast.danger("Error!")
+Toast.toast.warning("Warning!")
+```
+
+### Tabs
+```tsx
+<Tabs variant="primary">
+  <Tabs.List>
+    <Tabs.Tab id="tab1">Tab 1</Tabs.Tab>
+    <Tabs.Tab id="tab2">Tab 2</Tabs.Tab>
+  </Tabs.List>
+  <Tabs.Panel id="tab1">Content 1</Tabs.Panel>
+  <Tabs.Panel id="tab2">Content 2</Tabs.Panel>
+</Tabs>
+```
+
+### Pagination
+- Sizes: "sm" | "md" | "lg"
+```tsx
+<Pagination size="md">
+  <Pagination.Content>
+    <Pagination.Item><Pagination.Previous><Pagination.PreviousIcon /></Pagination.Previous></Pagination.Item>
+    <Pagination.Item><Pagination.Link isActive>1</Pagination.Link></Pagination.Item>
+    <Pagination.Item><Pagination.Link>2</Pagination.Link></Pagination.Item>
+    <Pagination.Item><Pagination.Ellipsis /></Pagination.Item>
+    <Pagination.Item><Pagination.Link>10</Pagination.Link></Pagination.Item>
+    <Pagination.Item><Pagination.Next><Pagination.NextIcon /></Pagination.Next></Pagination.Item>
+  </Pagination.Content>
+</Pagination>
+```
+
+### Slider
+```tsx
+<Slider defaultValue={50} minValue={0} maxValue={100}>
+  <div className="flex justify-between">
+    <Label>Volume</Label>
+    <Slider.Output />
+  </div>
+  <Slider.Track>
+    <Slider.Fill />
+    <Slider.Thumb />
+  </Slider.Track>
+</Slider>
+
+// Range
+<Slider defaultValue={[20, 80]} minValue={0} maxValue={100}>
+  <Slider.Track><Slider.Fill /><Slider.Thumb /><Slider.Thumb /></Slider.Track>
+</Slider>
+```
+
+### Alert
+- Status: "default" | "accent" | "success" | "warning" | "danger"
+```tsx
+<Alert status="success">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Success</Alert.Title>
+    <Alert.Description>Action completed.</Alert.Description>
+  </Alert.Content>
+</Alert>
+```
+
+### CloseButton
+```tsx
+<CloseButton variant="default" onPress={() => {}} />
+```
+
+## Design Tokens
+
+Colors:
+- Gray scale (oklch): --color-gray-50 ~ --color-gray-950
+- Semantic: --danger (#ef1026), --success (#27c961), --warning (#ffdc18)
+
+Border radius:
+- Button: --radius-button-xs(md) / sm(lg) / md(0.625rem) / lg(xl)
+- Chip: --radius-chip-sm(md) / md(lg)
+- Input: --radius-input-lg(xl)
+- ListBox: --radius-list-box(xl)
+- Toast: --radius-toast(2xl)
+
+Component heights:
+- Button: --spacing-button-sm(36px) / md(40px) / lg(48px)
+- Chip: --spacing-chip-sm(24px) / md(32px) / lg(36px)
+- Input: --spacing-input-lg(48px)
