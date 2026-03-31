@@ -8,6 +8,13 @@
 npm install @demodev-ui/react @heroui/react@3.0.1 @heroui/styles@3.0.1 tailwindcss@^4 @tailwindcss/vite
 ```
 
+## Claude Code Setup
+
+Install and set up AI context in one command:
+```bash
+npm install @demodev-ui/react @heroui/react@3.0.1 @heroui/styles@3.0.1 tailwindcss@^4 @tailwindcss/vite && echo -e '\n## @demodev-ui/react\nThis project uses @demodev-ui/react (CSS-only design system on HeroUI v3).\nAll components are imported from `@heroui/react`, NOT from `@demodev-ui/react`.\nFor full component API and usage examples, read `node_modules/@demodev-ui/react/llms.txt`.' >> CLAUDE.md
+```
+
 ## Setup
 
 CSS entry file (import order matters):
