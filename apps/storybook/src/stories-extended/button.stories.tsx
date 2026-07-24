@@ -42,6 +42,9 @@ export const Outline = {
       <Button data-color="warning" isDisabled={isDisabled} size={size} variant="outline">
         Warning
       </Button>
+      <Button data-color="info" isDisabled={isDisabled} size={size} variant="outline">
+        Info
+      </Button>
     </div>
   ),
 };
@@ -64,6 +67,9 @@ export const Ghost = {
       </Button>
       <Button data-color="warning" isDisabled={isDisabled} size={size} variant="ghost">
         Warning
+      </Button>
+      <Button data-color="info" isDisabled={isDisabled} size={size} variant="ghost">
+        Info
       </Button>
     </div>
   ),
