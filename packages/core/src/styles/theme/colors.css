@@ -12,8 +12,9 @@
   --color-gray-900: oklch(22.4% 0.008 285.8deg);
   --color-gray-950: oklch(17.9% 0.004 286.04deg);
 
-  /* Semantic Colors */
+  /* Semantic Colors (조코딩AX = AXHub Console 팔레트, DESIGN.md) */
+  --accent: #2d64fa;
   --danger: #ef1026;
-  --success: #27c961;
-  --warning: #ffdc18;
+  --success: #1fa24e;
+  --warning: #f6c205;
 }
