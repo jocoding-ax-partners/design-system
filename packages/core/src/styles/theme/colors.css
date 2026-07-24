@@ -17,4 +17,16 @@
   --danger: #ef1026;
   --success: #1fa24e;
   --warning: #f6c205;
+  --info: #1571f3;
+  --info-foreground: var(--snow);
+}
+
+/* Expose custom colors as Tailwind utilities (bg-info, text-info-foreground) */
+@theme inline {
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-hover: color-mix(in oklab, var(--info) 90%, var(--info-foreground) 10%);
+  --color-info-soft: color-mix(in oklab, var(--info) 15%, transparent);
+  --color-info-soft-hover: color-mix(in oklab, var(--info) 20%, transparent);
+  --color-info-soft-foreground: color-mix(in oklab, var(--info) 70%, var(--foreground) 30%);
 }

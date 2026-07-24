@@ -73,6 +73,15 @@
       --button-bg-pressed: var(--color-warning-soft-hover);
       --button-fg: var(--color-warning-soft-foreground);
     }
+
+    &[data-color="info"] {
+      @apply border-info;
+
+      --button-bg: var(--color-info-soft);
+      --button-bg-hover: var(--color-info-soft-hover);
+      --button-bg-pressed: var(--color-info-soft-hover);
+      --button-fg: var(--color-info-soft-foreground);
+    }
   }
 
   .button--ghost {
@@ -94,6 +103,11 @@
     &[data-color="warning"] {
       --button-bg-hover: var(--color-warning-soft);
       --button-fg: var(--color-warning);
+    }
+
+    &[data-color="info"] {
+      --button-bg-hover: var(--color-info-soft);
+      --button-fg: var(--color-info);
     }
   }
 }
