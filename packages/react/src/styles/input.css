@@ -1,6 +1,6 @@
 @layer components {
   .input {
-    @apply input-size-lg;
+    @apply input-size;
   }
 
   .input--primary {

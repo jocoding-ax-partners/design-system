@@ -4,18 +4,18 @@
   }
 
   .number-field__group {
-    @apply input-size-lg px-0;
+    @apply input-size px-0;
 
     grid-template-columns: auto 1fr auto;
   }
 
   .number-field__input {
-    @apply input-text-lg;
+    @apply input-text;
   }
 
   .number-field__increment-button,
   .number-field__decrement-button {
-    @apply w-12;
+    @apply w-[calc(var(--spacing-input)+4px)];
   }
 
   .number-field--primary .number-field__group {

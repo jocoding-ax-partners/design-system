@@ -1,10 +1,10 @@
 @layer components {
   .input-group {
-    @apply min-h-12;
+    @apply min-h-input;
   }
 
   .input-group__input {
-    @apply px-4 text-base;
+    @apply px-4;
   }
 
   .input-group--primary {

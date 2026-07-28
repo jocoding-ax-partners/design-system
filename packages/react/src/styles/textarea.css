@@ -1,6 +1,6 @@
 @layer components {
   .textarea {
-    @apply input-size-lg py-3;
+    @apply input-size py-3;
   }
 
   .textarea--primary {

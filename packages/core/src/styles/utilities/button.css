@@ -1,6 +1,6 @@
 @utility button-size-sm {
   @apply rounded-button-sm h-button-sm;
-  @apply px-3 text-sm;
+  @apply px-3 text-xs;
 }
 
 @utility button-size-md {
