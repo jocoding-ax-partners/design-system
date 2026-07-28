@@ -1,5 +1,11 @@
 # @demodev-ui/react
 
+## 2.0.1
+
+### Patch Changes
+
+- HeroUI peer dependency를 3.0.1 고정에서 3.x 범위로 완화
+
 ## 2.0.0
 
 ### Major Changes
