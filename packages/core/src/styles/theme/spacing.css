@@ -19,5 +19,5 @@
   --spacing-chip-icon-lg: var(--spacing-button-icon-sm);
 
   /* input height */
-  --spacing-input-lg: var(--spacing-button-lg);
+  --spacing-input: var(--spacing-button-md);
 }

@@ -4,7 +4,7 @@
   }
 
   .search-field__group {
-    @apply input-size-lg px-0;
+    @apply input-size px-0;
   }
 
   .search-field--primary .search-field__group {
@@ -20,7 +20,7 @@
   }
 
   .search-field__input {
-    @apply input-text-lg;
+    @apply input-text;
 
     .search-field__group:has([data-slot="search-field-search-icon"]) & {
       @apply pl-3;

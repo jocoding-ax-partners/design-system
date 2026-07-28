@@ -8,7 +8,7 @@
   }
 
   .select__trigger {
-    @apply input-size-lg;
+    @apply input-size;
 
     &:has(.select__indicator) {
       @apply pr-8;
@@ -31,7 +31,7 @@
   }
 
   .select__value {
-    @apply input-text-lg flex items-center px-0;
+    @apply input-text flex items-center px-0;
   }
 
   .select__indicator {

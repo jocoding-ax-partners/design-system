@@ -1,9 +1,9 @@
-@utility input-text-lg {
-  @apply px-4 text-base;
+@utility input-text {
+  @apply px-4;
 }
 
-@utility input-size-lg {
-  @apply input-text-lg rounded-input-lg min-h-input-lg;
+@utility input-size {
+  @apply input-text rounded-button-md min-h-input;
 }
 
 @utility input-style-primary {
