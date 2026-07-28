@@ -15,7 +15,7 @@
 
   .number-field__increment-button,
   .number-field__decrement-button {
-    @apply w-12;
+    @apply w-[calc(var(--spacing-input)+4px)];
   }
 
   .number-field--primary .number-field__group {
