@@ -1,22 +1,23 @@
 @theme {
+  /* field gap */
   --spacing-field: calc(var(--spacing) * 2);
 
-  /* button */
+  /* button height */
   --spacing-button-sm: calc(var(--spacing) * 9);
   --spacing-button-md: calc(var(--spacing) * 10);
   --spacing-button-lg: calc(var(--spacing) * 12);
 
-  /* chip */
+  /* chip height */
   --spacing-chip-sm: calc(var(--spacing) * 6);
   --spacing-chip-md: calc(var(--spacing) * 8);
   --spacing-chip-lg: var(--spacing-button-sm);
 
-  /* icon */
+  /* icon size */
   --spacing-button-icon-sm: calc(var(--spacing) * 4);
   --spacing-chip-icon-sm: calc(var(--spacing) * 3);
   --spacing-chip-icon-md: calc(var(--spacing) * 3.5);
   --spacing-chip-icon-lg: var(--spacing-button-icon-sm);
 
-  /* input */
+  /* input height */
   --spacing-input-lg: var(--spacing-button-lg);
 }
