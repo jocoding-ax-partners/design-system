@@ -1,5 +1,5 @@
 @utility input-text {
-  @apply px-4;
+  @apply px-4 text-sm;
 }
 
 @utility input-size {
