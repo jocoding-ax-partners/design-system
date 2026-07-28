@@ -3,7 +3,7 @@
   --spacing-field: calc(var(--spacing) * 2);
 
   /* button height */
-  --spacing-button-sm: calc(var(--spacing) * 9);
+  --spacing-button-sm: calc(var(--spacing) * 8);
   --spacing-button-md: calc(var(--spacing) * 10);
   --spacing-button-lg: calc(var(--spacing) * 12);
 
