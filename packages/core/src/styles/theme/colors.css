@@ -12,8 +12,6 @@
   --color-gray-900: #16171b;
 
   /* Semantic Colors */
-  --border: var(--color-gray-200);
-  --default: var(--color-gray-50);
   --accent: #2d64fa;
   --danger: #ef1026;
   --success: #1fa24e;
