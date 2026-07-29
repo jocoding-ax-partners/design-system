@@ -16,6 +16,7 @@
 ### 규칙
 - 직접 `npm publish`하지 말 것. 반드시 changesets 워크플로우를 사용
 - 버전을 수동으로 bump하지 말 것. `version-packages`가 처리
+- changeset 본문은 **영어로 작성**할 것 (CHANGELOG가 그대로 npm에 배포됨)
 - 태그는 `@demodev-ui/react@<version>` 형식
 - 태그 범위에 포함할 커밋이 추가되면 태그를 최신 커밋으로 이동 후 force push
 
