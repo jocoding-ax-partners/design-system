@@ -1,18 +1,19 @@
 @theme {
   /* Gray Colors */
-  --color-gray-50: oklch(97.3% 0.001 287.31deg);
-  --color-gray-100: oklch(94% 0.001 287.27deg);
-  --color-gray-200: oklch(85.2% 0.004 286.57deg);
-  --color-gray-300: oklch(75.8% 0.006 286.43deg);
-  --color-gray-400: oklch(67.2% 0.009 286.26deg);
-  --color-gray-500: oklch(58.5% 0.011 286.14deg);
-  --color-gray-600: oklch(49.2% 0.013 285.97deg);
-  --color-gray-700: oklch(40.5% 0.013 285.83deg);
-  --color-gray-800: oklch(31.9% 0.011 285.82deg);
-  --color-gray-900: oklch(22.4% 0.008 285.8deg);
-  --color-gray-950: oklch(17.9% 0.004 286.04deg);
+  --color-gray-50: #f6f7f9;
+  --color-gray-100: #eff1f4;
+  --color-gray-200: #e4e5e8;
+  --color-gray-300: #d1d3d8;
+  --color-gray-400: #9ca0ab;
+  --color-gray-500: #6d717e;
+  --color-gray-600: #4f535d;
+  --color-gray-700: #3c3f47;
+  --color-gray-800: #25272d;
+  --color-gray-900: #16171b;
 
-  /* Semantic Colors (조코딩AX = AXHub Console 팔레트, DESIGN.md) */
+  /* Semantic Colors */
+  --border: var(--color-gray-200);
+  --default: var(--color-gray-50);
   --accent: #2d64fa;
   --danger: #ef1026;
   --success: #1fa24e;
