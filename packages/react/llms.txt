@@ -411,8 +411,9 @@ Toast.toast.warning("Warning!")
 ## Design Tokens
 
 Colors:
-- Gray scale (oklch): --color-gray-50 ~ --color-gray-950
-- Semantic: --danger (#ef1026), --success (#27c961), --warning (#ffdc18)
+- Gray scale: --color-gray-50 ~ --color-gray-900
+- Semantic: --accent (#2d64fa), --danger (#ef1026), --success (#1fa24e), --warning (#f6c205), --info (#1571f3)
+- Surface: --border (gray-200), --default (gray-50)
 
 Border radius:
 - Button: --radius-button-xs(md) / sm(lg) / md(0.625rem) / lg(xl)

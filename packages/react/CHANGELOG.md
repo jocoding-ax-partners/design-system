@@ -1,5 +1,15 @@
 # @demodev-ui/react
 
+## 2.1.0
+
+### Minor Changes
+
+- gray 팔레트를 hex 기반으로 교체하고 surface 토큰 추가
+  - `--color-gray-50` ~ `--color-gray-900`을 oklch에서 hex 값으로 변경
+  - `--color-gray-950` 제거 (10단계 스케일로 축소)
+  - 라이트 테마에 `--border`(gray-200), `--default`(gray-50) 토큰 추가
+  - README / llms.txt 디자인 토큰 문서를 현재 팔레트에 맞게 갱신
+
 ## 2.0.1
 
 ### Patch Changes
