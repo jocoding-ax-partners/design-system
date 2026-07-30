@@ -1,7 +1,6 @@
 node_modules
 **/node_modules
 .git
-# npm 인증 토큰이 이미지 레이어에 들어가지 않게 해요.
 .npmrc
 .turbo
 **/.turbo
