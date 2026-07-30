@@ -1,0 +1,10 @@
+version: axhub/v1
+name: design-system-storybook
+
+runtime:
+  port: 80
+  health_path: /
+
+build:
+  deploy_method: docker
+  dockerfile: Dockerfile
