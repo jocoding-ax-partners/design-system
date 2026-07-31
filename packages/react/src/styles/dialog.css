@@ -1,4 +1,14 @@
 @layer components {
+  .alert-dialog__dialog,
+  .modal__dialog {
+    @apply rounded-dialog;
+  }
+
+  /* HeroUI removes the radius for full modals, so redeclare it after the base override */
+  .modal__dialog--full {
+    @apply rounded-none;
+  }
+
   .alert-dialog__dialog--sm,
   .modal__dialog--sm {
     @apply max-w-md;

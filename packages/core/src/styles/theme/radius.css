@@ -19,4 +19,7 @@
 
   /* toast */
   --radius-toast: var(--radius-2xl);
+
+  /* dialog */
+  --radius-dialog: var(--radius-2xl);
 }
