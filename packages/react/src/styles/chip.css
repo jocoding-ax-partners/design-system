@@ -2,4 +2,27 @@
   .chip--tertiary {
     @apply border-border border;
   }
+
+  /*
+   * Extended `info` color, opted in via `data-color="info"` (same pattern as button.css).
+   * HeroUI's `color` prop type cannot be extended, so the attribute carries the color instead.
+   *
+   * Every rule below outweighs its HeroUI counterpart by exactly one class, so `data-color`
+   * always wins when both `color` and `data-color` are present — by specificity, not import order.
+   */
+  .chip[data-color="info"] {
+    --chip-fg: var(--color-info-soft-foreground);
+
+    &.chip--primary {
+      --chip-bg: var(--info);
+      --chip-fg: var(--info-foreground);
+    }
+
+    &.chip--soft {
+      --chip-bg: var(--color-info-soft);
+
+      /* Restated so this beats `.chip--<color>.chip--soft`, which also sets the foreground. */
+      --chip-fg: var(--color-info-soft-foreground);
+    }
+  }
 }
