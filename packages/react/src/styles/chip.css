@@ -1,18 +1,4 @@
 @layer components {
-  .chip {
-    @apply chip-size-md;
-  }
-
-  /* Size variants */
-  .chip--sm {
-    @apply chip-size-sm;
-  }
-
-  .chip--lg {
-    @apply chip-size-lg;
-  }
-
-  /* Variant styles */
   .chip--tertiary {
     @apply border-border border;
   }
