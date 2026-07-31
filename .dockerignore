@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+.git
+.npmrc
+.turbo
+**/.turbo
+**/dist
+apps/storybook/storybook-static
+docs
