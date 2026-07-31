@@ -1,5 +1,34 @@
 # @demodev-ui/react
 
+## 2.2.1
+
+### Patch Changes
+
+- Add an `info` color to `Chip`, opted in through the `data-color="info"` attribute.
+
+  HeroUI's `color` prop cannot express colors outside its own set, so the attribute carries the color instead — the same pattern `Button` already uses. All four variants are covered:
+
+  ```tsx
+  <Chip data-color="info" variant="soft">
+    Info
+  </Chip>
+  ```
+
+  | variant     | background           | foreground               |
+  | ----------- | -------------------- | ------------------------ |
+  | `primary`   | `--info`             | `--info-foreground`      |
+  | `secondary` | `--default`          | `--info-soft-foreground` |
+  | `tertiary`  | transparent + border | `--info-soft-foreground` |
+  | `soft`      | `--info-soft`        | `--info-soft-foreground` |
+
+  `color` and `data-color` may be combined; `data-color` wins by specificity.
+
+- Restore brand base colors for soft foregrounds in light mode.
+
+  HeroUI v3.2 changed the formula to mix `--foreground` into soft foregrounds for higher contrast (for example, `accent 70% + foreground 30%`). Light mode now keeps the plain brand color for `accent`, `danger`, `success`, `warning`, and `info`, while dark mode follows the HeroUI values.
+
+  `info` tokens are also restructured to match HeroUI's own layout — `--info-hover`, `--info-soft`, `--info-soft-hover`, and `--info-soft-foreground` are declared in `@layer base` with `--color-info-*` aliases exposed as Tailwind utilities, including dark mode soft opacities.
+
 ## 2.2.0
 
 ### Minor Changes
