@@ -1,5 +1,15 @@
 # @demodev-ui/react
 
+## 2.2.0
+
+### Minor Changes
+
+- Remove Chip base and size overrides so Chip follows HeroUI v3 default sizing.
+
+  `.chip`, `.chip--sm`, and `.chip--lg` no longer force fixed heights (24/32/36px) and custom radii. Chip now renders with HeroUI's padding-based sizing and `rounded-2xl`. Only the `.chip--tertiary` border override remains.
+
+  The `--spacing-chip-*` and `--radius-chip-*` tokens are unchanged, but they are now used exclusively by Tag and ToggleButton. Documentation has been updated to reflect this.
+
 ## 2.1.0
 
 ### Minor Changes

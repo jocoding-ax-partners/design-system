@@ -135,8 +135,9 @@ Some Trigger components render their own `<button>`. Putting `<Button>` inside t
 --radius-button-sm: var(--radius-lg)
 --radius-button-md: 0.625rem   /* 10px */
 --radius-button-lg: var(--radius-xl)
---radius-chip-sm:   var(--radius-md)
---radius-chip-md:   var(--radius-lg)
+--radius-chip-sm:   var(--radius-md)          /* Tag / ToggleButton */
+--radius-chip-md:   var(--radius-lg)          /* Tag / ToggleButton */
+--radius-chip-lg:   var(--radius-button-sm)   /* Tag / ToggleButton */
 --radius-input-lg:  var(--radius-button-lg)
 --radius-list-box:  var(--radius-xl)
 --radius-toast:     var(--radius-2xl)
@@ -148,9 +149,9 @@ Some Trigger components render their own `<button>`. Putting `<Button>` inside t
 --spacing-button-sm: 36px
 --spacing-button-md: 40px
 --spacing-button-lg: 48px
---spacing-chip-sm:   24px
---spacing-chip-md:   32px
---spacing-chip-lg:   36px
+--spacing-chip-sm:   24px      /* Tag / ToggleButton */
+--spacing-chip-md:   32px      /* Tag / ToggleButton */
+--spacing-chip-lg:   36px      /* Tag / ToggleButton */
 --spacing-input-lg:  48px
 ```
 

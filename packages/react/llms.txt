@@ -417,12 +417,12 @@ Colors:
 
 Border radius:
 - Button: --radius-button-xs(md) / sm(lg) / md(0.625rem) / lg(xl)
-- Chip: --radius-chip-sm(md) / md(lg)
+- Tag / ToggleButton: --radius-chip-sm(md) / md(lg) / lg(button-sm)
 - Input: --radius-input-lg(xl)
 - ListBox: --radius-list-box(xl)
 - Toast: --radius-toast(2xl)
 
 Component heights:
 - Button: --spacing-button-sm(36px) / md(40px) / lg(48px)
-- Chip: --spacing-chip-sm(24px) / md(32px) / lg(36px)
+- Tag / ToggleButton: --spacing-chip-sm(24px) / md(32px) / lg(36px)
 - Input: --spacing-input-lg(48px)
