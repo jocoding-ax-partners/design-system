@@ -20,12 +20,34 @@
   --info-foreground: var(--snow);
 }
 
+/*
+ * Info tokens follow the HeroUI defaults, which HeroUI itself does not ship for
+ * this color. Formulas mirror `@heroui/styles` themes/default/variables.css.
+ */
+@layer base {
+  :root,
+  .light,
+  [data-theme="light"] {
+    --info-hover: color-mix(in oklab, var(--info) 90%, var(--info-foreground) 10%);
+    --info-soft: color-mix(in oklab, var(--info) 15%, transparent);
+    --info-soft-hover: color-mix(in oklab, var(--info) 20%, transparent);
+    --info-soft-foreground: color-mix(in oklab, var(--info) 70%, var(--foreground) 30%);
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --info-soft: color-mix(in oklab, var(--info) 12%, transparent);
+    --info-soft-hover: color-mix(in oklab, var(--info) 16%, transparent);
+    --info-soft-foreground: color-mix(in oklab, var(--info) 80%, var(--foreground) 30%);
+  }
+}
+
 /* Expose custom colors as Tailwind utilities (bg-info, text-info-foreground) */
 @theme inline {
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
-  --color-info-hover: color-mix(in oklab, var(--info) 90%, var(--info-foreground) 10%);
-  --color-info-soft: color-mix(in oklab, var(--info) 15%, transparent);
-  --color-info-soft-hover: color-mix(in oklab, var(--info) 20%, transparent);
-  --color-info-soft-foreground: color-mix(in oklab, var(--info) 70%, var(--foreground) 30%);
+  --color-info-hover: var(--info-hover);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-hover: var(--info-soft-hover);
+  --color-info-soft-foreground: var(--info-soft-foreground);
 }
