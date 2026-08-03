@@ -1,0 +1,73 @@
+@layer components {
+  /**
+   * 트랙 폭은 이동거리 = thumb 지름이 되도록 잡는다.
+   * width = thumb + inset 2px * 2 + travel(= thumb)
+   *
+   * HeroUI 는 이 값을 트랙과 description 들여쓰기에 각각 하드코딩해서
+   * 한쪽만 고치면 설명 텍스트가 라벨과 어긋난다. 변수로 묶어 둔다.
+   */
+  .switch {
+    --switch-control-width: 2.25rem; /* 36px, thumb 16px */
+  }
+
+  .switch--sm {
+    --switch-control-width: 1.75rem; /* 28px, thumb 12px */
+  }
+
+  .switch--lg {
+    --switch-control-width: 2.75rem; /* 44px, thumb 20px */
+  }
+
+  /* Track: pill 형태로 통일 */
+  .switch__control,
+  .switch--sm .switch__control,
+  .switch--lg .switch__control {
+    @apply rounded-full;
+
+    width: var(--switch-control-width);
+  }
+
+  /**
+   * 트랙 폭에 맞춰 라벨 아래 보조 텍스트 들여쓰기(gap 0.75rem 포함).
+   * `.switch` 를 두 번 써서 사이즈별 규칙(`.switch.switch--sm > ...`)과
+   * 명시도를 맞춘다. 한 번만 쓰면 sm/lg 에서 HeroUI 값이 이긴다.
+   */
+  .switch.switch > :is([data-slot="description"], [data-slot="field-error"]) {
+    padding-inline-start: calc(var(--switch-control-width) + 0.75rem);
+  }
+
+  /**
+   * Thumb: HeroUI 기본값은 1.375:1 알약이라 정원으로 좁힌다.
+   * 높이는 HeroUI 값을 그대로 쓰므로 트랙 안쪽 여백은 2px 유지.
+   *
+   * selected 위치는 `.switch--sm[data-selected]` 처럼 같은 엘리먼트에
+   * 붙여야 한다. HeroUI 원본은 `.switch--sm .switch__thumb` 안에
+   * `.switch[data-selected] &` 를 중첩해 매치되지 않는 셀렉터를 만든다.
+   */
+  .switch__thumb {
+    @apply size-4 rounded-full;
+  }
+
+  .switch[aria-checked="true"] .switch__thumb,
+  .switch[data-selected="true"] .switch__thumb {
+    @apply ms-[calc(100%-1.125rem)];
+  }
+
+  .switch--sm .switch__thumb {
+    @apply size-3 rounded-full;
+  }
+
+  .switch.switch--sm[aria-checked="true"] .switch__thumb,
+  .switch.switch--sm[data-selected="true"] .switch__thumb {
+    @apply ms-[calc(100%-0.875rem)];
+  }
+
+  .switch--lg .switch__thumb {
+    @apply size-5 rounded-full;
+  }
+
+  .switch.switch--lg[aria-checked="true"] .switch__thumb,
+  .switch.switch--lg[data-selected="true"] .switch__thumb {
+    @apply ms-[calc(100%-1.375rem)];
+  }
+}
