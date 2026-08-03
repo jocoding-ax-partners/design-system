@@ -1,4 +1,5 @@
-/* Mirrors select.css — Autocomplete has the same trigger/value/indicator/popover structure. */
+/* Mirrors select.css for the trigger/value/indicator/popover, plus the filter
+   slot that only Autocomplete has. */
 @layer components {
   .autocomplete {
     /* Same field gap as .select, .combo-box and .search-field. */
@@ -20,12 +21,13 @@
     }
 
     &[data-pressed="true"] {
-      /* Open state matches .select__trigger — no equivalent in .input, which has no trigger. */
+      /* Same open state as .select__trigger. */
       @apply status-focused;
 
       border-color: var(--color-field-border-focus);
       background-color: var(--color-field-focus);
 
+      /* status-focused offsets the ring by 2px; fields keep it against the border. */
       --tw-ring-offset-width: 0px;
     }
   }
@@ -49,7 +51,7 @@
 
   .autocomplete__popover {
     /* Same popover shell as .select__popover, .combo-box__popover and .dropdown__popover. */
-    /* pt-0 so the filter is inset by its own padding only, like popover-list-box's items. */
+    /* pt-0 leaves the top inset to the filter's own padding, so every edge is 4px. */
     @apply rounded-list-box pt-0;
 
     [data-slot="list-box"] {
@@ -60,18 +62,22 @@
       @apply popover-list-box-item;
     }
 
-    /* Inset the filter from the popover exactly like popover-list-box insets its items. */
+    /* Inset the filter the way popover-list-box insets its items, and leave the gap
+       below it to the list box's own padding so it stays 4px rather than doubling. */
     [data-slot="search-field"] {
-      @apply p-1;
+      @apply p-1 pb-0;
     }
 
-    /* The filter's search field sits above the list, so match .list-box-item's
-       box instead of the form-sized one .search-field__group uses elsewhere. */
+    /* The filter reads as another row, so match .list-box-item's box rather than the
+       form-sized one .search-field__group uses elsewhere. */
     .search-field__group {
       @apply rounded-list-box-item min-h-list-box-item px-3;
+
+      /* An outward ring would sit 2px from the popover edge; draw it inward. */
+      @apply ring-inset;
     }
 
-    /* Insets now come from the group, matching popover-list-box-item's px-3. */
+    /* The group's px-3 supplies the inset, matching popover-list-box-item. */
     .search-field__search-icon {
       @apply ml-0;
     }
