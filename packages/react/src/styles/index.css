@@ -2,6 +2,7 @@
 @import "@demodev-ui/core/styles";
 
 @import "./alert.css";
+@import "./autocomplete.css";
 @import "./button.css";
 @import "./button-group.css";
 @import "./checkbox.css";

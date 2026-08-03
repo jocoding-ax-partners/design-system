@@ -3,7 +3,7 @@
 }
 
 @utility popover-list-box-item {
-  @apply rounded-list-box-item px-3 py-2;
+  @apply rounded-list-box-item min-h-list-box-item px-3 py-2;
 }
 
 @utility popover-list-box-item-indicator {

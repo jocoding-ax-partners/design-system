@@ -20,4 +20,7 @@
 
   /* input height */
   --spacing-input: var(--spacing-button-md);
+
+  /* list box item height */
+  --spacing-list-box-item: calc(var(--spacing) * 9);
 }

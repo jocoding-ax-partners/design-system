@@ -3,7 +3,7 @@
 }
 
 @utility input-size {
-  @apply input-text rounded-button-md min-h-input;
+  @apply input-text rounded-input min-h-input;
 }
 
 @utility input-style-primary {

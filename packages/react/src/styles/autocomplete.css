@@ -1,0 +1,83 @@
+/* Mirrors select.css — Autocomplete has the same trigger/value/indicator/popover structure. */
+@layer components {
+  .autocomplete {
+    /* Same field gap as .select, .combo-box and .search-field. */
+    @apply gap-field;
+  }
+
+  .autocomplete--primary .autocomplete__trigger {
+    /* Same primary field styling as .select--primary and .input--primary. */
+    @apply input-style-primary;
+  }
+
+  .autocomplete__trigger {
+    /* Same field metrics as .select__trigger and .input. */
+    @apply input-size;
+
+    &:has(.autocomplete__indicator) {
+      /* Room for the indicator, as in .select__trigger. */
+      @apply pr-8;
+    }
+
+    &[data-pressed="true"] {
+      /* Open state matches .select__trigger — no equivalent in .input, which has no trigger. */
+      @apply status-focused;
+
+      border-color: var(--color-field-border-focus);
+      background-color: var(--color-field-focus);
+
+      --tw-ring-offset-width: 0px;
+    }
+  }
+
+  .autocomplete--secondary .autocomplete__trigger {
+    &[data-pressed="true"] {
+      /* Same secondary open state as .select--secondary .select__trigger. */
+      background-color: var(--color-default);
+    }
+  }
+
+  .autocomplete__value {
+    /* Same as .select__value — the trigger already pads, so reset the inline padding. */
+    @apply input-text flex items-center px-0;
+  }
+
+  .autocomplete__indicator {
+    /* Same offset as .select__indicator. */
+    @apply right-3;
+  }
+
+  .autocomplete__popover {
+    /* Same popover shell as .select__popover, .combo-box__popover and .dropdown__popover. */
+    /* pt-0 so the filter is inset by its own padding only, like popover-list-box's items. */
+    @apply rounded-list-box pt-0;
+
+    [data-slot="list-box"] {
+      @apply popover-list-box;
+    }
+
+    [data-slot="list-box-item"] {
+      @apply popover-list-box-item;
+    }
+
+    /* Inset the filter from the popover exactly like popover-list-box insets its items. */
+    [data-slot="search-field"] {
+      @apply p-1;
+    }
+
+    /* The filter's search field sits above the list, so match .list-box-item's
+       box instead of the form-sized one .search-field__group uses elsewhere. */
+    .search-field__group {
+      @apply rounded-list-box-item min-h-list-box-item px-3;
+    }
+
+    /* Insets now come from the group, matching popover-list-box-item's px-3. */
+    .search-field__search-icon {
+      @apply ml-0;
+    }
+
+    .search-field__clear-button {
+      @apply mr-0;
+    }
+  }
+}

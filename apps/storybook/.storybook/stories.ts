@@ -2,7 +2,7 @@ export const stories = [
   "../src/stories/accordion.stories.@(ts|tsx)",
   "../src/stories/alert.stories.@(ts|tsx)",
   "../src/stories/alert-dialog.stories.@(ts|tsx)",
-  // "../src/stories/autocomplete.stories.@(ts|tsx)",
+  "../src/stories/autocomplete.stories.@(ts|tsx)",
   "../src/stories/avatar.stories.@(ts|tsx)",
   // "../src/stories/badge.stories.@(ts|tsx)",
   // "../src/stories/breadcrumbs.stories.@(ts|tsx)",
