@@ -1,5 +1,17 @@
 # @demodev-ui/react
 
+## 2.4.0
+
+### Minor Changes
+
+- Add typography scale and refine component styles
+  - Add Figma typography scale as `text-*` tokens
+  - Add switch style overrides: the track is now twice the thumb diameter, with all sizes derived from the thumb variable
+  - Unify the popover shell on `shadow-md` and apply it to dropdown as well
+  - Change the button font weight to semibold
+  - Change light mode `muted` to `gray-500`
+  - Remove the focus ring from the autocomplete popover's search field and list items
+
 ## 2.3.0
 
 ### Minor Changes
