@@ -50,9 +50,8 @@
   }
 
   .autocomplete__popover {
-    /* Same popover shell as .select__popover, .combo-box__popover and .dropdown__popover. */
     /* pt-0 leaves the top inset to the filter's own padding, so every edge is 4px. */
-    @apply rounded-list-box pt-0;
+    @apply popover-list-box-surface pt-0;
 
     [data-slot="list-box"] {
       @apply popover-list-box;

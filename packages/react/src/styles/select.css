@@ -39,7 +39,7 @@
   }
 
   .select__popover {
-    @apply rounded-list-box;
+    @apply popover-list-box-surface;
 
     [data-slot="list-box"] {
       @apply popover-list-box;

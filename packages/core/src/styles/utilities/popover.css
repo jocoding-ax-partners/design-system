@@ -1,3 +1,21 @@
+/* Shell for the select, combo-box and autocomplete popovers. */
+@utility popover-list-box-surface {
+  /* A border gives the popover an edge the overlay background alone does not. */
+  @apply rounded-list-box border-border border;
+
+  /* HeroUI's --overlay-shadow without its upward (0 -6px 12px / 3%) layer, so the
+     popover casts downward only. */
+  box-shadow:
+    0 2px 8px 0 --alpha(var(--color-black) / 6%),
+    0 14px 28px 0 --alpha(var(--color-black) / 8%);
+
+  /* Dark mode's --overlay-shadow is an inset hairline rather than a cast shadow,
+     so it has no upward layer to trim -- keep HeroUI's value. */
+  @variant dark {
+    box-shadow: var(--shadow-overlay);
+  }
+}
+
 @utility popover-list-box {
   @apply gap-0.5 p-1;
 }
