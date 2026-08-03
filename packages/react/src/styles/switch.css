@@ -1,19 +1,23 @@
 @layer components {
-  /* Track width is twice the thumb diameter, so the thumb travels its own
-     diameter minus the 2px inset on each end. HeroUI hardcodes this width in
-     both the track and the description padding, so keep it in one variable. */
+  /* Every metric below is derived from the thumb, which keeps HeroUI's thumb
+     heights so the 2px inset against the track is unchanged. */
   .switch {
-    --switch-control-width: 2rem;
+    --switch-thumb-size: 1rem;
+
+    /* Twice the thumb: the thumb itself, a 2px inset at each end, and whatever
+       is left over is how far it travels. */
+    --switch-control-width: calc(var(--switch-thumb-size) * 2);
   }
 
   .switch--sm {
-    --switch-control-width: 1.5rem;
+    --switch-thumb-size: 0.75rem;
   }
 
   .switch--lg {
-    --switch-control-width: 2.5rem;
+    --switch-thumb-size: 1.25rem;
   }
 
+  /* The per-size selectors only exist to outweigh HeroUI's own size rules. */
   .switch__control,
   .switch--sm .switch__control,
   .switch--lg .switch__control {
@@ -22,43 +26,33 @@
     width: var(--switch-control-width);
   }
 
+  /* HeroUI's thumb is a 1.375:1 pill; narrow it to a circle. */
+  .switch__thumb,
+  .switch--sm .switch__thumb,
+  .switch--lg .switch__thumb {
+    @apply rounded-full;
+
+    width: var(--switch-thumb-size);
+    height: var(--switch-thumb-size);
+  }
+
+  /* Park the thumb at the far end, one inset short of the edge. HeroUI's
+     per-size offsets compile to `.switch[data-selected] :is(.switch--sm
+     .switch__thumb)`, so the size has to be named here too or the sm and lg
+     rules outweigh this one. */
+  .switch[aria-checked="true"] .switch__thumb,
+  .switch[data-selected="true"] .switch__thumb,
+  .switch.switch--sm[aria-checked="true"] .switch__thumb,
+  .switch.switch--sm[data-selected="true"] .switch__thumb,
+  .switch.switch--lg[aria-checked="true"] .switch__thumb,
+  .switch.switch--lg[data-selected="true"] .switch__thumb {
+    margin-inline-start: calc(100% - var(--switch-thumb-size) - 0.125rem);
+  }
+
   /* Indent the helper text to the label, past the track and the content gap.
      `.switch` is repeated to match the specificity of HeroUI's per-size rules
      (`.switch.switch--sm > ...`); a single class loses on sm and lg. */
   .switch.switch > :is([data-slot="description"], [data-slot="field-error"]) {
     padding-inline-start: calc(var(--switch-control-width) + 0.75rem);
-  }
-
-  /* HeroUI's thumb is a 1.375:1 pill; narrow it to a circle. The height is left
-     alone, so the 2px inset against the track is unchanged. */
-  .switch__thumb {
-    @apply size-4 rounded-full;
-  }
-
-  .switch--sm .switch__thumb {
-    @apply size-3 rounded-full;
-  }
-
-  .switch--lg .switch__thumb {
-    @apply size-5 rounded-full;
-  }
-
-  /* The size modifier and the selected state sit on the same element, so they
-     have to share a compound selector. HeroUI nests `.switch[data-selected] &`
-     inside `.switch--sm .switch__thumb`, which resolves to a descendant
-     selector that never matches and silently falls back to the medium offset. */
-  .switch[aria-checked="true"] .switch__thumb,
-  .switch[data-selected="true"] .switch__thumb {
-    @apply ms-[calc(100%-1.125rem)];
-  }
-
-  .switch.switch--sm[aria-checked="true"] .switch__thumb,
-  .switch.switch--sm[data-selected="true"] .switch__thumb {
-    @apply ms-[calc(100%-0.875rem)];
-  }
-
-  .switch.switch--lg[aria-checked="true"] .switch__thumb,
-  .switch.switch--lg[data-selected="true"] .switch__thumb {
-    @apply ms-[calc(100%-1.375rem)];
   }
 }
