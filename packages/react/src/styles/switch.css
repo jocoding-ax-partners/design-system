@@ -1,6 +1,6 @@
 @layer components {
-  /* Every metric below is derived from the thumb, which keeps HeroUI's thumb
-     heights so the 2px inset against the track is unchanged. */
+  /* Every metric below is derived from the thumb, sized so it clears the track
+     by 2px on every side. */
   .switch {
     --switch-thumb-size: 1rem;
 
@@ -26,7 +26,7 @@
     width: var(--switch-control-width);
   }
 
-  /* HeroUI's thumb is a 1.375:1 pill; narrow it to a circle. */
+  /* Square the thumb so the radius reads as a circle rather than a pill. */
   .switch__thumb,
   .switch--sm .switch__thumb,
   .switch--lg .switch__thumb {

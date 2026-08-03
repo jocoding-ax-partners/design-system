@@ -1,6 +1,5 @@
 @layer components {
   .button {
-    /* HeroUI sets font-medium. */
     @apply font-semibold;
 
     /* SVG icon styling - exclude spinner and link-icon svgs */
