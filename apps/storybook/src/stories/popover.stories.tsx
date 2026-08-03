@@ -46,7 +46,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Popover",
+  title: "Components/Popover",
 } as Meta<typeof Popover>;
 
 const defaultArgs: Omit<Popover["ContentProps"], "children"> = {};

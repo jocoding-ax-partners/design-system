@@ -7,7 +7,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "RadioGroup",
+  title: "Components/RadioGroup",
 } as Meta<typeof RadioGroup>;
 
 type Story = StoryObj<typeof RadioGroup>;

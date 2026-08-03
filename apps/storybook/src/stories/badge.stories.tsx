@@ -32,7 +32,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Badge",
+  title: "Components/Badge",
 } as Meta<typeof Badge>;
 
 const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";

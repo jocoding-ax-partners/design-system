@@ -26,7 +26,7 @@ const meta: Meta<typeof Select> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Select",
+  title: "Components/Select",
 };
 
 export default meta;

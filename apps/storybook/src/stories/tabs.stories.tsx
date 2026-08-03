@@ -12,7 +12,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  title: "Tabs",
+  title: "Components/Tabs",
 } satisfies Meta<typeof Tabs>;
 
 export default meta;

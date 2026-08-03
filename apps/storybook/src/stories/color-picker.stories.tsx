@@ -35,7 +35,7 @@ const meta: Meta<typeof ColorPicker> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "ColorPicker",
+  title: "Components/ColorPicker",
 };
 
 export default meta;

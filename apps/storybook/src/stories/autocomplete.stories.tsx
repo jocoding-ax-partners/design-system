@@ -32,7 +32,7 @@ const meta: Meta<typeof Autocomplete> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Autocomplete",
+  title: "Components/Autocomplete",
 };
 
 export default meta;

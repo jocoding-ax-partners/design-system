@@ -21,7 +21,7 @@ const meta: Meta<typeof DatePicker> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "DatePicker",
+  title: "Components/DatePicker",
 };
 
 export default meta;

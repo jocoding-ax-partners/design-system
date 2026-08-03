@@ -26,7 +26,7 @@ const meta: Meta<typeof Typography> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Typography",
+  title: "Components/Typography",
 };
 
 export default meta;

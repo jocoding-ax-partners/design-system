@@ -20,7 +20,7 @@ const meta: Meta<typeof ListBox> = {
   parameters: {
     layout: "centered",
   },
-  title: "ListBox",
+  title: "Components/ListBox",
 };
 
 export default meta;

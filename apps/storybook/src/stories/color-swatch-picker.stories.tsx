@@ -26,7 +26,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "ColorSwatchPicker",
+  title: "Components/ColorSwatchPicker",
 } as Meta<typeof ColorSwatchPicker>;
 
 type Story = StoryObj<typeof ColorSwatchPicker>;

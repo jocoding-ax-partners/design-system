@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Chip , type ChipProps } from "@heroui/react";
+import { Chip, type ChipProps } from "@heroui/react";
 
 export default {
   argTypes: {
@@ -13,7 +13,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Chip",
+  title: "Components/Chip",
 } as Meta<typeof Chip>;
 
 type Story = StoryObj<typeof Chip>;

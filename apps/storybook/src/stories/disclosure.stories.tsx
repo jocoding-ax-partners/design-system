@@ -25,7 +25,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Disclosure",
+  title: "Components/Disclosure",
 } as Meta<typeof Disclosure>;
 
 const defaultArgs: Disclosure["RootProps"] = {

@@ -44,7 +44,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Tooltip",
+  title: "Components/Tooltip",
 } as Meta<typeof Tooltip>;
 
 const defaultArgs: Omit<Tooltip["ContentProps"], "children"> = {

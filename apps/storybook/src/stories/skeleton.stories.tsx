@@ -15,7 +15,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Skeleton",
+  title: "Components/Skeleton",
 } as Meta<typeof Skeleton>;
 
 const defaultArgs: SkeletonProps = {};

@@ -28,7 +28,7 @@ const meta: Meta<typeof ComboBox> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "ComboBox",
+  title: "Components/ComboBox",
 };
 
 export default meta;

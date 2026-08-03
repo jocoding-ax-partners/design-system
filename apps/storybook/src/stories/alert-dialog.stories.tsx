@@ -15,7 +15,7 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "AlertDialog",
+  title: "Components/AlertDialog",
 } as Meta<typeof AlertDialog>;
 
 export const Default = () => {

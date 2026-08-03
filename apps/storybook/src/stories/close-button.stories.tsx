@@ -20,7 +20,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "CloseButton",
+  title: "Components/CloseButton",
 } as Meta<typeof CloseButton>;
 
 const defaultArgs: CloseButtonProps = {

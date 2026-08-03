@@ -21,7 +21,7 @@ const meta: Meta<typeof ProgressCircle> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "ProgressCircle",
+  title: "Components/ProgressCircle",
 };
 
 export default meta;

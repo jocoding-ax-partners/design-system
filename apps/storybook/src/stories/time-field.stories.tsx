@@ -19,7 +19,7 @@ const meta: Meta<typeof TimeField> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "TimeField",
+  title: "Components/TimeField",
 };
 
 export default meta;

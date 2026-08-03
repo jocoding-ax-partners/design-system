@@ -11,7 +11,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Input",
+  title: "Components/Input",
 } as Meta<typeof Input>;
 
 type Story = StoryObj<typeof Input>;

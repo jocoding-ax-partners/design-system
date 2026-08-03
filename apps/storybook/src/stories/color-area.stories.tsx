@@ -18,7 +18,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "ColorArea",
+  title: "Components/ColorArea",
 } as Meta<typeof ColorArea>;
 
 const defaultArgs: ColorAreaRootProps = {

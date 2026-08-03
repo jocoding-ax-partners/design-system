@@ -13,7 +13,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "SwitchGroup",
+  title: "Components/SwitchGroup",
 } as Meta<typeof SwitchGroup>;
 
 type Story = StoryObj<typeof SwitchGroup>;

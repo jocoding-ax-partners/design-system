@@ -38,7 +38,7 @@ const meta: Meta<typeof ColorSlider> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "ColorSlider",
+  title: "Components/ColorSlider",
 };
 
 export default meta;

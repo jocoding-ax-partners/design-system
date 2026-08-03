@@ -37,7 +37,7 @@ const meta: Meta<typeof ToggleButtonGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "ToggleButtonGroup",
+  title: "Components/ToggleButtonGroup",
 };
 
 export default meta;

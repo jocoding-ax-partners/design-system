@@ -21,7 +21,7 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Modal",
+  title: "Components/Modal",
 } as Meta<typeof Modal>;
 
 export const Default = () => {

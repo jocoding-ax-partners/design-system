@@ -11,7 +11,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Alert",
+  title: "Components/Alert",
 };
 
 const defaultArgs = {};

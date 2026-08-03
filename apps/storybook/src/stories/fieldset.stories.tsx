@@ -20,7 +20,7 @@ const meta: Meta<typeof Fieldset> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Fieldset",
+  title: "Components/Fieldset",
 };
 
 export default meta;

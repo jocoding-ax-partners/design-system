@@ -17,6 +17,10 @@ const preview: Preview = {
     }),
   ],
   parameters: {
+    options: {
+      storySort: { order: ["Foundations", "Components"] },
+    },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,

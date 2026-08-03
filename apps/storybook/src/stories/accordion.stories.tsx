@@ -23,7 +23,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Accordion",
+  title: "Components/Accordion",
 } as Meta<typeof Accordion>;
 
 const defaultArgs: Accordion["RootProps"] = {

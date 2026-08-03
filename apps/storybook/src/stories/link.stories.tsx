@@ -13,7 +13,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Link",
+  title: "Components/Link",
 } as Meta<typeof Link>;
 
 const DefaultTemplate = (_props: Link["RootProps"]) => (

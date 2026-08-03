@@ -17,7 +17,7 @@ export default {
     layout: "centered",
   },
   component: CheckboxGroup,
-  title: "CheckboxGroup",
+  title: "Components/CheckboxGroup",
 } as Meta<typeof CheckboxGroup>;
 
 type Story = StoryObj<typeof CheckboxGroup>;

@@ -30,7 +30,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "DisclosureGroup",
+  title: "Components/DisclosureGroup",
 } as Meta<typeof DisclosureGroup>;
 
 const defaultArgs: DisclosureGroupProps = {

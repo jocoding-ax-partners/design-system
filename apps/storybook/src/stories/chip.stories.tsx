@@ -28,7 +28,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Chip",
+  title: "Components/Chip",
 } as Meta<typeof Chip>;
 
 const defaultArgs: ChipProps = {

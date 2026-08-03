@@ -9,7 +9,7 @@ import {Card} from "@heroui/react";
 import {ScrollShadow} from "@heroui/react";
 
 const meta: Meta<typeof ScrollShadow> = {
-  title: "ScrollShadow",
+  title: "Components/ScrollShadow",
   component: ScrollShadow,
   tags: ["autodocs"],
   parameters: {

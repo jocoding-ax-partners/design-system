@@ -11,7 +11,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Textarea",
+  title: "Components/Textarea",
 } as Meta<typeof TextArea>;
 
 type Story = StoryObj<typeof TextArea>;

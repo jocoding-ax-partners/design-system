@@ -42,7 +42,7 @@ const meta: Meta<typeof RangeCalendar> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "RangeCalendar",
+  title: "Components/RangeCalendar",
 };
 
 export default meta;

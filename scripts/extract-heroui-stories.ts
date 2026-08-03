@@ -6,6 +6,7 @@ import { join } from "node:path";
 const REPO_URL = "https://github.com/heroui-inc/heroui.git";
 const BRANCH = "v3";
 const COMPONENTS_PATH = "packages/react/src/components";
+const COMPONENTS_GROUP = "Components";
 const OUTPUT_DIR = join(import.meta.dirname, "../apps/storybook/src/stories");
 
 function replaceRelativeImports(content: string): string {
@@ -29,14 +30,16 @@ function extractTitle(content: string): string {
   if (!titleMatch) return content;
 
   const fullTitle = titleMatch[1];
-  const lastSegment = fullTitle.split("/").pop()!;
+  // Drop HeroUI's own grouping and re-file everything under one sidebar section,
+  // so token docs (Foundations/*) stay separate from the component list.
+  const title = `${COMPONENTS_GROUP}/${fullTitle.split("/").pop()!}`;
 
   return content.replace(
     `title: "${fullTitle}"`,
-    `title: "${lastSegment}"`,
+    `title: "${title}"`,
   ).replace(
     `title: '${fullTitle}'`,
-    `title: '${lastSegment}'`,
+    `title: '${title}'`,
   );
 }
 

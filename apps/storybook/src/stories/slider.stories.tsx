@@ -27,7 +27,7 @@ const meta: Meta<typeof Slider> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Slider",
+  title: "Components/Slider",
 };
 
 export default meta;

@@ -21,7 +21,7 @@ const meta: Meta<typeof InputGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "InputGroup",
+  title: "Components/InputGroup",
 };
 
 export default meta;

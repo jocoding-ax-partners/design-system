@@ -27,7 +27,7 @@ const meta: Meta<typeof InputOTP> = {
   parameters: {
     layout: "centered",
   },
-  title: "InputOTP",
+  title: "Components/InputOTP",
 };
 
 export default meta;

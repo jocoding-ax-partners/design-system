@@ -15,7 +15,7 @@ const meta: Meta<typeof TagGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "TagGroup",
+  title: "Components/TagGroup",
 };
 
 export default meta;

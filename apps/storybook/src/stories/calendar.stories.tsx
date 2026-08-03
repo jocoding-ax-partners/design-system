@@ -43,7 +43,7 @@ const meta: Meta<typeof Calendar> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Calendar",
+  title: "Components/Calendar",
 };
 
 export default meta;

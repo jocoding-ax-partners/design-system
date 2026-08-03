@@ -16,7 +16,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Drawer",
+  title: "Components/Drawer",
 } as Meta<typeof Drawer>;
 
 export const Default = () => {

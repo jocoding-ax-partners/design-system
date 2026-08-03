@@ -14,7 +14,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Switch",
+  title: "Components/Switch",
 } as Meta<typeof Switch>;
 
 type Story = StoryObj<typeof Switch>;

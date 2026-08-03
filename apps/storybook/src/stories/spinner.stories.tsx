@@ -19,7 +19,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Spinner",
+  title: "Components/Spinner",
 } as Meta<typeof Spinner>;
 
 const defaultArgs: SpinnerProps = {};

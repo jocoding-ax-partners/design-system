@@ -25,7 +25,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Button",
+  title: "Components/Button",
 } as Meta<typeof Button>;
 
 const defaultArgs: Button["RootProps"] = {

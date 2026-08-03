@@ -22,7 +22,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Avatar",
+  title: "Components/Avatar",
 } as Meta<typeof Avatar>;
 
 const defaultArgs: Avatar["RootProps"] = {};

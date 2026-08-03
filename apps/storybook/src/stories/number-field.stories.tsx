@@ -17,7 +17,7 @@ const meta: Meta<typeof NumberField> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "NumberField",
+  title: "Components/NumberField",
 };
 
 export default meta;

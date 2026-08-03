@@ -22,7 +22,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "ColorSwatch",
+  title: "Components/ColorSwatch",
 } as Meta<typeof ColorSwatch>;
 
 const defaultArgs: ColorSwatchProps = {

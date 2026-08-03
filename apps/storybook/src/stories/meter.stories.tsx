@@ -28,7 +28,7 @@ const meta: Meta<typeof Meter> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "Meter",
+  title: "Components/Meter",
 };
 
 export default meta;

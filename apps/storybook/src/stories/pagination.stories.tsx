@@ -19,7 +19,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Pagination",
+  title: "Components/Pagination",
 } as Meta<typeof Pagination>;
 
 const defaultArgs: PaginationProps = {

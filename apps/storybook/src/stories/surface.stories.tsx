@@ -13,7 +13,7 @@ const meta: Meta<typeof Surface> = {
   parameters: {
     layout: "centered",
   },
-  title: "Surface",
+  title: "Components/Surface",
 };
 
 export default meta;

@@ -16,7 +16,7 @@ const meta: Meta<typeof ButtonGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  title: "ButtonGroup",
+  title: "Components/ButtonGroup",
 };
 
 export default meta;

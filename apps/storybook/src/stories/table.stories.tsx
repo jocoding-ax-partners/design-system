@@ -21,7 +21,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Table",
+  title: "Components/Table",
   argTypes: {
     variant: {
       control: "select",

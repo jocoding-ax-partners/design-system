@@ -40,7 +40,7 @@ const meta: Meta<ToastStoryProps> = {
   parameters: {
     layout: "centered",
   },
-  title: "Toast",
+  title: "Components/Toast",
 };
 
 export default meta;

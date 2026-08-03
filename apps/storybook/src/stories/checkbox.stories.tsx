@@ -17,7 +17,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "Checkbox",
+  title: "Components/Checkbox",
 } as Meta<typeof Checkbox>;
 
 type Story = StoryObj<typeof Checkbox>;

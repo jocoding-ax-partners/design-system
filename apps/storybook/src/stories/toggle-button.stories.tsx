@@ -23,7 +23,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-  title: "ToggleButton",
+  title: "Components/ToggleButton",
 } as Meta<typeof ToggleButton>;
 
 const defaultArgs: ToggleButton["RootProps"] = {
