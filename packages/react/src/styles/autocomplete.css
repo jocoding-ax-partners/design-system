@@ -59,6 +59,15 @@
 
     [data-slot="list-box-item"] {
       @apply popover-list-box-item;
+
+      /* Drop the ring HeroUI draws on keyboard focus. Nothing replaces it, so
+         arrow-key focus is invisible here — deliberate, not an oversight. */
+      /* ring-offset-0 too: status-focused leaves a 2px offset that ring-0 alone
+         would still paint as a background-colored halo. */
+      &:focus-visible:not(:focus),
+      &[data-focus-visible="true"] {
+        @apply ring-0 ring-offset-0;
+      }
     }
 
     /* Inset the filter the way popover-list-box insets its items, and leave the gap
@@ -72,8 +81,12 @@
     .search-field__group {
       @apply rounded-list-box-item min-h-list-box-item px-3;
 
-      /* An outward ring would sit 2px from the popover edge; draw it inward. */
-      @apply ring-inset;
+      /* No ring here either. Unlike the rows this costs nothing — the caret
+         already says the filter has focus. */
+      &:focus-within,
+      &[data-focus-within="true"] {
+        @apply ring-0;
+      }
     }
 
     /* The group's px-3 supplies the inset, matching popover-list-box-item. */
