@@ -15,6 +15,7 @@
   --background: #fff;
   --border: var(--color-gray-200);
   --default: var(--color-gray-50);
+  --muted: var(--color-gray-500);
 
   /* Soft foregrounds */
   --accent-soft-foreground: var(--accent);
