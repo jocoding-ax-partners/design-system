@@ -1,10 +1,10 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import type {Selection, SortDescriptor} from "react-aria-components";
+import type {Selection, SortDescriptor} from "react-aria-components/Table";
 
 import {cn} from "@heroui/styles";
 import {Icon} from "@iconify/react";
 import React from "react";
-import {TableLayout, Virtualizer} from "react-aria-components";
+import {TableLayout, Virtualizer} from "react-aria-components/Virtualizer";
 
 import {Avatar} from "@heroui/react";
 import {Button} from "@heroui/react";
@@ -228,29 +228,6 @@ const statusColorMap: Record<string, "success" | "danger" | "warning"> = {
   "On Leave": "warning",
 };
 
-function SortableColumnHeader({
-  children,
-  sortDirection,
-}: {
-  children: React.ReactNode;
-  sortDirection?: "ascending" | "descending";
-}) {
-  return (
-    <span className="flex items-center justify-between">
-      {children}
-      {!!sortDirection && (
-        <Icon
-          icon="gravity-ui:chevron-up"
-          className={cn(
-            "size-3 transform transition-transform duration-100 ease-out",
-            sortDirection === "descending" ? "rotate-180" : "",
-          )}
-        />
-      )}
-    </span>
-  );
-}
-
 /**
  * Shared template for Default and SecondaryVariant stories.
  */
@@ -292,33 +269,41 @@ function DefaultTableTemplate({variant = "primary"}: {variant?: "primary" | "sec
             onSortChange={setSortDescriptor}
           >
             <Table.Header>
-              <Table.Column className="pr-0">
+              <Table.Column className="pe-0">
                 <Checkbox aria-label="Select all" slot="selection">
-                  <Checkbox.Control>
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
+                  <Checkbox.Content>
+                    <Checkbox.Control>
+                      <Checkbox.Indicator />
+                    </Checkbox.Control>
+                  </Checkbox.Content>
                 </Checkbox>
               </Table.Column>
               <Table.Column allowsSorting isRowHeader className="after:hidden" id="id">
                 {({sortDirection}) => (
-                  <SortableColumnHeader sortDirection={sortDirection}>
+                  <Table.SortableColumnHeader sortDirection={sortDirection}>
                     Worker ID
-                  </SortableColumnHeader>
+                  </Table.SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column allowsSorting id="name">
                 {({sortDirection}) => (
-                  <SortableColumnHeader sortDirection={sortDirection}>Member</SortableColumnHeader>
+                  <Table.SortableColumnHeader sortDirection={sortDirection}>
+                    Member
+                  </Table.SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column allowsSorting id="role">
                 {({sortDirection}) => (
-                  <SortableColumnHeader sortDirection={sortDirection}>Role</SortableColumnHeader>
+                  <Table.SortableColumnHeader sortDirection={sortDirection}>
+                    Role
+                  </Table.SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column allowsSorting id="status">
                 {({sortDirection}) => (
-                  <SortableColumnHeader sortDirection={sortDirection}>Status</SortableColumnHeader>
+                  <Table.SortableColumnHeader sortDirection={sortDirection}>
+                    Status
+                  </Table.SortableColumnHeader>
                 )}
               </Table.Column>
               <Table.Column className="text-end">Actions</Table.Column>
@@ -326,15 +311,17 @@ function DefaultTableTemplate({variant = "primary"}: {variant?: "primary" | "sec
             <Table.Body>
               {pagination.paginatedItems.map((user) => (
                 <Table.Row key={user.id} id={user.id}>
-                  <Table.Cell className="pr-0">
+                  <Table.Cell className="pe-0">
                     <Checkbox
                       aria-label={`Select ${user.name}`}
                       slot="selection"
                       variant="secondary"
                     >
-                      <Checkbox.Control>
-                        <Checkbox.Indicator />
-                      </Checkbox.Control>
+                      <Checkbox.Content>
+                        <Checkbox.Control>
+                          <Checkbox.Indicator />
+                        </Checkbox.Control>
+                      </Checkbox.Content>
                     </Checkbox>
                   </Table.Cell>
                   <Table.Cell className="font-medium">
@@ -508,9 +495,11 @@ const DynamicWithSelectionTemplate = () => {
             <Table.Header>
               <Table.Column>
                 <Checkbox aria-label="Select all" slot="selection">
-                  <Checkbox.Control>
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
+                  <Checkbox.Content>
+                    <Checkbox.Control>
+                      <Checkbox.Indicator />
+                    </Checkbox.Control>
+                  </Checkbox.Content>
                 </Checkbox>
               </Table.Column>
               <Table.Collection items={columns}>
@@ -528,9 +517,11 @@ const DynamicWithSelectionTemplate = () => {
                       slot="selection"
                       variant="secondary"
                     >
-                      <Checkbox.Control>
-                        <Checkbox.Indicator />
-                      </Checkbox.Control>
+                      <Checkbox.Content>
+                        <Checkbox.Control>
+                          <Checkbox.Indicator />
+                        </Checkbox.Control>
+                      </Checkbox.Content>
                     </Checkbox>
                   </Table.Cell>
                   <Table.Collection items={columns}>
@@ -777,7 +768,7 @@ export const Virtualization: Story = {
           <Table.ScrollContainer>
             <Table.Content
               aria-label="Virtualized table with 1000 rows"
-              className="h-[500px] min-w-[700px] overflow-auto"
+              className="h-[500px] min-w-[700px] overflow-auto scrollbar"
             >
               <Table.Header className="h-full w-full">
                 <Table.Column isRowHeader id="name" minWidth={160}>
@@ -803,6 +794,112 @@ export const Virtualization: Story = {
           </Table.ScrollContainer>
         </Table>
       </Virtualizer>
+    );
+  },
+};
+
+export const ExpandableRows: Story = {
+  render: () => {
+    type Row = {
+      children: Row[];
+      date: string;
+      id: string;
+      title: string;
+      type: string;
+    };
+
+    const data: Row[] = [
+      {
+        children: [
+          {
+            children: [
+              {children: [], date: "7/10/2025", id: "3", title: "Weekly Report", type: "File"},
+              {children: [], date: "8/20/2025", id: "4", title: "Budget", type: "File"},
+            ],
+            date: "8/2/2025",
+            id: "2",
+            title: "Project",
+            type: "Directory",
+          },
+        ],
+        date: "10/20/2025",
+        id: "1",
+        title: "Documents",
+        type: "Directory",
+      },
+      {
+        children: [
+          {children: [], date: "1/23/2026", id: "6", title: "Image 1", type: "File"},
+          {children: [], date: "2/3/2026", id: "7", title: "Image 2", type: "File"},
+        ],
+        date: "2/3/2026",
+        id: "5",
+        title: "Photos",
+        type: "Directory",
+      },
+    ];
+
+    const [expandedKeys, setExpandedKeys] = React.useState<Selection>(() => new Set(["1"]));
+
+    const renderExpandableRow = (item: Row) => {
+      return (
+        <Table.Row id={item.id} textValue={item.title}>
+          <Table.Cell textValue={item.title}>
+            {({hasChildItems, isDisabled, isExpanded, isTreeColumn}) => (
+              <span className="flex items-center gap-1">
+                {hasChildItems && isTreeColumn ? (
+                  <Button
+                    isIconOnly
+                    aria-label="Toggle row"
+                    isDisabled={isDisabled}
+                    size="sm"
+                    slot="chevron"
+                    variant="ghost"
+                  >
+                    <Icon
+                      aria-hidden
+                      icon="gravity-ui:chevron-right"
+                      className={cn(
+                        "size-4 text-muted transition-transform duration-150",
+                        isExpanded ? "rotate-90" : "rtl:rotate-180",
+                      )}
+                    />
+                  </Button>
+                ) : null}
+                <span>{item.title}</span>
+              </span>
+            )}
+          </Table.Cell>
+          <Table.Cell>{item.type}</Table.Cell>
+          <Table.Cell>{item.date}</Table.Cell>
+          <Table.Collection items={item.children}>{renderExpandableRow}</Table.Collection>
+        </Table.Row>
+      );
+    };
+
+    return (
+      <Wrapper>
+        <Table>
+          <Table.ScrollContainer>
+            <Table.Content
+              aria-label="Files"
+              className="min-w-[520px]"
+              expandedKeys={expandedKeys}
+              treeColumn="name"
+              onExpandedChange={setExpandedKeys}
+            >
+              <Table.Header>
+                <Table.Column isRowHeader id="name">
+                  Name
+                </Table.Column>
+                <Table.Column id="type">Type</Table.Column>
+                <Table.Column id="date">Date Modified</Table.Column>
+              </Table.Header>
+              <Table.Body items={data}>{renderExpandableRow}</Table.Body>
+            </Table.Content>
+          </Table.ScrollContainer>
+        </Table>
+      </Wrapper>
     );
   },
 };

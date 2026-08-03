@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from "@storybook/react-vite";
-import type {Color} from "react-aria-components";
+import type {Color} from "react-aria-components/ColorArea";
 
 import React, {useState} from "react";
 

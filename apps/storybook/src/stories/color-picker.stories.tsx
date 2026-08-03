@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
 import React from "react";
-import {parseColor} from "react-aria-components";
+import {parseColor} from "react-aria-components/ColorArea";
 
 import {Button} from "@heroui/react";
 import {ColorArea} from "@heroui/react";
