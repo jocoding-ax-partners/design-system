@@ -1,5 +1,14 @@
 # @demodev-ui/react
 
+## 2.3.0
+
+### Minor Changes
+
+- Add Autocomplete styles and refine the list-box popover surface.
+  - **Autocomplete**: new overrides that bring it in line with Select and ComboBox — field metrics on the trigger, design-system radius on the popover, and a filter search field that matches the list items in height, radius and inset.
+  - **Popover surface**: the Select, ComboBox and Autocomplete popovers now have a border, and their shadow casts downward only (HeroUI's upward layer is dropped). Dark mode keeps HeroUI's inset hairline.
+  - **New theme tokens**: `--radius-input` (same value as `--radius-button-md`) and `--spacing-list-box-item`.
+
 ## 2.2.1
 
 ### Patch Changes
