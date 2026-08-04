@@ -1,4 +1,12 @@
 @layer components {
+  .chip {
+    @apply font-semibold;
+  }
+
+  .chip--sm {
+    @apply px-1.5;
+  }
+
   .chip--tertiary {
     @apply border-border border;
   }
