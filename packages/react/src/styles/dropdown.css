@@ -8,6 +8,14 @@
 
     [data-slot="menu-item"] {
       @apply popover-list-box-item;
+
+      /* popover-list-box-item's px-3 is a padding-inline shorthand, so it wipes the
+         ps-7 HeroUI reserves for the absolutely positioned indicator and the label
+         lands on top of it. Submenu items keep HeroUI's ps-2 pe-7 -- their
+         indicator sits at the end instead. */
+      &:has(.menu-item__indicator):not([data-has-submenu="true"]) {
+        @apply ps-7.5;
+      }
     }
   }
 }
