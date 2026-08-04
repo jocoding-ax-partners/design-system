@@ -4,6 +4,7 @@
   --danger: #ef1026;
   --success: #1fa24e;
   --warning: #f6c205;
+  --warning-strong: #f4ab00;
   --info: #1571f3;
   --info-foreground: var(--snow);
 }
