@@ -1,5 +1,14 @@
 # @demodev-ui/react
 
+## 2.4.1
+
+### Patch Changes
+
+- - Use Tailwind's default gray palette instead of the custom gray scale
+  - Fix dropdown menu items where the selection indicator overlapped the label
+  - Chip: use semibold font weight and increase horizontal padding of the `sm` size to `1.5`
+  - Split the warning soft foreground color into a dedicated `--warning-strong` token
+
 ## 2.4.0
 
 ### Minor Changes
