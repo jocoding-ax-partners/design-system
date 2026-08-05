@@ -1,15 +1,11 @@
 @theme {
   /* Gray Colors */
-  --color-gray-50: #f6f7f9;
-  --color-gray-100: #eff1f4;
-  --color-gray-200: #e4e5e8;
-  --color-gray-300: #d1d3d8;
-  --color-gray-400: #9ca0ab;
   --color-gray-500: #6d717e;
   --color-gray-600: #4f535d;
   --color-gray-700: #3c3f47;
   --color-gray-800: #25272d;
   --color-gray-900: #16171b;
+  --color-gray-950: #070709;
 
   /* Semantic Colors */
   --accent: #2d64fa;

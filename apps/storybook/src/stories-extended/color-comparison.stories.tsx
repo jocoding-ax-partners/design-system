@@ -169,13 +169,13 @@ function ComparisonTable({
 }
 
 /**
- * `gray-950` is the control row: we never redefined it, so both columns should
- * report the same hex. Every other step should differ.
+ * `gray-50` through `gray-400` are the control rows: we inherit them, so both
+ * columns should report the same hex. `gray-500` and darker should differ.
  */
 export const Gray: Story = {
   render: () => (
     <ComparisonTable
-      caption="Tailwind 기본 gray 팔레트와 colors.css 에서 재정의한 값"
+      caption="Tailwind 기본 gray 팔레트와 colors.css 에서 재정의한 값 (50–400은 재정의하지 않아 양쪽이 같다)"
       ourValue={(row) => ({ className: row.ourClass })}
       rows={GRAY_ROWS}
       upstreamLabel="Tailwind"
