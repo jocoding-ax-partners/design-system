@@ -25,4 +25,7 @@
 
   /* dialog */
   --radius-dialog: var(--radius-2xl);
+
+  /* card */
+  --radius-card: var(--radius-2xl);
 }

@@ -1,0 +1,9 @@
+@layer components {
+  .card {
+    @apply rounded-card shadow-none;
+  }
+
+  .card--default {
+    @apply border-border border;
+  }
+}
