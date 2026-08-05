@@ -411,9 +411,9 @@ Toast.toast.warning("Warning!")
 ## Design Tokens
 
 Colors:
-- Gray scale: --color-gray-50 ~ --color-gray-900
-- Semantic: --accent (#2d64fa), --danger (#ef1026), --success (#1fa24e), --warning (#f6c205), --info (#1571f3)
-- Surface: --border (gray-200), --default (gray-50)
+- Gray scale: Tailwind's, with gray-500 and darker overridden to stay neutral
+- Semantic: --accent (#2d64fa), --danger (#ef1026), --success (#1fa24e), --warning (#f6c205), --warning-strong (#f4ab00), --info (#1571f3)
+- Surface: --border (gray-200), --default (gray-100), --muted (gray-500)
 
 Border radius:
 - Button: --radius-button-xs(md) / sm(lg) / md(0.625rem) / lg(xl)

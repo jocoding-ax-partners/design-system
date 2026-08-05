@@ -113,19 +113,20 @@ Some Trigger components render their own `<button>`. Putting `<Button>` inside t
 ### Colors
 
 ```css
-/* Gray */
---color-gray-50 ~ --color-gray-900  /* 10-step neutral scale */
+/* Gray — Tailwind's scale, with 500 and darker overridden to stay neutral */
 
 /* Semantic */
---accent:  #2d64fa;
---danger:  #ef1026;
---success: #1fa24e;
---warning: #f6c205;
---info:    #1571f3;
+--accent:         #2d64fa;
+--danger:         #ef1026;
+--success:        #1fa24e;
+--warning:        #f6c205;
+--warning-strong: #f4ab00;
+--info:           #1571f3;
 
 /* Surface */
 --border:  var(--color-gray-200);
---default: var(--color-gray-50);
+--default: var(--color-gray-100);
+--muted:   var(--color-gray-500);
 ```
 
 ### Border Radius
