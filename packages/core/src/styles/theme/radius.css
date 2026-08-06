@@ -28,4 +28,12 @@
 
   /* card */
   --radius-card: var(--radius-2xl);
+
+  /* calendar */
+  --radius-calendar-cell: var(--radius-button-md);
+  --radius-calendar-nav-button: var(--radius-button-xs);
+
+  /* Where a row boundary clips a range track — kept well under the cell radius so the
+     track still reads as continuous. */
+  --radius-calendar-range-edge: var(--radius-sm);
 }

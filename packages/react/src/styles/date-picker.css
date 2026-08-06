@@ -1,0 +1,15 @@
+@layer components {
+  .date-picker {
+    @apply gap-field;
+  }
+
+  /* The calendar button in the field's suffix. */
+  .date-picker__trigger {
+    @apply rounded-button-xs;
+  }
+
+  /* Same surface as the select, combo-box, autocomplete and dropdown popovers. */
+  .date-picker__popover {
+    @apply popover-list-box-surface;
+  }
+}

@@ -1,0 +1,13 @@
+@layer components {
+  .calendar__cell {
+    @apply rounded-calendar-cell;
+  }
+
+  .calendar__nav-button {
+    @apply rounded-calendar-nav-button;
+  }
+
+  .calendar-year-picker__year-cell {
+    @apply rounded-calendar-cell;
+  }
+}

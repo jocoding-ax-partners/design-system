@@ -1,0 +1,69 @@
+/* Mirrors every rounded-* selector in HeroUI's range-calendar.css — the track's per-corner
+   radii sit on stateful selectors, so one `.range-calendar__cell` rule would lose to them all.
+   Cap = range start/end; edge = where a row or month boundary clips the track. */
+@layer components {
+  .range-calendar__cell {
+    @apply rounded-calendar-cell;
+
+    .range-calendar__cell-button {
+      @apply rounded-calendar-cell;
+    }
+
+    /* Row boundaries */
+    &[data-selected="true"]:is(td:first-child > *, [aria-disabled] + td > *) {
+      @apply rounded-ss-calendar-range-edge rounded-es-calendar-range-edge;
+
+      &[data-selection-start="true"] {
+        @apply rounded-ss-calendar-cell rounded-es-calendar-cell;
+      }
+    }
+
+    &[data-selected="true"]:is(td:last-child > *, td:has(+ [aria-disabled]) > *) {
+      @apply rounded-se-calendar-range-edge rounded-ee-calendar-range-edge;
+
+      &[data-selection-end="true"] {
+        @apply rounded-se-calendar-cell rounded-ee-calendar-cell;
+      }
+    }
+
+    /* Range caps */
+    &[data-selection-start="true"]:not([data-outside-month="true"]) {
+      @apply rounded-ss-calendar-cell rounded-es-calendar-cell;
+    }
+
+    &[data-selection-end="true"]:not([data-outside-month="true"]) {
+      @apply rounded-se-calendar-cell rounded-ee-calendar-cell;
+    }
+  }
+
+  .range-calendar__nav-button {
+    @apply rounded-calendar-nav-button;
+  }
+
+  /* Outside-month cell followed by a selected cell across adjacent table cells */
+  .range-calendar__grid-body
+  td:has(> .range-calendar__cell[data-outside-month="true"])
+  + td
+  > .range-calendar__cell[data-selected="true"] {
+    @apply rounded-ss-calendar-range-edge rounded-es-calendar-range-edge;
+
+    &[data-outside-month="true"],
+    &[data-selection-start="true"] {
+      @apply rounded-ss-calendar-cell rounded-es-calendar-cell;
+    }
+  }
+
+  /* Selected cell followed by an outside-month cell across adjacent table cells */
+  .range-calendar__grid-body
+  td:has(> .range-calendar__cell[data-selected="true"]):has(
+    + td > .range-calendar__cell[data-outside-month="true"]
+  )
+  > .range-calendar__cell[data-selected="true"] {
+    @apply rounded-se-calendar-range-edge rounded-ee-calendar-range-edge;
+
+    &[data-outside-month="true"],
+    &[data-selection-end="true"] {
+      @apply rounded-se-calendar-cell rounded-ee-calendar-cell;
+    }
+  }
+}

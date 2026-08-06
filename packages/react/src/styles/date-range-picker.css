@@ -1,0 +1,14 @@
+/* Mirrors date-picker.css — the two components share a field and a popover. */
+@layer components {
+  .date-range-picker {
+    @apply gap-field;
+  }
+
+  .date-range-picker__trigger {
+    @apply rounded-button-xs;
+  }
+
+  .date-range-picker__popover {
+    @apply popover-list-box-surface;
+  }
+}

@@ -1,0 +1,38 @@
+/* The field box behind DateField, DatePicker and DateRangePicker — matches input-group.css. */
+@layer components {
+  .date-input-group {
+    /* h-auto: HeroUI pins this one to h-9. px-0 leaves the inline inset to the input. */
+    @apply input-size h-auto px-0;
+  }
+
+  .date-input-group--primary {
+    @apply input-group-style-primary;
+
+    /* HeroUI drops its focus ring while a picker trigger has focus — where focus lands
+       after picking a date — and input-group-style-primary has already cleared the
+       outline for :focus-within, leaving no edge. Restore it. */
+    &:focus-within:has([data-slot$="picker-trigger"]:is(:focus, [data-focused="true"])) {
+      @apply outline-solid;
+    }
+  }
+
+  .date-input-group__input {
+    /* py-0: min-h-input sets the height; HeroUI's py-2 would push past it. */
+    @apply input-text py-0;
+  }
+
+  /* mx-0 drops the ms-3/me-3 HeroUI adds only here, leaving the same 16px as .input-group. */
+  .date-input-group__prefix {
+    @apply mx-0 px-4;
+  }
+
+  .date-input-group__suffix {
+    @apply mx-0 px-4;
+
+    /* 12px, as in .search-field__clear-button — lands the icon 16px off the edge,
+       mirroring the text inset. */
+    &:has(button) {
+      @apply pr-3;
+    }
+  }
+}
