@@ -29,6 +29,20 @@ const HEROUI_WARNING = "oklch(0.7819 0.1585 72.33)";
  * that no utility references, so building the class name at runtime would leave
  * half the palette undefined and every swatch transparent.
  */
+const ACCENT_ROWS = [
+  { className: "bg-accent-50", name: "accent-50" },
+  { className: "bg-accent-100", name: "accent-100" },
+  { className: "bg-accent-200", name: "accent-200" },
+  { className: "bg-accent-300", name: "accent-300" },
+  { className: "bg-accent-400", name: "accent-400" },
+  { className: "bg-accent-500", name: "accent-500" },
+  { className: "bg-accent-600", name: "accent-600" },
+  { className: "bg-accent-700", name: "accent-700" },
+  { className: "bg-accent-800", name: "accent-800" },
+  { className: "bg-accent-900", name: "accent-900" },
+  { className: "bg-accent-950", name: "accent-950" },
+];
+
 const GRAY_ROWS = [
   { name: "gray-50", ourClass: "bg-gray-50", upstream: "oklch(98.5% 0.002 247.839)" },
   { name: "gray-100", ourClass: "bg-gray-100", upstream: "oklch(96.7% 0.003 264.542)" },
@@ -124,6 +138,38 @@ function Swatch({ className, value }: { className?: string; value?: string }) {
   );
 }
 
+function ScaleTable({
+  caption,
+  rows,
+}: {
+  caption: string;
+  rows: Array<{ className: string; name: string }>;
+}) {
+  return (
+    <table className="w-full max-w-md border-collapse text-left">
+      <caption className="text-muted mb-3 text-left text-sm">{caption}</caption>
+      <thead>
+        <tr className="border-border border-b">
+          <th className="text-muted py-2 pr-4 text-xs font-medium">토큰</th>
+          <th className="text-muted py-2 text-xs font-medium">demodev</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr key={row.name} className="border-border border-b">
+            <td className="py-2 pr-4">
+              <code className="text-xs">{row.name}</code>
+            </td>
+            <td className="py-2">
+              <Swatch className={row.className} />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
 function ComparisonTable({
   caption,
   ourValue,
@@ -167,6 +213,20 @@ function ComparisonTable({
     </table>
   );
 }
+
+/**
+ * No comparison column: the scale is ours alone, with nothing upstream to
+ * inherit from or override. 600 carries the brand — `--accent` aliases it, and
+ * the Semantic story is where that alias gets checked.
+ */
+export const Accent: Story = {
+  render: () => (
+    <ScaleTable
+      caption="colors.css 의 accent 스케일 (브랜드 #2d64fa 는 500 이 아니라 600)"
+      rows={ACCENT_ROWS}
+    />
+  ),
+};
 
 /**
  * `gray-50` through `gray-400` are the control rows: we inherit them, so both
