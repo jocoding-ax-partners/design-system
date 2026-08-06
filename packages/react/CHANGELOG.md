@@ -1,5 +1,14 @@
 # @demodev-ui/react
 
+## 2.5.0
+
+### Minor Changes
+
+- Add styles for the date and calendar components, and restyle the tooltip.
+  - `Calendar` / `RangeCalendar`: cell and nav-button radii now come from the new `--radius-calendar-*` tokens. The range track keeps a continuous look where a row or month boundary clips it, and rounds fully at the range caps.
+  - `DateField`, `DatePicker`, `DateRangePicker`: the field box now matches `InputGroup` in height, inset and focus outline. The picker trigger and the popover surface align with the button and list-box popovers used elsewhere.
+  - `Tooltip`: the surface is now inverted against the theme (dark surface in light mode, light surface in dark mode), and the arrow matches the shadcn size and rounded tip.
+
 ## 2.4.3
 
 ### Patch Changes
