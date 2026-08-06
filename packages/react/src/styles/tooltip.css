@@ -20,8 +20,10 @@
        inverted fill. The tooltip body has no border to match. */
     stroke: none;
 
+    /* 10x5 triangle with a 2px rounded tip, centered in HeroUI's 12x12 arrow
+       viewBox. The arc starts 2 units back along each edge from the apex. */
     & path {
-      d: path("M0 0 L6 6 L12 0");
+      d: path("M1 0 L4.586 3.586 A2 2 0 0 0 7.414 3.586 L11 0");
     }
   }
 }
