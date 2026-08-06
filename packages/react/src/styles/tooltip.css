@@ -1,9 +1,27 @@
 @layer components {
   .tooltip {
     @apply rounded-lg px-2.5 py-1.5;
+
+    /* Flip the token, not the bg utility -- HeroUI fills the arrow from
+       --overlay too, so this keeps body and arrow in sync. */
+    --overlay: var(--eclipse);
+    --overlay-foreground: var(--snow);
+
+    color: var(--overlay-foreground);
+
+    &:is(.dark *, [data-theme="dark"] *) {
+      --overlay: var(--snow);
+      --overlay-foreground: var(--eclipse);
+    }
   }
 
-  .tooltip [data-slot="overlay-arrow"] path {
-    d: path("M0 0 L6 6 L12 0");
+  .tooltip [data-slot="overlay-arrow"] {
+    /* HeroUI strokes the arrow with --border, which fringes against the
+       inverted fill. The tooltip body has no border to match. */
+    stroke: none;
+
+    & path {
+      d: path("M0 0 L6 6 L12 0");
+    }
   }
 }
