@@ -1,5 +1,13 @@
 # @demodev-ui/react
 
+## 2.5.1
+
+### Patch Changes
+
+- Apply the `--radius-list-box-item` token to standalone ListBox items, which previously kept HeroUI's default radius — only popover-hosted list boxes (Select, ComboBox, Autocomplete, Dropdown) were covered before.
+
+  Size horizontal tabs in the `secondary` variant to their own content instead of splitting the row evenly, so the underline hugs each label. Vertical tabs keep equal widths.
+
 ## 2.5.0
 
 ### Minor Changes
