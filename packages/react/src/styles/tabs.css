@@ -10,4 +10,9 @@
   .tabs__indicator {
     @apply rounded-button-md;
   }
+
+  /* Undo HeroUI's w-full so underline tabs hug their labels. Vertical keeps it. */
+  .tabs--secondary[data-orientation="horizontal"] > .tabs__list-container .tabs__tab {
+    @apply w-auto;
+  }
 }
