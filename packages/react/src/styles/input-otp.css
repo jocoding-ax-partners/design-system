@@ -1,0 +1,15 @@
+@layer components {
+  .input-otp__slot {
+    /* HeroUI ships the slot as `flex-1` (basis 0), which lets the container
+       decide the width. `flex-initial` restores an auto basis so `size-input`
+       wins, while keeping shrink for narrow containers. */
+    @apply size-input rounded-input flex-initial;
+  }
+
+  /* `:where()` keeps this at (0,1,0). Written plainly it would tie with
+     `.input-otp__slot[data-active="true"]` and win on import order, killing the
+     focus ring. */
+  :where(.input-otp--primary) .input-otp__slot {
+    @apply input-style-primary;
+  }
+}
