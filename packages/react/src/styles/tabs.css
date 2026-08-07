@@ -1,5 +1,5 @@
 @layer components {
-  .tabs__list {
+  .tabs__list-container {
     @apply rounded-button-lg;
   }
 
