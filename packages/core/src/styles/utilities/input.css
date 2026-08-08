@@ -8,10 +8,4 @@
 
 @utility input-style-primary {
   @apply outline-border shadow-none outline-1 outline-solid;
-
-  /* Disabled state */
-  &[data-disabled="true"],
-  &[aria-disabled="true"] {
-    @apply light:bg-gray-50/50;
-  }
 }
