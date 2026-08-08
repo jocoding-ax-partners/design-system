@@ -28,11 +28,44 @@
     }
   }
 
+  /*
+   * ToggleButton has no `color` prop, so `data-color` carries it (same pattern as button.css).
+   * Only the selected state is tinted, and `accent` needs no rule — it is the base color.
+   */
+
   .toggle-button--default {
     --toggle-button-bg-selected: var(--color-accent);
     --toggle-button-fg-selected: var(--color-accent-foreground);
     --toggle-button-bg-selected-hover: var(--color-accent-hover);
     --toggle-button-bg-selected-pressed: var(--color-accent-hover);
+
+    &[data-color="danger"] {
+      --toggle-button-bg-selected: var(--color-danger);
+      --toggle-button-fg-selected: var(--color-danger-foreground);
+      --toggle-button-bg-selected-hover: var(--color-danger-hover);
+      --toggle-button-bg-selected-pressed: var(--color-danger-hover);
+    }
+
+    &[data-color="success"] {
+      --toggle-button-bg-selected: var(--color-success);
+      --toggle-button-fg-selected: var(--color-success-foreground);
+      --toggle-button-bg-selected-hover: var(--color-success-hover);
+      --toggle-button-bg-selected-pressed: var(--color-success-hover);
+    }
+
+    &[data-color="warning"] {
+      --toggle-button-bg-selected: var(--color-warning);
+      --toggle-button-fg-selected: var(--color-warning-foreground);
+      --toggle-button-bg-selected-hover: var(--color-warning-hover);
+      --toggle-button-bg-selected-pressed: var(--color-warning-hover);
+    }
+
+    &[data-color="info"] {
+      --toggle-button-bg-selected: var(--color-info);
+      --toggle-button-fg-selected: var(--color-info-foreground);
+      --toggle-button-bg-selected-hover: var(--color-info-hover);
+      --toggle-button-bg-selected-pressed: var(--color-info-hover);
+    }
   }
 
   .toggle-button--ghost {
@@ -40,6 +73,50 @@
 
     &[data-selected="true"] {
       @apply border-accent;
+    }
+
+    &[data-color="danger"] {
+      --toggle-button-bg-selected: var(--color-danger-soft);
+      --toggle-button-fg-selected: var(--color-danger-soft-foreground);
+      --toggle-button-bg-selected-hover: var(--color-danger-soft-hover);
+      --toggle-button-bg-selected-pressed: var(--color-danger-soft-hover);
+
+      &[data-selected="true"] {
+        @apply border-danger;
+      }
+    }
+
+    &[data-color="success"] {
+      --toggle-button-bg-selected: var(--color-success-soft);
+      --toggle-button-fg-selected: var(--color-success-soft-foreground);
+      --toggle-button-bg-selected-hover: var(--color-success-soft-hover);
+      --toggle-button-bg-selected-pressed: var(--color-success-soft-hover);
+
+      &[data-selected="true"] {
+        @apply border-success;
+      }
+    }
+
+    &[data-color="warning"] {
+      --toggle-button-bg-selected: var(--color-warning-soft);
+      --toggle-button-fg-selected: var(--color-warning-soft-foreground);
+      --toggle-button-bg-selected-hover: var(--color-warning-soft-hover);
+      --toggle-button-bg-selected-pressed: var(--color-warning-soft-hover);
+
+      &[data-selected="true"] {
+        @apply border-warning;
+      }
+    }
+
+    &[data-color="info"] {
+      --toggle-button-bg-selected: var(--color-info-soft);
+      --toggle-button-fg-selected: var(--color-info-soft-foreground);
+      --toggle-button-bg-selected-hover: var(--color-info-soft-hover);
+      --toggle-button-bg-selected-pressed: var(--color-info-soft-hover);
+
+      &[data-selected="true"] {
+        @apply border-info;
+      }
     }
   }
 }
