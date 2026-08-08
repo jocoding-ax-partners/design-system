@@ -1,22 +1,7 @@
 @layer components {
   .tag:is([data-selected="true"], [aria-selected="true"]) {
-    &.tag--default {
-      @apply bg-accent text-accent-foreground;
-
-      /* Selected + Hover state */
-      @media (hover: hover) {
-        &:is(:hover, [data-hovered="true"]) {
-          @apply bg-accent-hover;
-        }
-      }
-    }
-
     &.tag--surface {
       @apply border-accent;
-    }
-
-    .tag__remove-button {
-      @apply bg-transparent;
     }
   }
 
@@ -24,31 +9,7 @@
     @apply border-border border;
   }
 
-  .tag__remove-button {
-    @apply -mr-0.5;
-  }
-
-  .tag--sm {
-    @apply chip-size-sm;
-
-    .tag__remove-button {
-      @apply size-chip-icon-sm;
-    }
-  }
-
-  .tag--md {
-    @apply chip-size-md;
-
-    .tag__remove-button {
-      @apply size-chip-icon-md;
-    }
-  }
-
-  .tag--lg {
-    @apply chip-size-lg;
-
-    .tag__remove-button {
-      @apply size-chip-icon-lg;
-    }
+  .close-button.close-button--default.tag__remove-button {
+    @apply -mr-0.5 bg-transparent;
   }
 }
