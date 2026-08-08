@@ -11,11 +11,6 @@
   /* input */
   --radius-input: var(--radius-button-md);
 
-  /* chip */
-  --radius-chip-sm: var(--radius-md);
-  --radius-chip-md: var(--radius-lg);
-  --radius-chip-lg: var(--radius-button-sm);
-
   /* list box */
   --radius-list-box: var(--radius-input);
   --radius-list-box-item: var(--radius-lg);
