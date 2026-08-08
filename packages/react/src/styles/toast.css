@@ -1,6 +1,8 @@
 @layer components {
   .toast {
-    @apply rounded-toast;
+    @apply rounded-toast border-border border;
+
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 
     .close-button {
       @apply light:sm:bg-background;
