@@ -1,92 +1,92 @@
 @layer components {
   /* Apply border radius to first button (start edge) */
   .toggle-button-group--horizontal .toggle-button:first-child {
-    @apply rounded-s-chip-md;
+    @apply rounded-s-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-s-chip-sm;
+      @apply rounded-s-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-s-chip-lg;
+      @apply rounded-s-button-lg;
     }
   }
 
   /* Apply border radius to last button (end edge) */
   .toggle-button-group--horizontal .toggle-button:last-child {
-    @apply rounded-e-chip-md;
+    @apply rounded-e-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-e-chip-sm;
+      @apply rounded-e-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-e-chip-lg;
+      @apply rounded-e-button-lg;
     }
   }
 
   /* If only one button, apply both rounded edges */
   .toggle-button-group--horizontal .toggle-button:first-child:last-child {
-    @apply rounded-chip-md;
+    @apply rounded-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-chip-sm;
+      @apply rounded-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-chip-lg;
+      @apply rounded-button-lg;
     }
   }
 
   /* Apply border radius to first button (top edge) in vertical */
   .toggle-button-group--vertical .toggle-button:first-child {
-    @apply rounded-t-chip-md;
+    @apply rounded-t-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-t-chip-sm;
+      @apply rounded-t-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-t-chip-lg;
+      @apply rounded-t-button-lg;
     }
   }
 
   /* Apply border radius to last button (bottom edge) in vertical */
   .toggle-button-group--vertical .toggle-button:last-child {
-    @apply rounded-b-chip-md;
+    @apply rounded-b-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-b-chip-sm;
+      @apply rounded-b-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-b-chip-lg;
+      @apply rounded-b-button-lg;
     }
   }
 
   /* If only one button in vertical, apply all rounded edges */
   .toggle-button-group--vertical .toggle-button:first-child:last-child {
-    @apply rounded-chip-md;
+    @apply rounded-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-chip-sm;
+      @apply rounded-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-chip-lg;
+      @apply rounded-button-lg;
     }
   }
 
   /* Restore border radius in detached mode */
   .toggle-button-group--detached .toggle-button {
-    @apply rounded-chip-md;
+    @apply rounded-button-md;
 
     &.toggle-button--sm {
-      @apply rounded-chip-sm;
+      @apply rounded-button-sm;
     }
 
     &.toggle-button--lg {
-      @apply rounded-chip-lg;
+      @apply rounded-button-lg;
     }
   }
 }

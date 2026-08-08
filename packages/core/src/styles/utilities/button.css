@@ -1,13 +1,28 @@
 @utility button-size-sm {
   @apply rounded-button-sm h-button-sm;
   @apply px-3 text-xs;
+
+  /* SVG icon styling - exclude spinner and link-icon svgs */
+  & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+    @apply size-3.5;
+  }
 }
 
 @utility button-size-md {
   @apply rounded-button-md h-button-md;
+
+  /* SVG icon styling - exclude spinner and link-icon svgs */
+  & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+    @apply size-4;
+  }
 }
 
 @utility button-size-lg {
   @apply rounded-button-lg h-button-lg;
-  @apply gap-3 px-6;
+  @apply gap-2.5 px-5.5;
+
+  /* SVG icon styling - exclude spinner and link-icon svgs */
+  & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+    @apply size-4.5;
+  }
 }

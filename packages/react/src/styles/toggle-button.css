@@ -1,7 +1,30 @@
 @layer components {
   .toggle-button {
-    & svg {
-      @apply mx-0;
+    @apply font-semibold;
+  }
+
+  /* Size variants */
+  .toggle-button--sm {
+    @apply button-size-sm;
+
+    &.toggle-button--icon-only {
+      @apply w-button-sm;
+    }
+  }
+
+  .toggle-button--md {
+    @apply button-size-md;
+
+    &.toggle-button--icon-only {
+      @apply w-button-md;
+    }
+  }
+
+  .toggle-button--lg {
+    @apply button-size-lg;
+
+    &.toggle-button--icon-only {
+      @apply w-button-lg;
     }
   }
 
@@ -18,31 +41,5 @@
     &[data-selected="true"] {
       @apply border-accent;
     }
-  }
-
-  /* Size variants */
-  .toggle-button--sm {
-    @apply chip-size-sm;
-  }
-
-  .toggle-button--md {
-    @apply chip-size-md;
-  }
-
-  .toggle-button--lg {
-    @apply chip-size-lg;
-  }
-
-  /* Icon-only modifier */
-  .toggle-button--icon-only.toggle-button--sm {
-    @apply w-chip-sm;
-  }
-
-  .toggle-button--icon-only.toggle-button--md {
-    @apply w-chip-md;
-  }
-
-  .toggle-button--icon-only.toggle-button--lg {
-    @apply w-chip-lg;
   }
 }
