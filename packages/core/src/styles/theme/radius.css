@@ -27,7 +27,7 @@
   --radius-dialog: var(--radius-2xl);
 
   /* card */
-  --radius-card: var(--radius-2xl);
+  --radius-card: var(--radius-input);
 
   /* calendar */
   --radius-calendar-cell: var(--radius-button-md);
