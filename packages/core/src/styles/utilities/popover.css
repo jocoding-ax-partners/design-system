@@ -1,15 +1,5 @@
-/* Shell for the select, combo-box, autocomplete and dropdown popovers. */
 @utility popover-list-box-surface {
-  /* A border gives the popover an edge the overlay background alone does not, so a
-     plain shadow-md carries enough depth -- HeroUI's --overlay-shadow instead lifts
-     it with three layers, one of them casting upward. */
-  @apply rounded-list-box border-border border shadow-md;
-
-  /* Dark mode's --overlay-shadow is an inset hairline rather than a cast shadow, so
-     there is no depth for shadow-md to replace -- keep HeroUI's value. */
-  @variant dark {
-    box-shadow: var(--shadow-overlay);
-  }
+  @apply rounded-list-box border-border light:shadow-md border;
 }
 
 @utility popover-list-box {

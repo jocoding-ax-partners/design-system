@@ -1,0 +1,5 @@
+@layer components {
+  .popover {
+    @apply popover-list-box-surface;
+  }
+}
