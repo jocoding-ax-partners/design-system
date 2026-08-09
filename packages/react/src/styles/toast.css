@@ -12,4 +12,8 @@
   .toast__action {
     @apply my-1 self-end sm:self-center;
   }
+
+  .toast--accent .toast__indicator {
+    @apply text-accent-soft-foreground;
+  }
 }
