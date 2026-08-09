@@ -53,6 +53,7 @@ const GRAY_ROWS = [
   { name: "gray-600", ourClass: "bg-gray-600", upstream: "oklch(44.6% 0.03 256.802)" },
   { name: "gray-700", ourClass: "bg-gray-700", upstream: "oklch(37.3% 0.034 259.733)" },
   { name: "gray-800", ourClass: "bg-gray-800", upstream: "oklch(27.8% 0.033 256.848)" },
+  { name: "gray-850", ourClass: "bg-gray-850", upstream: null },
   { name: "gray-900", ourClass: "bg-gray-900", upstream: "oklch(21% 0.034 264.665)" },
   { name: "gray-950", ourClass: "bg-gray-950", upstream: "oklch(13% 0.028 261.692)" },
 ];
@@ -231,6 +232,7 @@ export const Accent: Story = {
 /**
  * `gray-50` through `gray-400` are the control rows: we inherit them, so both
  * columns should report the same hex. `gray-500` and darker should differ.
+ * `gray-850` is our own step with no Tailwind counterpart.
  */
 export const Gray: Story = {
   render: () => (

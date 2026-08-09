@@ -18,6 +18,7 @@
   --border: var(--color-gray-200);
   --default: var(--color-gray-100);
   --muted: var(--color-gray-500);
+  --surface-secondary: var(--color-gray-50);
 
   /* Soft foregrounds */
   --accent-soft-foreground: var(--accent);
@@ -25,4 +26,16 @@
   --success-soft-foreground: var(--success);
   --warning-soft-foreground: var(--warning-strong);
   --info-soft-foreground: var(--info);
+}
+
+.dark,
+[data-theme="dark"] {
+  --default: var(--color-gray-800);
+  --surface: var(--color-gray-900);
+  --surface-secondary: var(--color-gray-850);
+  --field-background: var(--surface);
+}
+
+:root {
+  --surface-tertiary: var(--default);
 }

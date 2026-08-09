@@ -13,12 +13,13 @@
   --color-accent-950: oklch(28% 0.11 267.5deg); /* #12215e */
 
   /* Gray Colors */
-  --color-gray-500: #6d717e;
-  --color-gray-600: #4f535d;
-  --color-gray-700: #3c3f47;
-  --color-gray-800: #25272d;
-  --color-gray-900: #16171b;
-  --color-gray-950: #070709;
+  --color-gray-500: oklch(55% 0.021 272.1deg); /* #6d717e */
+  --color-gray-600: oklch(44.2% 0.017 268.3deg); /* #4f535d */
+  --color-gray-700: oklch(36.8% 0.014 269.3deg); /* #3c3f47 */
+  --color-gray-800: oklch(27.3% 0.011 271deg); /* #25272d */
+  --color-gray-850: oklch(23.6% 0.01 276.7deg); /* #1d1e23 */
+  --color-gray-900: oklch(20.5% 0.008 274.5deg); /* #16171b */
+  --color-gray-950: oklch(13% 0.005 285.7deg); /* #070709 */
 
   /* Semantic Colors */
   --accent: var(--color-accent-600);
