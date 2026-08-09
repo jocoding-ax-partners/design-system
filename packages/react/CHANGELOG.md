@@ -1,5 +1,17 @@
 # @demodev-ui/react
 
+## 2.6.0
+
+### Minor Changes
+
+- - Add extended `data-color` variants to toggle button: `default` renders a solid background, `ghost` renders a soft background with a matching border, so only the selected state is tinted
+  - Add a `gray-850` step and convert the gray scale to oklch (round-trip verified, colors unchanged), and introduce dark-mode surface tokens (`--surface`, `--surface-secondary`, `--default`)
+  - Align toggle button styling with regular buttons
+  - Unify radius tokens: button group and toggle button group now match standalone buttons, tabs pill radius moved to the list container, card radius matches input, and list box item radius uses the shared token
+  - Add a border and shadow to toast
+  - Keep the tag remove button background transparent in every state
+  - Remove the unused `chip-size-*` utilities along with the `--spacing-chip-*`, `--radius-chip-*`, and `--spacing-button-icon-sm` tokens
+
 ## 2.5.1
 
 ### Patch Changes
