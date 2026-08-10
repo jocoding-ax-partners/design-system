@@ -24,5 +24,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", ".storybook"]
+  "include": ["src", ".storybook"],
+  // src/stories is extracted verbatim from HeroUI's repo and is not ours to fix.
+  // ESLint already ignores it; tsc follows suit so re-extraction stays clean.
+  "exclude": ["src/stories"]
 }
