@@ -9,7 +9,7 @@ import eslintConfig from "@nijesmik/eslint-config";
 
 export default defineConfig([
   ...eslintConfig,
-  globalIgnores(["dist", "src/stories/**"]),
+  globalIgnores(["storybook-static", "src/stories/**"]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
