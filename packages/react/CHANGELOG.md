@@ -1,5 +1,14 @@
 # @demodev-ui/react
 
+## 2.6.1
+
+### Patch Changes
+
+- - Align the toast indicator icon with the first line of the title. HeroUI vertically centers the content block while the indicator stays top-aligned, so the two drifted apart on multi-line toasts; the icon now sits on the title's line box.
+  - Center the indicator and title vertically when a toast has no description, matching how the action is aligned.
+  - Apply the `accent` indicator color to `.toast--accent` so it matches the title.
+  - Apply the shared list-box popover surface to `.popover`, so bare popovers match the ones used by Select, ComboBox, Autocomplete and Dropdown.
+
 ## 2.6.0
 
 ### Minor Changes
