@@ -9,6 +9,16 @@
     }
   }
 
+  /* HeroUI centers this while the indicator stays top-aligned, so the two drift apart. */
+  .toast__content {
+    @apply self-start;
+  }
+
+  /* Keeps HeroUI's 24px indicator box but shifts the icon onto the title's 20px line box. */
+  .toast__indicator {
+    @apply pt-0.5 pb-1.5;
+  }
+
   .toast__action {
     @apply my-1 self-end sm:self-center;
   }
