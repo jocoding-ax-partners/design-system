@@ -19,6 +19,18 @@
     @apply pt-0.5 pb-1.5;
   }
 
+  /* A lone title has nothing to anchor to, so center it and the icon like the action. */
+  .toast:not(:has(.toast__description)) {
+    .toast__content {
+      @apply self-center;
+    }
+
+    /* Symmetric padding again: centering the box now centers the icon. */
+    .toast__indicator {
+      @apply self-center py-1;
+    }
+  }
+
   .toast__action {
     @apply my-1 self-end sm:self-center;
   }
