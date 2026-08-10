@@ -29,15 +29,15 @@ pnpm storybook        # http://localhost:6006
 
 ## Scripts
 
-| Command                | Does                                                                    |
-| ---------------------- | ----------------------------------------------------------------------- |
-| `pnpm storybook`       | Run Storybook on http://localhost:6006 — the main development loop       |
-| `pnpm dev`             | Run the Storybook app's plain Vite dev server                            |
-| `pnpm build-storybook` | Build the static Storybook                                               |
-| `pnpm build`           | Build `packages/react` (→ `dist/styles`) and the Storybook app           |
-| `pnpm lint`            | ESLint — only `apps/storybook` defines a `lint` script                    |
-| `pnpm format`          | Prettier over `ts`, `tsx` and `md`                                       |
-| `pnpm extract-stories` | Regenerate `apps/storybook/src/stories` from HeroUI                      |
+| Command                       | Does                                                                |
+| ----------------------------- | ------------------------------------------------------------------- |
+| `pnpm storybook` / `pnpm dev` | Run Storybook on http://localhost:6006 — the main development loop   |
+| `pnpm build`                  | Build `packages/react` (→ `dist/styles`) and the static Storybook    |
+| `pnpm build-storybook`        | Build the static Storybook only                                      |
+| `pnpm check-types`            | `tsc -b` over `apps/storybook`                                       |
+| `pnpm lint`                   | ESLint — `apps/storybook` is the only package with a `lint` script   |
+| `pnpm format`                 | Prettier over `ts`, `tsx` and `md`                                   |
+| `pnpm extract-stories`        | Regenerate `apps/storybook/src/stories` from HeroUI                  |
 
 ## How the build works
 
