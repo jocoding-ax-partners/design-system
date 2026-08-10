@@ -174,13 +174,3 @@ light mode only, some in dark only. Keep using HeroUI's utility names for these;
 the values differ. Which roles are overridden, and in which mode, is not enumerated
 here — read the shipped stylesheet rather than assuming.
 
-## Adding this to a consumer project's CLAUDE.md
-
-```markdown
-## @demodev-ui/react
-
-This project uses @demodev-ui/react, a CSS-only design system on HeroUI v3.
-Import all components from `@heroui/react`, never from `@demodev-ui/react`.
-Read `node_modules/@demodev-ui/react/llms.txt` before writing UI code — it lists
-the `data-*` extensions and design tokens this project adds on top of HeroUI.
-```

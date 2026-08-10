@@ -1,135 +1,71 @@
-# Turborepo starter
+# design-system
 
-This Turborepo starter is maintained by the Turborepo core team.
+A CSS-only design system built on [HeroUI v3](https://v3.heroui.com), published as
+[`@demodev-ui/react`](./packages/react).
 
-## Using this example
+The system ships no React components. Consumers import components from `@heroui/react`
+and add a single stylesheet, which restyles those components and registers the design
+tokens. Everything in this repo is CSS.
 
-Run the following command:
+## Packages
 
-```sh
-npx create-turbo@latest
+| Path                | Package             | Published | What it is                                                                       |
+| ------------------- | ------------------- | --------- | -------------------------------------------------------------------------------- |
+| `packages/core`     | `@demodev-ui/core`  | no        | Design tokens — colors, radius, spacing, typography — plus shared Tailwind utilities |
+| `packages/react`    | `@demodev-ui/react` | npm       | HeroUI component overrides. Inlines `core` at build time and is the only artifact consumers install |
+| `apps/storybook`    | —                   | no        | Storybook used to develop and review the overrides against real HeroUI components |
+
+`apps/storybook/src/stories` mirrors upstream HeroUI stories; `stories-extended` covers
+the things this system adds or changes.
+
+## Getting started
+
+Requires Node 24+ and pnpm.
+
+```bash
+pnpm install
+pnpm storybook        # http://localhost:6006
 ```
 
-## What's inside?
+## Scripts
 
-This Turborepo includes the following packages/apps:
+| Command                | Does                                                                    |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `pnpm storybook`       | Run Storybook on http://localhost:6006 — the main development loop       |
+| `pnpm dev`             | Run the Storybook app's plain Vite dev server                            |
+| `pnpm build-storybook` | Build the static Storybook                                               |
+| `pnpm build`           | Build `packages/react` (→ `dist/styles`) and the Storybook app           |
+| `pnpm lint`            | ESLint — only `apps/storybook` defines a `lint` script                    |
+| `pnpm format`          | Prettier over `ts`, `tsx` and `md`                                       |
+| `pnpm extract-stories` | Regenerate `apps/storybook/src/stories` from HeroUI                      |
 
-### Apps and Packages
+## How the build works
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+`packages/react` is compiled with PostCSS: `src/styles/index.css` → `dist/styles/index.css`.
+`@demodev-ui/core/styles` and the local CSS are inlined, while `@import "@heroui/styles"`
+is preserved so HeroUI's sheet still resolves from the consumer's own install.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+The published artifact is Tailwind v4 **source**, not finished CSS — consumers run
+Tailwind themselves, which is what lets them use tokens like `rounded-button-md` in
+their own markup.
 
-### Utilities
+## Releasing
 
-This Turborepo has some additional tools already setup for you:
+Uses [changesets](https://github.com/changesets/changesets). See
+[`CLAUDE.md`](./CLAUDE.md) for the full checklist, including the tag conventions.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+pnpm changeset            # describe the change (in English — it ships to npm)
+pnpm version-packages     # bump versions, update CHANGELOG
+# commit, then tag — annotated, or --follow-tags will silently skip it:
+#   git tag -a '@demodev-ui/react@<version>' -m '@demodev-ui/react@<version>'
+git push --follow-tags
+git ls-remote --tags origin   # confirm the tag actually reached the remote
+pnpm release              # build + publish
 ```
 
-### Develop
+## Consuming the system
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+See [`packages/react/README.md`](./packages/react/README.md) for install and setup, and
+[`packages/react/llms.txt`](./packages/react/llms.txt) for the agent-facing reference to
+the `data-*` extensions and design tokens.
