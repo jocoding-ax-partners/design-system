@@ -1,13 +1,24 @@
 import { execSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const REPO_URL = "https://github.com/heroui-inc/heroui.git";
-const BRANCH = "v3";
 const COMPONENTS_PATH = "packages/react/src/components";
 const COMPONENTS_GROUP = "Components";
-const OUTPUT_DIR = join(import.meta.dirname, "../apps/storybook/src/stories");
+const STORYBOOK_APP = join(import.meta.dirname, "../apps/storybook");
+const OUTPUT_DIR = join(STORYBOOK_APP, "src/stories");
+
+// Extract from the tag matching the installed @heroui/react, not the v3 branch head.
+// The branch moves ahead of the published package, so its stories reference APIs that
+// don't exist in what we actually depend on.
+function installedTag(): string {
+  const require = createRequire(join(STORYBOOK_APP, "package.json"));
+  const { version } = require("@heroui/react/package.json") as { version: string };
+
+  return `v${version}`;
+}
 
 function replaceRelativeImports(content: string): string {
   // Replace all relative imports (./index, ./, ../, ../component-name, ./toast-queue, etc.) with @heroui/react
@@ -20,8 +31,16 @@ function replaceRelativeImports(content: string): string {
       /from\s+["']@storybook\/react["']/g,
       'from "@storybook/react-vite"',
     )
-    .replace(/^import React\s+from\s*["']react["'];?\n?/gm, (match) =>
-      /\bReact\.\w+/.test(content) ? match : "",
+    .replace(
+      // Also matches the `import React, {useState} from "react"` form, which is what most
+      // stories use — dropping only the default binding and keeping the named ones.
+      /^import React(?:,\s*(\{[^}]*\}))?\s+from\s*["']react["'];?\n?/gm,
+      (match, named: string | undefined) => {
+        const withoutImport = content.replace(match, "");
+        if (/\bReact\.\w+/.test(withoutImport)) return match;
+
+        return named ? `import ${named} from "react";\n` : "";
+      },
     );
 }
 
@@ -44,10 +63,11 @@ function extractTitle(content: string): string {
 }
 
 function main() {
+  const tag = installedTag();
   const tmpDir = mkdtempSync(join(tmpdir(), "heroui-"));
 
-  console.log(`Cloning HeroUI (${BRANCH}) into ${tmpDir}...`);
-  execSync(`git clone --depth 1 --branch ${BRANCH} ${REPO_URL} ${tmpDir}`, {
+  console.log(`Cloning HeroUI (${tag}) into ${tmpDir}...`);
+  execSync(`git clone --depth 1 --branch ${tag} ${REPO_URL} ${tmpDir}`, {
     stdio: "inherit",
   });
 

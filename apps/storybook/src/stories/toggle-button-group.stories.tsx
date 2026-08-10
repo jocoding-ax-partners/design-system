@@ -2,7 +2,7 @@ import type {Key} from "@heroui/react";
 import type {Meta, StoryObj} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
-import React, {useState} from "react";
+import {useState} from "react";
 
 import {ToggleButton} from "@heroui/react";
 

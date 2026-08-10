@@ -1,7 +1,7 @@
 import type {Meta} from "@storybook/react-vite";
 
 import {Icon} from "@iconify/react";
-import React, {useState} from "react";
+import {useState} from "react";
 
 import {Spinner} from "@heroui/react";
 
