@@ -1,17 +1,14 @@
 @layer components {
   .tooltip {
-    @apply rounded-lg px-2.5 py-1.5;
+    /* HeroUI paints the body with bg-overlay but sets no text color. */
+    @apply text-overlay-foreground rounded-lg px-2.5 py-1.5;
 
-    /* Flip the token, not the bg utility -- HeroUI fills the arrow from
+    /* Flip the tokens, not the bg utility -- HeroUI fills the arrow from
        --overlay too, so this keeps body and arrow in sync. */
-    --overlay: var(--eclipse);
-    --overlay-foreground: var(--snow);
-
-    color: var(--overlay-foreground);
+    @apply theme-dark;
 
     &:is(.dark *, [data-theme="dark"] *) {
-      --overlay: var(--snow);
-      --overlay-foreground: var(--eclipse);
+      @apply theme-light;
     }
   }
 

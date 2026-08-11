@@ -9,11 +9,6 @@
     @apply rounded-toast text-foreground;
     @apply theme-dark;
 
-    /* Root resolves these against the page theme, so re-derive them from the swapped tokens. */
-    --overlay-foreground: var(--foreground);
-    --default-foreground: var(--foreground);
-    --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
-
     box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 
     &:is(.dark *, [data-theme="dark"] *) {

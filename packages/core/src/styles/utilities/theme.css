@@ -10,8 +10,11 @@
  * only declares them on `:root` / `.dark`). Those are marked `HeroUI` and pin the
  * values as of `@heroui/styles` 3.2.4 — re-check them on upgrade.
  *
- * Both sets list tokens in the same order as HeroUI's themes/default/variables.css,
- * so the two read side by side.
+ * Both sets list the same tokens in the same order, so they read side by side.
+ *
+ * Tokens that reference other tokens must live here rather than on the consumer:
+ * `--overlay-foreground: var(--foreground)` resolves on the element that declares it,
+ * so it only lands on the swapped values when it ships with them.
  *
  * Soft foregrounds use the raw brand color. HeroUI v3.2 mixes `--foreground` in to
  * raise contrast (e.g. `color-mix(in oklab, var(--accent) 70%, var(--foreground) 30%)`).
@@ -24,9 +27,14 @@
   --surface: var(--white); /* HeroUI */
   --surface-secondary: var(--color-gray-50);
   --overlay: var(--white); /* HeroUI */
+  --overlay-foreground: var(--foreground); /* HeroUI */
   --muted: var(--color-gray-500);
   --default: var(--color-gray-100);
+  --default-foreground: var(--eclipse); /* HeroUI */
   --border: var(--color-gray-200);
+
+  /* Calculated — HeroUI */
+  --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
 
   /* Soft foregrounds */
   --accent-soft-foreground: var(--accent);
@@ -41,10 +49,15 @@
   --surface: var(--color-gray-900);
   --surface-secondary: var(--color-gray-850);
   --overlay: var(--eclipse); /* HeroUI, same value as its dark `--overlay` */
+  --overlay-foreground: var(--foreground); /* HeroUI */
   --muted: oklch(70.5% 0.015 286.067deg); /* HeroUI, no named token */
   --default: var(--color-gray-800);
+  --default-foreground: var(--snow); /* HeroUI */
   --field-background: var(--surface);
   --border: oklch(28% 0.006 286.033deg); /* HeroUI, no named token */
+
+  /* Calculated — HeroUI */
+  --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
 
   /* Soft foregrounds — HeroUI */
   --accent-soft-foreground: color-mix(in oklab, var(--accent) 80%, var(--foreground) 30%);
