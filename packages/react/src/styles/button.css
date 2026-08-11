@@ -36,7 +36,7 @@
 
   .button--outline {
     &[data-color="accent"] {
-      @apply border-accent;
+      border-color: var(--button-fg);
 
       --button-bg: var(--color-accent-soft);
       --button-bg-hover: var(--color-accent-soft-hover);
@@ -45,7 +45,7 @@
     }
 
     &[data-color="danger"] {
-      @apply border-danger;
+      border-color: var(--button-fg);
 
       --button-bg: var(--color-danger-soft);
       --button-bg-hover: var(--color-danger-soft-hover);
@@ -54,7 +54,7 @@
     }
 
     &[data-color="success"] {
-      @apply border-success;
+      border-color: var(--button-fg);
 
       --button-bg: var(--color-success-soft);
       --button-bg-hover: var(--color-success-soft-hover);
@@ -63,7 +63,7 @@
     }
 
     &[data-color="warning"] {
-      @apply border-warning;
+      border-color: var(--button-fg);
 
       --button-bg: var(--color-warning-soft);
       --button-bg-hover: var(--color-warning-soft-hover);
@@ -72,7 +72,7 @@
     }
 
     &[data-color="info"] {
-      @apply border-info;
+      border-color: var(--button-fg);
 
       --button-bg: var(--color-info-soft);
       --button-bg-hover: var(--color-info-soft-hover);
@@ -83,28 +83,28 @@
 
   .button--ghost {
     &[data-color="accent"] {
-      --button-bg-hover: var(--color-accent-soft);
-      --button-fg: var(--color-accent);
+      --button-bg-hover: var(--color-accent-soft-hover);
+      --button-fg: var(--color-accent-soft-foreground);
     }
 
     &[data-color="danger"] {
-      --button-bg-hover: var(--color-danger-soft);
-      --button-fg: var(--color-danger);
+      --button-bg-hover: var(--color-danger-soft-hover);
+      --button-fg: var(--color-danger-soft-foreground);
     }
 
     &[data-color="success"] {
-      --button-bg-hover: var(--color-success-soft);
-      --button-fg: var(--color-success);
+      --button-bg-hover: var(--color-success-soft-hover);
+      --button-fg: var(--color-success-soft-foreground);
     }
 
     &[data-color="warning"] {
-      --button-bg-hover: var(--color-warning-soft);
-      --button-fg: var(--color-warning);
+      --button-bg-hover: var(--color-warning-soft-hover);
+      --button-fg: var(--color-warning-soft-foreground);
     }
 
     &[data-color="info"] {
-      --button-bg-hover: var(--color-info-soft);
-      --button-fg: var(--color-info);
+      --button-bg-hover: var(--color-info-soft-hover);
+      --button-fg: var(--color-info-soft-foreground);
     }
   }
 }
