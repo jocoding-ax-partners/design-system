@@ -1,5 +1,15 @@
 # @demodev-ui/react
 
+## 2.6.2
+
+### Patch Changes
+
+- - Collect the theme token overrides into named `theme-light` / `theme-dark` sets, so `:root` and any surface that deliberately inverts the page theme share one definition instead of drifting apart. Each set also restates the HeroUI originals an inverted surface cannot otherwise reach (pinned to `@heroui/styles` 3.2.4).
+  - Base the `outline` border and the `ghost` foreground on `--button-fg` and the `*-soft-foreground` tokens, so both variants keep their contrast in dark mode instead of falling back to the raw brand color.
+  - Invert the toast against the page theme, matching the tooltip, and keep the title neutral (`--overlay-foreground`) so the indicator icon is the only semantic color signal. Also drop the toast's own border and the action's vertical margin.
+  - Switch the tooltip to the shared theme sets and give it an explicit `text-overlay-foreground` — HeroUI paints the body from `--overlay` but sets no text color.
+  - Scope the close-button background override to the modal and alert-dialog close triggers, so close buttons elsewhere (toast) keep their own surface.
+
 ## 2.6.1
 
 ### Patch Changes
