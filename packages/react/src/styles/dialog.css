@@ -23,4 +23,16 @@
   .modal__dialog--lg {
     @apply max-w-3xl;
   }
+
+  .modal__close-trigger,
+  .alert-dialog__close-trigger {
+    @apply light:bg-transparent;
+
+    @media (hover: hover) {
+      &:hover,
+      &[data-hovered="true"] {
+        @apply light:bg-default;
+      }
+    }
+  }
 }
