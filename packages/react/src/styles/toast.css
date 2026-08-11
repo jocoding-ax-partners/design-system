@@ -1,11 +1,23 @@
 @layer components {
+  /*
+   * The toast inverts the page theme. Values come from core's `theme-light`/`theme-dark`
+   * sets, so editing core moves the toast with it.
+   */
+
   .toast {
-    @apply rounded-toast border-border border;
+    /* text-foreground carries the swap to children that inherit currentColor. */
+    @apply rounded-toast text-foreground;
+    @apply theme-dark;
+
+    /* Root resolves these against the page theme, so re-derive them from the swapped tokens. */
+    --overlay-foreground: var(--foreground);
+    --default-foreground: var(--foreground);
+    --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
 
     box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 
-    .close-button {
-      @apply light:sm:bg-background;
+    &:is(.dark *, [data-theme="dark"] *) {
+      @apply theme-light;
     }
   }
 
@@ -32,10 +44,20 @@
   }
 
   .toast__action {
-    @apply my-1 self-end sm:self-center;
+    @apply self-end sm:self-center;
   }
 
   .toast--accent .toast__indicator {
     @apply text-accent-soft-foreground;
+  }
+
+  /* Text stays neutral — the indicator icon is the only semantic color signal. */
+  .toast--accent,
+  .toast--success,
+  .toast--warning,
+  .toast--danger {
+    .toast__title {
+      @apply text-overlay-foreground;
+    }
   }
 }

@@ -1,0 +1,54 @@
+/*
+ * Theme tokens, exposed as named sets.
+ *
+ * Naming them lets `:root` and any surface that deliberately inverts the page theme
+ * (React's toast) share one definition, so editing a value here updates both instead
+ * of drifting apart.
+ *
+ * Each set holds our overrides on top of HeroUI, plus HeroUI originals restated
+ * verbatim so an inverted surface can reach values it cannot otherwise see (HeroUI
+ * only declares them on `:root` / `.dark`). Those are marked `HeroUI` and pin the
+ * values as of `@heroui/styles` 3.2.4 — re-check them on upgrade.
+ *
+ * Both sets list tokens in the same order as HeroUI's themes/default/variables.css,
+ * so the two read side by side.
+ *
+ * Soft foregrounds use the raw brand color. HeroUI v3.2 mixes `--foreground` in to
+ * raise contrast (e.g. `color-mix(in oklab, var(--accent) 70%, var(--foreground) 30%)`).
+ * Warning is the exception — its brand color is too light to read, so it uses
+ * `--warning-strong`.
+ */
+@utility theme-light {
+  --background: #fff;
+  --foreground: var(--eclipse); /* HeroUI */
+  --surface: var(--white); /* HeroUI */
+  --surface-secondary: var(--color-gray-50);
+  --overlay: var(--white); /* HeroUI */
+  --muted: var(--color-gray-500);
+  --default: var(--color-gray-100);
+  --border: var(--color-gray-200);
+
+  /* Soft foregrounds */
+  --accent-soft-foreground: var(--accent);
+  --danger-soft-foreground: var(--danger);
+  --success-soft-foreground: var(--success);
+  --warning-soft-foreground: var(--warning-strong);
+  --info-soft-foreground: var(--info);
+}
+
+@utility theme-dark {
+  --foreground: var(--snow); /* HeroUI */
+  --surface: var(--color-gray-900);
+  --surface-secondary: var(--color-gray-850);
+  --overlay: var(--eclipse); /* HeroUI, same value as its dark `--overlay` */
+  --muted: oklch(70.5% 0.015 286.067deg); /* HeroUI, no named token */
+  --default: var(--color-gray-800);
+  --field-background: var(--surface);
+  --border: oklch(28% 0.006 286.033deg); /* HeroUI, no named token */
+
+  /* Soft foregrounds — HeroUI */
+  --accent-soft-foreground: color-mix(in oklab, var(--accent) 80%, var(--foreground) 30%);
+  --danger-soft-foreground: color-mix(in oklab, var(--danger) 80%, var(--foreground) 30%);
+  --success-soft-foreground: color-mix(in oklab, var(--success) 80%, var(--foreground) 30%);
+  --warning-soft-foreground: color-mix(in oklab, var(--warning) 80%, var(--foreground) 30%);
+}

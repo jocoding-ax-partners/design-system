@@ -3,37 +3,19 @@
 @import "./utilities/index.css";
 
 /*
- * Light mode overrides for HeroUI defaults.
+ * Theme overrides for HeroUI defaults. The values live in `utilities/theme.css` so
+ * surfaces that invert the page theme can apply the opposite set.
  *
  * HeroUI declares these in `:root` under `@layer base`, so an unlayered rule wins.
  * Dark mode is opt-in via `.dark` or `[data-theme="dark"]` — both must be excluded.
- *
- * Soft foregrounds use the raw brand color. HeroUI v3.2 mixes `--foreground` in to
- * raise contrast (e.g. `color-mix(in oklab, var(--accent) 70%, var(--foreground) 30%)`).
- * Warning is the exception — its brand color is too light to read, so it uses
- * `--warning-strong`.
  */
 :root:not(.dark, [data-theme="dark"]) {
-  --background: #fff;
-  --border: var(--color-gray-200);
-  --default: var(--color-gray-100);
-  --muted: var(--color-gray-500);
-  --surface-secondary: var(--color-gray-50);
-
-  /* Soft foregrounds */
-  --accent-soft-foreground: var(--accent);
-  --danger-soft-foreground: var(--danger);
-  --success-soft-foreground: var(--success);
-  --warning-soft-foreground: var(--warning-strong);
-  --info-soft-foreground: var(--info);
+  @apply theme-light;
 }
 
 .dark,
 [data-theme="dark"] {
-  --default: var(--color-gray-800);
-  --surface: var(--color-gray-900);
-  --surface-secondary: var(--color-gray-850);
-  --field-background: var(--surface);
+  @apply theme-dark;
 }
 
 :root {
