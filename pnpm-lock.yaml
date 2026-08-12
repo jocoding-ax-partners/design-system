@@ -7,10 +7,10 @@ settings:
 catalogs:
   default:
     '@heroui/react':
-      specifier: '3'
+      specifier: ^3.2.4
       version: 3.2.4
     '@heroui/styles':
-      specifier: '3'
+      specifier: ^3.2.4
       version: 3.2.4
 
 importers:

@@ -1,5 +1,16 @@
 # @demodev-ui/react
 
+## 2.7.0
+
+### Minor Changes
+
+- Raise the `@heroui/react` and `@heroui/styles` peer ranges to `^3.2.4`.
+
+  `3.2.3` pins `tailwind-variants@3.3.0`, which leaks variants between component
+  instances: on a re-render with unchanged props, a component can commit another
+  instance's variant classes and never revert. `3.2.4` pins the fixed `3.3.1`, and
+  `3.2.2` and below predate the regression, so `3.2.3` is the only affected release.
+
 ## 2.6.2
 
 ### Patch Changes

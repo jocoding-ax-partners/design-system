@@ -3,5 +3,11 @@ packages:
   - "packages/*"
 
 catalog:
-  "@heroui/react": "3"
-  "@heroui/styles": "3"
+  # Floor of 3.2.4. `3.2.3` pins `tailwind-variants@3.3.0`, whose `createSlotsResolver`
+  # latches the caller's props onto one closure variable and hands back a shared slots
+  # object. HeroUI holds that object in a `useMemo`, so on a re-render with unchanged
+  # deps the slot functions resolve against whichever instance called the factory last —
+  # a `secondary` Chip commits `chip--tertiary` next to `tertiary` ones and never reverts.
+  # Fixed in `3.3.1`, which `3.2.4` pins. `3.2.2` and below predate the regression.
+  "@heroui/react": "^3.2.4"
+  "@heroui/styles": "^3.2.4"
