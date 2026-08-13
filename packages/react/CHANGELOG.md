@@ -1,5 +1,21 @@
 # @demodev-ui/react
 
+## 2.7.1
+
+### Patch Changes
+
+- Align field heights with buttons by drawing the outline inside the box
+
+  HeroUI zeroes `--field-border-width`, so the 1px outline on primary fields sat
+  outside the layout box. Fields rendered 2px taller and wider than their layout
+  size, which made an Input or Select look larger than a Button beside it even
+  though both resolve to the same 40px token.
+
+  Fields now draw that outline on the inner edge, so visual size matches layout
+  size. Input, Textarea, Select, Autocomplete, InputOTP and InputGroup all line up
+  with Button. Focus is unchanged — HeroUI swaps the outline for a box-shadow ring
+  on focus, which never affected layout.
+
 ## 2.7.0
 
 ### Minor Changes
