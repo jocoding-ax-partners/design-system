@@ -1,5 +1,19 @@
 @layer components {
   .list-box-item {
     @apply rounded-list-box-item;
+
+    &[data-selected="true"],
+    &[aria-selected="true"] {
+      background-color: var(--accent-soft);
+      color: var(--accent-soft-foreground);
+
+      &[data-hovered="true"] {
+        background-color: var(--accent-soft-hover);
+      }
+    }
+  }
+
+  .list-box-item__indicator {
+    @apply hidden;
   }
 }
