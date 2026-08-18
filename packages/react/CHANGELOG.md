@@ -1,5 +1,11 @@
 # @demodev-ui/react
 
+## 2.7.2
+
+### Patch Changes
+
+- Remove the selected-item indicator override in Select, ComboBox and Autocomplete. The check mark no longer renders inside a filled accent circle and falls back to the default HeroUI indicator.
+
 ## 2.7.1
 
 ### Patch Changes
