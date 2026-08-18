@@ -134,6 +134,28 @@ by import order.
 `data-size`: `md` — omit for the default, smaller size. Both controls.
 `data-rounded`: `"true"` — Checkbox.Control only.
 
+## Behavior overrides
+
+Places where a HeroUI component renders differently here without a new authoring API.
+
+### ListBox.ItemIndicator — selection is a background, not a check mark
+
+Applies inside Select, ComboBox, Autocomplete and standalone ListBox.
+
+The indicator element is hidden. A selected item is marked by an `accent-soft`
+background instead — `accent-soft-hover` while hovered.
+
+```tsx
+<ListBox.Item id="florida" textValue="Florida">
+  Florida
+  <ListBox.ItemIndicator /> {/* opts this item into the accent background */}
+</ListBox.Item>
+```
+
+The indicator is still what switches the styling on, so an item rendered without one
+keeps HeroUI's own appearance, where selection is not marked at all. Custom content
+passed to `ListBox.ItemIndicator` is hidden along with the default check mark.
+
 ## Tokens
 
 Utilities this package registers. Names are listed so you know they exist; **read the

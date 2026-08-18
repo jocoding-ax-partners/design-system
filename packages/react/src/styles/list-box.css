@@ -2,13 +2,15 @@
   .list-box-item {
     @apply rounded-list-box-item;
 
-    &[data-selected="true"]:not(:where([data-exiting="true"] *)),
-    &[aria-selected="true"]:not(:where([data-exiting="true"] *)) {
-      background-color: var(--accent-soft);
-      color: var(--accent-soft-foreground);
+    &:has(.list-box-item__indicator) {
+      &[data-selected="true"]:not(:where([data-exiting="true"] *)),
+      &[aria-selected="true"]:not(:where([data-exiting="true"] *)) {
+        background-color: var(--accent-soft);
+        color: var(--accent-soft-foreground);
 
-      &[data-hovered="true"] {
-        background-color: var(--accent-soft-hover);
+        &[data-hovered="true"] {
+          background-color: var(--accent-soft-hover);
+        }
       }
     }
   }

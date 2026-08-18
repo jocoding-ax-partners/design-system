@@ -53,6 +53,21 @@ HeroUI's prop types cannot be extended, so the extra options ride on data attrib
 <Button variant="outline" data-color="danger">Delete</Button>
 ```
 
+### ListBox selection
+
+Inside `Select`, `ComboBox`, `Autocomplete` and standalone `ListBox`, the item indicator
+is hidden and a selected item is marked by an accent background instead.
+
+```tsx
+<ListBox.Item id="florida" textValue="Florida">
+  Florida
+  <ListBox.ItemIndicator /> {/* opts this item into the accent background */}
+</ListBox.Item>
+```
+
+Rendering the indicator is what opts an item into that styling. An item without one
+keeps HeroUI's appearance, where selection is not marked at all.
+
 ### Tailwind utilities
 
 Registered on top of stock Tailwind and HeroUI:
