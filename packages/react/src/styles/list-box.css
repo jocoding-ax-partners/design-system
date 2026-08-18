@@ -2,8 +2,8 @@
   .list-box-item {
     @apply rounded-list-box-item;
 
-    &[data-selected="true"],
-    &[aria-selected="true"] {
+    &[data-selected="true"]:not(:where([data-exiting="true"] *)),
+    &[aria-selected="true"]:not(:where([data-exiting="true"] *)) {
       background-color: var(--accent-soft);
       color: var(--accent-soft-foreground);
 
