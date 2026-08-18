@@ -1,5 +1,11 @@
 # @demodev-ui/react
 
+## 2.7.3
+
+### Patch Changes
+
+- Mark the selected ListBox item with an `accent-soft` background instead of a check mark, in Select, ComboBox, Autocomplete and standalone ListBox. Rendering `<ListBox.ItemIndicator />` opts an item into the new styling and hides the indicator itself; an item without one keeps HeroUI's appearance. The background is not painted while the popover is closing, so selecting an item no longer flashes a color change on the way out.
+
 ## 2.7.2
 
 ### Patch Changes
