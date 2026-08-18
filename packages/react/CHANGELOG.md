@@ -1,5 +1,13 @@
 # @demodev-ui/react
 
+## 2.7.4
+
+### Patch Changes
+
+- Even out toast padding to 16px on all sides, matching the horizontal padding instead of HeroUI's tighter vertical 12px.
+
+  Fade the list-box selected background in so ComboBox no longer flashes the accent color for one frame between `data-selected` landing on the item and `data-exiting` landing on the popover. Items already selected when the popover opens are still painted immediately, and the transition is disabled under `prefers-reduced-motion`.
+
 ## 2.7.3
 
 ### Patch Changes
