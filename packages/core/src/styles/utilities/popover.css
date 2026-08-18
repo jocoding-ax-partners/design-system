@@ -9,15 +9,3 @@
 @utility popover-list-box-item {
   @apply rounded-list-box-item min-h-list-box-item px-3 py-2;
 }
-
-@utility popover-list-box-item-indicator {
-  @apply right-2.5 size-4 transition-none;
-
-  [data-slot="list-box-item-indicator--checkmark"] {
-    @apply size-2 stroke-3;
-  }
-
-  &[data-visible="true"] {
-    @apply bg-accent text-accent-foreground rounded-full;
-  }
-}

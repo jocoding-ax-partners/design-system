@@ -23,9 +23,5 @@
     [data-slot="list-box-item"] {
       @apply popover-list-box-item;
     }
-
-    .list-box-item__indicator {
-      @apply popover-list-box-item-indicator;
-    }
   }
 }
