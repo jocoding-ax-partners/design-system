@@ -3,6 +3,19 @@
     @apply rounded-list-box-item;
 
     &:has(.list-box-item__indicator) {
+      /**
+       * ComboBox sets data-selected one frame before the popover gets
+       * data-exiting; fading in hides the flash on that frame.
+       * Re-declares HeroUI's transform/box-shadow, replaced by this shorthand.
+       */
+      transition:
+        transform 250ms var(--ease-out-quart),
+        box-shadow 150ms var(--ease-out),
+        background-color 150ms var(--ease-smooth),
+        color 150ms var(--ease-smooth);
+
+      @apply motion-reduce:transition-none;
+
       &[data-selected="true"]:not(:where([data-exiting="true"] *)),
       &[aria-selected="true"]:not(:where([data-exiting="true"] *)) {
         background-color: var(--accent-soft);
