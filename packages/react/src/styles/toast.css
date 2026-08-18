@@ -5,9 +5,9 @@
    */
 
   .toast {
+    @apply rounded-toast py-4;
     /* text-foreground carries the swap to children that inherit currentColor. */
-    @apply rounded-toast text-foreground;
-    @apply theme-dark;
+    @apply theme-dark text-foreground;
 
     box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 
