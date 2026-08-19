@@ -152,7 +152,7 @@ function ScaleTable({
       <thead>
         <tr className="border-border border-b">
           <th className="text-muted py-2 pr-4 text-xs font-medium">토큰</th>
-          <th className="text-muted py-2 text-xs font-medium">demodev</th>
+          <th className="text-muted py-2 text-xs font-medium">design-system</th>
         </tr>
       </thead>
       <tbody>
@@ -189,7 +189,7 @@ function ComparisonTable({
         <tr className="border-border border-b">
           <th className="text-muted py-2 pr-4 text-xs font-medium">토큰</th>
           <th className="text-muted py-2 pr-4 text-xs font-medium">{upstreamLabel}</th>
-          <th className="text-muted py-2 text-xs font-medium">demodev</th>
+          <th className="text-muted py-2 text-xs font-medium">design-system</th>
         </tr>
       </thead>
       <tbody>
