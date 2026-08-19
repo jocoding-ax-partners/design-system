@@ -1,4 +1,4 @@
-# @demodev-ui/react
+# @jocoding-ax-partners/design-system
 
 ## 2.7.4
 

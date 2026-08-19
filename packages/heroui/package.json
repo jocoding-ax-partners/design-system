@@ -1,5 +1,5 @@
 {
-  "name": "@demodev-ui/react",
+  "name": "@jocoding-ax-partners/design-system",
   "version": "2.7.4",
   "license": "MIT",
   "type": "module",
@@ -44,9 +44,9 @@
     "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@demodev-ui/core": "workspace:^",
     "@heroui/react": "catalog:",
     "@heroui/styles": "catalog:",
+    "@jocoding-ax-partners/tailwind": "workspace:^",
     "@nijesmik/stylelint-config": "^0.1.0",
     "@tsconfig/create-react-app": "^2.0.10",
     "@types/react": "^19.2.5",

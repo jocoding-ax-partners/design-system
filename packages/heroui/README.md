@@ -1,4 +1,4 @@
-# @demodev-ui/react
+# @jocoding-ax-partners/design-system
 
 CSS-only design system built on [HeroUI v3](https://v3.heroui.com).
 
@@ -9,7 +9,7 @@ design tokens. There is no provider, no wrapper, and no JavaScript.
 ## Install
 
 ```bash
-npm install @demodev-ui/react @heroui/react@^3 @heroui/styles@^3 tailwindcss@^4
+npm install @jocoding-ax-partners/design-system @heroui/react@^3 @heroui/styles@^3 tailwindcss@^4
 ```
 
 ## Setup
@@ -18,10 +18,10 @@ Add one import to your Tailwind CSS entry file:
 
 ```css
 @import "tailwindcss";
-@import "@demodev-ui/react/styles";
+@import "@jocoding-ax-partners/design-system/styles";
 ```
 
-That is the whole setup. `@demodev-ui/react/styles` imports `@heroui/styles` itself, so
+That is the whole setup. `@jocoding-ax-partners/design-system/styles` imports `@heroui/styles` itself, so
 you do not import it separately — but it stays a peer dependency and must be installed.
 Place the import after `tailwindcss` and after any stylesheet it should override.
 
@@ -31,7 +31,7 @@ HeroUI's own [requirements and quick start](https://v3.heroui.com/docs/react/get
 
 ```tsx
 import { Button } from "@heroui/react"; // ✅
-import { Button } from "@demodev-ui/react"; // ❌ does not exist
+import { Button } from "@jocoding-ax-partners/design-system"; // ❌ does not exist
 ```
 
 ## What this package adds
@@ -86,7 +86,7 @@ gray scale is shifted to neutral oklch, and a number of semantic, surface and fi
 roles are overridden. Keep using HeroUI's utility names for those.
 
 Exact values live in the shipped stylesheet
-(`node_modules/@demodev-ui/react/dist/styles/index.css`). They are deliberately not
+(`node_modules/@jocoding-ax-partners/design-system/dist/styles/index.css`). They are deliberately not
 duplicated here, because a copy drifts from the source.
 
 ## Component documentation
@@ -106,11 +106,11 @@ a copy here would go stale on every release. Use, in order:
 above. Point your agent at it once, e.g. in `CLAUDE.md`:
 
 ```markdown
-## @demodev-ui/react
+## @jocoding-ax-partners/design-system
 
-This project uses @demodev-ui/react, a CSS-only design system on HeroUI v3.
-Import all components from `@heroui/react`, never from `@demodev-ui/react`.
-Read `node_modules/@demodev-ui/react/llms.txt` before writing UI code — it lists
+This project uses @jocoding-ax-partners/design-system, a CSS-only design system on HeroUI v3.
+Import all components from `@heroui/react`, never from `@jocoding-ax-partners/design-system`.
+Read `node_modules/@jocoding-ax-partners/design-system/llms.txt` before writing UI code — it lists
 the `data-*` extensions and design tokens this project adds on top of HeroUI.
 ```
 

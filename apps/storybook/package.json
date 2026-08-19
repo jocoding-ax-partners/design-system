@@ -19,11 +19,11 @@
     ]
   },
   "dependencies": {
-    "@demodev-ui/react": "workspace:^",
     "@heroui/react": "catalog:",
     "@heroui/styles": "catalog:",
     "@iconify/react": "^6.0.2",
     "@internationalized/date": "^3.12.3",
+    "@jocoding-ax-partners/design-system": "workspace:^",
     "@react-stately/data": "^3.15.0",
     "react": "^19.2.0",
     "react-aria-components": "^1.20.0",

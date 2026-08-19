@@ -7,10 +7,12 @@ export default {
   plugins: [
     postcssImport({
       filter: (path) =>
-        path.startsWith(".") || path.startsWith("..") || path.includes("@demodev-ui/core"),
+        path.startsWith(".") ||
+        path.startsWith("..") ||
+        path.includes("@jocoding-ax-partners/tailwind"),
       resolve: (id) => {
-        if (id === "@demodev-ui/core/styles") {
-          return require.resolve("@demodev-ui/core/styles");
+        if (id === "@jocoding-ax-partners/tailwind/styles") {
+          return require.resolve("@jocoding-ax-partners/tailwind/styles");
         }
         return id;
       },

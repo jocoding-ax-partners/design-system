@@ -1,4 +1,4 @@
-# @demodev-ui/react
+# @jocoding-ax-partners/design-system
 
 > CSS-only design system built on HeroUI v3. This package has NO component exports.
 > Every component comes from `@heroui/react`. This package ships one stylesheet:
@@ -12,7 +12,7 @@
 ## Install
 
 ```bash
-npm install @demodev-ui/react @heroui/react@^3 @heroui/styles@^3 tailwindcss@^4
+npm install @jocoding-ax-partners/design-system @heroui/react@^3 @heroui/styles@^3 tailwindcss@^4
 ```
 
 ## Setup
@@ -21,10 +21,10 @@ Add one line to your Tailwind CSS entry file:
 
 ```css
 @import "tailwindcss";
-@import "@demodev-ui/react/styles";
+@import "@jocoding-ax-partners/design-system/styles";
 ```
 
-Do not import `@heroui/styles` separately — `@demodev-ui/react/styles` imports it as
+Do not import `@heroui/styles` separately — `@jocoding-ax-partners/design-system/styles` imports it as
 its own first line, so HeroUI's sheet always lands ahead of these overrides. It stays
 a peer dependency and must still be installed.
 
@@ -45,7 +45,7 @@ Everything else is upstream setup, not this package's:
 
 ```tsx
 import { Button, Input, Modal } from "@heroui/react"; // correct
-import { Button } from "@demodev-ui/react"; // does not exist — no JS is published
+import { Button } from "@jocoding-ax-partners/design-system"; // does not exist — no JS is published
 ```
 
 ## Finding component APIs
@@ -159,7 +159,7 @@ passed to `ListBox.ItemIndicator` is hidden along with the default check mark.
 ## Tokens
 
 Utilities this package registers. Names are listed so you know they exist; **read the
-exact values from** `node_modules/@demodev-ui/react/dist/styles/index.css` rather than
+exact values from** `node_modules/@jocoding-ax-partners/design-system/dist/styles/index.css` rather than
 assuming them.
 
 Prefer these over hardcoded equivalents — `rounded-button-md` not `rounded-[10px]`,
