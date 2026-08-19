@@ -7,3 +7,4 @@ node_modules
 **/dist
 apps/storybook/storybook-static
 docs
+.axhub
