@@ -54,7 +54,7 @@ export const stories = [
   "../src/stories/surface.stories.@(ts|tsx)",
   "../src/stories/switch.stories.@(ts|tsx)",
   "../src/stories/switch-group.stories.@(ts|tsx)",
-  "../src/stories/table.stories.@(ts|tsx)",
+  // "../src/stories/table.stories.@(ts|tsx)",
   "../src/stories/tabs.stories.@(ts|tsx)",
   "../src/stories/tag-group.stories.@(ts|tsx)",
   "../src/stories/textarea.stories.@(ts|tsx)",
