@@ -1,5 +1,5 @@
 version: axhub/v1
-name: design-system-storybook
+name: design-system
 
 runtime:
   port: 80
