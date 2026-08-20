@@ -117,7 +117,15 @@ function toHex(color: string) {
   return `#${[r, g, b].map((n) => n.toString(16).padStart(2, "0")).join("")}`;
 }
 
-function Swatch({ className, value }: { className?: string; value?: string }) {
+function Swatch({
+  className,
+  inline,
+  value,
+}: {
+  className?: string;
+  inline?: boolean;
+  value?: string;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const [hex, setHex] = useState("");
 
@@ -127,11 +135,24 @@ function Swatch({ className, value }: { className?: string; value?: string }) {
     }
   }, [className, value]);
 
+  if (inline) {
+    return (
+      <div className="flex items-center gap-3">
+        <span
+          ref={ref}
+          className={`border-border size-14 shrink-0 rounded-lg border ${className ?? ""}`}
+          style={value ? { background: value } : undefined}
+        />
+        <code className="text-xs">{hex}</code>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col gap-1">
       <span
         ref={ref}
-        className={`border-border size-14 shrink-0 rounded-lg border ${className ?? ""}`}
+        className={`border-border h-32 w-full min-w-16 rounded-lg border ${className ?? ""}`}
         style={value ? { background: value } : undefined}
       />
       <code className="text-xs">{hex}</code>
@@ -147,41 +168,100 @@ function ScaleTable({
   rows: Array<{ className: string; name: string }>;
 }) {
   return (
-    <table className="w-full max-w-md border-collapse text-left">
-      <caption className="text-muted mb-3 text-left text-sm">{caption}</caption>
-      <thead>
-        <tr className="border-border border-b">
-          <th className="text-muted py-2 pr-4 text-xs font-medium">토큰</th>
-          <th className="text-muted py-2 text-xs font-medium">design-system</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.name} className="border-border border-b">
-            <td className="py-2 pr-4">
-              <code className="text-xs">{row.name}</code>
-            </td>
-            <td className="py-2">
-              <Swatch className={row.className} />
-            </td>
+    <div className="overflow-x-auto">
+      <table className="border-collapse text-left">
+        <caption className="text-muted mb-3 text-left text-sm">{caption}</caption>
+        <thead>
+          <tr>
+            {rows.map((row) => (
+              <th
+                key={row.name}
+                className="min-w-16 pr-1.5 pb-2 text-left align-bottom font-medium"
+                scope="col"
+              >
+                <code className="text-xs">{row.name}</code>
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <tr>
+            {rows.map((row) => (
+              <td key={row.name} className="pr-1.5 align-top">
+                <Swatch className={row.className} />
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }
 
-function ComparisonTable({
-  caption,
-  ourValue,
-  rows,
-  upstreamLabel,
-}: {
+type ComparisonProps = {
   caption: string;
   rows: Array<{ name: string; ourClass?: string; upstream: string | null }>;
   upstreamLabel: string;
   ourValue: (row: { name: string; ourClass?: string }) => { className?: string; value?: string };
-}) {
+};
+
+function ComparisonStrip({ caption, ourValue, rows, upstreamLabel }: ComparisonProps) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="border-collapse text-left">
+        <caption className="text-muted mb-3 text-left text-sm">{caption}</caption>
+        <thead>
+          <tr>
+            <td className="pr-4" />
+            {rows.map((row) => (
+              <th
+                key={row.name}
+                className="min-w-16 pr-1.5 pb-2 text-left align-bottom font-medium"
+                scope="col"
+              >
+                <code className="text-xs">{row.name}</code>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th
+              className="text-muted pr-4 pb-4 text-left align-top text-xs font-medium whitespace-nowrap"
+              scope="row"
+            >
+              {upstreamLabel}
+            </th>
+            {rows.map((row) => (
+              <td key={row.name} className="pr-1.5 pb-4 align-top">
+                {row.upstream ? (
+                  <Swatch value={row.upstream} />
+                ) : (
+                  <span className="text-muted text-xs">없음</span>
+                )}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <th
+              className="text-muted pr-4 text-left align-top text-xs font-medium whitespace-nowrap"
+              scope="row"
+            >
+              design-system
+            </th>
+            {rows.map((row) => (
+              <td key={row.name} className="pr-1.5 align-top">
+                <Swatch {...ourValue(row)} />
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ComparisonTable({ caption, ourValue, rows, upstreamLabel }: ComparisonProps) {
   return (
     <table className="w-full max-w-3xl border-collapse text-left">
       <caption className="text-muted mb-3 text-left text-sm">{caption}</caption>
@@ -200,13 +280,13 @@ function ComparisonTable({
             </td>
             <td className="py-2 pr-4">
               {row.upstream ? (
-                <Swatch value={row.upstream} />
+                <Swatch inline value={row.upstream} />
               ) : (
                 <span className="text-muted text-xs">없음</span>
               )}
             </td>
             <td className="py-2">
-              <Swatch {...ourValue(row)} />
+              <Swatch inline {...ourValue(row)} />
             </td>
           </tr>
         ))}
@@ -230,14 +310,16 @@ export const Accent: Story = {
 };
 
 /**
- * `gray-50` through `gray-400` are the control rows: we inherit them, so both
- * columns should report the same hex. `gray-500` and darker should differ.
+ * `gray-200` through `gray-400` are the control rows: we inherit them, so both
+ * columns should report the same hex. `gray-100` (nudged lighter for the
+ * `--default` surface), `gray-50` (`--surface-secondary`, moved with it to keep
+ * the 50↔100 step and hue aligned), and `gray-500` and darker should differ.
  * `gray-850` is our own step with no Tailwind counterpart.
  */
 export const Gray: Story = {
   render: () => (
-    <ComparisonTable
-      caption="Tailwind 기본 gray 팔레트와 colors.css 에서 재정의한 값 (50–400은 재정의하지 않아 양쪽이 같다)"
+    <ComparisonStrip
+      caption="Tailwind 기본 gray 팔레트와 colors.css 에서 재정의한 값 (50·100과 500 이상을 재정의, 200–400은 양쪽이 같다)"
       ourValue={(row) => ({ className: row.ourClass })}
       rows={GRAY_ROWS}
       upstreamLabel="Tailwind"

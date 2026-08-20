@@ -13,6 +13,8 @@
   --color-accent-950: oklch(28% 0.11 267.5deg); /* #12215e */
 
   /* Gray Colors */
+  --color-gray-50: oklch(98.7% 0.002 264.5deg); /* #fafbfc */
+  --color-gray-100: oklch(97.2% 0.003 264.5deg); /* #f5f6f8 */
   --color-gray-500: oklch(55% 0.021 272.1deg); /* #6d717e */
   --color-gray-600: oklch(44.2% 0.017 268.3deg); /* #4f535d */
   --color-gray-700: oklch(36.8% 0.014 269.3deg); /* #3c3f47 */
