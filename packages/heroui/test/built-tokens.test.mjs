@@ -187,3 +187,24 @@ test("compact density does NOT shrink button or input heights", () => {
 test("the default small-button label is untouched by the density work", () => {
   assert.match(css, /@utility button-size-sm[\s\S]{0,200}?text-xs/);
 });
+
+// `CodeBlock` reads `--syntax-*` via inline `style="color: var(--syntax-*)"` —
+// this build is postcss-import only (no var() resolution, see note above), so
+// the alias tokens must survive verbatim as `var(--fg-*)` in the artifact.
+test("syntax highlight tokens carry the pinned light values", () => {
+  assert.match(css, /--syntax-keyword:\s*#7c3aed\b/);
+  assert.match(css, /--syntax-string:\s*#15803d\b/);
+  assert.match(css, /--syntax-function:\s*#1d4ed8\b/);
+  assert.match(css, /--syntax-number:\s*#b45309\b/);
+  assert.match(css, /--syntax-comment:\s*var\(--fg-muted\)/);
+  assert.match(css, /--syntax-punctuation:\s*var\(--fg-secondary\)/);
+  assert.match(css, /--syntax-plain:\s*var\(--fg-default\)/);
+});
+
+test("syntax highlight tokens carry the pinned dark values", () => {
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--syntax-keyword:\s*#c4b5fd\b/);
+  assert.match(darkBlock, /--syntax-string:\s*#86efac\b/);
+  assert.match(darkBlock, /--syntax-function:\s*#93c5fd\b/);
+  assert.match(darkBlock, /--syntax-number:\s*#fcd34d\b/);
+});

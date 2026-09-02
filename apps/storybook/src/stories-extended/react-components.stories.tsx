@@ -74,7 +74,11 @@ export const Gallery: StoryObj = {
             <StatusDot tone="warning">점검중</StatusDot>
             <StatusDot tone="failed">중단</StatusDot>
           </div>
-          <CodeBlock code={"const answer = 42;\nconsole.log(answer);"} language="ts" />
+          <CodeBlock
+            code={"const answer = 42;\nconsole.log(answer);"}
+            language="ts"
+            className="bg-muted rounded-lg p-4"
+          />
           <SkeletonRow />
           <Pagination page={page} pageCount={9} onChange={setPage} />
           <ConfirmDemo />

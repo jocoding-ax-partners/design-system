@@ -1,0 +1,31 @@
+/*
+ * Syntax-highlight tokens for `CodeBlock` (packages/react/src/CodeBlock.tsx),
+ * carried up from axhub-frontend's globals.css (light L158-165, dark L252-259).
+ *
+ * Deliberately NOT in `@theme` / `@theme inline`: CodeBlock reads these via
+ * inline `style="color: var(--syntax-*)"`, not through a Tailwind utility
+ * class, so no utility mapping is needed — plain custom properties here let a
+ * scope selector (dark mode) redefine them and have the change cascade into
+ * every rule that reads them, same as surface.css.
+ */
+
+:root {
+  --syntax-keyword: #7c3aed;
+  --syntax-string: #15803d;
+  --syntax-function: #1d4ed8;
+  --syntax-number: #b45309;
+  --syntax-comment: var(--fg-muted);
+  --syntax-punctuation: var(--fg-secondary);
+  --syntax-plain: var(--fg-default);
+}
+
+.dark,
+[data-theme="dark"] {
+  --syntax-keyword: #c4b5fd;
+  --syntax-string: #86efac;
+  --syntax-function: #93c5fd;
+  --syntax-number: #fcd34d;
+  --syntax-comment: var(--fg-muted);
+  --syntax-punctuation: var(--fg-secondary);
+  --syntax-plain: var(--fg-default);
+}
