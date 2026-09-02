@@ -31,6 +31,14 @@
   --warning-strong: #f4ab00;
   --info: #1571f3;
   --info-foreground: var(--snow);
+
+  /* `-strong` is the darker step used for text and icons on light surfaces.
+     `--warning-strong` already existed; the others are added so every status
+     color has the same two-step shape. `danger` and `success` are already dark
+     enough to double as their own strong step. */
+  --danger-strong: var(--danger);
+  --success-strong: var(--success);
+  --info-strong: #0f5fcc;
 }
 
 /*

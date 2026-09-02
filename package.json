@@ -8,6 +8,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
+    "test": "turbo run test",
     "storybook": "pnpm --filter @jocoding-ax-partners/storybook run storybook",
     "build-storybook": "pnpm --filter @jocoding-ax-partners/storybook run build-storybook",
     "extract-stories": "tsx scripts/extract-heroui-stories.ts",
