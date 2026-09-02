@@ -78,3 +78,21 @@ requirement that `--follow-tags` silently skips.
 See [`packages/heroui/README.md`](./packages/heroui/README.md) for install and setup, and
 [`packages/heroui/llms.txt`](./packages/heroui/llms.txt) for the agent-facing reference to
 the `data-*` extensions and design tokens.
+
+### `@jocoding-ax-partners/react` needs a Tailwind `@source`
+
+Unlike `packages/heroui`, `packages/react` ships components styled with Tailwind
+utility classes (`h-1.5`, `bg-success-strong`, `text-[12px]`, …) rather than
+precompiled CSS. Tailwind v4 only generates a utility if it finds the class
+literally in a file it scans, and it does not scan `node_modules` by default —
+so without an explicit `@source`, every component in this package renders
+unstyled for consumers. Add this line to your Tailwind CSS entry file, next to
+the `@import "tailwindcss"` line:
+
+```css
+@source "../node_modules/@jocoding-ax-partners/react/dist";
+```
+
+Adjust the leading `../` segments to the actual relative path from your CSS
+file to `node_modules`. See [`packages/react/README.md`](./packages/react/README.md)
+for details.
