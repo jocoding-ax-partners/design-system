@@ -38,11 +38,14 @@ function Palette({ theme }: { theme: "light" | "dark" }) {
           <div
             key={b}
             style={{
-              width: 96,
-              height: 48,
+              width: 160,
+              height: 96,
+              background: "var(--bg-surface)",
               border: `1px solid var(--border-${b})`,
               color: "var(--fg-muted)",
               fontSize: 12,
+              padding: 8,
+              boxSizing: "border-box",
             }}
           >
             border-{b}

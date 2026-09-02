@@ -3,9 +3,10 @@
 A CSS-only design system built on [HeroUI v3](https://v3.heroui.com), published as
 [`@jocoding-ax-partners/design-system`](./packages/heroui).
 
-The system ships no React components. Consumers import components from `@heroui/react`
-and add a single stylesheet, which restyles those components and registers the design
-tokens. Everything in this repo is CSS.
+Most consumers import components from `@heroui/react` and add a single stylesheet, which
+restyles those components and registers the design tokens — everything else in this repo
+is CSS. `packages/react` is the one exception: eleven React components (plus a `cn`
+helper) promoted verbatim from axhub-frontend that don't have a HeroUI equivalent.
 
 ## Packages
 
@@ -13,6 +14,7 @@ tokens. Everything in this repo is CSS.
 | ------------------- | ------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------- |
 | `packages/tailwind` | `@jocoding-ax-partners/tailwind`       | no        | Design tokens — colors, radius, spacing, typography — plus shared Tailwind utilities                     |
 | `packages/heroui`   | `@jocoding-ax-partners/design-system`  | npm       | HeroUI component overrides. Inlines `tailwind` at build time and is the only artifact consumers install |
+| `packages/react`    | `@jocoding-ax-partners/react`          | no        | React components with no HeroUI equivalent — `CodeBlock`, `ConfirmDialog`, `HoverReadout`, `Input`, `List`, `Pagination`, `SearchBox`, `SidePanel`, `Skeleton`, `StatCard`, `StatusDot` — plus a `cn` helper |
 | `apps/storybook`    | —                                      | no        | Storybook used to develop and review the overrides against real HeroUI components                       |
 
 `apps/storybook/src/stories` mirrors upstream HeroUI stories; `stories-extended` covers
