@@ -1,3 +1,6 @@
+import reactHooks from "eslint-plugin-react-hooks";
+import { defineConfig } from "eslint/config";
+
 import baseConfig from "@nijesmik/eslint-config";
 
 // This package's entire purpose is to hold components promoted verbatim from
@@ -9,8 +12,19 @@ import baseConfig from "@nijesmik/eslint-config";
 // for destructured objects (e.g. function-parameter patterns) so both are
 // unsorted, not just one — narrowed to exactly this rule, not the whole
 // perfectionist plugin.
-export default [
+//
+// react-hooks is registered here (mirroring apps/storybook/eslint.config.js)
+// because this package is now the canonical home for eleven promoted React
+// components and, before this, nothing checked their hooks usage at all. It
+// also makes ConfirmDialog.tsx's verbatim `// eslint-disable-next-line
+// react-hooks/refs` comment resolve against a real rule instead of erroring
+// as an unknown rule name.
+export default defineConfig([
   ...baseConfig,
+  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [reactHooks.configs.flat.recommended],
+  },
   {
     rules: {
       "perfectionist/sort-objects": [
@@ -26,4 +40,4 @@ export default [
       ],
     },
   },
-];
+]);
