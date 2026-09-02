@@ -1,0 +1,55 @@
+/*
+ * Semantic typography utilities, carried up from axhub-frontend. Each one binds a
+ * type-scale token to a weight and a foreground role, so callers name the job
+ * ("this is a card title") rather than the measurements.
+ *
+ * Written against the scale tokens rather than literal pixel values on purpose —
+ * that is what lets the density scope reach these utilities.
+ */
+
+@utility t-page-title {
+  @apply text-heading-04 font-bold;
+
+  color: var(--fg-default);
+}
+
+@utility t-section-title {
+  @apply text-heading-05 font-semibold;
+
+  color: var(--fg-default);
+}
+
+@utility t-card-title {
+  @apply text-body-01 font-semibold;
+
+  color: var(--fg-default);
+}
+
+@utility t-body {
+  @apply text-body-02 font-normal;
+
+  color: var(--fg-default);
+}
+
+@utility t-body-strong {
+  @apply text-body-02 font-semibold;
+
+  color: var(--fg-default);
+}
+
+@utility t-small {
+  @apply text-body-03 font-normal;
+
+  color: var(--fg-secondary);
+}
+
+/* Inherits its color — button surfaces set their own foreground. */
+@utility t-button {
+  @apply text-body-03 font-semibold;
+}
+
+@utility t-caption {
+  @apply text-caption-01 font-normal;
+
+  color: var(--fg-muted);
+}
