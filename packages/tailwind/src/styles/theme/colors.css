@@ -23,6 +23,14 @@
   --color-gray-900: oklch(20.5% 0.008 274.5deg); /* #16171b */
   --color-gray-950: oklch(13% 0.005 285.7deg); /* #070709 */
 
+  /* Primary — canonical ramp from axhub-frontend globals.css. `--accent` above is a
+     separate, package-local name; whether the two get unified is a pending decision
+     out of scope here (see the -strong/-syntax fixes for the same pattern). */
+  --primary-base: #2d64fa;
+  --primary-bright: #5985fb;
+  --primary-dark: #4b7bff;
+  --primary-fg: #fff;
+
   /* Semantic Colors */
   --accent: var(--color-accent-600);
   --danger: #ef1026;
@@ -53,6 +61,14 @@
     --info-soft: color-mix(in oklab, var(--info) 15%, transparent);
     --info-soft-hover: color-mix(in oklab, var(--info) 20%, transparent);
     --info-soft-foreground: color-mix(in oklab, var(--info) 70%, var(--foreground) 30%);
+
+    /* Primary — canonical light values from axhub-frontend globals.css. */
+    --primary: var(--primary-base);
+    --primary-hover: var(--primary-bright);
+    --primary-soft: #eaf0fe;
+    --primary-soft-hover: #d6e2fd;
+    --primary-grad-from: var(--primary-soft);
+    --primary-grad-to: var(--primary-soft-hover);
   }
 
   .dark,
@@ -75,6 +91,14 @@
     --info-soft: color-mix(in oklab, var(--info) 12%, transparent);
     --info-soft-hover: color-mix(in oklab, var(--info) 16%, transparent);
     --info-soft-foreground: color-mix(in oklab, var(--info) 80%, var(--foreground) 30%);
+
+    /* Primary — canonical dark values from axhub-frontend globals.css. */
+    --primary: var(--primary-dark);
+    --primary-hover: var(--primary-base);
+    --primary-soft: rgb(75 123 255 / 40%);
+    --primary-soft-hover: rgb(75 123 255 / 55%);
+    --primary-grad-from: var(--primary-bright);
+    --primary-grad-to: var(--primary-dark);
   }
 }
 
@@ -93,4 +117,13 @@
   --color-warning-strong: var(--warning-strong);
   --color-danger-strong: var(--danger-strong);
   --color-info-strong: var(--info-strong);
+
+  /* Primary — must stay `inline` (not baked) so the `.dark` redefinitions above cascade. */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-hover: var(--primary-soft-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-grad-from: var(--primary-grad-from);
+  --color-primary-grad-to: var(--primary-grad-to);
 }

@@ -208,3 +208,37 @@ test("syntax highlight tokens carry the pinned dark values", () => {
   assert.match(darkBlock, /--syntax-function:\s*#93c5fd\b/);
   assert.match(darkBlock, /--syntax-number:\s*#fcd34d\b/);
 });
+
+// `List` and `SidePanel` read `var(--primary)` (bg-[var(--primary)] /
+// bg-[color:var(--primary)]) — no stylesheet declared it before this fix, so the
+// active-item bar and resize handle rendered with no color for every consumer.
+test("primary ramp literals ship theme-invariant", () => {
+  assert.match(css, /--primary-base:\s*#2d64fa\b/);
+  assert.match(css, /--primary-bright:\s*#5985fb\b/);
+  assert.match(css, /--primary-dark:\s*#4b7bff\b/);
+});
+
+test("primary semantic tokens carry the pinned light values", () => {
+  assert.match(css, /--primary:\s*var\(--primary-base\)/);
+  assert.match(css, /--primary-hover:\s*var\(--primary-bright\)/);
+  assert.match(css, /--primary-soft:\s*#eaf0fe\b/);
+  assert.match(css, /--primary-soft-hover:\s*#d6e2fd\b/);
+});
+
+test("primary semantic tokens carry the pinned dark values", () => {
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--primary:\s*var\(--primary-dark\)/);
+  assert.match(darkBlock, /--primary-hover:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--primary-soft:\s*rgb\(75 123 255 \/ 40%\)/);
+  assert.match(darkBlock, /--primary-soft-hover:\s*rgb\(75 123 255 \/ 55%\)/);
+});
+
+test("primary tokens are mapped into the --color-* namespace", () => {
+  assert.match(css, /--color-primary:\s*var\(--primary\)/);
+  assert.match(css, /--color-primary-hover:\s*var\(--primary-hover\)/);
+  assert.match(css, /--color-primary-soft:\s*var\(--primary-soft\)/);
+  assert.match(css, /--color-primary-soft-hover:\s*var\(--primary-soft-hover\)/);
+  assert.match(css, /--color-primary-fg:\s*var\(--primary-fg\)/);
+  assert.match(css, /--color-primary-grad-from:\s*var\(--primary-grad-from\)/);
+  assert.match(css, /--color-primary-grad-to:\s*var\(--primary-grad-to\)/);
+});
