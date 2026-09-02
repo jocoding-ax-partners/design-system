@@ -1,6 +1,7 @@
 @import "./theme/index.css";
 @import "./variants.css";
 @import "./utilities/index.css";
+@import "./density.css";
 
 /*
  * Theme overrides for HeroUI defaults. The values live in `utilities/theme.css` so

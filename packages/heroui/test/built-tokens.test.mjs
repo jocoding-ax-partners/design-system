@@ -124,3 +124,40 @@ test("px-container ramps across all five breakpoints", () => {
     assert.ok(css.includes(bp), `missing breakpoint ${bp}`);
   }
 });
+
+test("compact density redefines the type and padding axes", () => {
+  const i = css.indexOf('[data-density="compact"]');
+  assert.ok(i !== -1, 'missing [data-density="compact"] scope');
+  const block = css.slice(i, i + 2000);
+  assert.match(block, /--text-body-03:\s*0\.8125rem\b/); // 13px
+  assert.match(block, /--text-caption-01:\s*0\.7188rem\b/); // 11.5px, rounded to 4-decimal precision
+  assert.match(block, /--spacing-list-box-item:/);
+  assert.match(block, /--container-pad-sm:/);
+});
+
+// `.button--sm` is defined in the heroui package (packages/heroui/src/styles/button.css),
+// not in the tailwind package's density.css — the BEM class selector `.button--sm` only
+// passes stylelint in the package whose config extends the BEM allowance. The compact
+// restatement lives right next to it, inside the same `@layer components` block.
+test("compact density restates the small-button label next to where .button--sm is defined", () => {
+  const i = css.indexOf('[data-density="compact"] .button--sm');
+  assert.ok(i !== -1, 'missing [data-density="compact"] .button--sm rule');
+  const block = css.slice(i, i + 300);
+  assert.match(block, /font-size:\s*var\(--text-caption-01\)/);
+  assert.match(block, /letter-spacing:\s*var\(--text-caption-01--letter-spacing\)/);
+});
+
+test("compact density does NOT shrink button or input heights", () => {
+  const i = css.indexOf('[data-density="compact"]');
+  const block = css.slice(i, i + 2000);
+  assert.doesNotMatch(block, /--spacing-button-(sm|md|lg):/);
+  assert.doesNotMatch(block, /--spacing-input:/);
+});
+
+// Guards the top-level constraint: adding a density axis must not move a single
+// pixel at the default density. `text-xs` has zero letter-spacing and
+// `caption-01` has -0.01em, so swapping it in `button-size-sm` would narrow the
+// small-button labels of every consumer that never opts into compact.
+test("the default small-button label is untouched by the density work", () => {
+  assert.match(css, /@utility button-size-sm[\s\S]{0,200}?text-xs/);
+});

@@ -1,0 +1,31 @@
+/*
+ * Compact density. Opt in with `<html data-density="compact">`.
+ *
+ * The measurements come from apex-expert's backoffice, which hand-built a dense
+ * exam-review UI before this axis existed. Comparing it against the defaults
+ * showed the delta is in TYPE and PADDING, not in control heights — its buttons
+ * (40/32px), inputs (40px) and radii (10px) already matched the defaults exactly.
+ * So this scope leaves control heights alone: 40px is already the floor we are
+ * willing to take a touch target down to.
+ *
+ * This works because the scale tokens are declared with `@theme` (not
+ * `@theme inline`), so utilities emit `var(--token)` and a scoped redefinition
+ * cascades into every rule that reads them.
+ */
+[data-density="compact"] {
+  /* Type — one step down across the reading sizes. */
+  --text-body-02: 0.9375rem; /* 16px -> 15px */
+  --text-body-03: 0.8125rem; /* 14px -> 13px, matches apex table cells */
+  --text-caption-01: 0.7188rem; /* 12px -> 11.5px (0.71875rem rounded to the config's 4-decimal precision; 0.0008px off) */
+
+  /* Density of repeated rows is the main lever in dense screens. */
+  --spacing-list-box-item: calc(var(--spacing) * 8); /* 36px -> 32px */
+  --spacing-field: calc(var(--spacing) * 1.5); /* 8px -> 6px */
+
+  /* Container padding, one step in from the default ramp. */
+  --container-pad-sm: 16px;
+  --container-pad-md: 24px;
+  --container-pad-lg: 32px;
+  --container-pad-xl: 36px;
+  --container-pad-2xl: 40px;
+}
