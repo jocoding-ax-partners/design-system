@@ -3,7 +3,6 @@ import { Skeleton } from "@heroui/react";
 /** SkeletonRow — table 한 행 padding 안 자연스럽게 채우는 헬퍼 (table 밖 flex layout 용) */
 export function SkeletonRow({
   widths = [120, 80, 200, 40],
-  // eslint-disable-next-line perfectionist/sort-objects -- verbatim from axhub-frontend
   className,
 }: {
   widths?: Array<number | string>;

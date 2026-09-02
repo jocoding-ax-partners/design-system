@@ -41,7 +41,6 @@ interface StatusDotProps {
  * 접근성 이름을 제공하므로(예: "승인", "심사대기") dot 은 순수 장식이고, 스크린리더가
  * 색만 있는 dot 을 별도로 읽어줄 필요가 없다(오히려 중복 노출을 피한다).
  */
-// eslint-disable-next-line perfectionist/sort-objects -- verbatim from axhub-frontend
 export function StatusDot({ tone, children, className, style }: StatusDotProps) {
   const key = tone ?? "default";
   return (

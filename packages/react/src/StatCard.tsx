@@ -7,7 +7,6 @@ import { Card } from "@heroui/react";
 export function StatCard({
   label,
   value,
-  // eslint-disable-next-line perfectionist/sort-objects -- verbatim from axhub-frontend
   sub,
 }: {
   label: string;
