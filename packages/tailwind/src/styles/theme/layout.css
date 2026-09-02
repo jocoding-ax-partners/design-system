@@ -1,0 +1,12 @@
+/*
+ * Responsive container padding. Only the padding ramp lives here — sidebar width,
+ * header height and body gaps stay in the consuming app, because they describe
+ * that app's chrome rather than the design kit.
+ */
+:root {
+  --container-pad-sm: 20px;
+  --container-pad-md: 32px;
+  --container-pad-lg: 40px;
+  --container-pad-xl: 48px;
+  --container-pad-2xl: 56px;
+}

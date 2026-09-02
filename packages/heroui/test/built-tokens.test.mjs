@@ -49,3 +49,24 @@ test("dark inverts the surface hierarchy — bg-surface floats above bg-content"
   assert.match(darkBlock, /--bg-surface:\s*#25272d\b/);
   assert.match(darkBlock, /--bg-content:\s*#1d1e23\b/);
 });
+
+test("opacity ladders ship for both gray and white, 10 steps each", () => {
+  const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  for (const s of steps) {
+    assert.match(css, new RegExp(`\\-\\-opacity\\-gray\\-${s}:`), `missing --opacity-gray-${s}`);
+    assert.match(css, new RegExp(`\\-\\-opacity\\-white\\-${s}:`), `missing --opacity-white-${s}`);
+  }
+});
+
+test("responsive container padding tokens ship", () => {
+  for (const t of ["sm", "md", "lg", "xl", "2xl"]) {
+    assert.match(css, new RegExp(`\\-\\-container\\-pad\\-${t}:`), `missing --container-pad-${t}`);
+  }
+});
+
+test("dark surface step tokens ship with their kit values", () => {
+  assert.match(css, /--dark-surface:\s*#25272d/);
+  assert.match(css, /--dark-content:\s*#1d1e23/);
+  assert.match(css, /--dark-muted:\s*#16171b/);
+  assert.match(css, /--dark-emphasis:\s*#3f3f46/);
+});
