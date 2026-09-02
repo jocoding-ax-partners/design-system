@@ -86,4 +86,11 @@
   --color-info-soft: var(--info-soft);
   --color-info-soft-hover: var(--info-soft-hover);
   --color-info-soft-foreground: var(--info-soft-foreground);
+
+  /* `-strong` is the darker step used for text/icons on light surfaces; must
+     stay `inline` (not baked) so the `.dark` redefinitions above cascade. */
+  --color-success-strong: var(--success-strong);
+  --color-warning-strong: var(--warning-strong);
+  --color-danger-strong: var(--danger-strong);
+  --color-info-strong: var(--info-strong);
 }

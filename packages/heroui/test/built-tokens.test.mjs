@@ -14,6 +14,32 @@ test("status colors ship a -strong step for text on light surfaces", () => {
   assert.match(css, /--info-strong:\s*#0f5fcc\b/);
 });
 
+// `packages/heroui`'s build is postcss-import only (no var() resolution) — the
+// `--color-*-strong` mappings must show up verbatim as `var(--*-strong)`, and
+// the underlying `--*-strong` custom properties must carry the exact light and
+// dark literal values (never resolve them through `var()`, see note above).
+test("status -strong tokens are mapped into the --color-* namespace", () => {
+  assert.match(css, /--color-success-strong:\s*var\(--success-strong\)/);
+  assert.match(css, /--color-warning-strong:\s*var\(--warning-strong\)/);
+  assert.match(css, /--color-danger-strong:\s*var\(--danger-strong\)/);
+  assert.match(css, /--color-info-strong:\s*var\(--info-strong\)/);
+});
+
+test("status -strong tokens carry the pinned light values", () => {
+  assert.match(css, /--warning-strong:\s*#f4ab00\b/);
+  assert.match(css, /--info-strong:\s*#0f5fcc\b/);
+  assert.match(css, /--danger-strong:\s*var\(--danger\)/);
+  assert.match(css, /--success-strong:\s*var\(--success\)/);
+});
+
+test("status -strong tokens carry the pinned dark values", () => {
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--success-strong:\s*#4dd488\b/);
+  assert.match(darkBlock, /--warning-strong:\s*#f6c205\b/);
+  assert.match(darkBlock, /--danger-strong:\s*#f5475c\b/);
+  assert.match(darkBlock, /--info-strong:\s*#3d8df7\b/);
+});
+
 test("dark mode redefines status base colors, not just the soft steps", () => {
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
   assert.match(darkBlock, /--success:\s*#3ddb78\b/);
