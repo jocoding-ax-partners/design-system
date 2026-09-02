@@ -51,18 +51,25 @@ their own markup.
 
 ## Releasing
 
-Uses [changesets](https://github.com/changesets/changesets). See
-[`CLAUDE.md`](./CLAUDE.md) for the full checklist, including the tag conventions.
+Releases run through GitHub Actions. Write a changeset with your change and the
+rest is automatic:
 
 ```bash
 pnpm changeset            # describe the change (in English — it ships to npm)
-pnpm version-packages     # bump versions, update CHANGELOG
-# commit, then tag — annotated, or --follow-tags will silently skip it:
-#   git tag -a '@jocoding-ax-partners/design-system@<version>' -m '@jocoding-ax-partners/design-system@<version>'
-git push --follow-tags
-git ls-remote --tags origin   # confirm the tag actually reached the remote
-pnpm release              # build + publish
 ```
+
+Commit the generated `.changeset/*.md` with your PR. When the PR merges to
+`main`, the Release workflow opens a "Version Packages" PR that bumps versions
+and updates changelogs. Merging *that* PR publishes to npm and pushes annotated
+tags.
+
+**One-time setup:** the workflow needs an `NPM_TOKEN` repository secret with
+publish rights on the `@jocoding-ax-partners` scope
+(Settings → Secrets and variables → Actions).
+
+The manual path is still available if the workflow is down — see
+[`CLAUDE.md`](./CLAUDE.md) for the full checklist, including the annotated-tag
+requirement that `--follow-tags` silently skips.
 
 ## Consuming the system
 

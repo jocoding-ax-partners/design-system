@@ -6,6 +6,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "lint": "eslint .",
     "check-types": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "lint-staged": "lint-staged"

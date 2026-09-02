@@ -26,6 +26,7 @@ export default defineConfig([
     extends: [reactHooks.configs.flat.recommended],
   },
   {
+    files: ["**/*.{ts,tsx}"],
     rules: {
       "perfectionist/sort-objects": [
         "error",
