@@ -1,0 +1,90 @@
+/*
+ * Semantic surface, foreground and border tokens, carried up from axhub-frontend
+ * where they were the de-facto canon.
+ *
+ * These are deliberately NOT in `@theme` — they are plain custom properties so a
+ * scope selector (dark mode, density) can redefine them and have the change
+ * cascade into every rule that reads them.
+ */
+
+:root {
+  /* Dark-background steps. Same value in both themes — they name a position in
+     the dark ramp, for surfaces that must stay dark regardless of the page theme
+     (app icon plates, code chrome). Sourced from the ax-partners Figma kit,
+     node 6214:3381. */
+  --dark-surface: #25272d;
+  --dark-content: #1d1e23;
+  --dark-muted: #16171b;
+  --dark-emphasis: #3f3f46;
+
+  /* Background */
+  --bg-surface: var(--color-gray-50);
+  --bg-content: #fff;
+  --bg-muted: var(--color-gray-100);
+  --bg-emphasis: var(--color-gray-200);
+  --bg-inverse: var(--color-gray-900);
+
+  /* Foreground */
+  --fg-default: var(--color-gray-900);
+  --fg-secondary: var(--color-gray-700);
+  --fg-muted: var(--color-gray-500);
+  --fg-subtle: var(--color-gray-400);
+  --fg-disabled: var(--color-gray-300);
+  --fg-inverse: #fff;
+
+  /* Border */
+  --border-default: var(--color-gray-200);
+  --border-strong: var(--color-gray-300);
+  --border-interactive: var(--color-gray-200);
+  --border-divider: rgb(82 82 91 / 8%);
+}
+
+.dark,
+[data-theme="dark"] {
+  /* The hierarchy inverts: bg-surface (sidebar, cards) sits ABOVE bg-content
+     (the canvas) in dark, so it is the lighter of the two.
+     Literal hex, not `var(--dark-*)`: this build runs postcss-import only, so a
+     `var()` reference survives into the artifact unresolved and cannot be
+     asserted on. axhub-frontend writes the literals here too, and the `--dark-*`
+     steps above stay as their own tokens for callers that need to name the dark
+     ramp explicitly. */
+  --bg-surface: #25272d;
+  --bg-content: #1d1e23;
+  --bg-muted: #3f3f46;
+  --bg-emphasis: #3f3f46;
+  --bg-inverse: #fff;
+  --fg-default: #fff;
+  --fg-secondary: #e4e5e8;
+  --fg-muted: #d1d3d8;
+  --fg-subtle: #9ca0ab;
+  --fg-disabled: var(--color-gray-500);
+  --fg-inverse: #16171b;
+  --border-default: rgb(255 255 255 / 10%);
+  --border-strong: rgb(255 255 255 / 16%);
+
+  /* Deliberately one step brighter than --border-default so outline buttons stay
+     visible on dark surfaces. */
+  --border-interactive: var(--color-gray-500);
+  --border-divider: rgb(255 255 255 / 8%);
+}
+
+/* Expose the semantic tokens as Tailwind utilities: bg-surface, text-default,
+   border-default and so on. `@theme inline` is correct here — these map an
+   existing custom property onto a utility name rather than declaring a value. */
+@theme inline {
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-content: var(--bg-content);
+  --color-bg-muted: var(--bg-muted);
+  --color-bg-emphasis: var(--bg-emphasis);
+  --color-bg-inverse: var(--bg-inverse);
+  --color-default: var(--fg-default);
+  --color-secondary: var(--fg-secondary);
+  --color-muted: var(--fg-muted);
+  --color-subtle: var(--fg-subtle);
+  --color-disabled: var(--fg-disabled);
+  --color-inverse: var(--fg-inverse);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-border-interactive: var(--border-interactive);
+  --color-border-divider: var(--border-divider);
+}

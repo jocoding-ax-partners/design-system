@@ -21,3 +21,31 @@ test("dark mode redefines status base colors, not just the soft steps", () => {
   assert.match(darkBlock, /--danger:\s*#ff4759\b/);
   assert.match(darkBlock, /--info:\s*#4d94fb\b/);
 });
+
+test("semantic surface, foreground and border tokens ship", () => {
+  for (const t of [
+    "--bg-surface",
+    "--bg-content",
+    "--bg-muted",
+    "--bg-emphasis",
+    "--bg-inverse",
+    "--fg-default",
+    "--fg-secondary",
+    "--fg-muted",
+    "--fg-subtle",
+    "--fg-disabled",
+    "--fg-inverse",
+    "--border-default",
+    "--border-strong",
+    "--border-interactive",
+    "--border-divider",
+  ]) {
+    assert.match(css, new RegExp(`${t.replace(/-/g, "\\-")}:`), `missing ${t}`);
+  }
+});
+
+test("dark inverts the surface hierarchy — bg-surface floats above bg-content", () => {
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--bg-surface:\s*#25272d\b/);
+  assert.match(darkBlock, /--bg-content:\s*#1d1e23\b/);
+});
