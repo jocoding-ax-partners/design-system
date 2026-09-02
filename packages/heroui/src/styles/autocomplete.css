@@ -34,8 +34,10 @@
 
   .autocomplete--secondary .autocomplete__trigger {
     &[data-pressed="true"] {
-      /* Same secondary open state as .select--secondary .select__trigger. */
-      background-color: var(--color-default);
+      /* Same secondary open state as .select--secondary .select__trigger.
+         HeroUI neutral surface. Used to read `--color-default`, but that name
+         was shadowed by the package's own foreground-color mapping. */
+      background-color: var(--default);
     }
   }
 

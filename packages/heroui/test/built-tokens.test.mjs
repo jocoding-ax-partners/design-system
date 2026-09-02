@@ -242,3 +242,57 @@ test("primary tokens are mapped into the --color-* namespace", () => {
   assert.match(css, /--color-primary-grad-from:\s*var\(--primary-grad-from\)/);
   assert.match(css, /--color-primary-grad-to:\s*var\(--primary-grad-to\)/);
 });
+
+// Surface, foreground and border tokens must be scoped to Tailwind's
+// role-specific theme namespaces (`--background-color-*`, `--text-color-*`,
+// `--border-color-*`), matching the axhub-frontend canon (globals.css
+// L356-376) — not the generic `--color-*` namespace, which collapses
+// bg/text/border into one shared utility name and (for `--color-default`)
+// shadowed HeroUI's own neutral-surface token. This build is postcss-import
+// only — `var()` is never resolved — so we assert the literal `var(--*)`
+// string as written in source.
+test("surface, foreground and border tokens are mapped into their role-scoped Tailwind namespaces", () => {
+  // Background — only `bg-*`
+  assert.match(css, /--background-color-surface:\s*var\(--bg-surface\)/);
+  assert.match(css, /--background-color-content:\s*var\(--bg-content\)/);
+  assert.match(css, /--background-color-muted:\s*var\(--bg-muted\)/);
+  assert.match(css, /--background-color-emphasis:\s*var\(--bg-emphasis\)/);
+  assert.match(css, /--background-color-inverse:\s*var\(--bg-inverse\)/);
+
+  // Text — only `text-*`
+  assert.match(css, /--text-color-default:\s*var\(--fg-default\)/);
+  assert.match(css, /--text-color-secondary:\s*var\(--fg-secondary\)/);
+  assert.match(css, /--text-color-muted:\s*var\(--fg-muted\)/);
+  assert.match(css, /--text-color-subtle:\s*var\(--fg-subtle\)/);
+  assert.match(css, /--text-color-disabled:\s*var\(--fg-disabled\)/);
+  assert.match(css, /--text-color-inverse:\s*var\(--fg-inverse\)/);
+  assert.match(css, /--text-color-on-primary:\s*var\(--fg-on-primary\)/);
+
+  // Border — only `border-*`
+  assert.match(css, /--border-color-default:\s*var\(--border-default\)/);
+  assert.match(css, /--border-color-strong:\s*var\(--border-strong\)/);
+  assert.match(css, /--border-color-interactive:\s*var\(--border-interactive\)/);
+  assert.match(css, /--border-color-divider:\s*var\(--border-divider\)/);
+});
+
+// `--fg-on-primary` must resolve to the primary-fg token shipped in
+// `eed00db` so `text-color-on-primary` has a real value to point at.
+test("--fg-on-primary aliases --primary-fg", () => {
+  assert.match(css, /--fg-on-primary:\s*var\(--primary-fg\)/);
+});
+
+// Regression guard: the old generic `--color-*` names for these tokens must
+// not reappear in the artifact. Their reappearance would mean the namespace
+// fix regressed — the `bg-bg-*` utility naming and the generic
+// `--color-default` shadowing HeroUI's own neutral surface would be back.
+test("the old generic --color-* surface/border names are gone", () => {
+  assert.doesNotMatch(css, /--color-bg-surface:/);
+  assert.doesNotMatch(css, /--color-bg-content:/);
+  assert.doesNotMatch(css, /--color-bg-muted:/);
+  assert.doesNotMatch(css, /--color-bg-emphasis:/);
+  assert.doesNotMatch(css, /--color-bg-inverse:/);
+  assert.doesNotMatch(css, /--color-border-default:/);
+  assert.doesNotMatch(css, /--color-border-strong:/);
+  assert.doesNotMatch(css, /--color-border-interactive:/);
+  assert.doesNotMatch(css, /--color-border-divider:/);
+});
