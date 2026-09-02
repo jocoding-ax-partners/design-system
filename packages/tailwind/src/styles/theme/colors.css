@@ -57,6 +57,21 @@
 
   .dark,
   [data-theme="dark"] {
+    /* Status base colors must be re-lightened for dark surfaces. Inheriting the
+       light values leaves #1fa24e-class greens unreadable on a #16171b canvas —
+       the exact regression AxHub had to patch locally. Values carried from
+       axhub-frontend, which is the reference implementation. */
+    --success: #3ddb78;
+    --success-strong: #4dd488;
+    --warning: #ffe246;
+    --warning-strong: #f6c205;
+    --danger: #ff4759;
+    --danger-strong: #f5475c;
+    --info: #4d94fb;
+    --info-strong: #3d8df7;
+    --success-soft: rgb(39 201 97 / 18%);
+    --warning-soft: rgb(246 194 5 / 20%);
+    --danger-soft: rgb(239 16 38 / 22%);
     --info-soft: color-mix(in oklab, var(--info) 12%, transparent);
     --info-soft-hover: color-mix(in oklab, var(--info) 16%, transparent);
     --info-soft-foreground: color-mix(in oklab, var(--info) 80%, var(--foreground) 30%);

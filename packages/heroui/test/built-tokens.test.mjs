@@ -13,3 +13,11 @@ test("status colors ship a -strong step for text on light surfaces", () => {
   assert.match(css, /--success-strong:/);
   assert.match(css, /--info-strong:\s*#0f5fcc\b/);
 });
+
+test("dark mode redefines status base colors, not just the soft steps", () => {
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--success:\s*#3ddb78\b/);
+  assert.match(darkBlock, /--warning:\s*#ffe246\b/);
+  assert.match(darkBlock, /--danger:\s*#ff4759\b/);
+  assert.match(darkBlock, /--info:\s*#4d94fb\b/);
+});
