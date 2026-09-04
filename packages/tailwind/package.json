@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     "./styles": {
       "types": "./src/styles/index.d.ts",
@@ -24,8 +26,8 @@
     ]
   },
   "devDependencies": {
-    "@nijesmik/stylelint-config": "^0.1.0",
+    "@nijesmik/stylelint-config": "^0.1.1",
     "stylelint": "^16.26.1",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.3.3"
   }
 }
