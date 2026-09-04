@@ -23,6 +23,14 @@
   --color-gray-900: oklch(20.5% 0.008 274.5deg); /* #16171b */
   --color-gray-950: oklch(13% 0.005 285.7deg); /* #070709 */
 
+  /* Primary — canonical ramp from axhub-frontend globals.css. `--accent` above is a
+     separate, package-local name; whether the two get unified is a pending decision
+     out of scope here (see the -strong/-syntax fixes for the same pattern). */
+  --primary-base: #2d64fa;
+  --primary-bright: #5985fb;
+  --primary-dark: #4b7bff;
+  --primary-fg: #fff;
+
   /* Semantic Colors */
   --accent: var(--color-accent-600);
   --danger: #ef1026;
@@ -31,6 +39,14 @@
   --warning-strong: #f4ab00;
   --info: #1571f3;
   --info-foreground: var(--snow);
+
+  /* `-strong` is the darker step used for text and icons on light surfaces.
+     `--warning-strong` already existed; the others are added so every status
+     color has the same two-step shape. `danger` and `success` are already dark
+     enough to double as their own strong step. */
+  --danger-strong: var(--danger);
+  --success-strong: var(--success);
+  --info-strong: #0f5fcc;
 }
 
 /*
@@ -45,13 +61,44 @@
     --info-soft: color-mix(in oklab, var(--info) 15%, transparent);
     --info-soft-hover: color-mix(in oklab, var(--info) 20%, transparent);
     --info-soft-foreground: color-mix(in oklab, var(--info) 70%, var(--foreground) 30%);
+
+    /* Primary — canonical light values from axhub-frontend globals.css. */
+    --primary: var(--primary-base);
+    --primary-hover: var(--primary-bright);
+    --primary-soft: #eaf0fe;
+    --primary-soft-hover: #d6e2fd;
+    --primary-grad-from: var(--primary-soft);
+    --primary-grad-to: var(--primary-soft-hover);
   }
 
   .dark,
   [data-theme="dark"] {
+    /* Status base colors must be re-lightened for dark surfaces. Inheriting the
+       light values leaves #1fa24e-class greens unreadable on a #16171b canvas —
+       the exact regression AxHub had to patch locally. Values carried from
+       axhub-frontend, which is the reference implementation. */
+    --success: #3ddb78;
+    --success-strong: #4dd488;
+    --warning: #ffe246;
+    --warning-strong: #f6c205;
+    --danger: #ff4759;
+    --danger-strong: #f5475c;
+    --info: #4d94fb;
+    --info-strong: #3d8df7;
+    --success-soft: rgb(39 201 97 / 18%);
+    --warning-soft: rgb(246 194 5 / 20%);
+    --danger-soft: rgb(239 16 38 / 22%);
     --info-soft: color-mix(in oklab, var(--info) 12%, transparent);
     --info-soft-hover: color-mix(in oklab, var(--info) 16%, transparent);
     --info-soft-foreground: color-mix(in oklab, var(--info) 80%, var(--foreground) 30%);
+
+    /* Primary — canonical dark values from axhub-frontend globals.css. */
+    --primary: var(--primary-dark);
+    --primary-hover: var(--primary-base);
+    --primary-soft: rgb(75 123 255 / 40%);
+    --primary-soft-hover: rgb(75 123 255 / 55%);
+    --primary-grad-from: var(--primary-bright);
+    --primary-grad-to: var(--primary-dark);
   }
 }
 
@@ -63,4 +110,20 @@
   --color-info-soft: var(--info-soft);
   --color-info-soft-hover: var(--info-soft-hover);
   --color-info-soft-foreground: var(--info-soft-foreground);
+
+  /* `-strong` is the darker step used for text/icons on light surfaces; must
+     stay `inline` (not baked) so the `.dark` redefinitions above cascade. */
+  --color-success-strong: var(--success-strong);
+  --color-warning-strong: var(--warning-strong);
+  --color-danger-strong: var(--danger-strong);
+  --color-info-strong: var(--info-strong);
+
+  /* Primary — must stay `inline` (not baked) so the `.dark` redefinitions above cascade. */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-hover: var(--primary-soft-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-grad-from: var(--primary-grad-from);
+  --color-primary-grad-to: var(--primary-grad-to);
 }

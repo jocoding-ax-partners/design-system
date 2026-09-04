@@ -1,0 +1,65 @@
+{
+  "name": "@jocoding-ax-partners/react",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint-staged": "lint-staged"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "prism-react-renderer": "^2.4.1",
+    "tailwind-merge": "^3.6.0"
+  },
+  "peerDependencies": {
+    "@heroui/react": "catalog:",
+    "@jocoding-ax-partners/design-system": "workspace:^",
+    "@phosphor-icons/react": "^2.1.10",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@heroui/react": "catalog:",
+    "@jocoding-ax-partners/design-system": "workspace:^",
+    "@phosphor-icons/react": "^2.1.10",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "jsdom": "^26.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.18"
+  }
+}

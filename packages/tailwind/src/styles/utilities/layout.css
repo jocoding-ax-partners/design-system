@@ -1,0 +1,28 @@
+/*
+ * Responsive horizontal container padding. Full-bleed sections opt out by simply
+ * not using this class — it is applied per element, never inherited.
+ */
+@utility px-container {
+  padding-left: var(--container-pad-sm);
+  padding-right: var(--container-pad-sm);
+
+  @media (width >= 768px) {
+    padding-left: var(--container-pad-md);
+    padding-right: var(--container-pad-md);
+  }
+
+  @media (width >= 1024px) {
+    padding-left: var(--container-pad-lg);
+    padding-right: var(--container-pad-lg);
+  }
+
+  @media (width >= 1280px) {
+    padding-left: var(--container-pad-xl);
+    padding-right: var(--container-pad-xl);
+  }
+
+  @media (width >= 1536px) {
+    padding-left: var(--container-pad-2xl);
+    padding-right: var(--container-pad-2xl);
+  }
+}

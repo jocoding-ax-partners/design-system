@@ -1,0 +1,30 @@
+/*
+ * Translucent overlay ladders from the ax-partners design kit — hover states,
+ * scrims, backdrops. Base is #18181b for the gray ramp and #ffffff for the white
+ * one; the alpha pattern is 3 / 8 / 16 / 28 / 36 / 48 / 60 / 70 / 80 / 90 percent.
+ *
+ * These are theme-independent by design: pick the ramp that contrasts with the
+ * surface you are painting on, not the one that matches the page theme.
+ */
+:root {
+  --opacity-gray-50: rgb(24 24 27 / 3%);
+  --opacity-gray-100: rgb(24 24 27 / 8%);
+  --opacity-gray-200: rgb(24 24 27 / 16%);
+  --opacity-gray-300: rgb(24 24 27 / 28%);
+  --opacity-gray-400: rgb(24 24 27 / 36%);
+  --opacity-gray-500: rgb(24 24 27 / 48%);
+  --opacity-gray-600: rgb(24 24 27 / 60%);
+  --opacity-gray-700: rgb(24 24 27 / 70%);
+  --opacity-gray-800: rgb(24 24 27 / 80%);
+  --opacity-gray-900: rgb(24 24 27 / 90%);
+  --opacity-white-50: rgb(255 255 255 / 3%);
+  --opacity-white-100: rgb(255 255 255 / 8%);
+  --opacity-white-200: rgb(255 255 255 / 16%);
+  --opacity-white-300: rgb(255 255 255 / 28%);
+  --opacity-white-400: rgb(255 255 255 / 36%);
+  --opacity-white-500: rgb(255 255 255 / 48%);
+  --opacity-white-600: rgb(255 255 255 / 60%);
+  --opacity-white-700: rgb(255 255 255 / 70%);
+  --opacity-white-800: rgb(255 255 255 / 80%);
+  --opacity-white-900: rgb(255 255 255 / 90%);
+}

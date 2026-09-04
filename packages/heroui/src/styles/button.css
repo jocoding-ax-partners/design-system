@@ -11,6 +11,18 @@
     }
   }
 
+  /*
+   * `button-size-sm` pins its label with Tailwind's `text-xs` literal, which no
+   * token can reach. Restate it inside the compact scope instead of tokenizing
+   * the default: `text-xs` has zero letter-spacing and `caption-01` has -0.01em,
+   * so tokenizing the default would narrow every existing consumer's
+   * small-button labels.
+   */
+  [data-density="compact"] .button--sm {
+    font-size: var(--text-caption-01);
+    letter-spacing: var(--text-caption-01--letter-spacing);
+  }
+
   .button--md {
     @apply button-size-md;
 

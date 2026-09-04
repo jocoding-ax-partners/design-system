@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "postcss src/styles/index.css -o dist/styles/index.css && cp src/styles/index.d.ts dist/styles/index.d.ts",
+    "lint": "eslint . && stylelint 'src/**/*.css'",
+    "test": "node --test",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {

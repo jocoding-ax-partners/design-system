@@ -3,9 +3,10 @@
 A CSS-only design system built on [HeroUI v3](https://v3.heroui.com), published as
 [`@jocoding-ax-partners/design-system`](./packages/heroui).
 
-The system ships no React components. Consumers import components from `@heroui/react`
-and add a single stylesheet, which restyles those components and registers the design
-tokens. Everything in this repo is CSS.
+Most consumers import components from `@heroui/react` and add a single stylesheet, which
+restyles those components and registers the design tokens — everything else in this repo
+is CSS. `packages/react` is the one exception: eleven React components (plus a `cn`
+helper) promoted verbatim from axhub-frontend that don't have a HeroUI equivalent.
 
 ## Packages
 
@@ -13,6 +14,7 @@ tokens. Everything in this repo is CSS.
 | ------------------- | ------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------- |
 | `packages/tailwind` | `@jocoding-ax-partners/tailwind`       | no        | Design tokens — colors, radius, spacing, typography — plus shared Tailwind utilities                     |
 | `packages/heroui`   | `@jocoding-ax-partners/design-system`  | npm       | HeroUI component overrides. Inlines `tailwind` at build time and is the only artifact consumers install |
+| `packages/react`    | `@jocoding-ax-partners/react`          | no        | React components with no HeroUI equivalent — `CodeBlock`, `ConfirmDialog`, `HoverReadout`, `Input`, `List`, `Pagination`, `SearchBox`, `SidePanel`, `Skeleton`, `StatCard`, `StatusDot` — plus a `cn` helper |
 | `apps/storybook`    | —                                      | no        | Storybook used to develop and review the overrides against real HeroUI components                       |
 
 `apps/storybook/src/stories` mirrors upstream HeroUI stories; `stories-extended` covers
@@ -51,21 +53,46 @@ their own markup.
 
 ## Releasing
 
-Uses [changesets](https://github.com/changesets/changesets). See
-[`CLAUDE.md`](./CLAUDE.md) for the full checklist, including the tag conventions.
+Releases run through GitHub Actions. Write a changeset with your change and the
+rest is automatic:
 
 ```bash
 pnpm changeset            # describe the change (in English — it ships to npm)
-pnpm version-packages     # bump versions, update CHANGELOG
-# commit, then tag — annotated, or --follow-tags will silently skip it:
-#   git tag -a '@jocoding-ax-partners/design-system@<version>' -m '@jocoding-ax-partners/design-system@<version>'
-git push --follow-tags
-git ls-remote --tags origin   # confirm the tag actually reached the remote
-pnpm release              # build + publish
 ```
+
+Commit the generated `.changeset/*.md` with your PR. When the PR merges to
+`main`, the Release workflow opens a "Version Packages" PR that bumps versions
+and updates changelogs. Merging *that* PR publishes to npm and pushes annotated
+tags.
+
+**One-time setup:** the workflow needs an `NPM_TOKEN` repository secret with
+publish rights on the `@jocoding-ax-partners` scope
+(Settings → Secrets and variables → Actions).
+
+The manual path is still available if the workflow is down — see
+[`CLAUDE.md`](./CLAUDE.md) for the full checklist, including the annotated-tag
+requirement that `--follow-tags` silently skips.
 
 ## Consuming the system
 
 See [`packages/heroui/README.md`](./packages/heroui/README.md) for install and setup, and
 [`packages/heroui/llms.txt`](./packages/heroui/llms.txt) for the agent-facing reference to
 the `data-*` extensions and design tokens.
+
+### `@jocoding-ax-partners/react` needs a Tailwind `@source`
+
+Unlike `packages/heroui`, `packages/react` ships components styled with Tailwind
+utility classes (`h-1.5`, `bg-success-strong`, `text-[12px]`, …) rather than
+precompiled CSS. Tailwind v4 only generates a utility if it finds the class
+literally in a file it scans, and it does not scan `node_modules` by default —
+so without an explicit `@source`, every component in this package renders
+unstyled for consumers. Add this line to your Tailwind CSS entry file, next to
+the `@import "tailwindcss"` line:
+
+```css
+@source "../node_modules/@jocoding-ax-partners/react/dist";
+```
+
+Adjust the leading `../` segments to the actual relative path from your CSS
+file to `node_modules`. See [`packages/react/README.md`](./packages/react/README.md)
+for details.
