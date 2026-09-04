@@ -18,23 +18,29 @@
     "release": "turbo run build --filter='./packages/*' && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
-    "@nijesmik/eslint-config": "^0.1.1",
-    "@types/node": "^24.10.9",
-    "eslint": "^9.39.1",
+    "@changesets/cli": "^2.31.1",
+    "@nijesmik/eslint-config": "^0.1.2",
+    "@types/node": "^24.13.3",
+    "eslint": "^9.39.5",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "postcss": "^8.5.8",
+    "lint-staged": "^16.4.0",
+    "postcss": "^8.5.28",
     "postcss-cli": "^11.0.1",
-    "postcss-import": "^16.1.1",
-    "prettier": "^3.7.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tsx": "^4.21.0",
-    "turbo": "^2.7.5",
+    "postcss-import": "^16.2.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.7.4",
+    "tsx": "^4.23.13",
+    "turbo": "^2.10.12",
     "typescript": "5.9.2"
   },
   "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=24"
+  },
+  "pnpm": {
+    "overrides": {
+      "css-tree": "3.1.0",
+      "@csstools/css-syntax-patches-for-csstree": "1.0.25"
+    }
   }
 }
