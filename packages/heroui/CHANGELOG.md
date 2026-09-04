@@ -1,5 +1,62 @@
 # @jocoding-ax-partners/design-system
 
+## 4.0.0
+
+### Major Changes
+
+- f92fbbc: Map surface, foreground and border tokens onto Tailwind's role-scoped theme
+  keys (`--background-color-*`, `--text-color-*`, `--border-color-*`) instead of
+  the generic `--color-*` namespace, matching the canon.
+
+  Before this, `bg-surface` picked up HeroUI's `--surface`, `bg-muted` painted the
+  _foreground_ muted color, `bg-content`/`bg-emphasis`/`bg-inverse` generated no
+  utility at all, and `border-default` painted the text color. The generic mapping
+  also shadowed HeroUI's own `--color-default`, turning secondary select and
+  autocomplete pressed states near-black.
+
+  Utilities that changed: `bg-surface`, `bg-muted`, `border-default`,
+  `border-strong`, `border-interactive`, `border-divider` (corrected values);
+  `bg-content`, `bg-emphasis`, `bg-inverse` (now generated). The unused
+  `bg-bg-*` / `text-bg-*` forms are gone.
+
+### Minor Changes
+
+- 2f32086: Add a compact density scope, opted into with `<html data-density="compact">`.
+  It steps down the reading type sizes, row height and container padding, and
+  deliberately leaves control heights alone — 40px is already the floor for a
+  touch target. Measurements come from apex-expert's hand-built dense backoffice.
+
+  Nothing changes at the default density: the scope only adds rules, and the one
+  place a token could not reach (`button-size-sm`, which pins `text-xs`) is
+  restated inside the scope rather than tokenized.
+
+- 4d050a0: Add the gray and white opacity ladders from the ax-partners design kit, and the
+  responsive container padding ramp.
+- c48bf94: Add semantic surface, foreground and border tokens (`--bg-*`, `--fg-*`,
+  `--border-*`) with a dark scope that inverts the surface hierarchy, plus the
+  four fixed dark-background steps. Exposed as Tailwind utilities
+  (`bg-surface`, `text-default`, `border-default`).
+- 9851420: Add semantic typography utilities (`t-page-title` through `t-caption`) and the
+  responsive `px-container` utility. Both are written against scale tokens rather
+  than literal sizes, so the density scope reaches them.
+- 9ed9fd9: Align the caption line height with the AxHub type scale (1.3 to 1.4) and give
+  every status color a `-strong` step for text on light surfaces.
+
+### Patch Changes
+
+- eed00db: Ship the `--primary-*` token family from the canon. `List` and `SidePanel` were
+  promoted referencing `var(--primary)`, which no stylesheet declared — their
+  active indicator and resize handle rendered with no color for every consumer.
+- 17bf42b: Ship the `--syntax-*` code-highlight palette. `CodeBlock` was promoted without
+  it, so every token in a highlighted snippet resolved to the inherited color —
+  syntax highlighting was dead for every consumer.
+- 06cafa3: Fix status colors inheriting their light values in dark mode. The dark block
+  redefined only the `soft` steps, so base colors like `--success` stayed at
+  `#1fa24e` on a dark canvas.
+- 4dcd8d5: Map the status `-strong` tokens into the `--color-*` namespace so Tailwind
+  generates `bg-*`/`text-*` utilities for them. Without this, `StatusDot`'s
+  active/failed/warning tones rendered with no color for every consumer.
+
 ## 3.0.1
 
 ### Patch Changes
