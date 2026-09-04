@@ -1,6 +1,6 @@
 import { Pagination as HPagination } from "@heroui/react";
 
-import { cn } from "./lib/cn";
+import { cn } from "./lib/cn.js";
 
 interface PaginationProps {
   page: number;

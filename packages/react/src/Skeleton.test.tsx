@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { SkeletonRow } from "./Skeleton";
+import { SkeletonRow } from "./Skeleton.js";
 
 describe("SkeletonRow", () => {
   it("carries the caller class on its container", () => {

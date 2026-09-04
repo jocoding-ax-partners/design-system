@@ -26,7 +26,7 @@ import {
   type ReactNode,
 } from "react";
 
-import { cn } from "./lib/cn";
+import { cn } from "./lib/cn.js";
 
 const MIN_PANEL_W = 320;
 const MAX_PANEL_W = 900;

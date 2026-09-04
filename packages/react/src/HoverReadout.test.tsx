@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { HoverReadout } from "./HoverReadout";
+import { HoverReadout } from "./HoverReadout.js";
 
 describe("HoverReadout", () => {
   it("renders nothing when spot is null", () => {

@@ -5,7 +5,7 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node scripts/check-esm-extensions.mjs",
     "lint": "eslint .",
     "check-types": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",

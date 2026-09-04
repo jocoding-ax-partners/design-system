@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { StatCard } from "./StatCard";
+import { StatCard } from "./StatCard.js";
 
 describe("StatCard", () => {
   it("shows its label and value", () => {
