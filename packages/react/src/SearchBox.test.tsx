@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-import { SearchBox } from "./SearchBox";
+import { SearchBox } from "./SearchBox.js";
 
 describe("SearchBox", () => {
   it("reports what the user typed", async () => {

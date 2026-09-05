@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-import { SidePanel } from "./SidePanel";
+import { SidePanel } from "./SidePanel.js";
 
 describe("SidePanel", () => {
   it("renders its children when open", () => {

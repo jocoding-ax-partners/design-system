@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
 
-import { useConfirm, ConfirmProvider } from "./ConfirmDialog";
+import { useConfirm, ConfirmProvider } from "./ConfirmDialog.js";
 
 function Harness() {
   const confirm = useConfirm();

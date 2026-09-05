@@ -1,6 +1,6 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 
-import { cn } from "./lib/cn";
+import { cn } from "./lib/cn.js";
 
 // AXHub 선택 가능한 리스트 (마스터-디테일 좌측 목록 등).
 // 박스로 감싸지 않는 "열린" 리스트 — 항목 사이 divider 로만 구분해 페이지에 그대로 놓인다.

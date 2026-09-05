@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { StatusDot } from "./StatusDot";
+import { StatusDot } from "./StatusDot.js";
 
 describe("StatusDot", () => {
   it("renders its children as the accessible label", () => {

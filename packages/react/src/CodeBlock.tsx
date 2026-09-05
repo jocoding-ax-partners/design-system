@@ -1,6 +1,6 @@
 import { Highlight, type Language, type PrismTheme } from "prism-react-renderer";
 
-import { cn } from "./lib/cn";
+import { cn } from "./lib/cn.js";
 
 // 디자인 토큰(--syntax-*) 기반 프리즘 테마 — 라이트/다크는 globals.css 가 결정.
 const tokenTheme: PrismTheme = {
