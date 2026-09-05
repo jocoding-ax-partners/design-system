@@ -84,7 +84,9 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(function S
       aria-label={placeholder}
       className={cn(widthClass, className)}
     >
-      <SearchField.Group>
+      {/* 포커스링 1px — HeroUI 기본은 2px 이고 링 폭 토큰이 없어(heroui.min.css 에
+          하드코딩) ring-1 로 덮는다. */}
+      <SearchField.Group className="focus-within:ring-1">
         <SearchField.SearchIcon />
         <SearchField.Input ref={ref} placeholder={placeholder} autoFocus={autoFocus} />
         <SearchField.ClearButton />
