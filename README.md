@@ -79,6 +79,8 @@ See [`packages/heroui/README.md`](./packages/heroui/README.md) for install and s
 [`packages/heroui/llms.txt`](./packages/heroui/llms.txt) for the agent-facing reference to
 the `data-*` extensions and design tokens.
 
+새 제품에 이 패키지를 붙일 때는 [docs/consumers.md](docs/consumers.md) 의 배선 체크리스트를 따른다.
+
 ### `@jocoding-ax-partners/react` needs a Tailwind `@source`
 
 Unlike `packages/heroui`, `packages/react` ships components styled with Tailwind
