@@ -106,11 +106,63 @@ HeroUI 를 이긴 지점을 올바르게 따라간 것"으로 판정됐다 — �
 
    **조치**: 200/300/400 을 이 패키지가 스스로 정의한다. 계단 전체를 한 벌로 소유하지 않으면
    소비자는 자기도 모르게 두 팔레트를 섞는다. (후속 작업 — 별도 PR. 이 PR 범위 밖이다.)
-2. `--color-gray-*` 계단에 다크 분기가 없다. 회색을 배경/전경으로 직접 쓰는 소비자는
+
+   **이 공백이 실제로 만든 것**: axdiag 에서 `--fg-segment`(원래 자체 gray-500)와
+   `--fg-faint` 를 정본의 `--fg-subtle` 로 이었더니, `--fg-subtle` 이 `--color-gray-400` 을
+   가리키는데 정본에 400 이 없어 Tailwind 기본 팔레트로 새어 흰 배경 위 대비비
+   **2.51~2.60:1** 이 됐다(WCAG AA 문턱 4.5 에 한참 못 미침). 셋 다 `--fg-muted`(4.86:1)로
+   되돌려야 했고, 그 결과 `--fg-faint`·`--fg-segment`·`--fg-muted` 가 **같은 값으로
+   붕괴**했다 — 정본이 300/400 을 정의하기 전까지는 "읽히는 흐린 회색"을 표현할 축이
+   하나도 없다는 뜻이다. 이론적 계단 왜곡(위 표)이 아니라 실제 텍스트 대비 실패로
+   이어진 사례다.
+2. **정본이 짝지은 전경/배경 조합이 WCAG AA 를 못 넘는다.**
+   axdiag 하네스에서 라이트/다크 텍스트 대비를 WCAG 로 재니 13건이 4.5 미만이었고,
+   **13건 전부 정본에서 온 것**이다 — axdiag 별칭이 만든 대비 실패는 0건(별도로 3건
+   있었으나 axdiag 쪽에서 이미 수정). 즉 정본이 "이 전경색은 이 배경 위에 쓰라"고
+   스스로 짝지어 정의해 둔 조합들이 기준을 못 넘는다.
+
+   **측정 조건**: axdiag admin 하네스, Chromium, `getComputedStyle` 로 읽은 라이트/다크
+   각 토큰의 계산값을 sRGB 로 변환해 WCAG 상대휘도 공식으로 대비비를 계산했다(2026-09-06).
+   값이 `oklch(...)` 형태로 나오므로 **`rgb()` 파서로 잘못 넘기면 채널이 통째로
+   오염된다** — sRGB 변환을 거쳐야 한다. 이 점을 놓치면 다음 사람이 같은 실수로 숫자
+   전체가 틀어진 걸 못 알아챈다.
+
+   **라이트 8건**:
+
+   | 쌍 | 대비비 |
+   |---|---|
+   | `--warning-soft-foreground` \| `--warning-soft` | 1.82 |
+   | `--success-soft-foreground` \| `--success-soft` | 2.81 |
+   | `--danger-soft-foreground` \| `--danger-soft` | 3.43 |
+   | `--info-soft-foreground` \| `--info-soft` | 3.67 |
+   | `--danger-foreground` \| `--bg-secondary` | 4.24 |
+   | `--accent-soft-foreground` \| `--accent-soft` | 4.26 |
+   | `--danger-foreground` \| `--bg` | 4.40 |
+   | `--danger-foreground` \| `--surface` | 4.40 |
+
+   **다크 5건**:
+
+   | 쌍 | 대비비 |
+   |---|---|
+   | `--accent-soft-foreground` \| `--accent-soft` | 2.52 |
+   | `--fg-on-accent` \| `--accent` | 3.77 |
+   | `--on-accent` \| `--accent` | 3.77 |
+   | `--accent-foreground` \| `--accent` | 3.77 |
+   | `--danger-foreground` \| `--bg-secondary` | 4.22 |
+
+   `*-soft-foreground` 4건은 소비자 CSS 에 재정의가 **전혀 없이** 정본 dist
+   (`dist/styles/index.css:516-540`)가 자체 정의한 값이 그대로 쓰인 것이다. 나머지는
+   소비자 별칭을 거치지만 오른쪽이 정본 자신의 `--danger-strong`·`--primary`·
+   `--fg-on-primary` 다 — 별칭이 만든 실패가 아니라 정본 값 자체의 실패다.
+
+   **조치**: 정본이 짝지어 노출하는 `*-soft`/`*-soft-foreground`, `accent`/`*-on-accent`,
+   `danger-foreground`/`bg*` 조합의 대비를 재검토한다. (후속 작업 — 별도 PR. 이 PR
+   범위 밖이다.)
+3. `--color-gray-*` 계단에 다크 분기가 없다. 회색을 배경/전경으로 직접 쓰는 소비자는
    다크에서 값이 안 바뀐다. 시맨틱 토큰(`--bg-*`/`--fg-*`)을 쓰라고 안내해야 한다.
-3. `table` · `avatar` · `breadcrumbs` 어휘가 없다. axdiag `apps/admin` 이 자체 정의해 쓴다.
+4. `table` · `avatar` · `breadcrumbs` 어휘가 없다. axdiag `apps/admin` 이 자체 정의해 쓴다.
    구버전(2.7.4)에도 4.0.0 에도 없었다 — 이번 업그레이드로 새로 깨지거나 새로 고쳐진 것이
    아니다. **정본은 이것들을 새로 넣지 않기로 판정했다.** 소비자가 하나뿐인 컴포넌트를
    정본에 올리면 패키지가 그 제품의 거울이 될 뿐이다(`List`·`SkeletonRow` 가 이미 axhub 에서
    소비자 0인 채로 올라가 있는 전례). 두 번째 제품이 같은 것을 필요로 할 때 올린다.
-4. `List`·`SkeletonRow` 는 소비자가 0이다. 다음 major 에서 제거를 검토한다.
+5. `List`·`SkeletonRow` 는 소비자가 0이다. 다음 major 에서 제거를 검토한다.
