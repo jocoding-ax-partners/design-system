@@ -1,6 +1,6 @@
 {
   "name": "@jocoding-ax-partners/react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
