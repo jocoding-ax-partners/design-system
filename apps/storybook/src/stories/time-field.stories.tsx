@@ -125,8 +125,11 @@ export const Invalid: Story = {
 
 export const Disabled: Story = {
   render: () => {
-    const currentTime = now(getLocalTimeZone());
-    const timeValue = new Time(currentTime.hour, currentTime.minute, currentTime.second);
+    // 고정값이어야 한다. 예전에는 `now(getLocalTimeZone())` 였는데, 이 스토리는
+    // 스냅샷으로 찍히므로 매 빌드가 다른 시각을 그려 시각 회귀 검사가 항상
+    // "1 change" 를 냈다(2026-09-08 Chromatic build 4 에서 실측). 영구 플레이크는
+    // 검토자를 Accept 반사로 훈련시켜 게이트 자체를 무력화한다.
+    const timeValue = new Time(14, 30, 0);
 
     return (
       <div className="flex flex-col gap-4">

@@ -23,6 +23,44 @@
   --color-gray-900: oklch(20.5% 0.008 274.5deg); /* #16171b */
   --color-gray-950: oklch(13% 0.005 285.7deg); /* #070709 */
 
+  /* Status Colors — only the steps that have a consumer.
+     This is deliberately not a full 50–950 ramp: the accent ramp exists because the
+     brand needs every step, while these three are used for text and icons on light
+     surfaces, which needs exactly two darker steps. Adding the rest would ship
+     values nothing references.
+
+     Written as hex because they were chosen by measuring sRGB contrast; expressing
+     them as oklch would add a conversion with nothing to verify it against.
+
+     Contrast, measured against the surfaces each step actually lands on:
+       500  the current base. Listed to anchor the ramp — it is below AA for text.
+       700  free-standing text on --bg-content (#fff) and --bg-surface (#fafbfc).
+       800  text inside a `-soft` background (the base at 15% over the surface),
+            which is tinted, so it needs to be darker than 700 to clear AA.
+
+                     #fff    #fafbfc   own -soft
+       danger-500     4.40     4.25      3.43     below AA
+       danger-700     5.71     5.51      4.45
+       danger-800     7.95     7.68      6.20
+       success-500    3.31     3.20      2.81     below AA
+       success-700    5.02     4.84      4.25
+       success-800    7.37     7.12      6.24
+       warning-500    1.66     1.60      —        below AA
+       warning-700    5.02     4.85      4.64
+       warning-800    7.03     6.79      6.50
+
+     Warning shifts hue toward amber on purpose. No yellow clears 4.5:1 — being light
+     is what makes a yellow a yellow — so a readable warning has to leave the hue. */
+  --color-danger-500: #ef1026;
+  --color-danger-700: #c81e2b;
+  --color-danger-800: #a01722;
+  --color-success-500: #1fa24e;
+  --color-success-700: #15803d;
+  --color-success-800: #10632f;
+  --color-warning-500: #f6c205;
+  --color-warning-700: #b45309;
+  --color-warning-800: #8a4708;
+
   /* Primary — canonical ramp from axhub-frontend globals.css. `--accent` above is a
      separate, package-local name; whether the two get unified is a pending decision
      out of scope here (see the -strong/-syntax fixes for the same pattern). */
@@ -41,9 +79,16 @@
   --info-foreground: var(--snow);
 
   /* `-strong` is the darker step used for text and icons on light surfaces.
-     `--warning-strong` already existed; the others are added so every status
-     color has the same two-step shape. `danger` and `success` are already dark
-     enough to double as their own strong step. */
+     These light values do not deliver that yet. `--danger-strong` resolves to
+     `--danger` (4.40:1 on #fff) and `--success-strong` to `--success` (3.31:1);
+     `--warning-strong` reaches 1.97:1. All three are below AA for text. An earlier
+     note here said danger and success were "already dark enough to double as their
+     own strong step" — measuring says otherwise, so it is removed rather than kept.
+
+     The 700 steps above are the replacements. Repointing these is a breaking change
+     — axhub-frontend reads them as text colors at 89 call sites — so it ships on its
+     own, behind a visual-regression gate. The dark block below is unaffected: it
+     already carries real values and clears AA on 5 of its 6 surface pairings. */
   --danger-strong: var(--danger);
   --success-strong: var(--success);
   --info-strong: #0f5fcc;
