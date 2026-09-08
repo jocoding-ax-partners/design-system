@@ -16,10 +16,16 @@
  * `--overlay-foreground: var(--foreground)` resolves on the element that declares it,
  * so it only lands on the swapped values when it ships with them.
  *
- * Soft foregrounds use the raw brand color. HeroUI v3.2 mixes `--foreground` in to
- * raise contrast (e.g. `color-mix(in oklab, var(--accent) 70%, var(--foreground) 30%)`).
- * Warning is the exception — its brand color is too light to read, so it uses
- * `--warning-strong`.
+ * Soft foregrounds sit on a `-soft` background — the brand color at 15% over the
+ * surface — so they need to be darker than free-standing text, not the same. Until
+ * 5.0.0 the light set used the raw brand color and read at 1.82~3.43:1, all below AA.
+ * They now point at the 800 steps, measured on the exact `-soft` background each one
+ * lands on (6.20~6.50:1). Accent reuses the existing `--color-accent-800` (7.98:1)
+ * and info the existing `--info-strong` (4.88:1); neither needed a new value.
+ *
+ * The dark set keeps HeroUI v3.2's formula — mixing `--foreground` into the brand
+ * color — because the dark brand values are already re-lightened for dark surfaces
+ * and clear AA there. The two sets differ on purpose.
  */
 @utility theme-light {
   --background: #fff;
@@ -36,12 +42,12 @@
   /* Calculated — HeroUI */
   --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
 
-  /* Soft foregrounds */
-  --accent-soft-foreground: var(--accent);
-  --danger-soft-foreground: var(--danger);
-  --success-soft-foreground: var(--success);
-  --warning-soft-foreground: var(--warning-strong);
-  --info-soft-foreground: var(--info);
+  /* Soft foregrounds — the 800 steps; see the header note for why not 700 */
+  --accent-soft-foreground: var(--color-accent-800);
+  --danger-soft-foreground: var(--color-danger-800);
+  --success-soft-foreground: var(--color-success-800);
+  --warning-soft-foreground: var(--color-warning-800);
+  --info-soft-foreground: var(--info-strong);
 }
 
 @utility theme-dark {
