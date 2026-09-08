@@ -25,11 +25,44 @@ test("status -strong tokens are mapped into the --color-* namespace", () => {
   assert.match(css, /--color-info-strong:\s*var\(--info-strong\)/);
 });
 
+// 5.0.0 이전에는 라이트 `-strong` 이 브랜드 원색 별칭(`var(--danger)` 등)이었고
+// `--warning-strong` 은 #f4ab00 이었다 — 각각 4.40:1 · 3.31:1 · 1.97:1 로 전부 AA 미달.
+// 이제 700 단계를 가리킨다. `--info-strong` 만 원래부터 진짜 값이라 그대로다.
 test("status -strong tokens carry the pinned light values", () => {
-  assert.match(css, /--warning-strong:\s*#f4ab00\b/);
+  assert.match(css, /--danger-strong:\s*var\(--color-danger-700\)/);
+  assert.match(css, /--success-strong:\s*var\(--color-success-700\)/);
+  assert.match(css, /--warning-strong:\s*var\(--color-warning-700\)/);
   assert.match(css, /--info-strong:\s*#0f5fcc\b/);
-  assert.match(css, /--danger-strong:\s*var\(--danger\)/);
-  assert.match(css, /--success-strong:\s*var\(--success\)/);
+});
+
+// 700·800 단계 자체의 값. `-strong`·`-soft-foreground` 가 이걸 가리키므로,
+// 여기가 바뀌면 소비자 화면 122곳의 색이 바뀐다.
+test("the status ramp steps carry the measured values", () => {
+  assert.match(css, /--color-danger-700:\s*#c81e2b\b/);
+  assert.match(css, /--color-danger-800:\s*#a01722\b/);
+  assert.match(css, /--color-success-700:\s*#15803d\b/);
+  assert.match(css, /--color-success-800:\s*#10632f\b/);
+  assert.match(css, /--color-warning-700:\s*#b45309\b/);
+  assert.match(css, /--color-warning-800:\s*#8a4708\b/);
+});
+
+// `-soft-foreground` 는 `-soft` 배경(브랜드색 15% 를 표면에 합성) 위에 얹히므로
+// 자유 텍스트보다 한 단계 더 어두워야 AA 를 넘는다 — 그래서 700 이 아니라 800 이다.
+// 라이트와 다크는 서로 다른 방식을 쓴다: 다크의 브랜드색은 이미 재-밝게 되어 있어
+// HeroUI v3.2 의 `--foreground` 혼합 공식이 그대로 통한다.
+test("light soft foregrounds use the 800 steps, dark keeps the HeroUI mix", () => {
+  const i = css.indexOf("@utility theme-light");
+  assert.ok(i !== -1, "missing @utility theme-light");
+  const light = css.slice(i, css.indexOf("@utility theme-dark"));
+  assert.match(light, /--accent-soft-foreground:\s*var\(--color-accent-800\)/);
+  assert.match(light, /--danger-soft-foreground:\s*var\(--color-danger-800\)/);
+  assert.match(light, /--success-soft-foreground:\s*var\(--color-success-800\)/);
+  assert.match(light, /--warning-soft-foreground:\s*var\(--color-warning-800\)/);
+  assert.match(light, /--info-soft-foreground:\s*var\(--info-strong\)/);
+
+  const dark = css.slice(css.indexOf("@utility theme-dark"));
+  assert.match(dark, /--danger-soft-foreground:\s*color-mix\(in oklab, var\(--danger\) 80%/);
+  assert.match(dark, /--warning-soft-foreground:\s*color-mix\(in oklab, var\(--warning\) 80%/);
 });
 
 test("status -strong tokens carry the pinned dark values", () => {
