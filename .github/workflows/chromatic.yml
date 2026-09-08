@@ -4,7 +4,14 @@ name: Chromatic
 # 이기 때문이다. 이 잡이 그 자리를 대신한다: 스토리북을 렌더해 기준선과 대조하고, 달라진
 # 것이 있으면 Chromatic 에서 사람이 승인할 때까지 실패로 둔다.
 #
-# `exitZeroOnChanges` 를 켜지 않는 것이 핵심이다. 켜면 diff 가 나도 초록이 되어
+# 🔴 **브랜치 보호의 필수 체크는 이 잡(`visual-regression`)이 아니라 `UI Tests` 다.**
+# 2026-09-08 변이 주입으로 실측했다 — `--danger` 를 빨강에서 파랑으로 바꾼 커밋에서
+# Chromatic 은 73건의 시각 변경을 잡았는데, 그때 이 **잡은 pass** 였고
+# (액션이 `✔ Build passed` 로 exit 0) 차단은 Chromatic GitHub 앱이 올리는
+# `UI Tests` 체크가 pending 으로 남아 일어났다(`gh pr checks` exit 8).
+# 그러므로 잡 이름을 필수 체크로 걸면 아무것도 안 막는 게이트가 된다.
+#
+# `exitZeroOnChanges` 는 켜지 않는다 — 켜면 위 `UI Tests` 도 초록이 되어
 # "아무도 안 본 변경"이 그대로 머지된다.
 #
 # CHROMATIC_PROJECT_TOKEN 시크릿이 없으면 이 잡은 실패하지 않고 건너뛴다 —
