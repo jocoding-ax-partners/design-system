@@ -74,23 +74,22 @@
   --danger: #ef1026;
   --success: #1fa24e;
   --warning: #f6c205;
-  --warning-strong: #f4ab00;
   --info: #1571f3;
   --info-foreground: var(--snow);
 
   /* `-strong` is the darker step used for text and icons on light surfaces.
-     These light values do not deliver that yet. `--danger-strong` resolves to
-     `--danger` (4.40:1 on #fff) and `--success-strong` to `--success` (3.31:1);
-     `--warning-strong` reaches 1.97:1. All three are below AA for text. An earlier
-     note here said danger and success were "already dark enough to double as their
-     own strong step" — measuring says otherwise, so it is removed rather than kept.
 
-     The 700 steps above are the replacements. Repointing these is a breaking change
-     — axhub-frontend reads them as text colors at 89 call sites — so it ships on its
-     own, behind a visual-regression gate. The dark block below is unaffected: it
-     already carries real values and clears AA on 5 of its 6 surface pairings. */
-  --danger-strong: var(--danger);
-  --success-strong: var(--success);
+     Until 5.0.0 these light values did not deliver that: `--danger-strong` aliased
+     `--danger` (4.40:1 on #fff), `--success-strong` aliased `--success` (3.31:1),
+     and `--warning-strong` was #f4ab00 (1.97:1) — all three below AA for text. The
+     dark block below always carried real values, so the defect was light-only.
+
+     They now point at the 700 steps above, which were measured against the surfaces
+     these tokens actually land on. `--info-strong` already carried a real value
+     (4.88:1 on #fff) and is left as it was. */
+  --danger-strong: var(--color-danger-700);
+  --success-strong: var(--color-success-700);
+  --warning-strong: var(--color-warning-700);
   --info-strong: #0f5fcc;
 }
 
