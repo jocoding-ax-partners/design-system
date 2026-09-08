@@ -14,6 +14,9 @@ on:
   pull_request:
   push:
     branches: [main]
+  # 기준선을 다시 잡아야 할 때 쓴다. 첫 빌드는 자동 승인되어 기준선이 되는데,
+  # 그 빌드가 어느 브랜치에서 찍혔느냐에 따라 이후 diff 의 의미가 달라진다.
+  workflow_dispatch:
 
 concurrency:
   group: chromatic-${{ github.ref }}
