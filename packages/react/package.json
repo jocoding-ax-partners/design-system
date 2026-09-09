@@ -3,9 +3,11 @@
   "version": "2.0.0",
   "license": "MIT",
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node scripts/check-esm-extensions.mjs",
+    "build": "tsc -p tsconfig.json && mkdir -p dist/ag-grid && cp src/ag-grid/agGrid.css dist/ag-grid/agGrid.css && node scripts/check-esm-extensions.mjs",
     "lint": "eslint .",
     "check-types": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
@@ -15,6 +17,10 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
+    },
+    "./ag-grid": {
+      "types": "./src/ag-grid/index.ts",
+      "default": "./src/ag-grid/index.ts"
     }
   },
   "publishConfig": {
@@ -22,6 +28,10 @@
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
+      },
+      "./ag-grid": {
+        "types": "./dist/ag-grid/index.d.ts",
+        "default": "./dist/ag-grid/index.js"
       }
     }
   },
@@ -43,8 +53,18 @@
     "@heroui/react": "catalog:",
     "@jocoding-ax-partners/design-system": "workspace:^",
     "@phosphor-icons/react": "^2.1.10",
+    "ag-grid-community": "^36.1.0",
+    "ag-grid-react": "^36.1.0",
     "react": "^19",
     "react-dom": "^19"
+  },
+  "peerDependenciesMeta": {
+    "ag-grid-community": {
+      "optional": true
+    },
+    "ag-grid-react": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@heroui/react": "catalog:",
@@ -55,6 +75,8 @@
     "@testing-library/user-event": "^14.6.7",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
+    "ag-grid-community": "36.1.0",
+    "ag-grid-react": "36.1.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "jsdom": "^26.0.0",
     "react": "^19.2.8",

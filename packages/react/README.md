@@ -1,10 +1,11 @@
 # @jocoding-ax-partners/react
 
-Nineteen React components — `CodeBlock`, `ConfirmProvider`/`useConfirm`, `HoverReadout`,
+Shared React components — `CodeBlock`, `ConfirmProvider`/`useConfirm`, `HoverReadout`,
 `Input`, `List`, `Pagination`, `SearchBox`, `SidePanel`, `Skeleton`, `StatCard`,
 `StatusDot`, `NavItem`, `NavList`, `Sidebar`, `TopBar`, `Breadcrumbs`, `PageHeader`,
-`PageContainer`, `TabNav` — plus a `cn` helper, for cases `@heroui/react` has no
-equivalent for. All but `Breadcrumbs` are promoted verbatim from axhub-frontend.
+`PageContainer`, `TabNav`, `KpiStatBar`, `KpiSearchButton` — plus a `cn` helper, for
+cases `@heroui/react` has no equivalent for. All but `Breadcrumbs` are promoted from
+axhub-frontend.
 
 `NavItem`, `NavList`, `Sidebar`, `TopBar`, `PageHeader`, `PageContainer`, and `TabNav`
 are AxHub's navigation shell, canonicalized — same class strings and same markup as the
@@ -52,3 +53,22 @@ import { StatusDot } from "@jocoding-ax-partners/react";
 
 <StatusDot tone="active">Active</StatusDot>;
 ```
+
+## Optional ag-grid shell
+
+Install the Community packages only when the app renders data grids:
+
+```bash
+npm install ag-grid-community@^36.1.0 ag-grid-react@^36.1.0
+```
+
+Import from the dedicated subpath so root-package consumers do not load ag-grid:
+
+```tsx
+import { AgDataGrid, useGridColumnState } from "@jocoding-ax-partners/react/ag-grid";
+
+const gridState = useGridColumnState("members-grid.ag");
+<AgDataGrid isDark={theme === "dark"} columnDefs={columns} rowData={rows} {...gridState} />;
+```
+
+`isDark` is explicit because the package does not own the consumer's theme store.
