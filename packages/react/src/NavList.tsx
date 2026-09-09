@@ -199,12 +199,15 @@ export function NavList({
             aria-labelledby={`nav-sec-${section.key}`}
             className="contents"
           >
-            <p
+            {/* 정본(axhub-frontend InnerSidebar.tsx:361, commit bc1e87cf)은 <div> 다.
+                한때 <p> 로 승격돼 있었는데, 클래스는 같아도 태그가 다르면 정본 승격이
+                아니다. id 는 위 role="group" 의 aria-labelledby 대상이라 유지한다. */}
+            <div
               id={`nav-sec-${section.key}`}
               className="text-muted px-3 pt-4 text-[12px] font-medium tracking-[-0.12px]"
             >
               {section.label}
-            </p>
+            </div>
             {items}
           </div>
         );

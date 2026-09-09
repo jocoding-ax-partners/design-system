@@ -45,9 +45,12 @@ describe("NavList", () => {
     expect(within(group).getByRole("button", { name: "환경설정" })).toBeInTheDocument();
   });
 
-  it("섹션 라벨 클래스는 AxHub 정본을 그대로 따른다 — InnerSidebar.tsx:361", () => {
+  it("섹션 라벨은 AxHub 정본의 태그와 클래스를 그대로 따른다 — InnerSidebar.tsx:361", () => {
     render(<NavList sections={sections} aria-label="주 메뉴" />);
     const label = screen.getByText("관리");
+    // 태그도 정본이다. 클래스만 재던 시절 이 자리가 <p> 로 드리프트해 있었는데
+    // 이 테스트가 "정본을 그대로 따른다"는 이름으로 초록이었다.
+    expect(label.tagName).toBe("DIV");
     expect(label.className).toContain("text-muted");
     expect(label.className).toContain("px-3");
     expect(label.className).toContain("pt-4");
