@@ -145,6 +145,56 @@ describe("NavList", () => {
     expect(trigger.querySelector("span")?.className).toBe("flex-1 truncate text-left");
   });
 
+  // Task 10 리뷰 DESIGN GAP — 아코디언 **자식** 행은 부모(itemClass)와 다른, 한 단계
+  // 작은 클래스 세트를 쓴다. 정본은 axhub-frontend InnerSidebar.tsx:261-266
+  // (commit bc1e87cf) 이다. 이 테스트는 패키지가 지금 내는 값이 아니라 **그 정본
+  // 문자열**에 대고 `.toBe` 로 고정한다 — 패키지 자신을 기준으로 삼은 테스트는
+  // 드리프트가 나도 항상 초록이라 이 브랜치에서 두 번 실제로 그렇게 됐다.
+  it("아코디언 자식 행은 정본 클래스와 한 글자도 다르지 않다 — InnerSidebar.tsx:261-266 (비활성)", async () => {
+    render(<NavList sections={sections} aria-label="주 메뉴" />);
+    await userEvent.click(screen.getByRole("button", { name: "환경설정" }));
+    const teamLink = screen.getByRole("link", { name: "팀" });
+    expect(teamLink.className).toBe(
+      "flex w-full items-center gap-2 rounded-[6px] px-[10px] py-[6px] text-[13px] transition-colors text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
+    );
+    // 부모 행(itemClass) 크기로 새지 않았는지 양성+음성으로 다시 확인.
+    expect(teamLink.className).toContain("text-[13px]");
+    expect(teamLink.className).not.toContain("text-[14px]");
+    expect(teamLink.className).toContain("rounded-[6px]");
+    expect(teamLink.className).not.toContain("rounded-[8px]");
+    expect(teamLink.className).toContain("px-[10px]");
+    expect(teamLink.className).not.toContain("px-[12px]");
+    expect(teamLink.className).toContain("py-[6px]");
+    expect(teamLink.className).not.toMatch(/(^|\s)h-\[32px\]/);
+  });
+
+  it("아코디언 자식 행은 정본 클래스와 한 글자도 다르지 않다 — InnerSidebar.tsx:261-266 (활성)", () => {
+    render(
+      <NavList
+        aria-label="주 메뉴"
+        sections={[
+          {
+            key: "s",
+            items: [
+              {
+                key: "settings",
+                label: "환경설정",
+                defaultOpen: true,
+                children: [{ key: "team", href: "/settings/team", label: "팀", active: true }],
+              },
+            ],
+          },
+        ]}
+      />,
+    );
+    const teamLink = screen.getByRole("link", { name: "팀" });
+    expect(teamLink.className).toBe(
+      "flex w-full items-center gap-2 rounded-[6px] px-[10px] py-[6px] text-[13px] transition-colors font-semibold",
+    );
+    expect(teamLink.className).not.toContain("text-[14px]");
+    expect(teamLink.className).not.toContain("rounded-[8px]");
+  });
+
   it("defaultOpen 이면 처음부터 펼쳐진다", () => {
     render(
       <NavList

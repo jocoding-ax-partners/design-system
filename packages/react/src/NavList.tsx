@@ -2,7 +2,30 @@ import { CaretRight } from "@phosphor-icons/react";
 import { useState, Fragment, type CSSProperties, type ReactElement, type ReactNode } from "react";
 
 import { cn } from "./lib/cn.js";
-import { itemClass, NavItem, type NavItemProps, type NavLinkRenderer } from "./NavItem.js";
+import {
+  itemClass,
+  renderNavItem,
+  NavItem,
+  type NavItemProps,
+  type NavLinkRenderer,
+} from "./NavItem.js";
+
+/**
+ * 아코디언 **자식** 행 전용 클래스 — 정본(axhub-frontend InnerSidebar.tsx:261-266,
+ * commit bc1e87cf)을 한 글자씩 옮긴 것이다. 부모 행(`itemClass`)보다 한 단계
+ * 작다: 고정 높이가 없고, 반경 6px·패딩 10/6px·글자 13px. 공개 API 에 size/variant
+ * 를 추가하지 않기 위해 `index.ts` 로 export 하지 않는다 — 아코디언 자식은 오직
+ * `NavList` 자신만 만들 수 있고 호출자는 이 클래스에 닿을 방법이 없다.
+ */
+function childItemClass(active: boolean, className?: string) {
+  return cn(
+    "flex w-full items-center gap-2 rounded-[6px] px-[10px] py-[6px] text-[13px] transition-colors",
+    active
+      ? "font-semibold"
+      : "text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
+    className,
+  );
+}
 
 export interface NavEntry extends Omit<NavItemProps, "renderLink" | "activeColor"> {
   key: string;
@@ -100,12 +123,9 @@ function Accordion({
         <div className="my-px flex flex-col pl-[16px]">
           <div className="pl-2">
             {entry.children.map((child) => (
-              <NavItem
-                key={child.key}
-                {...toItemProps(child)}
-                renderLink={renderLink}
-                activeColor={activeColor}
-              />
+              <Fragment key={child.key}>
+                {renderNavItem({ ...toItemProps(child), renderLink, activeColor }, childItemClass)}
+              </Fragment>
             ))}
           </div>
         </div>

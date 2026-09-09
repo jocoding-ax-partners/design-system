@@ -38,7 +38,10 @@ export interface NavItemProps {
   activeColor?: string;
   badge?: ReactNode;
   renderLink?: NavLinkRenderer;
-  dataAttrs?: Record<string, string | undefined>;
+  // 키를 `data-*` 로 제한한다 — `href`/`className`/`style`/`aria-current` 처럼
+  // renderLink 뒤에 스프레드되는 구조적 prop 이 여기로 몰래 들어와 덮어쓰지 못하게
+  // 타입 단계에서 막는다 (Task 10 리뷰 Minor).
+  dataAttrs?: Record<`data-${string}`, string | undefined>;
   className?: string;
   /** 목적지가 없는 동작. 주면 <button type="button"> 으로 렌더한다. */
   onSelect?: () => void;
@@ -64,28 +67,30 @@ export function itemClass(active: boolean, className?: string) {
 const DEFAULT_LINK: NavLinkRenderer = (props) => <a {...props} />;
 
 /**
- * 사이드바 내비게이션 항목 하나.
- *
- * 접근성은 API 모양으로 강제된다 — 이 컴포넌트로는 `<div onClick>` 을 만들 수 없다.
- * href 가 있으면 링크, 없고 onSelect 만 있으면 button 이고, 둘 다 없으면 던진다.
- * 활성 표현은 정본(AxHub Figma)을 따라 **배경 없이 색만** 바꾼다 — APTA 가 쓰던
- * `--accent-soft` 배경 방식은 여기로 올라오지 않는다.
+ * NavItem 의 렌더 본체 — 클래스 문자열 생성만 `classFn` 으로 갈아끼울 수 있게 뺐다.
+ * 공개 `NavItem` 은 `itemClass` 로 이걸 호출한다. `NavList` 의 아코디언 **자식** 행은
+ * 정본(InnerSidebar.tsx:261-266)의 별도 클래스 세트를 쓰므로 여기로 `childItemClass` 를
+ * 넘겨 재사용한다 — 공개 API(`NavItemProps`)에 size/variant 를 추가하지 않기 위해
+ * `index.ts` 로는 export 하지 않고 패키지 내부(`NavList.tsx`)에서만 가져다 쓴다.
  */
-export function NavItem({
-  href,
-  onSelect,
-  icon: IconComponent,
-  iconWeight,
-  label,
-  active = false,
-  activeColor,
-  badge,
-  renderLink = DEFAULT_LINK,
-  dataAttrs,
-  className,
-  onMouseEnter,
-  onFocus,
-}: NavItemProps): ReactElement {
+export function renderNavItem(
+  {
+    href,
+    onSelect,
+    icon: IconComponent,
+    iconWeight,
+    label,
+    active = false,
+    activeColor,
+    badge,
+    renderLink = DEFAULT_LINK,
+    dataAttrs,
+    className,
+    onMouseEnter,
+    onFocus,
+  }: NavItemProps,
+  classFn: (active: boolean, className?: string) => string,
+): ReactElement {
   if (!href && !onSelect) {
     throw new Error(
       "NavItem: href 또는 onSelect 중 하나는 있어야 합니다. 접근 가능한 요소를 만들 수 없습니다.",
@@ -122,7 +127,7 @@ export function NavItem({
   if (href) {
     return renderLink({
       href,
-      className: itemClass(active, className),
+      className: classFn(active, className),
       style,
       "aria-current": active ? "page" : undefined,
       onMouseEnter,
@@ -135,7 +140,7 @@ export function NavItem({
   return (
     <button
       type="button"
-      className={itemClass(active, className)}
+      className={classFn(active, className)}
       style={style}
       aria-current={active ? "page" : undefined}
       onClick={onSelect}
@@ -146,4 +151,16 @@ export function NavItem({
       {body}
     </button>
   );
+}
+
+/**
+ * 사이드바 내비게이션 항목 하나.
+ *
+ * 접근성은 API 모양으로 강제된다 — 이 컴포넌트로는 `<div onClick>` 을 만들 수 없다.
+ * href 가 있으면 링크, 없고 onSelect 만 있으면 button 이고, 둘 다 없으면 던진다.
+ * 활성 표현은 정본(AxHub Figma)을 따라 **배경 없이 색만** 바꾼다 — APTA 가 쓰던
+ * `--accent-soft` 배경 방식은 여기로 올라오지 않는다.
+ */
+export function NavItem(props: NavItemProps): ReactElement {
+  return renderNavItem(props, itemClass);
 }
