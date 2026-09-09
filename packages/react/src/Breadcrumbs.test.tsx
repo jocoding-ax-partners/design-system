@@ -55,4 +55,18 @@ describe("Breadcrumbs", () => {
     );
     expect(screen.getByRole("link", { name: "회차" })).toHaveAttribute("data-router", "yes");
   });
+
+  it("마지막 항목은 href 가 있어도 링크가 아니다", () => {
+    render(
+      <Breadcrumbs
+        items={[
+          { key: "r", label: "회차", href: "/rounds" },
+          { key: "d", label: "1회차", href: "/rounds/1" },
+        ]}
+      />,
+    );
+
+    expect(screen.queryByRole("link", { name: "1회차" })).toBeNull();
+    expect(screen.getByText("1회차")).toHaveAttribute("aria-current", "page");
+  });
 });
