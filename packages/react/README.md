@@ -1,9 +1,17 @@
 # @jocoding-ax-partners/react
 
-Eleven React components — `CodeBlock`, `ConfirmProvider`/`useConfirm`, `HoverReadout`,
+Nineteen React components — `CodeBlock`, `ConfirmProvider`/`useConfirm`, `HoverReadout`,
 `Input`, `List`, `Pagination`, `SearchBox`, `SidePanel`, `Skeleton`, `StatCard`,
-`StatusDot` — plus a `cn` helper, promoted verbatim from axhub-frontend for cases
-`@heroui/react` has no equivalent for.
+`StatusDot`, `NavItem`, `NavList`, `Sidebar`, `TopBar`, `Breadcrumbs`, `PageHeader`,
+`PageContainer`, `TabNav` — plus a `cn` helper, promoted verbatim from axhub-frontend for
+cases `@heroui/react` has no equivalent for.
+
+`NavItem`, `NavList`, `Sidebar`, `TopBar`, `Breadcrumbs`, `PageHeader`, `PageContainer`,
+and `TabNav` are AxHub's navigation shell, canonicalized. They take no dependency on any
+router — a consumer injects its own `Link` via a `renderLink` prop — and enforce
+accessibility through their API shape rather than convention: `NavItem` throws if given
+neither `href` nor `onSelect`, so a non-interactive `<div onClick>` nav item can't be
+built with it.
 
 ## Install
 
