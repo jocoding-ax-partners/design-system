@@ -66,6 +66,13 @@ export interface NavItemProps {
  * 경로도 확인했다: `@heroui/styles/dist/themes/shared/theme.css:28` 의
  * `--color-focus: var(--focus)` 와 `themes/default/variables.css:95,227` 의
  * `--focus: var(--accent)`(라이트·다크 양쪽). 즉 아무 데도 안 걸려 투명해지지 않는다.
+ *
+ * **`TabNav` 는 여기 안 따른다. 일부러다.** 이 규칙이 적용되는 자리는 정본에 링이
+ * 아예 없어서 줄 전체가 패키지 창작인 곳(`NavItem`·`PageHeader`·`Breadcrumbs`)뿐이다.
+ * `TabNav` 는 정본(axhub-frontend tab-page/ui/TabNav.tsx:35)이 이미 링을 갖고 있고
+ * 색을 주지 않기로 했으므로 그 결정을 따른다 — AxHub 가 오늘 프로덕션에서 그리는
+ * 표면을 사람 승인 없이 리팩 경로로 바꾸지 않는다. 넷이 색이 갈리는 건 인지된
+ * 결과이고, 통일 여부는 사람이 정할 문제로 남겨 뒀다.
  */
 export function itemClass(active: boolean, className?: string) {
   return cn(

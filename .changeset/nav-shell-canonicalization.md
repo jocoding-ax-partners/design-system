@@ -27,10 +27,14 @@ described separately.
   the package imports neither. A consumer injects its own `Link` through `renderLink`.
 - Accessibility the canon does not have is added deliberately: a `focus-visible` ring
   on interactive rows, `aria-hidden` on decorative icons, `aria-expanded` on the
-  accordion trigger, and `role="group"` + `aria-labelledby` on labelled sections. The
-  ring color is pinned to `ring-focus` (`var(--focus)`), which is what every other
-  focus ring in the shipped bundle uses; the Tailwind default of `currentColor` would
-  make the ring take each row's own text color.
+  accordion trigger, and `role="group"` + `aria-labelledby` on labelled sections.
+  Where canon has no ring at all — `NavItem`, `PageHeader`'s back link, `Breadcrumbs` —
+  the whole line is this package's invention, so it picks the ring color too:
+  `ring-focus` (`var(--focus)`), which is what every focus ring in the shipped HeroUI
+  bundle uses (measured: 47 `--tw-ring-color:var(--focus)` plus 2
+  `outline-color:var(--focus)`, and zero `currentColor`). `TabNav` is the one component
+  where canon already has a ring, and canon gives it no color; `TabNav` therefore keeps
+  canon's colorless ring. See the deviation list below.
 - `@jocoding-ax-partners/tailwind` now owns the shell dimension and icon tokens:
   `--sidebar-width` (244px), `--topbar-height` (60px), and `--icon-inactive`
   (light `gray-300` / dark `gray-500`).
@@ -61,10 +65,22 @@ Deliberate deviations from canon, listed so they are not silently re-adjudicated
 - `Sidebar` adds `h-full` and a base-level `flex-col`. Canon needs neither because its
   column is `hidden` below `lg`, but a consumer that overrides `hidden` (APTA passes
   `className="flex"`) needs a direction on the base layer.
-- The `focus-visible` ring described above, on `NavItem`, `TabNav`, `PageHeader`'s back
-  link, and `Breadcrumbs`. It is not applied to the accordion child rows: those keep
-  canon's class string exactly and do not suppress the UA outline, so they still show a
-  focus indicator.
+- `TabNav`'s focus ring carries `ring-offset-background`, which canon does not have.
+  This is the only deviation on the one component where canon specified a ring, and it
+  is an **addition where canon was silent, not a change to something canon chose**:
+  canon sets `ring-offset-2` but no offset *color*, so the Tailwind default applies —
+  a hard-coded white, which reads as a halo on dark surfaces (measured, and the reason
+  it was added). Canon's own decisions on that ring are followed exactly, including its
+  decision to give the ring itself no color: `TabNav` does **not** get `ring-focus`.
+  The rings on `NavItem`, `PageHeader` and `Breadcrumbs` are not deviations at all —
+  canon has no ring on those, so nothing is being overridden. The accordion child rows
+  get no ring: they keep canon's class string exactly and do not suppress the UA
+  outline, so a focused child is still visible.
+
+  Consequence, stated rather than buried: after this release `TabNav`'s ring follows
+  `currentColor` while the other three follow `var(--focus)`. That is deliberate
+  canon-fidelity, not an oversight. Making all four consistent is a design decision
+  about a surface AxHub renders in production today, and it is left to a human.
 
 Version outcome: bumping `design-system` changes the `peerDependency` of `react`
 (`@jocoding-ax-partners/design-system: workspace:^`), so changesets promotes `react` to

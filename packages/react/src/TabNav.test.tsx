@@ -79,14 +79,24 @@ describe("TabNav", () => {
     );
   });
 
-  // 링 **색**. 색을 안 주면 Tailwind 기본값 `currentColor` 라 링이 활성 탭
-  // (text-default)과 비활성 탭(text-default/90)에서 갈린다. 근거는 NavItem.tsx 의
-  // `itemClass` JSDoc — 번들의 다른 포커스 링은 전부 `var(--focus)` 다.
-  it("포커스 링 색은 --focus 토큰이다 — currentColor 면 탭마다 색이 달라진다", () => {
+  // 링 **색을 주지 않는 것**이 정본이다. 이 패키지에서 정본이 포커스 링을 이미 갖고
+  // 있는 유일한 자리이고(axhub-frontend tab-page/ui/TabNav.tsx:35), 정본은 거기에
+  // 색을 안 준다 — Tailwind 기본값 `currentColor` 로 남는다.
+  //
+  // `NavItem`·`PageHeader`·`Breadcrumbs` 는 `ring-focus`(= `var(--focus)`)를 쓰는데
+  // 여기만 안 쓴다. 일부러다: 저쪽은 정본에 링 자체가 없어 줄 전체가 패키지 창작이라
+  // 색도 패키지가 정하지만, 여기는 정본이 이미 결정을 내렸다. AxHub 가 오늘
+  // 프로덕션에서 그리는 표면을 사람 승인 없이 리팩 경로로 바꾸지 않는다.
+  // 한때 여기에도 `ring-focus` 를 달았다가 이 판단으로 되돌렸다.
+  it("포커스 링에 색을 주지 않는다 — 정본이 색을 정하지 않았다 (TabNav.tsx:35)", () => {
     render(<TabNav tabs={tabs} activeKey="overview" />);
     const link = screen.getByRole("tab", { name: "개요" });
-    expect(link.className).toContain("focus-visible:ring-focus");
+    expect(link.className).toContain("focus-visible:ring-2");
+    expect(link.className).not.toContain("focus-visible:ring-focus");
     expect(link.className).not.toMatch(/focus-visible:ring-\[/);
+    // 오프셋 **색**은 예외다 — 정본이 안 정해서 Tailwind 기본값이 하드코딩 흰색이
+    // 되는데, 다크에서 흰 후광으로 보였다(79b3ee4). 색을 안 정한 자리를 메우는 것.
+    expect(link.className).toContain("focus-visible:ring-offset-background");
   });
 
   // 43de815 회귀 가드. 그 커밋은 탭 링크를 감싸던 <span> 을 없앴다 — span 이 flex
@@ -118,17 +128,17 @@ describe("TabNav", () => {
     expect(Array.from(tablist.children).every((c) => c.tagName === "A")).toBe(true);
   });
 
-  it("비활성 탭 클래스 문자열을 통째로 고정한다 — 정본 TabNav.tsx:29-49 + 선언된 a11y 줄", () => {
+  it("비활성 탭 클래스 문자열을 통째로 고정한다 — 정본 TabNav.tsx:29-49", () => {
     render(<TabNav tabs={tabs} activeKey="logs" />);
     expect(screen.getByRole("tab", { name: "개요" }).className).toBe(
-      "flex shrink-0 items-center gap-1.5 border-b-2 px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4 focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default/90 hover:text-default border-transparent font-normal",
+      "flex shrink-0 items-center gap-1.5 border-b-2 px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4 focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default/90 hover:text-default border-transparent font-normal",
     );
   });
 
   it("활성 탭 클래스 문자열을 통째로 고정한다", () => {
     render(<TabNav tabs={tabs} activeKey="overview" />);
     expect(screen.getByRole("tab", { name: "개요" }).className).toBe(
-      "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4 focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default font-semibold",
+      "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4 focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default font-semibold",
     );
   });
 
