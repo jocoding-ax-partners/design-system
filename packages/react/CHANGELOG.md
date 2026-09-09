@@ -1,5 +1,11 @@
 # @jocoding-ax-partners/react
 
+## 2.1.0
+
+### Minor Changes
+
+- 01e26f3: Promote the canonical KPI bar and add the canonical ag-grid shell through an optional lazy subpath.
+
 ## 2.0.0
 
 ### Minor Changes
