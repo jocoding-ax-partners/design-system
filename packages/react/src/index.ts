@@ -1,5 +1,6 @@
 export { cn } from "./lib/cn.js";
 
+export { Breadcrumbs } from "./Breadcrumbs.js";
 export { CodeBlock } from "./CodeBlock.js";
 export { ConfirmProvider, useConfirm } from "./ConfirmDialog.js";
 export { HoverReadout, ReadoutSurface, useHoverReadout } from "./HoverReadout.js";
@@ -14,9 +15,12 @@ export { SidePanel, SidePanelFooter, SidePanelHeader } from "./SidePanel.js";
 export * from "./Skeleton.js";
 export * from "./StatCard.js";
 export * from "./StatusDot.js";
+export { TopBar } from "./TopBar.js";
+export type { BreadcrumbEntry, BreadcrumbsProps } from "./Breadcrumbs.js";
 export type { ConfirmOptions } from "./ConfirmDialog.js";
 export type { ReadoutSpot } from "./HoverReadout.js";
 export type { NavItemProps, NavLinkRenderer, NavLinkRenderProps } from "./NavItem.js";
 export type { NavEntry, NavListProps, NavSection } from "./NavList.js";
 export type { SidebarProps } from "./Sidebar.js";
 export type { SidePanelProps } from "./SidePanel.js";
+export type { TopBarProps } from "./TopBar.js";
