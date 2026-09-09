@@ -69,4 +69,18 @@ describe("Breadcrumbs", () => {
     expect(screen.queryByRole("link", { name: "1회차" })).toBeNull();
     expect(screen.getByText("1회차")).toHaveAttribute("aria-current", "page");
   });
+
+  it("포커스 링 offset 색은 배경 토큰을 쓴다 — 안 그러면 다크모드에서 흰 헤일로가 생긴다", () => {
+    render(
+      <Breadcrumbs
+        items={[
+          { key: "r", label: "회차", href: "/rounds" },
+          { key: "d", label: "2기" },
+        ]}
+      />,
+    );
+    expect(screen.getByRole("link", { name: "회차" }).className).toContain(
+      "focus-visible:ring-offset-background",
+    );
+  });
 });

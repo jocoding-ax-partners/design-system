@@ -57,7 +57,7 @@ export function Breadcrumbs({
               renderLink({
                 href: item.href,
                 className:
-                  "text-muted hover:text-default min-w-0 shrink-0 truncate transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                  "text-muted hover:text-default min-w-0 shrink-0 truncate transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none",
                 children: item.label,
               })
             )}

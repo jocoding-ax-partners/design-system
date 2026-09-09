@@ -53,7 +53,7 @@ export interface NavItemProps {
 export function itemClass(active: boolean, className?: string) {
   return cn(
     "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors",
-    "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+    "focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
     active
       ? "font-semibold"
       : "text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",

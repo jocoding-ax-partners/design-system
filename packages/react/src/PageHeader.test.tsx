@@ -68,6 +68,13 @@ describe("PageHeader", () => {
     expect(link).toHaveAttribute("href", "/rounds");
   });
 
+  it("뒤로 링크 포커스 링 offset 색은 배경 토큰을 쓴다 — 안 그러면 다크모드에서 흰 헤일로가 생긴다", () => {
+    render(<PageHeader title="2기" backTo="/rounds" />);
+    expect(screen.getByRole("link", { name: "뒤로" }).className).toContain(
+      "focus-visible:ring-offset-background",
+    );
+  });
+
   it("center 를 주면 가운데 정렬 클래스가 붙는다", () => {
     const { rerender } = render(<PageHeader title="회차" />);
     expect(screen.getByRole("heading", { level: 1 }).closest("div.flex")?.className).not.toContain(

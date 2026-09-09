@@ -78,6 +78,13 @@ describe("NavItem", () => {
     expect(screen.getByRole("link", { name: "회차" }).className).toContain("focus-visible:ring-2");
   });
 
+  it("포커스 링 offset 색은 배경 토큰을 쓴다 — 안 그러면 다크모드에서 흰 헤일로가 생긴다", () => {
+    render(<NavItem href="/r" label="회차" />);
+    expect(screen.getByRole("link", { name: "회차" }).className).toContain(
+      "focus-visible:ring-offset-background",
+    );
+  });
+
   it("renderLink 로 라우터 Link 를 주입할 수 있고 className/aria 가 전달된다", () => {
     render(
       <NavItem

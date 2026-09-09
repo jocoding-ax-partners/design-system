@@ -1,7 +1,7 @@
 import type { NavLinkRenderer, NavLinkRenderProps } from "./NavItem.js";
 
 import { Chip } from "@heroui/react";
-import { cloneElement, type ReactElement , type ReactNode } from "react";
+import { cloneElement, type ReactElement, type ReactNode } from "react";
 
 import { cn } from "./lib/cn.js";
 
@@ -49,7 +49,7 @@ export function TabNav({
             href: tab.to,
             className: cn(
               "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4",
-              "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+              "focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               active
                 ? "text-default font-semibold"
                 : "text-default/90 hover:text-default border-transparent font-normal",

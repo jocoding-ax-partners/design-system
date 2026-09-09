@@ -37,7 +37,7 @@ export function PageHeader({
           ? renderLink({
               href: backTo,
               className:
-                "inline-flex items-center gap-1.5 text-xs text-muted transition hover:text-default mb-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                "inline-flex items-center gap-1.5 text-xs text-muted transition hover:text-default mb-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none",
               children: (
                 <>
                   <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />

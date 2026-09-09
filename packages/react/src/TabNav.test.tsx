@@ -71,4 +71,11 @@ describe("TabNav", () => {
     render(<TabNav tabs={tabs} activeKey="overview" />);
     expect(screen.getByRole("tab", { name: "개요" }).style.borderColor).toBe("var(--primary)");
   });
+
+  it("포커스 링 offset 색은 배경 토큰을 쓴다 — 안 그러면 다크모드에서 흰 헤일로가 생긴다", () => {
+    render(<TabNav tabs={tabs} activeKey="overview" />);
+    expect(screen.getByRole("tab", { name: "개요" }).className).toContain(
+      "focus-visible:ring-offset-background",
+    );
+  });
 });
