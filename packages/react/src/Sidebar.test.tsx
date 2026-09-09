@@ -15,6 +15,37 @@ describe("Sidebar", () => {
     expect(screen.getByRole("navigation", { name: "주 메뉴" })).toBeInTheDocument();
   });
 
+  // 이 브랜치가 이미 두 번 만든 결함의 형태 — 클래스 문자열의 일부만 재면 색이
+  // 드리프트해도 초록이다. `Sidebar.test.tsx` 는 폭·패딩·hidden/lg:flex·슬롯을 다
+  // 재면서 `bg-*`/`border-*` 는 한 줄도 안 재고 있었고, 그래서 `bg-surface
+  // border-default` 가 그대로 배포까지 갔다. 여기서는 루트 문자열을 통째로 고정한다.
+  it("루트 클래스 문자열이 정본과 한 글자도 다르지 않다 — AppLayout.tsx:134", () => {
+    const { container } = render(<Sidebar>x</Sidebar>);
+    const root = container.firstElementChild as HTMLElement;
+    expect(root.className).toBe(
+      "bg-background border-border hidden h-full w-[var(--sidebar-width)] shrink-0 flex-col border-r lg:flex lg:flex-col",
+    );
+    // 드리프트해 있던 값이 되돌아오지 않는지 이름으로도 못 박는다.
+    expect(root.className).not.toContain("bg-surface");
+    expect(root.className).not.toContain("border-default");
+  });
+
+  it("슬롯 래퍼 마크업도 고정한다 — 클래스만 재면 래퍼가 사라져도 초록이다", () => {
+    const { container } = render(
+      <Sidebar header={<div>브랜드</div>} footer={<div>계정</div>}>
+        <div data-testid="body">본문</div>
+      </Sidebar>,
+    );
+    const root = container.firstElementChild as HTMLElement;
+    expect(root.children).toHaveLength(3);
+    expect((root.children[0] as HTMLElement).className).toBe("shrink-0");
+    expect((root.children[1] as HTMLElement).className).toBe(
+      "min-h-0 flex-1 overflow-y-auto px-[8px] py-[12px]",
+    );
+    expect((root.children[2] as HTMLElement).className).toBe("shrink-0");
+    expect(screen.getByTestId("body").parentElement).toBe(root.children[1]);
+  });
+
   it("정본 폭 토큰을 쓴다 — 하드코딩된 px 이 아니다", () => {
     const { container } = render(<Sidebar>x</Sidebar>);
     const root = container.firstElementChild as HTMLElement;
