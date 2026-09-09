@@ -6,8 +6,10 @@ export { HoverReadout, ReadoutSurface, useHoverReadout } from "./HoverReadout.js
 export { Input } from "./Input.js";
 export { List, ListItem } from "./List.js";
 export { NavItem } from "./NavItem.js";
+export { NavList } from "./NavList.js";
 export { buildItems, Pagination } from "./Pagination.js";
 export { SearchBox } from "./SearchBox.js";
+export { Sidebar } from "./Sidebar.js";
 export { SidePanel, SidePanelFooter, SidePanelHeader } from "./SidePanel.js";
 export * from "./Skeleton.js";
 export * from "./StatCard.js";
@@ -15,4 +17,6 @@ export * from "./StatusDot.js";
 export type { ConfirmOptions } from "./ConfirmDialog.js";
 export type { ReadoutSpot } from "./HoverReadout.js";
 export type { NavItemProps, NavLinkRenderer, NavLinkRenderProps } from "./NavItem.js";
+export type { NavEntry, NavListProps, NavSection } from "./NavList.js";
+export type { SidebarProps } from "./Sidebar.js";
 export type { SidePanelProps } from "./SidePanel.js";
