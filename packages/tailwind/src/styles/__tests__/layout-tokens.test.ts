@@ -18,6 +18,6 @@ describe("layout tokens", () => {
   });
 
   it("두 값을 앱이 소유한다고 적힌 옛 주석이 남아 있지 않다", () => {
-    expect(css).not.toMatch(/소비하는 앱/);
+    expect(css).not.toMatch(/consuming\s+app|소비하는\s*앱/i);
   });
 });
