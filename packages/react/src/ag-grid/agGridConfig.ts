@@ -20,6 +20,7 @@ export const GRID_DEFAULT_COL: ColDef = {
 export const GRID_NO_EXTERNAL_FONTS = { loadThemeGoogleFonts: false } as const;
 
 export const axGridTheme = themeQuartz.withParams({
+  fontFamily: "var(--font-sans)",
   wrapperBorderRadius: GRID_RADIUS,
   backgroundColor: "var(--bg-content)",
   headerBackgroundColor: "var(--bg-surface)",
