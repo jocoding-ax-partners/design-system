@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     "./styles": {
       "types": "./src/styles/index.d.ts",
@@ -15,17 +17,22 @@
   },
   "scripts": {
     "lint": "stylelint 'src/**/*.css'",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "vitest run"
   },
   "lint-staged": {
     "*.css": [
       "prettier --write",
       "stylelint --fix"
+    ],
+    "*.{js,mjs,cjs,ts,mts,cts}": [
+      "prettier --write"
     ]
   },
   "devDependencies": {
     "@nijesmik/stylelint-config": "^0.1.0",
     "stylelint": "^16.26.1",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "vitest": "^4.0.18"
   }
 }

@@ -1,7 +1,11 @@
 /*
- * Responsive container padding. Only the padding ramp lives here — sidebar width,
- * header height and body gaps stay in the consuming app, because they describe
- * that app's chrome rather than the design kit.
+ * 컨테이너 패딩 램프 + 셸 치수.
+ *
+ * 2026-09 이전에는 사이드바 폭과 헤더 높이가 "앱의 크롬이라 앱이 소유한다"였다.
+ * 셸 컴포넌트(Sidebar/TopBar)를 @jocoding-ax-partners/react 가 소유하게 되면서
+ * 그 전제가 뒤집혔다 — 컴포넌트가 정본이면 치수도 정본이어야 두 앱이 같은 셸이 된다.
+ * 값의 출처는 axhub-frontend(정본): globals.css 의 --sidebar-width 244px,
+ * layout/Topbar.tsx 의 h-[60px].
  */
 :root {
   --container-pad-sm: 20px;
@@ -9,4 +13,6 @@
   --container-pad-lg: 40px;
   --container-pad-xl: 48px;
   --container-pad-2xl: 56px;
+  --sidebar-width: 244px;
+  --topbar-height: 60px;
 }

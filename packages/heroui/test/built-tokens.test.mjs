@@ -296,3 +296,29 @@ test("the old generic --color-* surface/border names are gone", () => {
   assert.doesNotMatch(css, /--color-border-interactive:/);
   assert.doesNotMatch(css, /--color-border-divider:/);
 });
+
+// --- Shell layout / icon tokens (nav-shell promotion) -----------------------
+//
+// These three are owned by `packages/tailwind`, which is `private: true` and is
+// never published. The only path they take to a consumer app is the dist read
+// above.
+//
+// A source-level test for the same tokens exists at
+// `packages/tailwind/src/styles/__tests__/layout-tokens.test.ts`. It cannot
+// stand in for these: the layer that actually broke in the published 4.1.0 was
+// the artifact, not the source — the tokens were present in source but never
+// inlined into dist, and APTA rendered a 212.16px sidebar instead of 244px.
+// Measure at the layer you are judging.
+test("shell layout tokens reach dist — sidebar width", () => {
+  assert.match(css, /--sidebar-width:\s*244px/);
+});
+
+test("shell layout tokens reach dist — topbar height", () => {
+  assert.match(css, /--topbar-height:\s*60px/);
+});
+
+test("inactive nav icon color reaches dist in both themes", () => {
+  assert.match(css, /--icon-inactive:\s*var\(--color-gray-300\)/);
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--icon-inactive:\s*var\(--color-gray-500\)/);
+});

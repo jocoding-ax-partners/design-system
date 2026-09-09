@@ -3,6 +3,8 @@ import { defineConfig } from "eslint/config";
 
 import baseConfig from "@nijesmik/eslint-config";
 
+import iconConfig from "../../eslint.icons.js";
+
 // This package's entire purpose is to hold components promoted verbatim from
 // axhub-frontend/src/components/ui/ — their prop/key ordering belongs to that
 // source, not to us. Reordering destructured props to satisfy an alphabetical
@@ -41,4 +43,5 @@ export default defineConfig([
       ],
     },
   },
+  ...iconConfig,
 ]);
