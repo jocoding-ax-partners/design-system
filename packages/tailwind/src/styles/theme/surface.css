@@ -38,6 +38,13 @@
   --border-strong: var(--color-gray-300);
   --border-interactive: var(--color-gray-200);
   --border-divider: rgb(82 82 91 / 8%);
+
+  /* Sidebar — inactive nav icon. Sourced from axhub-frontend globals.css, where
+     it is light=gray-300 / dark=gray-500. Kept as `var(--color-gray-*)` rather
+     than the literal hex used elsewhere in the dark block below: the hex in
+     colors.css is a comment approximation of an oklch value, so hardcoding it
+     would shift the color away from what AxHub renders. */
+  --icon-inactive: var(--color-gray-300);
 }
 
 .dark,
@@ -67,6 +74,7 @@
      visible on dark surfaces. */
   --border-interactive: var(--color-gray-500);
   --border-divider: rgb(255 255 255 / 8%);
+  --icon-inactive: var(--color-gray-500);
 }
 
 /* Expose the semantic tokens as Tailwind utilities: bg-surface, text-default,
