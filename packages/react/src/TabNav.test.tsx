@@ -1,0 +1,45 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import { TabNav, type TabNavTab } from "./TabNav.js";
+
+const tabs: TabNavTab[] = [
+  { key: "overview", to: "/apps", label: "개요" },
+  { key: "logs", to: "/apps/logs", label: "로그", badge: <span>3</span> },
+];
+
+describe("TabNav", () => {
+  it("tablist 로 렌더하고 가로 방향임을 알린다", () => {
+    render(<TabNav tabs={tabs} activeKey="overview" />);
+    expect(screen.getByRole("tablist")).toHaveAttribute("aria-orientation", "horizontal");
+  });
+
+  it("모든 탭을 링크로 렌더한다", () => {
+    render(<TabNav tabs={tabs} activeKey="overview" />);
+    expect(screen.getByRole("link", { name: "개요" })).toHaveAttribute("href", "/apps");
+    expect(screen.getByRole("link", { name: /로그/ })).toHaveAttribute("href", "/apps/logs");
+  });
+
+  it("활성 탭은 aria-current=page 와 굵은 글씨, 밑줄 색을 갖는다", () => {
+    render(<TabNav tabs={tabs} activeKey="logs" activeColor="rgb(4, 5, 6)" />);
+    const active = screen.getByRole("link", { name: /로그/ });
+    expect(active).toHaveAttribute("aria-current", "page");
+    expect(active.className).toContain("font-semibold");
+    expect(active.style.borderColor).toBe("rgb(4, 5, 6)");
+  });
+
+  it("비활성 탭은 밑줄 색이 없다", () => {
+    render(<TabNav tabs={tabs} activeKey="logs" activeColor="rgb(4, 5, 6)" />);
+    expect(screen.getByRole("link", { name: "개요" }).style.borderColor).toBe("");
+  });
+
+  it("가로로 넘치면 목록 안에서 스크롤한다 — 페이지가 밀리지 않는다", () => {
+    render(<TabNav tabs={tabs} activeKey="overview" />);
+    expect(screen.getByRole("tablist").className).toContain("overflow-x-auto");
+  });
+
+  it("badge 를 렌더한다", () => {
+    render(<TabNav tabs={tabs} activeKey="overview" />);
+    expect(screen.getByText("3")).toBeInTheDocument();
+  });
+});
