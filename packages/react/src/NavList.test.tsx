@@ -87,7 +87,7 @@ describe("NavList", () => {
     expect(trigger).toHaveAttribute("aria-expanded", "true");
   });
 
-  it("아코디언 트리거를 클릭하면 onSelect 도 함께 호출된다 — AxHub 는 첫 하위로 navigate 한다", async () => {
+  it("아코디언 트리거는 여는 클릭에서만 onSelect 를 호출한다 — 닫는 클릭에서는 호출하지 않는다 (AxHub InnerSidebar.tsx:217-220)", async () => {
     const onSelect = vi.fn();
     render(
       <NavList
@@ -107,8 +107,19 @@ describe("NavList", () => {
         ]}
       />,
     );
-    await userEvent.click(screen.getByRole("button", { name: "환경설정" }));
+    const trigger = screen.getByRole("button", { name: "환경설정" });
+
+    // 1번째 클릭 — 연다. onSelect 가 호출된다.
+    await userEvent.click(trigger);
     expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("link", { name: "팀" })).toBeInTheDocument();
+
+    // 2번째 클릭 — 닫는다. onSelect 는 추가 호출되지 않는다.
+    await userEvent.click(trigger);
+    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("link", { name: "팀" })).not.toBeInTheDocument();
   });
 
   it("아코디언 캐럿은 CaretRight 다 — CaretDown 이 아니고, 열리면 90도 회전한다", async () => {

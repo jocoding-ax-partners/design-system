@@ -37,6 +37,11 @@ function toItemProps(entry: NavEntry): NavItemProps {
  * CaretRight 를 가진 **버튼 하나**가 클릭 시 onSelect(내비게이션은 소비 앱 책임)와
  * 아코디언 토글을 함께 한다. `aria-expanded` 는 AxHub 에는 없는, 패키지가 더하는
  * 의도적 접근성 추가다.
+ *
+ * `onSelect` 는 "열리는 전환에서만" 호출된다 — AxHub InnerSidebar.tsx:217-220 과
+ * 동일하게, 닫혀 있던 항목을 여는 클릭에서만 한 번 불린다. 이미 열린 항목을 닫는
+ * 클릭에서는 호출되지 않는다. 소비 앱이 onSelect 를 "첫 자식으로 navigate" 로
+ * 구현했을 때, 접는 클릭에서 재-navigate 되는 것을 막기 위함이다.
  */
 function Accordion({
   entry,
@@ -60,7 +65,9 @@ function Accordion({
         type="button"
         aria-expanded={open}
         onClick={() => {
-          entry.onSelect?.();
+          if (!open) {
+            entry.onSelect?.();
+          }
           setOpen((v) => !v);
         }}
         className={itemClass(active, entry.className)}
