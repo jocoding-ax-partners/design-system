@@ -1,5 +1,7 @@
-import type { NavLinkRenderer } from "./NavItem.js";
+import type { NavLinkRenderer, NavLinkRenderProps } from "./NavItem.js";
 import type { ReactElement, ReactNode } from "react";
+
+import { Chip } from "@heroui/react";
 
 import { cn } from "./lib/cn.js";
 
@@ -43,26 +45,34 @@ export function TabNav({
       >
         {tabs.map((tab) => {
           const active = tab.key === activeKey;
-          return (
-            <span key={tab.key}>
-              {renderLink({
-                href: tab.to,
-                className: cn(
-                  "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4",
-                  "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-                  active ? "text-default font-semibold" : "text-muted hover:text-default",
-                ),
-                style: active ? { borderColor: activeColor ?? "var(--primary)" } : undefined,
-                "aria-current": active ? "page" : undefined,
-                children: (
-                  <>
-                    {tab.label}
+          // NavLinkRenderProps 는 NavItem/Breadcrumbs 와 공유하는 타입이라 role/aria-selected
+          // 가 없다. TabNav 만 필요한 ARIA 속성이라 여기서 로컬 확장한다 — 실제 <a> 로는
+          // DEFAULT_LINK({ ...props }) 스프레드를 타고 그대로 전달된다.
+          const linkProps: NavLinkRenderProps & { role: "tab"; "aria-selected": boolean } = {
+            href: tab.to,
+            className: cn(
+              "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4",
+              "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+              active
+                ? "text-default font-semibold"
+                : "text-default/90 hover:text-default border-transparent font-normal",
+            ),
+            style: active ? { borderColor: activeColor ?? "var(--primary)" } : undefined,
+            "aria-current": active ? "page" : undefined,
+            role: "tab",
+            "aria-selected": active,
+            children: (
+              <>
+                {tab.label}
+                {tab.badge ? (
+                  <Chip size="sm" variant="soft" color={active ? "accent" : "default"}>
                     {tab.badge}
-                  </>
-                ),
-              })}
-            </span>
-          );
+                  </Chip>
+                ) : null}
+              </>
+            ),
+          };
+          return <span key={tab.key}>{renderLink(linkProps)}</span>;
         })}
       </nav>
     </div>

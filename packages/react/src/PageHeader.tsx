@@ -1,7 +1,7 @@
 import type { NavLinkRenderer } from "./NavItem.js";
 import type { ReactElement, ReactNode } from "react";
 
-import { CaretLeft } from "@phosphor-icons/react";
+import { ArrowLeft } from "@phosphor-icons/react";
 
 import { cn } from "./lib/cn.js";
 
@@ -37,10 +37,10 @@ export function PageHeader({
           ? renderLink({
               href: backTo,
               className:
-                "text-muted hover:text-default mb-2 inline-flex items-center gap-1 text-[14px] transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                "inline-flex items-center gap-1.5 text-xs text-muted transition hover:text-default mb-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               children: (
                 <>
-                  <CaretLeft aria-hidden="true" size={14} />
+                  <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
                   {backLabel}
                 </>
               ),
