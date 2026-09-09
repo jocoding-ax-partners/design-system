@@ -1,7 +1,7 @@
 import type { NavLinkRenderer, NavLinkRenderProps } from "./NavItem.js";
-import type { ReactElement, ReactNode } from "react";
 
 import { Chip } from "@heroui/react";
+import { cloneElement, type ReactElement , type ReactNode } from "react";
 
 import { cn } from "./lib/cn.js";
 
@@ -69,7 +69,11 @@ export function TabNav({
               </>
             ),
           };
-          return <span key={tab.key}>{renderLink(linkProps)}</span>;
+          // key 는 cloneElement 로 링크 자신에게 단다 — <span> 으로 감싸면 그 span 이
+          // flex 아이템이 되고, shrink-0 은 안쪽 <a> 에 있어 효력을 잃는다. 좁은 화면에서
+          // 탭이 가로 스크롤되지 않고 찌그러진다(2026-09-09 실측, 320px·탭 7개:
+          // 감싼 쪽은 탭 폭이 전부 44.1px 로 눌리고 라벨이 3줄로 접혀 탭바 높이 54→117px).
+          return cloneElement(renderLink(linkProps), { key: tab.key });
         })}
       </nav>
     </div>
