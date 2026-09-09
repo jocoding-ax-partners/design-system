@@ -150,7 +150,7 @@ describe("NavList", () => {
   // (commit bc1e87cf) 이다. 이 테스트는 패키지가 지금 내는 값이 아니라 **그 정본
   // 문자열**에 대고 `.toBe` 로 고정한다 — 패키지 자신을 기준으로 삼은 테스트는
   // 드리프트가 나도 항상 초록이라 이 브랜치에서 두 번 실제로 그렇게 됐다.
-  it("아코디언 자식 행은 정본 클래스와 한 글자도 다르지 않다 — InnerSidebar.tsx:261-266 (비활성)", async () => {
+  it("아코디언 자식 행은 정본 클래스·마크업과 한 글자도 다르지 않다 — InnerSidebar.tsx:261-269 (비활성)", async () => {
     render(<NavList sections={sections} aria-label="주 메뉴" />);
     await userEvent.click(screen.getByRole("button", { name: "환경설정" }));
     const teamLink = screen.getByRole("link", { name: "팀" });
@@ -166,9 +166,15 @@ describe("NavList", () => {
     expect(teamLink.className).not.toContain("px-[12px]");
     expect(teamLink.className).toContain("py-[6px]");
     expect(teamLink.className).not.toMatch(/(^|\s)h-\[32px\]/);
+    // 마크업 — 정본은 라벨을 span 으로 감싸지 않는 맨 텍스트 노드다
+    // (InnerSidebar.tsx:269). className 만 재면 이 차이를 놓친다 — 이전 버전이
+    // 그랬다: `<span class="flex-1 truncate">팀</span>` 을 span 없이 렌더한 것으로
+    // 오판정했다.
+    expect(teamLink.innerHTML).toBe("팀");
+    expect(teamLink.querySelector("span")).toBeNull();
   });
 
-  it("아코디언 자식 행은 정본 클래스와 한 글자도 다르지 않다 — InnerSidebar.tsx:261-266 (활성)", () => {
+  it("아코디언 자식 행은 정본 클래스·마크업과 한 글자도 다르지 않다 — InnerSidebar.tsx:261-269 (활성)", () => {
     render(
       <NavList
         aria-label="주 메뉴"
@@ -193,6 +199,8 @@ describe("NavList", () => {
     );
     expect(teamLink.className).not.toContain("text-[14px]");
     expect(teamLink.className).not.toContain("rounded-[8px]");
+    expect(teamLink.innerHTML).toBe("팀");
+    expect(teamLink.querySelector("span")).toBeNull();
   });
 
   it("defaultOpen 이면 처음부터 펼쳐진다", () => {

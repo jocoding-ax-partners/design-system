@@ -14,8 +14,18 @@ import {
  * 아코디언 **자식** 행 전용 클래스 — 정본(axhub-frontend InnerSidebar.tsx:261-266,
  * commit bc1e87cf)을 한 글자씩 옮긴 것이다. 부모 행(`itemClass`)보다 한 단계
  * 작다: 고정 높이가 없고, 반경 6px·패딩 10/6px·글자 13px. 공개 API 에 size/variant
- * 를 추가하지 않기 위해 `index.ts` 로 export 하지 않는다 — 아코디언 자식은 오직
- * `NavList` 자신만 만들 수 있고 호출자는 이 클래스에 닿을 방법이 없다.
+ * 를 추가하지 않기 위해 `index.ts` 로 export 하지 않는다.
+ *
+ * 다만 호출자가 완전히 못 닿는 건 아니다 — `NavEntry` 가 `NavItemProps` 의
+ * `className` 을 그대로 물려받고(`toItemProps`), `childItemClass(active, className)`
+ * 가 그 값을 뒤에 이어붙인다. 그래서 `children: [{ …, className: 'text-[14px] h-[32px]' }]`
+ * 처럼 호출자가 부모 행 크기를 실어 보내면 그대로 새어든다. 이 자리가 정본 밖 확장을
+ * 막는 벽은 아니라는 뜻이다 (Task 10 재리뷰 Minor — 이전 버전은 "호출자는 닿을 방법이
+ * 없다" 고 적었는데, 실제로는 닿는다).
+ *
+ * 정본에는 없는 `aria-current="page"` 가 아코디언 자식에도 붙는다 — 패키지가
+ * API 모양으로 더하는 접근성 확장이고(NavItem 문서 참고), 이 마지막 커밋 이전부터
+ * 있던 동작이라 회귀는 아니다.
  */
 function childItemClass(active: boolean, className?: string) {
   return cn(
@@ -124,7 +134,13 @@ function Accordion({
           <div className="pl-2">
             {entry.children.map((child) => (
               <Fragment key={child.key}>
-                {renderNavItem({ ...toItemProps(child), renderLink, activeColor }, childItemClass)}
+                {renderNavItem(
+                  { ...toItemProps(child), renderLink, activeColor },
+                  childItemClass,
+                  // 정본은 라벨을 span 으로 감싸지 않는다(InnerSidebar.tsx:269) —
+                  // bareLabel 이 없으면 `truncate` 가 긴 라벨을 한 줄로 자른다.
+                  true,
+                )}
               </Fragment>
             ))}
           </div>

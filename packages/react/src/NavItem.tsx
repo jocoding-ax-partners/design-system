@@ -40,7 +40,10 @@ export interface NavItemProps {
   renderLink?: NavLinkRenderer;
   // 키를 `data-*` 로 제한한다 — `href`/`className`/`style`/`aria-current` 처럼
   // renderLink 뒤에 스프레드되는 구조적 prop 이 여기로 몰래 들어와 덮어쓰지 못하게
-  // 타입 단계에서 막는다 (Task 10 리뷰 Minor).
+  // 타입 단계에서 막는다. 다만 객체 리터럴만 막는다 — `Record<string, string>` 으로
+  // 타입된 변수나 함수 반환값은 이 narrowing 을 통과하므로, 실제 방어선은
+  // `renderNavItem` 에서 `...dataAttrs` 를 구조적 prop **앞에** 스프레드하는 순서다
+  // (Task 10 재리뷰 Minor — 타입만으로는 부족하다는 게 `tsc --strict` 로 실측됐다).
   dataAttrs?: Record<`data-${string}`, string | undefined>;
   className?: string;
   /** 목적지가 없는 동작. 주면 <button type="button"> 으로 렌더한다. */
@@ -90,6 +93,12 @@ export function renderNavItem(
     onFocus,
   }: NavItemProps,
   classFn: (active: boolean, className?: string) => string,
+  // 아코디언 **자식** 행 전용. 정본(axhub-frontend InnerSidebar.tsx:261-269,
+  // commit bc1e87cf)은 라벨을 span 으로 감싸지 않는 맨 텍스트 노드로 렌더한다 —
+  // `truncate`(white-space:nowrap) 가 없어 긴 라벨이 줄바꿈된다. bareLabel 은
+  // 그 한 곳만을 위한 스위치이고, 부모 행(itemClass)에는 쓰지 않는다
+  // (Task 10 재리뷰 Important).
+  bareLabel = false,
 ): ReactElement {
   if (!href && !onSelect) {
     throw new Error(
@@ -119,13 +128,22 @@ export function renderNavItem(
         `min-w-0` 은 정본 어느 쪽에도 없어 뺐다. truncate 의 `overflow:hidden` 이
         이미 flex 자동 최소 크기를 0 으로 만들기 때문에 계산 결과도 같다.
       */}
-      <span className={href ? "flex-1 truncate" : "flex-1 truncate text-left"}>{label}</span>
+      {bareLabel ? (
+        label
+      ) : (
+        <span className={href ? "flex-1 truncate" : "flex-1 truncate text-left"}>{label}</span>
+      )}
       {badge}
     </>
   );
 
   if (href) {
     return renderLink({
+      // dataAttrs 를 맨 앞에 둔다 — 뒤따르는 구조적 prop(href/className/style/
+      // aria-current)이 항상 이긴다. 타입 narrowing(`Record<`data-${string}`, …>`)은
+      // 객체 리터럴만 막고 `Record<string, string>` 으로 타입된 변수는 통과시켜서
+      // (Task 10 재리뷰 Minor) spread 순서가 실제 방어선이다.
+      ...dataAttrs,
       href,
       className: classFn(active, className),
       style,
@@ -133,20 +151,19 @@ export function renderNavItem(
       onMouseEnter,
       onFocus,
       children: body,
-      ...dataAttrs,
     } as NavLinkRenderProps);
   }
 
   return (
     <button
       type="button"
+      {...dataAttrs}
       className={classFn(active, className)}
       style={style}
       aria-current={active ? "page" : undefined}
       onClick={onSelect}
       onMouseEnter={onMouseEnter}
       onFocus={onFocus}
-      {...dataAttrs}
     >
       {body}
     </button>

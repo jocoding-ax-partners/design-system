@@ -105,6 +105,39 @@ describe("NavItem", () => {
     expect(screen.getByRole("link", { name: "앱" })).toHaveAttribute("data-tutorial", "nav:/apps");
   });
 
+  it("악의적 dataAttrs 는 aria-current/href 를 덮어쓸 수 없다 — 타입 narrowing 은 객체 리터럴만 막는다 (Task 10 재리뷰 Minor)", () => {
+    // 변수로 타입된 Record<string, string> 은 `Record<`data-${string}`, …>` narrowing 을
+    // 통과한다 — 여기서 방어하는 건 spread 순서(dataAttrs 가 구조적 prop 보다 먼저)다.
+    const hostileAttrs: Record<string, string> = {
+      "aria-current": "date",
+      href: "/evil",
+    };
+    render(
+      <NavItem
+        href="/apps"
+        label="앱"
+        active
+        dataAttrs={hostileAttrs as Record<`data-${string}`, string | undefined>}
+      />,
+    );
+    const link = screen.getByRole("link", { name: "앱" });
+    expect(link).toHaveAttribute("aria-current", "page");
+    expect(link).toHaveAttribute("href", "/apps");
+  });
+
+  it("악의적 dataAttrs 는 button 렌더에서도 aria-current 를 덮어쓸 수 없다", () => {
+    const hostileAttrs: Record<string, string> = { "aria-current": "date" };
+    render(
+      <NavItem
+        onSelect={() => {}}
+        label="테마"
+        active
+        dataAttrs={hostileAttrs as Record<`data-${string}`, string | undefined>}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "테마" })).toHaveAttribute("aria-current", "page");
+  });
+
   it("badge 를 라벨 뒤에 렌더한다", () => {
     render(<NavItem href="/q" label="심사" badge={<span>3</span>} />);
     expect(screen.getByText("3")).toBeInTheDocument();
