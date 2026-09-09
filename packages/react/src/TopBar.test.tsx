@@ -25,6 +25,13 @@ describe("TopBar", () => {
     expect(bar.className).not.toContain("bg-background");
   });
 
+  it("border-b 는 lg 이상에서만 붙는다 — 모바일엔 사이드바가 없어 뜬 줄이 된다 (Topbar.tsx:16-18)", () => {
+    render(<TopBar />);
+    const bar = screen.getByRole("banner");
+    expect(bar.className).toContain("lg:border-b");
+    expect(bar.className).not.toMatch(/(^|\s)border-b(?!\S)/);
+  });
+
   it("rail 을 주면 사이드바 폭짜리 영역에 그린다", () => {
     render(<TopBar rail={<span>워크스페이스</span>} />);
     const rail = screen.getByText("워크스페이스").parentElement as HTMLElement;

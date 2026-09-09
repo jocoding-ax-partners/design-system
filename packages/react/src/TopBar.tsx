@@ -23,9 +23,11 @@ export interface TopBarProps {
  */
 export function TopBar({ rail, leading, actions, className, style }: TopBarProps): ReactElement {
   return (
+    // lg:border-b: 모바일엔 헤더 아래 사이드바가 없어 경계선이 떠 있는 줄처럼 보인다
+    // (axhub-frontend Topbar.tsx:16-18).
     <header
       className={cn(
-        "bg-content border-default relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center border-b",
+        "bg-content border-default relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
         className,
       )}
       style={style}
