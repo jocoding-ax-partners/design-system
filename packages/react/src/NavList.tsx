@@ -1,8 +1,8 @@
-import { CaretDown } from "@phosphor-icons/react";
-import { useState, type ReactElement, type ReactNode } from "react";
+import { CaretRight } from "@phosphor-icons/react";
+import { useState, Fragment, type CSSProperties, type ReactElement, type ReactNode } from "react";
 
 import { cn } from "./lib/cn.js";
-import { NavItem, type NavItemProps, type NavLinkRenderer } from "./NavItem.js";
+import { itemClass, NavItem, type NavItemProps, type NavLinkRenderer } from "./NavItem.js";
 
 export interface NavEntry extends Omit<NavItemProps, "renderLink" | "activeColor"> {
   key: string;
@@ -31,6 +31,13 @@ function toItemProps(entry: NavEntry): NavItemProps {
   return item;
 }
 
+/**
+ * children 을 가진 항목 하나. axhub-frontend InnerSidebar 의 renderItem
+ * (children 분기, InnerSidebar.tsx:213-248)을 그대로 승격한 것 — 아이콘+라벨+뱃지+
+ * CaretRight 를 가진 **버튼 하나**가 클릭 시 onSelect(내비게이션은 소비 앱 책임)와
+ * 아코디언 토글을 함께 한다. `aria-expanded` 는 AxHub 에는 없는, 패키지가 더하는
+ * 의도적 접근성 추가다.
+ */
 function Accordion({
   entry,
   renderLink,
@@ -41,36 +48,61 @@ function Accordion({
   activeColor?: string;
 }): ReactElement {
   const [open, setOpen] = useState(entry.defaultOpen ?? false);
-  const labelText = typeof entry.label === "string" ? entry.label : "";
+  const IconComponent = entry.icon;
+  const active = entry.active ?? false;
+  const style: CSSProperties | undefined = active
+    ? { color: activeColor ?? "var(--primary)" }
+    : undefined;
 
   return (
-    <li>
-      <div className="flex items-center gap-[4px]">
-        <NavItem {...toItemProps(entry)} renderLink={renderLink} activeColor={activeColor} />
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-label={`${labelText} 하위 메뉴 ${open ? "닫기" : "열기"}`}
-          onClick={() => setOpen((v) => !v)}
-          className="text-muted hover:bg-emphasis flex h-[32px] w-[24px] shrink-0 items-center justify-center rounded-[6px] transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-        >
-          <CaretDown
+    <div>
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => {
+          entry.onSelect?.();
+          setOpen((v) => !v);
+        }}
+        className={itemClass(active, entry.className)}
+        style={style}
+        onMouseEnter={entry.onMouseEnter}
+        onFocus={entry.onFocus}
+        {...entry.dataAttrs}
+      >
+        {IconComponent ? (
+          <IconComponent
             aria-hidden="true"
-            size={14}
-            className={cn("transition-transform", open && "rotate-180")}
+            weight={entry.iconWeight}
+            className="h-[18px] w-[18px] shrink-0"
+            style={active ? undefined : { color: "var(--icon-inactive)" }}
           />
-        </button>
-      </div>
+        ) : null}
+        <span className="min-w-0 flex-1 truncate text-left">{entry.label}</span>
+        {entry.badge}
+        <CaretRight
+          aria-hidden="true"
+          weight={active ? "fill" : "regular"}
+          className={cn(
+            "h-3.5 w-3.5 shrink-0 opacity-40 transition-transform duration-200",
+            open && "rotate-90",
+          )}
+        />
+      </button>
       {open && entry.children ? (
-        <ul className="mt-[2px] flex flex-col gap-[2px] pl-[20px]">
-          {entry.children.map((child) => (
-            <li key={child.key}>
-              <NavItem {...toItemProps(child)} renderLink={renderLink} activeColor={activeColor} />
-            </li>
-          ))}
-        </ul>
+        <div className="my-px flex flex-col pl-[16px]">
+          <div className="pl-2">
+            {entry.children.map((child) => (
+              <NavItem
+                key={child.key}
+                {...toItemProps(child)}
+                renderLink={renderLink}
+                activeColor={activeColor}
+              />
+            ))}
+          </div>
+        </div>
       ) : null}
-    </li>
+    </div>
   );
 }
 
@@ -79,6 +111,11 @@ function Accordion({
  *
  * 권한 게이팅·뱃지 카운트는 여기서 하지 않는다 — 소비 앱이 이미 걸러낸 목록을 준다.
  * 그래야 패키지가 앱의 API 훅에 의존하지 않고, 두 앱이 같은 목록 컴포넌트를 쓸 수 있다.
+ *
+ * 항목 간 간격은 axhub-frontend InnerSidebar 의 mainSections 블록(InnerSidebar.tsx:356-369)을
+ * 그대로 따른다 — 섹션 라벨과 항목이 모두 같은 flex 컬럼 안에서 균일한 gap-[8px] 로 쌓인다
+ * (섹션 사이에서만 더 벌어지는 2단 간격 모델이 아니다). 라벨이 있는 섹션은 `role="group"` +
+ * `className="contents"` 로 접근성 그룹핑만 하고 레이아웃에는 개입하지 않는다.
  */
 export function NavList({
   sections,
@@ -88,43 +125,43 @@ export function NavList({
   ...rest
 }: NavListProps): ReactElement {
   return (
-    <nav aria-label={rest["aria-label"]} className={cn("flex flex-col gap-[16px]", className)}>
+    <nav aria-label={rest["aria-label"]} className={cn("flex flex-col gap-[8px]", className)}>
       {sections.map((section) => {
-        const body: ReactNode = (
-          <ul className="flex flex-col gap-[2px]">
-            {section.items.map((entry) =>
-              entry.children && entry.children.length > 0 ? (
-                <Accordion
-                  key={entry.key}
-                  entry={entry}
-                  renderLink={renderLink}
-                  activeColor={activeColor}
-                />
-              ) : (
-                <li key={entry.key}>
-                  <NavItem
-                    {...toItemProps(entry)}
-                    renderLink={renderLink}
-                    activeColor={activeColor}
-                  />
-                </li>
-              ),
-            )}
-          </ul>
+        const items: ReactNode = section.items.map((entry) =>
+          entry.children && entry.children.length > 0 ? (
+            <Accordion
+              key={entry.key}
+              entry={entry}
+              renderLink={renderLink}
+              activeColor={activeColor}
+            />
+          ) : (
+            <NavItem
+              key={entry.key}
+              {...toItemProps(entry)}
+              renderLink={renderLink}
+              activeColor={activeColor}
+            />
+          ),
         );
 
         if (!section.label) {
-          return <div key={section.key}>{body}</div>;
+          return <Fragment key={section.key}>{items}</Fragment>;
         }
         return (
-          <div key={section.key} role="group" aria-labelledby={`nav-sec-${section.key}`}>
+          <div
+            key={section.key}
+            role="group"
+            aria-labelledby={`nav-sec-${section.key}`}
+            className="contents"
+          >
             <p
               id={`nav-sec-${section.key}`}
-              className="text-subtle mb-[6px] px-[12px] text-[12px] font-semibold"
+              className="text-muted px-3 pt-4 text-[12px] font-medium tracking-[-0.12px]"
             >
               {section.label}
             </p>
-            {body}
+            {items}
           </div>
         );
       })}
