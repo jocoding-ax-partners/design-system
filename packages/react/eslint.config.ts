@@ -41,4 +41,29 @@ export default defineConfig([
       ],
     },
   },
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@iconify/*",
+                "lucide-react",
+                "lucide-react/*",
+                "react-icons",
+                "react-icons/*",
+                "@radix-ui/react-icons",
+                "@heroicons/*",
+              ],
+              message:
+                "아이콘 세트는 @phosphor-icons/react 하나다(2026-09 결정). 타입은 ./lib/icon.js 에서 가져온다.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 ]);

@@ -15,7 +15,8 @@
   },
   "scripts": {
     "lint": "stylelint 'src/**/*.css'",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "vitest run"
   },
   "lint-staged": {
     "*.css": [
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@nijesmik/stylelint-config": "^0.1.0",
     "stylelint": "^16.26.1",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "vitest": "^4.0.18"
   }
 }
