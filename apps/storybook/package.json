@@ -34,6 +34,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
     "@eslint/js": "^9.39.1",
+    "@phosphor-icons/react": "^2.1.10",
     "@react-types/shared": "^3.32.1",
     "@storybook/addon-a11y": "^10.2.0",
     "@storybook/addon-docs": "^10.2.0",

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ToggleButton } from "@heroui/react";
-import { Icon } from "@iconify/react";
+import { Heart } from "@phosphor-icons/react";
 
 export default {
   argTypes: {
@@ -32,7 +32,7 @@ const ColorRow = ({ color, isDisabled, size, variant }: ColorRowProps) => (
   <div className="flex items-center gap-3">
     <div className="text-muted w-20 shrink-0 text-sm capitalize">{color ?? "none"}</div>
     <ToggleButton data-color={color} isDisabled={isDisabled} size={size} variant={variant}>
-      <Icon icon="gravity-ui:heart" />
+      <Heart />
       Like
     </ToggleButton>
     <ToggleButton
@@ -42,7 +42,7 @@ const ColorRow = ({ color, isDisabled, size, variant }: ColorRowProps) => (
       size={size}
       variant={variant}
     >
-      <Icon icon="gravity-ui:heart-fill" />
+      <Heart weight="fill" />
       Like
     </ToggleButton>
   </div>

@@ -3,6 +3,8 @@ import { defineConfig } from "eslint/config";
 
 import baseConfig from "@nijesmik/eslint-config";
 
+import iconConfig from "../../eslint.icons.js";
+
 // This package's entire purpose is to hold components promoted verbatim from
 // axhub-frontend/src/components/ui/ — their prop/key ordering belongs to that
 // source, not to us. Reordering destructured props to satisfy an alphabetical
@@ -41,29 +43,5 @@ export default defineConfig([
       ],
     },
   },
-  {
-    files: ["src/**/*.{ts,tsx}"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: [
-                "@iconify/*",
-                "lucide-react",
-                "lucide-react/*",
-                "react-icons",
-                "react-icons/*",
-                "@radix-ui/react-icons",
-                "@heroicons/*",
-              ],
-              message:
-                "아이콘 세트는 @phosphor-icons/react 하나다(2026-09 결정). 타입은 ./lib/icon.js 에서 가져온다.",
-            },
-          ],
-        },
-      ],
-    },
-  },
+  ...iconConfig,
 ]);
