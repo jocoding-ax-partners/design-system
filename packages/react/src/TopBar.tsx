@@ -17,9 +17,10 @@ export interface TopBarProps {
  * 상단 크롬 바. 정본은 axhub-frontend `layout/Topbar.tsx`.
  *
  * 색은 정본 시맨틱 토큰(bg-content / border-default)을 쓴다 — AxHub 원본은
- * `bg-background` / `border-border` 를 썼는데 그 두 이름은 디자인 시스템에도
- * AxHub globals.css 에도 정의가 없다(2026-09-09 실측). 승격하면서 정본 이름으로
- * 바꾸고, 계산된 색이 같은지는 소비 측 Task 8 에서 잰다.
+ * `bg-background` / `border-border` 를 썼는데, `--border` 는 AxHub globals.css
+ * 어디에도 정의가 없고 `--background` 는 `[data-theme='dark']` 안에서만 정의돼
+ * 라이트 테마(bare `:root`)에는 정의가 없다(2026-09-09 실측). 승격하면서 정본
+ * 이름으로 바꾸고, 계산된 색이 같은지는 소비 측 Task 8 에서 잰다.
  */
 export function TopBar({ rail, leading, actions, className, style }: TopBarProps): ReactElement {
   return (

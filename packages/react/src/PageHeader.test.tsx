@@ -1,3 +1,4 @@
+import { ArrowLeft } from "@phosphor-icons/react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
@@ -27,11 +28,14 @@ describe("PageHeader", () => {
     render(<PageHeader title="2기" backTo="/rounds" />);
     const link = screen.getByRole("link", { name: "뒤로" });
     const path = link.querySelector("svg path");
-    // ArrowLeft(phosphor) 고유 path data. CaretLeft 로 되돌리면 이 값이 달라져 실패한다.
-    expect(path).toHaveAttribute(
-      "d",
-      "M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z",
-    );
+
+    // 하드코딩 path 리터럴 대신 실제 ArrowLeft 를 참조로 렌더해 비교한다 — 이렇게
+    // 해야 @phosphor-icons/react 의 정당한 업스트림 리드로우(semver 호환 패치)에는
+    // 흔들리지 않고, CaretLeft 로 되돌리는 회귀만 잡는다.
+    const { container: ref } = render(<ArrowLeft aria-hidden="true" />);
+    const refPath = ref.querySelector("svg path")?.getAttribute("d");
+    expect(refPath).toBeTruthy();
+    expect(path).toHaveAttribute("d", refPath);
   });
 
   it("backLabel 로 링크 텍스트를 바꾼다", () => {
