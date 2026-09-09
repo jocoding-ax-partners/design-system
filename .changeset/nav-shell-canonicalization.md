@@ -20,3 +20,8 @@
 - `@jocoding-ax-partners/tailwind` 가 셸 치수·아이콘 색 토큰을 새로 소유한다:
   `--sidebar-width`(244px) · `--topbar-height`(60px) · `--icon-inactive`
   (라이트 `gray-300` / 다크 `gray-500`).
+- 아이콘 세트는 `@phosphor-icons/react` 하나로 강제된다 — eslint `no-restricted-imports` 가
+  `@iconify/*` · `lucide-react` · `react-icons` · `@radix-ui/react-icons` · `@heroicons/*` 를
+  막는다. 타입은 `lib/icon.ts` 가 단일 출처이고, 아이콘 컴포넌트는 Phosphor 에서 직접 가져온다.
+- 활성 내비 항목의 표현은 정본을 따라 **배경 없이** 굵기와 색만 바꾼다(`itemClass()`).
+  색은 `activeColor` 로 주입되므로 화이트라벨 테넌트가 자기 색을 넣을 수 있다.
