@@ -138,6 +138,13 @@ describe("NavList", () => {
     expect(trigger.querySelector("svg")?.getAttribute("class")).toContain("rotate-90");
   });
 
+  it("아코디언 트리거의 라벨 span 은 정본과 한 글자도 다르지 않다 — InnerSidebar.tsx:236", () => {
+    render(<NavList sections={sections} aria-label="주 메뉴" />);
+    const trigger = screen.getByRole("button", { name: "환경설정" });
+    // 정본은 `flex-1 truncate text-left` 다. `min-w-0` 은 정본에 없다.
+    expect(trigger.querySelector("span")?.className).toBe("flex-1 truncate text-left");
+  });
+
   it("defaultOpen 이면 처음부터 펼쳐진다", () => {
     render(
       <NavList

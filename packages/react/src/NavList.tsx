@@ -84,7 +84,8 @@ function Accordion({
             style={active ? undefined : { color: "var(--icon-inactive)" }}
           />
         ) : null}
-        <span className="min-w-0 flex-1 truncate text-left">{entry.label}</span>
+        {/* 정본 아코디언 트리거의 라벨 span (InnerSidebar.tsx:236) — `min-w-0` 은 없다. */}
+        <span className="flex-1 truncate text-left">{entry.label}</span>
         {entry.badge}
         <CaretRight
           aria-hidden="true"

@@ -60,6 +60,19 @@ describe("NavItem", () => {
     expect(svg).not.toHaveAttribute("height", "20");
   });
 
+  // 아래 두 개는 패키지 자신의 동작이 아니라 **정본(axhub-frontend InnerSidebar)** 에
+  // 대고 잰다. 한때 여기에 `min-w-0` 과 (링크에도) `text-left` 가 붙어 있었는데,
+  // 정본 어디에도 없는 클래스였다.
+  it("링크 라벨 span 은 정본과 한 글자도 다르지 않다 — InnerSidebar.tsx:310", () => {
+    const { container } = render(<NavItem href="/r" label="회차" />);
+    expect(container.querySelector("span")?.className).toBe("flex-1 truncate");
+  });
+
+  it("버튼 라벨 span 만 text-left 를 갖는다 — InnerSidebar.tsx:236", () => {
+    const { container } = render(<NavItem onSelect={() => {}} label="테마" />);
+    expect(container.querySelector("span")?.className).toBe("flex-1 truncate text-left");
+  });
+
   it("포커스 링 클래스를 항상 단다", () => {
     render(<NavItem href="/r" label="회차" />);
     expect(screen.getByRole("link", { name: "회차" }).className).toContain("focus-visible:ring-2");

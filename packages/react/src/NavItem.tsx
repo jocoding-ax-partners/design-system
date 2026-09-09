@@ -106,7 +106,15 @@ export function NavItem({
           style={active ? undefined : { color: "var(--icon-inactive)" }}
         />
       ) : null}
-      <span className="min-w-0 flex-1 truncate text-left">{label}</span>
+      {/*
+        라벨 span 은 정본을 그대로 따른다.
+        - 링크: `flex-1 truncate` (axhub-frontend InnerSidebar.tsx:310)
+        - 버튼: `flex-1 truncate text-left` (같은 파일 236) — <button> 의 UA
+          `text-align:center` 를 되돌리는 자리라 링크에는 없다.
+        `min-w-0` 은 정본 어느 쪽에도 없어 뺐다. truncate 의 `overflow:hidden` 이
+        이미 flex 자동 최소 크기를 0 으로 만들기 때문에 계산 결과도 같다.
+      */}
+      <span className={href ? "flex-1 truncate" : "flex-1 truncate text-left"}>{label}</span>
       {badge}
     </>
   );
