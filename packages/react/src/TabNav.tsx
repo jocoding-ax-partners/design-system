@@ -45,10 +45,7 @@ export function TabNav({
       >
         {tabs.map((tab) => {
           const active = tab.key === activeKey;
-          // NavLinkRenderProps 는 NavItem/Breadcrumbs 와 공유하는 타입이라 role/aria-selected
-          // 가 없다. TabNav 만 필요한 ARIA 속성이라 여기서 로컬 확장한다 — 실제 <a> 로는
-          // DEFAULT_LINK({ ...props }) 스프레드를 타고 그대로 전달된다.
-          const linkProps: NavLinkRenderProps & { role: "tab"; "aria-selected": boolean } = {
+          const linkProps: NavLinkRenderProps = {
             href: tab.to,
             className: cn(
               "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4",

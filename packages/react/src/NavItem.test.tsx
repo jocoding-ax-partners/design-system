@@ -49,6 +49,17 @@ describe("NavItem", () => {
     expect(screen.getByRole("link", { name: "환경설정" })).toBeInTheDocument();
   });
 
+  it("아이콘 크기는 AxHub 정본(18px)을 따른다 — InnerSidebar.tsx:231,305", () => {
+    const { container } = render(<NavItem href="/settings" icon={Gear} label="환경설정" />);
+    const svg = container.querySelector("svg");
+    expect(svg?.getAttribute("class")).toContain("h-[18px]");
+    expect(svg?.getAttribute("class")).toContain("w-[18px]");
+    // size={20} 이 심었던 고정 width/height 속성이 없어야 한다 — 있으면 SVG
+    // 프레젠테이션 속성이 CSS 클래스보다 우선해 18px 클래스를 무력화할 수 있다.
+    expect(svg).not.toHaveAttribute("width", "20");
+    expect(svg).not.toHaveAttribute("height", "20");
+  });
+
   it("포커스 링 클래스를 항상 단다", () => {
     render(<NavItem href="/r" label="회차" />);
     expect(screen.getByRole("link", { name: "회차" }).className).toContain("focus-visible:ring-2");

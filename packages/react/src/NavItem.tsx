@@ -15,6 +15,8 @@ export interface NavLinkRenderProps {
   style?: CSSProperties;
   children: ReactNode;
   "aria-current"?: "page";
+  "aria-selected"?: boolean;
+  role?: string;
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onFocus?: FocusEventHandler<HTMLElement>;
 }
@@ -44,8 +46,11 @@ export interface NavItemProps {
   onFocus?: FocusEventHandler<HTMLElement>;
 }
 
-/** axhub-frontend InnerSidebar 의 navItemClass 를 그대로 승격한 것. */
-function itemClass(active: boolean, className?: string) {
+/**
+ * axhub-frontend InnerSidebar 의 navItemClass 를 그대로 승격한 것.
+ * NavList 의 아코디언 트리거 버튼도 같은 클래스가 필요해 export 한다.
+ */
+export function itemClass(active: boolean, className?: string) {
   return cn(
     "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors",
     "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
@@ -96,9 +101,8 @@ export function NavItem({
       {IconComponent ? (
         <IconComponent
           aria-hidden="true"
-          size={20}
           weight={iconWeight}
-          className="shrink-0"
+          className="h-[18px] w-[18px] shrink-0"
           style={active ? undefined : { color: "var(--icon-inactive)" }}
         />
       ) : null}
