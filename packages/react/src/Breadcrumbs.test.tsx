@@ -83,4 +83,23 @@ describe("Breadcrumbs", () => {
       "focus-visible:ring-offset-background",
     );
   });
+
+  // 링 **색**. 근거는 NavItem.tsx 의 `itemClass` JSDoc — 색을 안 주면 Tailwind
+  // 기본값이 `currentColor` 라 링이 그 자리 글자색을 따라간다. 번들의 다른 포커스
+  // 링은 전부 `var(--focus)` 다. 링크 클래스 문자열도 통째로 고정한다.
+  it("링크 클래스 문자열을 통째로 고정한다 — 포커스 링 색은 --focus 토큰이다", () => {
+    render(
+      <Breadcrumbs
+        items={[
+          { key: "r", label: "회차", href: "/rounds" },
+          { key: "d", label: "2기" },
+        ]}
+      />,
+    );
+    const link = screen.getByRole("link", { name: "회차" });
+    expect(link.className).toBe(
+      "text-muted hover:text-default min-w-0 shrink-0 truncate transition-colors focus-visible:ring-focus focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none",
+    );
+    expect(link.className).not.toMatch(/focus-visible:ring-\[/);
+  });
 });

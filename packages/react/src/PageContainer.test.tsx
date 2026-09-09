@@ -17,6 +17,19 @@ describe("PageContainer", () => {
     expect(root.className).toContain("pb-[120px]");
   });
 
+  it("클래스 문자열이 정본과 한 글자도 다르지 않다 — layout/PageContainer.tsx:33", () => {
+    const { container } = render(
+      <PageContainer>
+        <span>본문</span>
+      </PageContainer>,
+    );
+    const root = container.firstElementChild as HTMLElement;
+    expect(root.tagName).toBe("DIV");
+    expect(root.className).toBe("px-container mx-auto w-full max-w-[1280px] pt-10 pb-[120px]");
+    // 정본은 div 하나다 — 래퍼가 하나 더 생기면 여백 소유자가 둘이 된다.
+    expect(root.children).toHaveLength(1);
+  });
+
   it("className 이 기본을 이긴다", () => {
     render(
       <PageContainer className="pt-0">

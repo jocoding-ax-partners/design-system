@@ -25,7 +25,13 @@ import {
  *
  * 정본에는 없는 `aria-current="page"` 가 아코디언 자식에도 붙는다 — 패키지가
  * API 모양으로 더하는 접근성 확장이고(NavItem 문서 참고), 이 마지막 커밋 이전부터
- * 있던 동작이라 회귀는 아니다.
+ * 있던 동작이다.
+ *
+ * `itemClass` 와 달리 여기에는 `focus-visible:*` 링이 **없다. 의도한 것이다** —
+ * `itemClass` 가 링을 다는 이유는 그쪽이 `focus-visible:outline-none` 으로 브라우저
+ * 기본 포커스 표시를 끄기 때문이다. 이 자식 행은 `outline-none` 을 쓰지 않으므로
+ * UA 기본 아웃라인이 그대로 남아 포커스가 보이지 않는 구간이 생기지 않는다. 링을
+ * 더하면 문자열이 정본에서 한 줄 더 멀어지는데, 그 대가로 얻는 접근성이 없다.
  */
 function childItemClass(active: boolean, className?: string) {
   return cn(

@@ -23,6 +23,17 @@ describe("TopBar", () => {
     expect(bar.className).toContain("border-border");
   });
 
+  // 안쪽 행은 아래에서 `.toBe` 로 고정돼 있는데 <header> 자신은 조각(`toContain`)만
+  // 재고 있었다 — `relative z-20 shrink-0 items-center` 중 무엇이 사라져도 초록이다.
+  // 정본은 axhub-frontend Topbar.tsx:16-18 이고, 유일한 차이는 `h-[60px]` 을
+  // `h-[var(--topbar-height)]` 로 토큰화한 것이다(토큰 실측값 60px).
+  it("header 클래스 문자열이 정본과 한 글자도 다르지 않다 — Topbar.tsx:16-18", () => {
+    render(<TopBar />);
+    expect(screen.getByRole("banner").className).toBe(
+      "bg-background border-border relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
+    );
+  });
+
   it("border-b 는 lg 이상에서만 붙는다 — 모바일엔 사이드바가 없어 뜬 줄이 된다 (Topbar.tsx:16-18)", () => {
     render(<TopBar />);
     const bar = screen.getByRole("banner");
@@ -36,7 +47,12 @@ describe("TopBar", () => {
     expect(rail.className).toContain("w-[var(--sidebar-width)]");
   });
 
-  it("rail 을 안 주면 그 영역 자체가 없다", () => {
+  // 주의 — 이 테스트는 **정본이 아니라 패키지의 의도적 이탈**을 고정한다. 정본
+  // (axhub-frontend Topbar.tsx:20-24)은 rail 영역을 항상 그린다. 패키지가 조건부로
+  // 바꾼 이유는 APTA 가 rail 을 일부러 안 주기 때문이다(AdminTopBar.tsx:33-36 에
+  // 이유가 적혀 있다). AxHub 는 항상 rail 을 주므로 영향이 없다. 이름만 보면 정본
+  // 단언처럼 읽혀서 명시한다.
+  it("rail 을 안 주면 그 영역 자체가 없다 (정본에서 의도적으로 이탈한 동작)", () => {
     const { container } = render(<TopBar leading={<span>회차</span>} />);
     expect(container.querySelector('[class*="--sidebar-width"]')).toBeNull();
   });

@@ -73,6 +73,42 @@ describe("NavItem", () => {
     expect(container.querySelector("span")?.className).toBe("flex-1 truncate text-left");
   });
 
+  // `itemClass` 는 이 여덟 개 중 유일하게 AxHub 프로덕션에서 살아 도는 클래스인데,
+  // 지금까지 `toContain("rounded-[8px]")` 같은 조각만 재고 있었다 — `h-[32px]`·
+  // `gap-[8px]`·`px-[12px]`·`text-[14px]`·`border border-transparent` 중 무엇이
+  // 바뀌어도 초록이었다. 문자열을 통째로 고정한다. 앞부분은 정본
+  // (axhub-frontend InnerSidebar.tsx:128-133) 이고, `focus-visible:*` 줄은 정본에
+  // 없는 **선언된** 접근성 확장이다(NavItem.tsx `itemClass` JSDoc 참고).
+  it("비활성 링크 클래스 문자열을 통째로 고정한다 — InnerSidebar.tsx:128-133", () => {
+    render(<NavItem href="/r" label="회차" />);
+    const link = screen.getByRole("link", { name: "회차" });
+    expect(link.className).toBe(
+      "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
+    );
+  });
+
+  it("활성 링크 클래스 문자열을 통째로 고정한다 — 배경 없이 font-semibold 만", () => {
+    render(<NavItem href="/r" label="회차" active />);
+    const link = screen.getByRole("link", { name: "회차" });
+    expect(link.className).toBe(
+      "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none font-semibold",
+    );
+  });
+
+  // 아이콘 색은 이 브랜치가 새로 승격한 토큰(`--icon-inactive`)의 패키지 내 유일한
+  // 소비처다. 크기와 aria-hidden 은 재면서 색은 아무도 안 재고 있었다.
+  it("비활성 아이콘은 정본의 --icon-inactive 를 쓴다 — InnerSidebar.tsx:305-308", () => {
+    const { container } = render(<NavItem href="/settings" icon={Gear} label="환경설정" />);
+    const svg = container.querySelector("svg") as SVGElement;
+    expect(svg.style.color).toBe("var(--icon-inactive)");
+  });
+
+  it("활성 아이콘은 그 override 를 떼고 행의 색을 물려받는다 — InnerSidebar.tsx:306", () => {
+    const { container } = render(<NavItem href="/settings" icon={Gear} label="환경설정" active />);
+    const svg = container.querySelector("svg") as SVGElement;
+    expect(svg.style.color).toBe("");
+  });
+
   it("포커스 링 클래스를 항상 단다", () => {
     render(<NavItem href="/r" label="회차" />);
     expect(screen.getByRole("link", { name: "회차" }).className).toContain("focus-visible:ring-2");
@@ -83,6 +119,18 @@ describe("NavItem", () => {
     expect(screen.getByRole("link", { name: "회차" }).className).toContain(
       "focus-visible:ring-offset-background",
     );
+  });
+
+  // 링 **색**. 안 주면 Tailwind 기본값이 `currentColor` 라 링이 그 자리 글자색을
+  // 따라가고, 활성(primary)과 비활성(text-default)에서 색이 갈린다. 번들에 실려
+  // 나가는 다른 포커스 링은 전부 `var(--focus)` 다(@heroui/styles dist 실측
+  // 2026-09-09: `--tw-ring-color:var(--focus)` 47건 + `outline-color:var(--focus)`
+  // 2건, `currentColor` 0건).
+  it("포커스 링 색은 --focus 토큰이다 — currentColor 면 항목마다 색이 달라진다", () => {
+    render(<NavItem href="/r" label="회차" />);
+    const link = screen.getByRole("link", { name: "회차" });
+    expect(link.className).toContain("focus-visible:ring-focus");
+    expect(link.className).not.toMatch(/focus-visible:ring-\[/);
   });
 
   it("renderLink 로 라우터 Link 를 주입할 수 있고 className/aria 가 전달된다", () => {

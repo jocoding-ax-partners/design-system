@@ -55,11 +55,22 @@ export interface NavItemProps {
 /**
  * axhub-frontend InnerSidebar 의 navItemClass 를 그대로 승격한 것.
  * NavList 의 아코디언 트리거 버튼도 같은 클래스가 필요해 export 한다.
+ *
+ * 첫 줄이 정본(InnerSidebar.tsx:128-133)이고, 둘째 줄의 `focus-visible:*` 는 정본에
+ * 없는 **패키지가 더하는 접근성 확장**이다. 링 색은 `ring-focus` 로 고정한다 —
+ * 색을 안 주면 Tailwind 기본값 `currentColor` 라 링이 그 자리 글자색을 따라가고,
+ * 항목마다(활성=primary, 비활성=text-default) 색이 달라져 포커스 어포던스가 하나로
+ * 안 읽힌다. 번들에 실려 나가는 다른 포커스 링은 전부 `var(--focus)` 다 —
+ * `@heroui/styles` dist 실측(2026-09-09): `--tw-ring-color:var(--focus)` 47건 +
+ * `outline-color:var(--focus)` 2건, `currentColor` 0건. `ring-focus` 가 해석되는
+ * 경로도 확인했다: `@heroui/styles/dist/themes/shared/theme.css:28` 의
+ * `--color-focus: var(--focus)` 와 `themes/default/variables.css:95,227` 의
+ * `--focus: var(--accent)`(라이트·다크 양쪽). 즉 아무 데도 안 걸려 투명해지지 않는다.
  */
 export function itemClass(active: boolean, className?: string) {
   return cn(
     "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors",
-    "focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+    "focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
     active
       ? "font-semibold"
       : "text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",

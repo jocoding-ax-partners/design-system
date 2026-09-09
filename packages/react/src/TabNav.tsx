@@ -49,7 +49,13 @@ export function TabNav({
             href: tab.to,
             className: cn(
               "flex shrink-0 items-center gap-1.5 border-b-2 border-transparent px-2.5 py-2 text-sm leading-[1.5] transition-colors sm:px-4",
-              "focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+              // 정본(axhub-frontend tab-page/ui/TabNav.tsx:35)은 여기에
+              // `focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none`
+              // 만 쓴다. 패키지는 두 개를 더한다 — `ring-offset-background`(오프셋이
+              // 흰색 고정이라 다크에서 흰 후광이 생겼다, 79b3ee4)와 `ring-focus`
+              // (링 색이 `currentColor` 면 활성/비활성 탭에서 색이 갈린다). 근거는
+              // `itemClass` JSDoc 참고.
+              "focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               active
                 ? "text-default font-semibold"
                 : "text-default/90 hover:text-default border-transparent font-normal",
