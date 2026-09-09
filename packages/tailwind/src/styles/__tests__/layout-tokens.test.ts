@@ -3,10 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-const css = readFileSync(
-  fileURLToPath(new URL("../theme/layout.css", import.meta.url)),
-  "utf8",
-);
+const css = readFileSync(fileURLToPath(new URL("../theme/layout.css", import.meta.url)), "utf8");
 
 const surfaceCss = readFileSync(
   fileURLToPath(new URL("../theme/surface.css", import.meta.url)),

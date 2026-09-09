@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     "./styles": {
       "types": "./src/styles/index.d.ts",
@@ -22,6 +24,9 @@
     "*.css": [
       "prettier --write",
       "stylelint --fix"
+    ],
+    "*.{js,mjs,cjs,ts,mts,cts}": [
+      "prettier --write"
     ]
   },
   "devDependencies": {

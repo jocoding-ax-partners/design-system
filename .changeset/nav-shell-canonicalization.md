@@ -4,36 +4,70 @@
 "@jocoding-ax-partners/design-system": minor
 ---
 
-내비게이션·셸 컴포넌트 승격 (정본: axhub-frontend).
+Navigation and page-shell components, promoted from axhub-frontend.
 
-- `NavItem` · `NavList` · `Sidebar` — 사이드바. 접근성이 API 모양으로 강제된다
-  (`<a>`/`<button>` 만 렌더 가능, `href` 도 `onSelect` 도 없으면 throw — `<div onClick>`
-  내비 항목을 표현 불가능하게 만든다).
-- `TopBar` · `Breadcrumbs` — 60px 상단 크롬(`--topbar-height`). `Breadcrumbs` 는 마지막
-  크럼을 `href` 가 있어도 링크로 만들지 않는다.
-- `PageHeader` · `PageContainer` · `TabNav` — 페이지 셸. `PageContainer` 가 바깥 여백의
-  단일 소유자. `TabNav` 는 `role="tablist"`/`role="tab"`/`aria-selected` 를 갖춘다.
-- 라우터 비의존: AxHub 는 `react-router-dom`, APTA 는 `react-router` 를 쓰므로 두 패키지
-  다 import 하지 않고, 소비 앱이 `renderLink` 로 자기 `Link` 를 주입한다.
-- 접근성은 관행이 아니라 API 모양으로 강제된다 — `NavItem` 의 throw 외에도 AxHub 에는
-  없던 `focus-visible` 링, 아이콘 `aria-hidden`, 아코디언 트리거 `aria-expanded`,
-  `role="group"`+`aria-labelledby` 섹션을 패키지가 추가한다.
-- `@jocoding-ax-partners/tailwind` 가 셸 치수·아이콘 색 토큰을 새로 소유한다:
-  `--sidebar-width`(244px) · `--topbar-height`(60px) · `--icon-inactive`
-  (라이트 `gray-300` / 다크 `gray-500`).
-  `@jocoding-ax-partners/tailwind` 은 `private: true` 라 배포되지 않는다 — 이 토큰들이
-  소비 앱에 닿는 경로는 `@jocoding-ax-partners/design-system` 의 CSS 뿐이다
-  (`packages/heroui/src/styles/index.css` 가 tailwind 테마를 import 해 dist 에 인라인한다).
-  그래서 이 changeset 은 `design-system` 도 함께 올린다. 안 올리면 새 컴포넌트가 쓰는
-  `h-[var(--topbar-height)]` 가 소비 앱에서 미정의로 남아 헤더 높이가 무너진다.
-- 아이콘 세트는 `@phosphor-icons/react` 하나로 강제된다 — eslint `no-restricted-imports` 가
-  `@iconify/*` · `lucide-react` · `react-icons` · `@radix-ui/react-icons` · `@heroicons/*` 를
-  막는다. 타입은 `lib/icon.ts` 가 단일 출처이고, 아이콘 컴포넌트는 Phosphor 에서 직접 가져온다.
-- 활성 내비 항목의 표현은 정본을 따라 **배경 없이** 굵기와 색만 바꾼다(`itemClass()`).
-  색은 `activeColor` 로 주입되므로 화이트라벨 테넌트가 자기 색을 넣을 수 있다.
+Seven of the eight components below are promotions of an existing axhub-frontend
+component — same class strings, same markup. `Breadcrumbs` is the exception and is
+described separately.
 
-버전 결과: `design-system` 이 minor 로 올라가면서 `react` 의 peerDependency
-(`@jocoding-ax-partners/design-system: workspace:^`)가 바뀌므로 changesets 가
-`react` 를 **major(1.0.0 → 2.0.0)** 로 올린다. 의도한 것이다 — 이 릴리스의 컴포넌트는
-새 CSS 없이는 동작하지 않는다(`h-[var(--topbar-height)]` 가 미정의가 되어 헤더 높이가
-무너진다). major 라야 소비자가 CSS 를 같이 올려야 한다는 걸 알아챈다.
+- `NavItem` · `NavList` · `Sidebar` — the sidebar. Accessibility is enforced by the
+  API shape: these render only `<a>` or `<button>`, and throw when given neither
+  `href` nor `onSelect`, so a `<div onClick>` nav item cannot be expressed.
+  Canon: `layout/InnerSidebar.tsx`, `layout/AppLayout.tsx:134`.
+- `TopBar` — the 60px top chrome (`--topbar-height`). Canon: `layout/Topbar.tsx`.
+- `PageHeader` · `PageContainer` · `TabNav` — the page shell. `PageContainer` is the
+  single owner of outer page padding. `TabNav` ships `role="tablist"` / `role="tab"` /
+  `aria-selected`. Canon: `shared/PageHeader.tsx`, `layout/PageContainer.tsx`,
+  `tab-page/ui/TabNav.tsx`.
+- `Breadcrumbs` — **new in this package, not a promotion.** axhub-frontend has no
+  breadcrumb component. It replaces the hand-rolled `.breadcrumbs` BEM block APTA was
+  carrying, and is built out of the same design tokens as the components above. Its
+  one invariant: the last crumb never renders as a link, even when given an `href`.
+- Router-independent: AxHub uses `react-router-dom` and APTA uses `react-router`, so
+  the package imports neither. A consumer injects its own `Link` through `renderLink`.
+- Accessibility the canon does not have is added deliberately: a `focus-visible` ring
+  on interactive rows, `aria-hidden` on decorative icons, `aria-expanded` on the
+  accordion trigger, and `role="group"` + `aria-labelledby` on labelled sections. The
+  ring color is pinned to `ring-focus` (`var(--focus)`), which is what every other
+  focus ring in the shipped bundle uses; the Tailwind default of `currentColor` would
+  make the ring take each row's own text color.
+- `@jocoding-ax-partners/tailwind` now owns the shell dimension and icon tokens:
+  `--sidebar-width` (244px), `--topbar-height` (60px), and `--icon-inactive`
+  (light `gray-300` / dark `gray-500`).
+  `@jocoding-ax-partners/tailwind` is `private: true` and is never published — the only
+  path these tokens take to a consumer app is the CSS shipped by
+  `@jocoding-ax-partners/design-system` (`packages/heroui/src/styles/index.css` imports
+  the tailwind theme and inlines it into dist). That is why this changeset also bumps
+  `design-system`: without it, `h-[var(--topbar-height)]` stays undefined in the
+  consumer and the header height collapses.
+- One icon set is enforced: `@phosphor-icons/react`. The eslint rule is an allowlist —
+  it blocks any import whose package name contains "icon" and re-opens only Phosphor,
+  plus an explicit entry for `lucide-react`, whose name does not. The previous
+  five-name denylist let `@tabler/icons-react` and `feather-icons` through. The rule now
+  lives at the repo root and applies to every package, including the storybook app.
+- The active nav item follows canon: **no background**, only weight and color change
+  (`itemClass()`). The color arrives through `activeColor`, so a white-label tenant can
+  supply its own.
+
+Deliberate deviations from canon, listed so they are not silently re-adjudicated:
+
+- `PageHeader`'s text column carries `min-w-0`; canon has a bare `flex-1`. Layout is
+  identical at realistic title lengths and differs only for a title with no break
+  opportunity (measured at 500px width: canon body 1151.9px, this 180px — the title
+  shrinks inside the header instead of pushing it out). The consuming app measured this
+  and accepted it.
+- `TopBar` renders its rail spacer only when `rail` is passed; canon always renders it.
+  AxHub always passes one; APTA deliberately does not.
+- `Sidebar` adds `h-full` and a base-level `flex-col`. Canon needs neither because its
+  column is `hidden` below `lg`, but a consumer that overrides `hidden` (APTA passes
+  `className="flex"`) needs a direction on the base layer.
+- The `focus-visible` ring described above, on `NavItem`, `TabNav`, `PageHeader`'s back
+  link, and `Breadcrumbs`. It is not applied to the accordion child rows: those keep
+  canon's class string exactly and do not suppress the UA outline, so they still show a
+  focus indicator.
+
+Version outcome: bumping `design-system` changes the `peerDependency` of `react`
+(`@jocoding-ax-partners/design-system: workspace:^`), so changesets promotes `react` to
+**major (1.0.0 → 2.0.0)**. That is intended — these components do not work without the
+new CSS (`h-[var(--topbar-height)]` becomes undefined and the header height collapses),
+and only a major tells a consumer the CSS has to move with it.
