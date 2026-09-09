@@ -10,7 +10,7 @@ export interface PageHeaderProps {
   description?: ReactNode;
   /** 주면 제목 위에 뒤로 링크를 그린다. */
   backTo?: string;
-  backLabel?: string;
+  backLabel?: ReactNode;
   titleClassName?: string;
   center?: boolean;
   actions?: ReactNode;

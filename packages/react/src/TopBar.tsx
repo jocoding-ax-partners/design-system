@@ -16,11 +16,15 @@ export interface TopBarProps {
 /**
  * 상단 크롬 바. 정본은 axhub-frontend `layout/Topbar.tsx`.
  *
- * 색은 정본 시맨틱 토큰(bg-content / border-default)을 쓴다 — AxHub 원본은
- * `bg-background` / `border-border` 를 썼는데, `--border` 는 AxHub globals.css
- * 어디에도 정의가 없고 `--background` 는 `[data-theme='dark']` 안에서만 정의돼
- * 라이트 테마(bare `:root`)에는 정의가 없다(2026-09-09 실측). 승격하면서 정본
- * 이름으로 바꾸고, 계산된 색이 같은지는 소비 측 Task 8 에서 잰다.
+ * 색은 정본 클래스 문자열(bg-background / border-border) 그대로다. 두 유틸리티
+ * 모두 실재한다 — `--background`/`--border` 커스텀 프로퍼티는 design-system dist
+ * (`dist/styles/index.css`)가 정의하고, 그 값을 `bg-background`/`border-border`
+ * 유틸리티로 만드는 `@theme` 매핑(`--color-background: var(--background)` 등)은
+ * `@heroui/styles`(`dist/themes/shared/theme.css`)가 준다 — design-system dist
+ * 자체에는 그 매핑이 없다. 두 소비 앱(AxHub·APTA) 모두 `@heroui/styles` 를 같이
+ * import 하므로 실제로 이 유틸리티들이 해석된다. `@heroui/styles` 없이 이 패키지만
+ * 쓰는 소비자는 이 두 유틸리티가 해석되지 않는다(2026-09-09 실측,
+ * docs/status/design-system-4.1.0-rollout.md).
  */
 export function TopBar({ rail, leading, actions, className, style }: TopBarProps): ReactElement {
   return (
@@ -28,7 +32,7 @@ export function TopBar({ rail, leading, actions, className, style }: TopBarProps
     // (axhub-frontend Topbar.tsx:16-18).
     <header
       className={cn(
-        "bg-content border-default relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
+        "bg-background border-border relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
         className,
       )}
       style={style}

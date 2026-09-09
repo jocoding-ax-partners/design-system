@@ -16,13 +16,11 @@ describe("TopBar", () => {
     expect(bar.className).not.toMatch(/h-\[\d+px\]/);
   });
 
-  it("정본 시맨틱 토큰을 쓴다 — 미정의 border-border/bg-background 가 아니다", () => {
+  it("정본 클래스 문자열을 쓴다 — bg-background/border-border", () => {
     render(<TopBar />);
     const bar = screen.getByRole("banner");
-    expect(bar.className).toContain("bg-content");
-    expect(bar.className).toContain("border-default");
-    expect(bar.className).not.toContain("border-border");
-    expect(bar.className).not.toContain("bg-background");
+    expect(bar.className).toContain("bg-background");
+    expect(bar.className).toContain("border-border");
   });
 
   it("border-b 는 lg 이상에서만 붙는다 — 모바일엔 사이드바가 없어 뜬 줄이 된다 (Topbar.tsx:16-18)", () => {
