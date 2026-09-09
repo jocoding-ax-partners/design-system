@@ -1,0 +1,19 @@
+.ag-right-aligned-header .ag-sort-indicator-icon {
+  padding-left: 0;
+  padding-right: var(--ag-spacing);
+}
+
+.ag-root-wrapper .ag-cell.ag-cell-focus:not(:focus-visible) {
+  border-color: transparent;
+}
+
+.ag-paging-panel-content .ag-paging-row-summary-panel {
+  order: -1;
+  margin-right: auto;
+}
+
+/* Preserve vertical centering for custom row heights and allow ellipsis when a cell is flex. */
+.ag-cell > .ag-cell-wrapper {
+  min-width: 0;
+  height: 100%;
+}

@@ -7,6 +7,8 @@ import {
   ConfirmProvider,
   HoverReadout,
   Input,
+  KpiSearchButton,
+  KpiStatBar,
   List,
   ListItem,
   Pagination,
@@ -84,6 +86,22 @@ export const Gallery: StoryObj = {
           <ConfirmDemo />
         </div>
       </ConfirmProvider>
+    );
+  },
+};
+
+export const KpiStatBarDemo: StoryObj = {
+  render: function KpiStatBarDemo() {
+    const [query, setQuery] = useState("");
+
+    return (
+      <KpiStatBar
+        items={[
+          { label: "운영중", value: 12 },
+          { label: "대기", value: 3, description: "승인 전" },
+        ]}
+        actions={<KpiSearchButton value={query} onChange={setQuery} />}
+      />
     );
   },
 };

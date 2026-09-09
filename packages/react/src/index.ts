@@ -5,6 +5,7 @@ export { CodeBlock } from "./CodeBlock.js";
 export { ConfirmProvider, useConfirm } from "./ConfirmDialog.js";
 export { HoverReadout, ReadoutSurface, useHoverReadout } from "./HoverReadout.js";
 export { Input } from "./Input.js";
+export { KpiSearchButton, KpiStatBar } from "./KpiStatBar.js";
 export { List, ListItem } from "./List.js";
 // `itemClass` 는 컴포넌트가 아니라 클래스 문자열 헬퍼다. 소비 앱이 NavItem 으로는
 // 표현할 수 없는 트리거(아코디언 버튼처럼 캐럿·자체 상태를 가진 것)를 직접 그릴 때
@@ -25,6 +26,7 @@ export { TopBar } from "./TopBar.js";
 export type { BreadcrumbEntry, BreadcrumbsProps } from "./Breadcrumbs.js";
 export type { ConfirmOptions } from "./ConfirmDialog.js";
 export type { ReadoutSpot } from "./HoverReadout.js";
+export type { KpiSearchButtonProps, KpiStatBarProps, KpiStatItem } from "./KpiStatBar.js";
 export type { NavItemProps, NavLinkRenderer, NavLinkRenderProps } from "./NavItem.js";
 export type { NavEntry, NavListProps, NavSection } from "./NavList.js";
 export type { PageContainerProps } from "./PageContainer.js";
