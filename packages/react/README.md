@@ -2,7 +2,7 @@
 
 Shared React components — `CodeBlock`, `ConfirmProvider`/`useConfirm`, `HoverReadout`,
 `Input`, `List`, `Pagination`, `SearchBox`, `SidePanel`, `Skeleton`, `StatCard`,
-`StatusDot`, `NavItem`, `NavList`, `Sidebar`, `TopBar`, `Breadcrumbs`, `PageHeader`,
+`StatusDot`, `NavItem`, `NavList`, `Sidebar`, `TopBar`, `AppHeader`, `Breadcrumbs`, `PageHeader`,
 `PageContainer`, `TabNav`, `KpiStatBar`, `KpiSearchButton` — plus a `cn` helper, for
 cases `@heroui/react` has no equivalent for. All but `Breadcrumbs` are promoted from
 axhub-frontend.
@@ -53,6 +53,45 @@ import { StatusDot } from "@jocoding-ax-partners/react";
 
 <StatusDot tone="active">Active</StatusDot>;
 ```
+
+## App header (GNB) and account menu
+
+`AppHeader` is the full-width product header shared by APTA and AxLMS. It wraps
+`TopBar`: the logo and the top menu go in `leading`, the `trailing` slot (notification
+bell, theme toggle) and the account button go in `actions`.
+
+```tsx
+import { AppHeader } from "@jocoding-ax-partners/react";
+
+<AppHeader
+  logo={<Logo />}
+  nav={[
+    { label: "Dashboard", href: "/", active: true },
+    { label: "Help", href: "/help" },
+  ]}
+  user={{ name: "Sky Kim", email: "sky@acme.com" }}
+  accountItems={[
+    { label: "Account settings", href: "https://acme.axhub.ai/settings/profile", external: true },
+    ...(canAdmin ? [{ label: "Admin", href: "/manage" }] : []),
+  ]}
+  onLogout={hubLogout}
+  renderLink={(props) => <Link to={props.href} {...props} />}
+  trailing={<ThemeToggle />}
+/>;
+```
+
+- **No permission checks.** The app decides which `accountItems` to pass; the header
+  renders them as given, followed by a logout item that is always present.
+- `external` items open in a new window (`target="_blank"`, `rel="noreferrer"`) —
+  `NavLinkRenderProps` now carries optional `target`/`rel`, so a custom `renderLink`
+  must forward them.
+- If `onLogout` returns a Promise, the logout item is disabled while it is pending and
+  a one-line error is shown inside the menu if it rejects.
+- The account menu is a popover from `md` up and a bottom sheet below `md`. Keyboard
+  follows the WAI-ARIA menu button pattern (Enter/Space/↓ open on the first item, ↑ on
+  the last, ↑/↓/Home/End move, Esc closes and returns focus, Tab closes).
+- Height reads the app's `--gnb-h` variable and falls back to `--topbar-height`; the
+  package adds no new token. The top menu is hidden below `md`.
 
 ## Optional ag-grid shell
 

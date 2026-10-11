@@ -1,5 +1,6 @@
 export { cn } from "./lib/cn.js";
 
+export { AppHeader } from "./AppHeader.js";
 export { Breadcrumbs } from "./Breadcrumbs.js";
 export { CodeBlock } from "./CodeBlock.js";
 export { ConfirmProvider, useConfirm } from "./ConfirmDialog.js";
@@ -23,6 +24,15 @@ export * from "./StatCard.js";
 export * from "./StatusDot.js";
 export { TabNav } from "./TabNav.js";
 export { TopBar } from "./TopBar.js";
+export type {
+  AppHeaderAccountItem,
+  AppHeaderClassNames,
+  AppHeaderNavActiveVariant,
+  AppHeaderNavItem,
+  AppHeaderPassthroughAttrs,
+  AppHeaderProps,
+  AppHeaderUser,
+} from "./AppHeader.js";
 export type { BreadcrumbEntry, BreadcrumbsProps } from "./Breadcrumbs.js";
 export type { ConfirmOptions } from "./ConfirmDialog.js";
 export type { ReadoutSpot } from "./HoverReadout.js";
