@@ -17,6 +17,12 @@ export interface NavLinkRenderProps {
   "aria-current"?: "page";
   "aria-selected"?: boolean;
   role?: string;
+  /**
+   * 새 창으로 여는 링크(AppHeader 계정 메뉴의 `external` 항목 — 허브 계정 설정)에만
+   * 실린다. 렌더러는 받은 그대로 `<a>` 에 넘기면 된다. NavItem·NavList 는 쓰지 않는다.
+   */
+  target?: string;
+  rel?: string;
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onFocus?: FocusEventHandler<HTMLElement>;
 }
