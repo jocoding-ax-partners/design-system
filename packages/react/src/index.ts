@@ -26,7 +26,10 @@ export { TabNav } from "./TabNav.js";
 export { TopBar } from "./TopBar.js";
 export type {
   AppHeaderAccountItem,
+  AppHeaderClassNames,
+  AppHeaderNavActiveVariant,
   AppHeaderNavItem,
+  AppHeaderPassthroughAttrs,
   AppHeaderProps,
   AppHeaderUser,
 } from "./AppHeader.js";

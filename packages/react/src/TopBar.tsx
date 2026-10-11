@@ -11,6 +11,16 @@ export interface TopBarProps {
   actions?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  /**
+   * 안쪽 행(좌우 여백 `px-5` 가 붙은 줄)에 더하는 클래스. 기본 여백을 바꿀 때 쓴다 —
+   * 예: AxLMS GNB 의 `px-3 sm:px-5`. 뒤에 붙어 twMerge 로 기본을 이긴다.
+   */
+  innerClassName?: string;
+  /**
+   * `<header>` 에 그대로 싣는 `data-*`. 앱 CSS 가 상태(예: `data-scrolled`)로 바 표면을
+   * 바꿀 수 있게 하는 자리다. 키를 `data-*` 로 제한하는 건 NavItem `dataAttrs` 와 같다.
+   */
+  dataAttrs?: Record<`data-${string}`, string | undefined>;
 }
 
 /**
@@ -26,11 +36,20 @@ export interface TopBarProps {
  * 쓰는 소비자는 이 두 유틸리티가 해석되지 않는다(2026-09-09 실측,
  * docs/status/design-system-4.1.0-rollout.md).
  */
-export function TopBar({ rail, leading, actions, className, style }: TopBarProps): ReactElement {
+export function TopBar({
+  rail,
+  leading,
+  actions,
+  className,
+  style,
+  innerClassName,
+  dataAttrs,
+}: TopBarProps): ReactElement {
   return (
     // lg:border-b: 모바일엔 헤더 아래 사이드바가 없어 경계선이 떠 있는 줄처럼 보인다
     // (axhub-frontend Topbar.tsx:16-18).
     <header
+      {...dataAttrs}
       className={cn(
         "bg-background border-border relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
         className,
@@ -58,7 +77,7 @@ export function TopBar({ rail, leading, actions, className, style }: TopBarProps
         정본은 같은 압력을 겹침이 아니라 오른쪽 오버플로(320px 에서 22.38px)로 흘려
         햄버거를 끝까지 누를 수 있게 남긴다.
       */}
-      <div className="flex min-w-0 flex-1 items-center justify-between px-5">
+      <div className={cn("flex min-w-0 flex-1 items-center justify-between px-5", innerClassName)}>
         <div className="flex items-center gap-2 lg:gap-4">{leading}</div>
         <div className="flex items-center gap-3">{actions}</div>
       </div>

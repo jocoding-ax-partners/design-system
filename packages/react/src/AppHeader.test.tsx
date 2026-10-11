@@ -1,6 +1,6 @@
 import type { NavLinkRenderProps } from "./NavItem.js";
 
-import { act, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
@@ -324,6 +324,223 @@ describe("AppHeader", () => {
     it("렌더러 없이도 평범한 <a> 로 그린다", () => {
       setup();
       expect(screen.getByRole("link", { name: "도움말" }).tagName).toBe("A");
+    });
+  });
+
+  // ── 2.2.0 추가 prop — AxLMS(U-A3) 가 자기 GNB 를 이 컴포넌트로 바꾸려면 필요한 자리.
+  //    전부 선택 prop 이고, 안 넘기면 위의 기존 동작·모양 그대로다.
+  describe("accountButtonProps · accountMenuProps (data-*·aria-* 전달)", () => {
+    it("계정 버튼과 계정 메뉴에 data-*·aria-* 를 그대로 싣는다", async () => {
+      const { user } = setup({
+        accountButtonProps: { "data-admin-guide": "account", "aria-describedby": "hint" },
+        accountMenuProps: { "data-admin-guide": "account-menu" },
+      });
+      expect(menuButton()).toHaveAttribute("data-admin-guide", "account");
+      expect(menuButton()).toHaveAttribute("aria-describedby", "hint");
+      await user.click(menuButton());
+      expect(screen.getByRole("menu")).toHaveAttribute("data-admin-guide", "account-menu");
+    });
+
+    it("구조적 속성(aria-haspopup·role)은 덮어쓰지 못한다", async () => {
+      const { user } = setup({
+        accountButtonProps: { "aria-haspopup": "false" } as never,
+        accountMenuProps: { role: "dialog" } as never,
+      });
+      expect(menuButton()).toHaveAttribute("aria-haspopup", "menu");
+      await user.click(menuButton());
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+    });
+  });
+
+  describe("제어형 열림 (accountMenuOpen · onAccountMenuOpenChange)", () => {
+    it("accountMenuOpen 을 주면 그 값대로 열리고 닫힌다", () => {
+      const { rerender, onLogout } = setup({ accountMenuOpen: true });
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      expect(menuButton()).toHaveAttribute("aria-expanded", "true");
+      rerender(
+        <AppHeader
+          logo={<span>APTA</span>}
+          nav={[]}
+          user={{ name: "김하늘", email: "sky@acme.com" }}
+          accountItems={[SETTINGS]}
+          onLogout={onLogout}
+          accountMenuOpen={false}
+        />,
+      );
+      expect(screen.queryByRole("menu")).toBeNull();
+    });
+
+    it("제어형이면 클릭은 onAccountMenuOpenChange 로 알리기만 하고 상태는 앱이 정한다", async () => {
+      const onAccountMenuOpenChange = vi.fn();
+      const { user } = setup({ accountMenuOpen: false, onAccountMenuOpenChange });
+      await user.click(menuButton());
+      expect(onAccountMenuOpenChange).toHaveBeenCalledWith(true);
+      expect(screen.queryByRole("menu")).toBeNull();
+    });
+
+    it("제어형으로 열린 메뉴에서 Escape 는 onAccountMenuOpenChange(false) 를 부른다", async () => {
+      const onAccountMenuOpenChange = vi.fn();
+      const { user } = setup({ accountMenuOpen: true, onAccountMenuOpenChange });
+      await user.keyboard("{Escape}");
+      expect(onAccountMenuOpenChange).toHaveBeenCalledWith(false);
+    });
+
+    it("비제어여도 onAccountMenuOpenChange 로 열림 변화를 알린다", async () => {
+      const onAccountMenuOpenChange = vi.fn();
+      const { user } = setup({ onAccountMenuOpenChange });
+      await user.click(menuButton());
+      expect(onAccountMenuOpenChange).toHaveBeenLastCalledWith(true);
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      await user.click(menuButton());
+      expect(onAccountMenuOpenChange).toHaveBeenLastCalledWith(false);
+    });
+  });
+
+  describe("바깥 누름 예외 (outsideClickIgnore)", () => {
+    it("selector 에 맞는 요소 안을 누르면 닫지 않는다", async () => {
+      const { user } = setup({
+        outsideClickIgnore: "[data-admin-guide-overlay]",
+        trailing: (
+          <div data-admin-guide-overlay="">
+            <button type="button">다음</button>
+          </div>
+        ),
+      });
+      await user.click(menuButton());
+      await user.click(screen.getByRole("button", { name: "다음" }));
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      // 예외 밖은 여전히 닫는다.
+      fireEvent.mouseDown(screen.getByText("APTA"));
+      expect(screen.queryByRole("menu")).toBeNull();
+    });
+  });
+
+  describe("머리 표면 덮어쓰기", () => {
+    it("dataAttrs 는 머리(root)에 실린다 — 앱 CSS 가 data-scrolled 로 표면을 바꿀 수 있다", () => {
+      setup({ dataAttrs: { "data-scrolled": "false" } });
+      expect(screen.getByRole("banner")).toHaveAttribute("data-scrolled", "false");
+    });
+
+    it("className 으로 배경·밑줄을 덮어쓰고 classNames.inner 로 안쪽 여백을 바꾼다", () => {
+      setup({
+        className: "bg-transparent lg:border-b-0",
+        classNames: { inner: "px-3 sm:px-5" },
+      });
+      const bar = screen.getByRole("banner");
+      expect(bar.className).toContain("bg-transparent");
+      expect(bar.className).not.toContain("bg-background");
+      expect(bar.className).not.toMatch(/(^|\s)lg:border-b(\s|$)/);
+      const inner = bar.lastElementChild as HTMLElement;
+      expect(inner.className).toContain("px-3");
+      expect(inner.className).toContain("sm:px-5");
+      expect(inner.className).not.toMatch(/(^|\s)px-5(\s|$)/);
+    });
+
+    it("기본은 이전과 같다 — 줄 글자색 --foreground, 이메일 --muted, 그림자 --overlay-shadow", async () => {
+      const { user } = setup();
+      await user.click(menuButton());
+      const menu = screen.getByRole("menu");
+      expect(menu.className).toContain("shadow-[var(--overlay-shadow)]");
+      expect(screen.getByRole("menuitem", { name: "로그아웃" }).className).toContain(
+        "text-[var(--foreground)]",
+      );
+      expect(within(menu).getByText("sky@acme.com").className).toContain("text-[var(--muted)]");
+    });
+
+    it("classNames 로 계정 메뉴 줄 색·이메일 색·그림자를 덮어쓴다", async () => {
+      const { user } = setup({
+        classNames: {
+          accountMenu: "shadow-[var(--surface-shadow)]",
+          accountRow: "text-[var(--muted)]",
+          accountEmail: "text-[var(--muted-soft)]",
+        },
+      });
+      await user.click(menuButton());
+      const menu = screen.getByRole("menu");
+      expect(menu.className).toContain("shadow-[var(--surface-shadow)]");
+      expect(menu.className).not.toContain("--overlay-shadow");
+      const logout = screen.getByRole("menuitem", { name: "로그아웃" });
+      expect(logout.className).toContain("text-[var(--muted)]");
+      expect(logout.className).not.toContain("--foreground");
+      expect(logout.style.color).toBe("");
+      const settings = screen.getByRole("menuitem", { name: /계정 설정/ });
+      expect(settings.className).toContain("text-[var(--muted)]");
+      const email = within(menu).getByText("sky@acme.com");
+      expect(email.className).toContain("text-[var(--muted-soft)]");
+      expect(email.style.color).toBe("");
+    });
+  });
+
+  describe("nav 항목 · 로고 둘레", () => {
+    it("badge 를 라벨 뒤에 그린다", () => {
+      setup({
+        nav: [
+          { label: "할 일", href: "/todo", badge: 3 },
+          { label: "강의", href: "/courses" },
+        ],
+      });
+      const todo = screen.getByRole("link", { name: /할 일/ });
+      expect(todo).toHaveAccessibleName(/^할 일\s?3$/);
+      expect(todo.querySelector("[data-nav-badge]")).toHaveTextContent("3");
+      expect(
+        screen.getByRole("link", { name: "강의" }).querySelector("[data-nav-badge]"),
+      ).toBeNull();
+    });
+
+    it("navActiveVariant 기본(bold)은 면 없이 굵기·글자색만 바꾼다", () => {
+      setup();
+      const on = screen.getByRole("link", { name: "응시 현황" });
+      expect(on.style.fontWeight).toBe("700");
+      expect(on.style.color).toBe("var(--foreground)");
+      expect(on.style.background).toBe("");
+    });
+
+    it("navActiveVariant='soft' 는 accent-soft 면 + accent 글자로 지금 칸을 표시한다", () => {
+      setup({ navActiveVariant: "soft" });
+      const on = screen.getByRole("link", { name: "응시 현황" });
+      expect(on.style.background).toBe("var(--accent-soft)");
+      expect(on.style.color).toBe("var(--accent)");
+      expect(on.style.fontWeight).toBe("600");
+      const off = screen.getByRole("link", { name: "도움말" });
+      expect(off.style.background).toBe("");
+      expect(off.style.color).toBe("var(--muted)");
+    });
+
+    it("navReserveBoldWidth 면 굵은 폭을 미리 잡는다 — 접근 이름은 한 번만, 기본은 꺼짐", () => {
+      const { unmount } = setup();
+      expect(
+        screen.getByRole("link", { name: "도움말" }).querySelector("[data-bold-reserve]"),
+      ).toBeNull();
+      unmount();
+      setup({ navReserveBoldWidth: true });
+      const link = screen.getByRole("link", { name: "도움말" });
+      expect(link).toHaveAccessibleName("도움말");
+      const reserve = link.querySelector("[data-bold-reserve]");
+      expect(reserve).not.toBeNull();
+      expect(reserve).toHaveAttribute("aria-hidden", "true");
+    });
+
+    it("brandTag 를 로고 옆에, leadingStart 를 로고 앞에 그린다", () => {
+      setup({
+        brandTag: "관리자",
+        leadingStart: (
+          <button type="button" aria-label="메뉴 열기">
+            ≡
+          </button>
+        ),
+      });
+      const logo = screen.getByText("APTA");
+      const tag = screen.getByText("관리자");
+      const burger = screen.getByRole("button", { name: "메뉴 열기" });
+      expect(burger.compareDocumentPosition(logo) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(logo.compareDocumentPosition(tag) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(tag.closest("[data-brand-tag]")?.className).toContain("hidden");
+      expect(tag.closest("[data-brand-tag]")?.className).toContain("sm:inline");
+    });
+
+    it("brandTag·leadingStart 가 없으면 그 자리를 그리지 않는다", () => {
+      const { container } = setup();
+      expect(container.querySelector("[data-brand-tag]")).toBeNull();
     });
   });
 });
