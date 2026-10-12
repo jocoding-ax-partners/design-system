@@ -1,6 +1,11 @@
 {
   "name": "@jocoding-ax-partners/design-system",
   "version": "4.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jocoding-ax-partners/design-system.git",
+    "directory": "packages/heroui"
+  },
   "license": "MIT",
   "type": "module",
   "scripts": {

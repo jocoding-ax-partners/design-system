@@ -27,6 +27,10 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      # npm Trusted Publishing(OIDC) 은 npm CLI 11.5.1 이상이 필요하다. Node 24 번들 npm 이
+      # 그보다 낮을 수 있어 올린다. 토큰 없이 GitHub OIDC(id-token: write)로 배포한다.
+      - run: npm install -g npm@latest
+
       - run: pnpm install --frozen-lockfile
 
       # Opens (or updates) a "Version Packages" PR when changesets are pending.
@@ -40,5 +44,5 @@ jobs:
           title: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NPM_TOKEN 은 쓰지 않는다 — 배포 권한은 npmjs.com 의 Trusted Publisher 설정이 준다.
+          NPM_CONFIG_PROVENANCE: "true"
