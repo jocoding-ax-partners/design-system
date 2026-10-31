@@ -67,6 +67,13 @@ HeroUI 를 이긴 지점을 올바르게 따라간 것"으로 판정됐다 — �
 
 ## 알려진 공백 (2026-09 · 소비자 2개 기준)
 
+> **5.0 갱신 (2026-11):** 아래 1·2·4번과 3번의 두 API 공백(`ConfirmOptions.testId`, `StatCard` 지표별 색)은
+> `fix/token-ramp-and-contrast` 에서 해결했다. gray 200·300·400 을 이 패키지가 정의하고, 라이트 `*-strong`
+> 은 700 단계, 라이트 `*-soft-foreground` 는 800 단계(accent 는 700)를 가리킨다. 채운 danger 라벨(라이트)과
+> 다크 primary·danger 채움 라벨도 AA 를 넘는다. 측정: Tailwind 4.1.18 로 컴파일한 dist 를 Chromium 에서
+> 렌더해 계산 색을 sRGB 픽셀로 읽고 WCAG 대비를 계산했다(라이트·다크 각 24쌍). 남은 4.5 미만은
+> `--fg-subtle`(3.1:1, 비텍스트 하한으로 문서화)과 `--fg-disabled`(비활성 예외) 뿐이다. 아래 본문은 당시 기록이다.
+
 1. **`--color-gray-200` / `--color-gray-300` / `--color-gray-400` 이 없다. (가장 큰 공백)**
    `@theme` 의 gray 는 50·100·500·600·700·800·850·900·950 뿐이다. 그런데 이 패키지 자신이
    `--border-default: var(--color-gray-200)` · `--border-strong: var(--color-gray-300)` ·

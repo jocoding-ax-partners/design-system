@@ -15,6 +15,15 @@
   /* Gray Colors */
   --color-gray-50: oklch(98.7% 0.002 264.5deg); /* #fafbfc */
   --color-gray-100: oklch(97.2% 0.003 264.5deg); /* #f5f6f8 */
+
+  /* 200–400 were referenced (borders, --fg-subtle, --fg-disabled, --bg-emphasis) but never
+     defined, so Tailwind's default gray leaked in and the hue ran backwards (258° between
+     264° and 272°). They keep Tailwind's lightness steps, which consumers already render,
+     and take this ramp's hue. 400 is the floor for meaningful non-text UI (icons,
+     placeholders): 3.1:1 on #fff, WCAG 1.4.11. Text that must be read uses 500+. */
+  --color-gray-200: oklch(92.8% 0.006 266deg);
+  --color-gray-300: oklch(87.2% 0.01 267.5deg);
+  --color-gray-400: oklch(66.5% 0.019 270deg);
   --color-gray-500: oklch(55% 0.021 272.1deg); /* #6d717e */
   --color-gray-600: oklch(44.2% 0.017 268.3deg); /* #4f535d */
   --color-gray-700: oklch(36.8% 0.014 269.3deg); /* #3c3f47 */
@@ -33,13 +42,14 @@
      them as oklch would add a conversion with nothing to verify it against.
 
      Contrast, measured against the surfaces each step actually lands on:
-       500  the current base. Listed to anchor the ramp — it is below AA for text.
+       500  the base. Anchors the ramp; below AA for text except danger, which was
+            darkened in 5.0 so a #fff label on a filled danger clears AA.
        700  free-standing text on --bg-content (#fff) and --bg-surface (#fafbfc).
        800  text inside a `-soft` background (the base at 15% over the surface),
             which is tinted, so it needs to be darker than 700 to clear AA.
 
                      #fff    #fafbfc   own -soft
-       danger-500     4.40     4.25      3.43     below AA
+       danger-500     4.71     4.55      —        fill only
        danger-700     5.71     5.51      4.45
        danger-800     7.95     7.68      6.20
        success-500    3.31     3.20      2.81     below AA
@@ -51,7 +61,7 @@
 
      Warning shifts hue toward amber on purpose. No yellow clears 4.5:1 — being light
      is what makes a yellow a yellow — so a readable warning has to leave the hue. */
-  --color-danger-500: #ef1026;
+  --color-danger-500: #e60f24; /* was #ef1026: #fff label on a filled danger read 4.29:1 */
   --color-danger-700: #c81e2b;
   --color-danger-800: #a01722;
   --color-success-500: #1fa24e;
@@ -71,26 +81,18 @@
 
   /* Semantic Colors */
   --accent: var(--color-accent-600);
-  --danger: #ef1026;
+  --danger: var(--color-danger-500);
   --success: #1fa24e;
   --warning: #f6c205;
-  --warning-strong: #f4ab00;
+  --warning-strong: var(--color-warning-700);
   --info: #1571f3;
   --info-foreground: var(--snow);
 
-  /* `-strong` is the darker step used for text and icons on light surfaces.
-     These light values do not deliver that yet. `--danger-strong` resolves to
-     `--danger` (4.40:1 on #fff) and `--success-strong` to `--success` (3.31:1);
-     `--warning-strong` reaches 1.97:1. All three are below AA for text. An earlier
-     note here said danger and success were "already dark enough to double as their
-     own strong step" — measuring says otherwise, so it is removed rather than kept.
-
-     The 700 steps above are the replacements. Repointing these is a breaking change
-     — axhub-frontend reads them as text colors at 89 call sites — so it ships on its
-     own, behind a visual-regression gate. The dark block below is unaffected: it
-     already carries real values and clears AA on 5 of its 6 surface pairings. */
-  --danger-strong: var(--danger);
-  --success-strong: var(--success);
+  /* `-strong` is the darker step used for text and icons on light surfaces. It points
+     at the 700 step, which clears AA on #fff and #fafbfc (table above). Until 5.0 these
+     resolved to the base (danger 4.40:1, success 3.31:1, warning 1.97:1). */
+  --danger-strong: var(--color-danger-700);
+  --success-strong: var(--color-success-700);
   --info-strong: #0f5fcc;
 }
 
@@ -127,7 +129,7 @@
     --warning: #ffe246;
     --warning-strong: #f6c205;
     --danger: #ff4759;
-    --danger-strong: #f5475c;
+    --danger-strong: #ff6b7a; /* 4.22:1 → 5.0:1 on --bg-surface #25272d */
     --info: #4d94fb;
     --info-strong: #3d8df7;
     --success-soft: rgb(39 201 97 / 18%);
@@ -137,9 +139,10 @@
     --info-soft-hover: color-mix(in oklab, var(--info) 16%, transparent);
     --info-soft-foreground: color-mix(in oklab, var(--info) 80%, var(--foreground) 30%);
 
-    /* Primary — canonical dark values from axhub-frontend globals.css. */
-    --primary: var(--primary-dark);
-    --primary-hover: var(--primary-base);
+    /* Primary — dark fill keeps the light base so `--fg-on-primary` (#fff) reads at
+       4.87:1; axhub-frontend's #4b7bff gave 3.77:1. Hover goes one step darker. */
+    --primary: var(--primary-base);
+    --primary-hover: var(--color-accent-700);
     --primary-soft: rgb(75 123 255 / 40%);
     --primary-soft-hover: rgb(75 123 255 / 55%);
     --primary-grad-from: var(--primary-bright);
