@@ -36,12 +36,14 @@
   /* Calculated — HeroUI */
   --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
 
-  /* Soft foregrounds */
-  --accent-soft-foreground: var(--accent);
-  --danger-soft-foreground: var(--danger);
-  --success-soft-foreground: var(--success);
-  --warning-soft-foreground: var(--warning-strong);
-  --info-soft-foreground: var(--info);
+  /* Soft foregrounds — a `-soft` fill is the base at 15% over the surface, so the
+     text on it needs the 800 step (≥6.2:1) for status colors and accent-700 for accent.
+     The raw brand colors measured 1.82–3.97:1 here. */
+  --accent-soft-foreground: var(--color-accent-700);
+  --danger-soft-foreground: var(--color-danger-800);
+  --success-soft-foreground: var(--color-success-800);
+  --warning-soft-foreground: var(--color-warning-800);
+  --info-soft-foreground: var(--info-strong);
 }
 
 @utility theme-dark {
@@ -58,6 +60,11 @@
 
   /* Calculated — HeroUI */
   --default-hover: color-mix(in oklab, var(--default) 96%, var(--default-foreground) 4%);
+
+  /* Filled danger (button, solid chip, badge) puts --danger-foreground on --danger.
+     The dark base must stay bright to read as text on dark surfaces, so the fill's
+     label goes dark instead: #fff on #ff4759 was 3.25:1. */
+  --danger-foreground: var(--eclipse);
 
   /* Soft foregrounds — HeroUI */
   --accent-soft-foreground: color-mix(in oklab, var(--accent) 80%, var(--foreground) 30%);

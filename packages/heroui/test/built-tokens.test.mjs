@@ -26,17 +26,39 @@ test("status -strong tokens are mapped into the --color-* namespace", () => {
 });
 
 test("status -strong tokens carry the pinned light values", () => {
-  assert.match(css, /--warning-strong:\s*#f4ab00\b/);
+  assert.match(css, /--warning-strong:\s*var\(--color-warning-700\)/);
   assert.match(css, /--info-strong:\s*#0f5fcc\b/);
-  assert.match(css, /--danger-strong:\s*var\(--danger\)/);
-  assert.match(css, /--success-strong:\s*var\(--success\)/);
+  assert.match(css, /--danger-strong:\s*var\(--color-danger-700\)/);
+  assert.match(css, /--success-strong:\s*var\(--color-success-700\)/);
+});
+
+test("the gray ramp owns 200, 300 and 400 instead of leaking Tailwind's defaults", () => {
+  assert.match(css, /--color-gray-200:\s*oklch\(92\.8% 0\.006 266deg\)/);
+  assert.match(css, /--color-gray-300:\s*oklch\(87\.2% 0\.01 267\.5deg\)/);
+  assert.match(css, /--color-gray-400:\s*oklch\(66\.5% 0\.019 270deg\)/);
+});
+
+test("light soft foregrounds use the dark steps that clear AA on their -soft fill", () => {
+  assert.match(css, /--accent-soft-foreground:\s*var\(--color-accent-700\)/);
+  assert.match(css, /--danger-soft-foreground:\s*var\(--color-danger-800\)/);
+  assert.match(css, /--success-soft-foreground:\s*var\(--color-success-800\)/);
+  assert.match(css, /--warning-soft-foreground:\s*var\(--color-warning-800\)/);
+  assert.match(css, /--info-soft-foreground:\s*var\(--info-strong\)/);
+});
+
+test("filled colors carry a readable label in both themes", () => {
+  assert.match(css, /--color-danger-500:\s*#e60f24\b/);
+  assert.match(css, /--danger:\s*var\(--color-danger-500\)/);
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--primary:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--danger-foreground:\s*var\(--eclipse\)/);
 });
 
 test("status -strong tokens carry the pinned dark values", () => {
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
   assert.match(darkBlock, /--success-strong:\s*#4dd488\b/);
   assert.match(darkBlock, /--warning-strong:\s*#f6c205\b/);
-  assert.match(darkBlock, /--danger-strong:\s*#f5475c\b/);
+  assert.match(darkBlock, /--danger-strong:\s*#ff6b7a\b/);
   assert.match(darkBlock, /--info-strong:\s*#3d8df7\b/);
 });
 
@@ -227,8 +249,8 @@ test("primary semantic tokens carry the pinned light values", () => {
 
 test("primary semantic tokens carry the pinned dark values", () => {
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
-  assert.match(darkBlock, /--primary:\s*var\(--primary-dark\)/);
-  assert.match(darkBlock, /--primary-hover:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--primary:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--primary-hover:\s*var\(--color-accent-700\)/);
   assert.match(darkBlock, /--primary-soft:\s*rgb\(75 123 255 \/ 40%\)/);
   assert.match(darkBlock, /--primary-soft-hover:\s*rgb\(75 123 255 \/ 55%\)/);
 });

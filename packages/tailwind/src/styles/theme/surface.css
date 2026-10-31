@@ -28,6 +28,10 @@
   --fg-default: var(--color-gray-900);
   --fg-secondary: var(--color-gray-700);
   --fg-muted: var(--color-gray-500);
+
+  /* Not for text that must be read: --fg-subtle (gray-400, 3.1:1 on #fff) is the floor
+     for icons and placeholders (WCAG 1.4.11 non-text, 3:1); --fg-disabled is exempt as
+     disabled UI. Readable secondary text is --fg-muted (4.87:1). */
   --fg-subtle: var(--color-gray-400);
   --fg-disabled: var(--color-gray-300);
   --fg-inverse: #fff;

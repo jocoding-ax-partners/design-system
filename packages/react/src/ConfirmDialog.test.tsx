@@ -37,6 +37,29 @@ describe("ConfirmDialog (ConfirmProvider / useConfirm)", () => {
     expect(await screen.findByText("result: confirmed")).toBeInTheDocument();
   });
 
+  it("stamps testId hooks on confirm, cancel and overlay", async () => {
+    function TestIdHarness() {
+      const confirm = useConfirm();
+      return (
+        <button
+          type="button"
+          onClick={() => void confirm({ title: "지울까요", testId: "delete-run" })}
+        >
+          열기
+        </button>
+      );
+    }
+    render(
+      <ConfirmProvider>
+        <TestIdHarness />
+      </ConfirmProvider>,
+    );
+    await userEvent.click(screen.getByRole("button", { name: "열기" }));
+    expect(await screen.findByTestId("delete-run-confirm")).toHaveTextContent("확인");
+    expect(screen.getByTestId("delete-run-cancel")).toHaveTextContent("취소");
+    expect(screen.getByTestId("delete-run-overlay")).toBeInTheDocument();
+  });
+
   it("throws if useConfirm is called outside a ConfirmProvider", () => {
     function Bare() {
       useConfirm();
