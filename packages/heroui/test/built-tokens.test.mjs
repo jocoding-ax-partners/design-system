@@ -344,3 +344,43 @@ test("inactive nav icon color reaches dist in both themes", () => {
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
   assert.match(darkBlock, /--icon-inactive:\s*var\(--color-gray-500\)/);
 });
+
+test("the house typeface stack ships — Pretendard first", () => {
+  assert.match(css, /--font-sans:\s*"Pretendard Variable", "Pretendard"/);
+  assert.match(css, /--font-mono:\s*ui-monospace/);
+});
+
+test("motion steps ship as one rhythm for every product", () => {
+  assert.match(css, /--duration-fast:\s*150ms/);
+  assert.match(css, /--duration-base:\s*200ms/);
+  assert.match(css, /--duration-slow:\s*300ms/);
+  assert.match(css, /--ease-standard:\s*cubic-bezier\(0\.4, 0, 0\.2, 1\)/);
+});
+
+test("the primary ramp names the accent ramp step for step", () => {
+  for (const s of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
+    assert.match(
+      css,
+      new RegExp(`--color-primary-${s}:\\s*var\\(--color-accent-${s}\\)`),
+      `missing primary-${s}`,
+    );
+  }
+});
+
+test("a tenant brand derives the whole primary set from --primary", () => {
+  const i = css.indexOf(":root:is([data-brand-theme], [data-home-theme])");
+  assert.ok(i >= 0, "tenant brand rule missing");
+  const block = css.slice(i, css.indexOf("}", i));
+  assert.match(block, /--color-accent-600:\s*var\(--primary\)/);
+  assert.match(block, /--accent:\s*var\(--color-accent-600\)/);
+  assert.match(block, /--primary-hover:\s*color-mix\(in srgb, var\(--primary\) 80%, white\)/);
+});
+
+test("categorical chart colors ship for both themes", () => {
+  for (const n of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    assert.match(css, new RegExp(`--color-chart-${n}:\\s*var\\(--chart-${n}\\)`));
+  }
+  assert.match(css, /--chart-1:\s*#3e6fd0/);
+  const darkBlock = css.slice(css.indexOf("--chart-1: #5e88de") - 200);
+  assert.match(darkBlock, /\[data-theme="dark"\]/);
+});

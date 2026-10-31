@@ -1,6 +1,16 @@
 # 소비자 계약 — 이 패키지가 무엇을 주고 무엇을 안 주는가
 
-## 소비자 현황 (2026-09)
+## 소비자 현황 (2026-11 갱신)
+
+> 2026-11-01 실측. 제품별 차이와 이행 지도는 [brand.md](./brand.md).
+
+| 제품 | 저장소 | 붙은 방식 |
+|---|---|---|
+| jocodingax.axhub.ai (콘솔) | `axhub-mono/apps/frontend` | 정본 4.1.0 + 로컬 patch, `data-home-theme` 로컬 파생 |
+| admin.axhub.ai | `axhub-mono/apps/frontend-admin` | **정본 미설치** — `--app-*` 독자 팔레트 |
+| axclass.jocodingax.axhub.ai | `axhub-axacademy` | 정본 4.2.0 + `--ink`·`--fds-*` 독자 팔레트 |
+
+### 2026-09 기록
 
 | 소비자 | 붙은 방식 | 비고 |
 |---|---|---|

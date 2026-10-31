@@ -5,8 +5,13 @@ A CSS-only design system built on [HeroUI v3](https://v3.heroui.com), published 
 
 Most consumers import components from `@heroui/react` and add a single stylesheet, which
 restyles those components and registers the design tokens — everything else in this repo
-is CSS. `packages/react` is the one exception: eleven React components (plus a `cn`
-helper) promoted verbatim from axhub-frontend that don't have a HeroUI equivalent.
+is CSS. `packages/react` is the one exception: React components (plus a `cn` helper)
+promoted from axhub-frontend that don't have a HeroUI equivalent.
+
+This is the design canon for every JoCoding AX Partners product — the console
+(jocodingax.axhub.ai), admin (admin.axhub.ai) and axclass. Its colors match the
+corporate site (jocodingax.ai). [docs/brand.md](./docs/brand.md) records where each
+product stands against it and maps each product's local tokens onto it.
 
 ## Packages
 
@@ -14,7 +19,7 @@ helper) promoted verbatim from axhub-frontend that don't have a HeroUI equivalen
 | ------------------- | ------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------- |
 | `packages/tailwind` | `@jocoding-ax-partners/tailwind`       | no        | Design tokens — colors, radius, spacing, typography — plus shared Tailwind utilities                     |
 | `packages/heroui`   | `@jocoding-ax-partners/design-system`  | npm       | HeroUI component overrides. Inlines `tailwind` at build time and is the only artifact consumers install |
-| `packages/react`    | `@jocoding-ax-partners/react`          | no        | React components with no HeroUI equivalent — `CodeBlock`, `ConfirmDialog`, `HoverReadout`, `Input`, `List`, `Pagination`, `SearchBox`, `SidePanel`, `Skeleton`, `StatCard`, `StatusDot` — plus a `cn` helper |
+| `packages/react`    | `@jocoding-ax-partners/react`          | npm       | React components with no HeroUI equivalent — shell (`AppHeader`, `Sidebar`, `TopBar`, `NavList`, `NavItem`, `TabNav`, `Breadcrumbs`, `PageContainer`, `PageHeader`), data (`KpiStatBar`, `StatCard`, `List`, `Pagination`, `StatusDot`, `Skeleton`, `HoverReadout`, AG Grid helpers) and forms/overlays (`Input`, `SearchBox`, `SidePanel`, `ConfirmDialog`, `CodeBlock`) — plus a `cn` helper |
 | `apps/storybook`    | —                                      | no        | Storybook used to develop and review the overrides against real HeroUI components                       |
 
 `apps/storybook/src/stories` mirrors upstream HeroUI stories; `stories-extended` covers

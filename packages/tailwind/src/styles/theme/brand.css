@@ -1,0 +1,72 @@
+/*
+ * Brand — one blue, one ramp, for every JoCoding AX Partners product.
+ *
+ * The brand blue #2d64fa is `--color-accent-600` and `--primary-base` (the same sRGB
+ * value). Products kept rebuilding a `primary-50…950` ramp of their own — admin
+ * (admin.axhub.ai) with `color-mix`, axclass with `--blue`/`--pale`/`--fds-primary-*` —
+ * because only the accent ramp had steps. `--color-primary-*` now names the accent ramp,
+ * so `bg-primary-100` and `bg-accent-100` are one color and a tenant override (below)
+ * moves both.
+ */
+@theme {
+  --color-primary-50: var(--color-accent-50);
+  --color-primary-100: var(--color-accent-100);
+  --color-primary-200: var(--color-accent-200);
+  --color-primary-300: var(--color-accent-300);
+  --color-primary-400: var(--color-accent-400);
+  --color-primary-500: var(--color-accent-500);
+  --color-primary-600: var(--color-accent-600);
+  --color-primary-700: var(--color-accent-700);
+  --color-primary-800: var(--color-accent-800);
+  --color-primary-900: var(--color-accent-900);
+  --color-primary-950: var(--color-accent-950);
+}
+
+/*
+ * Tenant brand — set `--primary` and `data-brand-theme` on <html> and the whole primary
+ * set follows: hover, soft, gradient and the accent ramp HeroUI components read.
+ *
+ * Promoted from axhub-frontend, where `homeThemeStore` sets `data-home-theme`; that
+ * attribute is kept as an alias so the console keeps working while it drops its local
+ * copy. Overriding `--primary` alone only repaints `bg-primary`: hover, soft buttons,
+ * gradients and every HeroUI `--accent` consumer stayed company blue.
+ *
+ * Ratios are reverse-engineered from the brand blue so the default renders unchanged:
+ * #2d64fa → hover #5985fb ≈ 20% white, soft #eaf0fe ≈ 10%, soft-hover #d6e2fd ≈ 20%.
+ * The ramp mixes in oklab because the original ramp is oklch — sRGB mixing muddies the
+ * middle steps.
+ *
+ * Unlayered so it beats the `@layer base` primary definitions in colors.css. The
+ * unlayered `theme-light`/`theme-dark` sets never touch these names, so order against
+ * them does not matter.
+ */
+:root:is([data-brand-theme], [data-home-theme]) {
+  --primary-hover: color-mix(in srgb, var(--primary) 80%, white);
+  --primary-soft: color-mix(in srgb, var(--primary) 10%, white);
+  --primary-soft-hover: color-mix(in srgb, var(--primary) 20%, white);
+  --primary-grad-from: var(--primary-soft);
+  --primary-grad-to: var(--primary-soft-hover);
+  --color-accent-50: color-mix(in oklab, var(--primary) 7%, white);
+  --color-accent-100: color-mix(in oklab, var(--primary) 15%, white);
+  --color-accent-200: color-mix(in oklab, var(--primary) 32%, white);
+  --color-accent-300: color-mix(in oklab, var(--primary) 49%, white);
+  --color-accent-400: color-mix(in oklab, var(--primary) 66%, white);
+  --color-accent-500: color-mix(in oklab, var(--primary) 83%, white);
+  --color-accent-600: var(--primary);
+  --color-accent-700: color-mix(in oklab, var(--primary) 86%, black);
+  --color-accent-800: color-mix(in oklab, var(--primary) 71%, black);
+  --color-accent-900: color-mix(in oklab, var(--primary) 57%, black);
+  --color-accent-950: color-mix(in oklab, var(--primary) 50%, black);
+  --accent: var(--color-accent-600);
+}
+
+/* Dark flips the formula: hover goes deeper, and soft is translucent rather than mixed
+   with white (white over a dark canvas turns muddy) — the same 40% / 55% the default
+   dark primary uses. */
+:root:is([data-brand-theme], [data-home-theme]):is(.dark, [data-theme="dark"]) {
+  --primary-hover: color-mix(in srgb, var(--primary) 85%, black);
+  --primary-soft: color-mix(in srgb, var(--primary) 40%, transparent);
+  --primary-soft-hover: color-mix(in srgb, var(--primary) 55%, transparent);
+  --primary-grad-from: color-mix(in srgb, var(--primary) 80%, white);
+  --primary-grad-to: var(--primary);
+}

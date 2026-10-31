@@ -170,6 +170,14 @@ colors     accent-50 … accent-950        (bg-accent-600, text-accent-100, …)
            gray-850                      (a step Tailwind does not ship)
            info, info-hover, info-soft, info-soft-hover,
            info-foreground, info-soft-foreground
+           primary-50 … primary-950      (same values as accent-*; both follow a tenant brand)
+           chart-1 … chart-8, chart-other (categorical series colors — never for status)
+
+font-      sans (Pretendard Variable stack), mono   (the font files are not shipped —
+           self-host `pretendard` in the app)
+
+ease-      standard, out                 (`ease-out` replaces Tailwind's default curve)
+           durations are custom properties only: duration-(--duration-fast|base|slow)
 
 rounded-   button-xs, button-sm, button-md, button-lg
            input, list-box, list-box-item, toast, dialog, card
@@ -188,6 +196,11 @@ text-      display-01 … display-04
 
 variant    light:                        (the counterpart to HeroUI's dark:)
 ```
+
+Tenant brand: put `data-brand-theme` and `style="--primary: <color>"` on `<html>`. The
+whole primary set (hover, soft, gradient) and the accent ramp HeroUI reads are derived
+from that one color. Do not override `--primary` alone — hover and HeroUI accents stay
+company blue. `data-home-theme` is accepted as a legacy alias.
 
 Parts of HeroUI's own palette are also re-valued without adding a utility name: the
 gray scale (`gray-500`–`gray-950`, shifted to neutral oklch), the semantic brand
