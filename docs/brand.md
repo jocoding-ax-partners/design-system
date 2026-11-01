@@ -15,11 +15,12 @@
 |---|---|
 | 브랜드 블루 | `#2d64fa` = `--primary-base` = `--color-accent-600` = `--color-primary-600` |
 | 뉴트럴 | `--color-gray-50…950` (색상각 264→286, 푸른 회색) |
-| 서체 | `--font-sans` Pretendard Variable 스택 (5.0 부터 정본 소유) |
+| 서체 | `--font-sans` Pretendard Variable 스택 (5.1 부터 정본 소유) |
 | 상태색 | `--danger`·`--success`·`--warning`·`--info` + `-strong`(700) · `-soft-foreground`(800) |
-| 차트 | `--chart-1…8`, `--chart-other` (5.0 신설) |
-| 모션 | `--duration-fast/base/slow`, `--ease-standard`, `--ease-out` (5.0 신설) |
-| 테넌트 색 | `<html data-brand-theme style="--primary:…">` 한 줄로 primary 한 벌 + accent 램프 파생 (5.0 신설) |
+| 차트 | `--chart-1…8`, `--chart-other` (5.1 신설) |
+| 모션 | `--duration-fast/base/slow`, `--ease-standard`, `--ease-out` (5.1 신설) |
+| 캔버스 | `bg-canvas` — 관리자 콘솔 바닥(gray-100, 다크는 gray-900/950 혼합). 카드가 그 위에 선다 (5.1 신설) |
+| 테넌트 색 | `<html data-brand-theme style="--primary:…">` 한 줄로 primary 한 벌 + accent 램프 파생 (5.1 신설) |
 
 ## 세 제품의 현재 상태 (실측)
 
@@ -34,7 +35,7 @@
 | primary 램프 | `data-home-theme` 로컬 파생 | `--color-primary-50…950` 로컬 `color-mix` | `--fds-primary-50`·`--pale` 등 낱개 |
 | 다크 | 정본 | 독자 `#16151A`/`#1C1B21` | 없음 |
 
-## 5.0 에서 정본이 흡수한 것
+## 5.1 에서 정본이 흡수한 것
 
 각 앱이 로컬로 만들던 것 중 **둘 이상이 필요로 하거나, 한 앱이 정성 들여 설계했는데 다른 앱도 곧 필요한 것**만 올렸다.
 
@@ -47,6 +48,22 @@
    `data-home-theme` 도 별칭으로 받으므로 콘솔은 로컬 블록만 지우면 된다.
 4. **`--chart-1…8`·`--chart-other`** — admin 이 상태색과 겹치지 않게 고른 범주색(라이트/다크).
 5. **모션** — 콘솔의 `--duration-*`·`--ease-*`.
+
+## 공통 셸 컴포넌트 (`@jocoding-ax-partners/react` 3.1)
+
+토큰만 같으면 "같은 색의 다른 화면"이 된다. 사이드바·GNB·카드는 **컴포넌트를 같이 쓴다.**
+정본은 콘솔(jocodingax.axhub.ai)이고, 아래 컴포넌트는 콘솔 코드에서 그대로 떼어 냈다.
+
+| 자리 | 컴포넌트 | 정본 |
+|---|---|---|
+| 관리자 사이드바 (244px) | `Sidebar` + `NavList`/`NavItem` (`itemClass`) — 15px · 32px 행 · primary 활성 | `layout/InnerSidebar.tsx` |
+| 사용자 레일 (떠 있는 52px 타일) | `Rail` + `RailTile` (`railTileClass`·`RailTileContent`) | `layout/RailSidebar.tsx`·`RailTile.tsx` |
+| GNB (60px) | `TopBar` (`surface: default | transparent | content`), 계정 메뉴가 필요하면 `AppHeader` | `layout/Topbar.tsx` |
+| 카드 | `Card` (`padding: md | none`), `CardEmpty`, 클래스 `cardClass`·`cardFlushClass` | `layout/consoleCard.ts` |
+| 바닥 | `canvasClass` = `bg-canvas` | `CONSOLE_CANVAS` |
+| 본문 폭 | `PageContainer` (1600 · pt-5 md:pt-10) | `layout/PageContainer.tsx` |
+
+소비 앱은 이 패키지의 `dist` 를 Tailwind 가 훑게 한다: `@source "../node_modules/@jocoding-ax-partners/react/dist";`.
 
 ## 앱별 이행 지도
 
@@ -106,7 +123,7 @@
 
 ### jocodingax.axhub.ai (`apps/frontend`) — 정본 4.1.0
 
-1. 5.0 으로 올리고 `patches/@jocoding-ax-partners__design-system@4.1.0.patch` 가 아직 필요한지 확인한다.
+1. 5.1 로 올리고 `patches/@jocoding-ax-partners__design-system@4.1.0.patch` 가 아직 필요한지 확인한다.
 2. `globals.css` 의 `:root[data-home-theme]` 블록 두 개(primary 파생·accent 램프)를 삭제한다 —
    정본이 같은 공식을 `data-home-theme` 별칭으로 받는다. 새 코드는 `data-brand-theme` 을 쓴다.
 3. 로컬 `--font-sans`·`--font-mono`·`--duration-*`·`--ease-*` 삭제.

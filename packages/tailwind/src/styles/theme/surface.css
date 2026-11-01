@@ -24,6 +24,11 @@
   --bg-emphasis: var(--color-gray-200);
   --bg-inverse: var(--color-gray-900);
 
+  /* Canvas — the page floor that cards (bg-content) stand on in an admin console.
+     Sourced from axhub-frontend layout/consoleCard.ts CONSOLE_CANVAS: gray-100 in
+     light, a gray-900/950 mix in dark so the #1d1e23 card still lifts off it. */
+  --bg-canvas: var(--color-gray-100);
+
   /* Foreground */
   --fg-default: var(--color-gray-900);
   --fg-secondary: var(--color-gray-700);
@@ -65,6 +70,7 @@
   --bg-muted: #3f3f46;
   --bg-emphasis: #3f3f46;
   --bg-inverse: #fff;
+  --bg-canvas: color-mix(in oklab, var(--color-gray-900) 75%, var(--color-gray-950));
   --fg-default: #fff;
   --fg-secondary: #e4e5e8;
   --fg-muted: #d1d3d8;
@@ -93,6 +99,7 @@
   --background-color-muted: var(--bg-muted);
   --background-color-emphasis: var(--bg-emphasis);
   --background-color-inverse: var(--bg-inverse);
+  --background-color-canvas: var(--bg-canvas);
   --text-color-default: var(--fg-default);
   --text-color-secondary: var(--fg-secondary);
   --text-color-muted: var(--fg-muted);

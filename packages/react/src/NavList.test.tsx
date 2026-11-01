@@ -162,7 +162,7 @@ describe("NavList", () => {
     );
     // 부모 행(itemClass) 크기로 새지 않았는지 양성+음성으로 다시 확인.
     expect(teamLink.className).toContain("text-[13px]");
-    expect(teamLink.className).not.toContain("text-[14px]");
+    expect(teamLink.className).not.toContain("text-[15px]");
     expect(teamLink.className).toContain("rounded-[6px]");
     expect(teamLink.className).not.toContain("rounded-[8px]");
     expect(teamLink.className).toContain("px-[10px]");
@@ -200,7 +200,7 @@ describe("NavList", () => {
     expect(teamLink.className).toBe(
       "flex w-full items-center gap-2 rounded-[6px] px-[10px] py-[6px] text-[13px] transition-colors font-semibold",
     );
-    expect(teamLink.className).not.toContain("text-[14px]");
+    expect(teamLink.className).not.toContain("text-[15px]");
     expect(teamLink.className).not.toContain("rounded-[8px]");
     expect(teamLink.innerHTML).toBe("팀");
     expect(teamLink.querySelector("span")).toBeNull();

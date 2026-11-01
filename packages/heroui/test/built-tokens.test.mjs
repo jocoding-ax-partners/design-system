@@ -384,3 +384,12 @@ test("categorical chart colors ship for both themes", () => {
   const darkBlock = css.slice(css.indexOf("--chart-1: #5e88de") - 200);
   assert.match(darkBlock, /\[data-theme="dark"\]/);
 });
+
+test("the console canvas ships as bg-canvas for both themes", () => {
+  assert.match(css, /--bg-canvas:\s*var\(--color-gray-100\)/);
+  assert.match(
+    css,
+    /--bg-canvas:\s*color-mix\(in oklab, var\(--color-gray-900\) 75%, var\(--color-gray-950\)\)/,
+  );
+  assert.match(css, /--background-color-canvas:\s*var\(--bg-canvas\)/);
+});

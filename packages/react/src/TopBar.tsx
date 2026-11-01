@@ -21,7 +21,19 @@ export interface TopBarProps {
    * 바꿀 수 있게 하는 자리다. 키를 `data-*` 로 제한하는 건 NavItem `dataAttrs` 와 같다.
    */
   dataAttrs?: Record<`data-${string}`, string | undefined>;
+  /**
+   * 바탕. `default` 는 `bg-background` + 아래 경계선, `transparent` 는 뒤 배경(오로라·캔버스)이
+   * 비치는 투명 바, `content` 는 카드와 같은 흰 바(`bg-content`)다. 정본(axhub-frontend
+   * Topbar.tsx:49-51)의 `transparent`·`whiteWhenFilled` 두 상태를 이름으로 올린 것이다.
+   */
+  surface?: "default" | "transparent" | "content";
 }
+
+const SURFACE = {
+  default: "bg-background border-border",
+  transparent: "border-transparent bg-transparent",
+  content: "bg-content border-border",
+} as const;
 
 /**
  * 상단 크롬 바. 정본은 axhub-frontend `layout/Topbar.tsx`.
@@ -44,6 +56,7 @@ export function TopBar({
   style,
   innerClassName,
   dataAttrs,
+  surface = "default",
 }: TopBarProps): ReactElement {
   return (
     // lg:border-b: 모바일엔 헤더 아래 사이드바가 없어 경계선이 떠 있는 줄처럼 보인다
@@ -51,7 +64,8 @@ export function TopBar({
     <header
       {...dataAttrs}
       className={cn(
-        "bg-background border-border relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
+        SURFACE[surface],
+        "relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
         className,
       )}
       style={style}

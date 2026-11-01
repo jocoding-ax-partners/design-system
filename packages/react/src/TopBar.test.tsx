@@ -95,4 +95,13 @@ describe("TopBar", () => {
     render(<TopBar style={{ marginRight: "var(--mgmt-panel-width, 0px)" }} />);
     expect(screen.getByRole("banner").style.marginRight).toBe("var(--mgmt-panel-width, 0px)");
   });
+
+  it("surface 로 투명·흰 바를 고른다 — 정본 Topbar.tsx:49-51", () => {
+    const { container, rerender } = render(<TopBar surface="transparent" />);
+    const header = container.querySelector("header") as HTMLElement;
+    expect(header.className).toContain("bg-transparent");
+    expect(header.className).not.toContain("bg-background");
+    rerender(<TopBar surface="content" />);
+    expect((container.querySelector("header") as HTMLElement).className).toContain("bg-content");
+  });
 });
