@@ -24,6 +24,12 @@ export interface AdminShellProps {
   className?: string;
   sidebarClassName?: string;
   mainClassName?: string;
+  /**
+   * GNB·사이드바·모바일 드로어가 함께 쓰는 면 클래스. 기본은 `bg-background`(라이트 흰색)인데,
+   * 앱이 `bg-background` 를 페이지 회색에 묶어 둔 경우(admin.axhub.ai·APTA·AXLMS)
+   * `bg-[var(--background)]`·`bg-[var(--surface)]` 처럼 흰 면을 직접 준다. 셋이 갈리지 않게 한 자리에서 받는다.
+   */
+  surfaceClassName?: string;
   /** 모바일 메뉴 버튼의 읽기용 이름. */
   menuLabel?: string;
   /**
@@ -64,6 +70,7 @@ export function AdminShell({
   className,
   sidebarClassName,
   mainClassName,
+  surfaceClassName,
   menuLabel = "메뉴",
   closeKey,
 }: AdminShellProps): ReactElement {
@@ -91,6 +98,7 @@ export function AdminShell({
   return (
     <div className={cn("bg-background text-foreground flex h-dvh flex-col", className)}>
       <TopBar
+        className={surfaceClassName}
         rail={<div className="flex h-full items-center px-5">{brand}</div>}
         leading={
           <>
@@ -111,7 +119,11 @@ export function AdminShell({
       />
 
       <div className="flex min-h-0 flex-1">
-        <Sidebar className={sidebarClassName} header={sidebarHeader} footer={sidebarFooter}>
+        <Sidebar
+          className={cn(surfaceClassName, sidebarClassName)}
+          header={sidebarHeader}
+          footer={sidebarFooter}
+        >
           {nav}
         </Sidebar>
         <main
@@ -139,7 +151,12 @@ export function AdminShell({
             className="absolute inset-0 bg-black/40"
             onClick={() => setOpen(false)}
           />
-          <div className="bg-background absolute inset-y-0 left-0 flex w-[min(var(--sidebar-width),85vw)] flex-col shadow-2xl">
+          <div
+            className={cn(
+              "bg-background absolute inset-y-0 left-0 flex w-[min(var(--sidebar-width),85vw)] flex-col shadow-2xl",
+              surfaceClassName,
+            )}
+          >
             <div className="border-border flex h-[var(--topbar-height)] shrink-0 items-center justify-between border-b px-5">
               {brand}
               <button

@@ -88,3 +88,23 @@ describe("PageHeader density=compact", () => {
     expect(screen.getByRole("button", { name: "추가" })).toBeInTheDocument();
   });
 });
+
+describe("AdminShell surfaceClassName", () => {
+  it("GNB·사이드바·드로어 면에 같이 붙는다", () => {
+    const { container } = render(
+      <AdminShell brand="B" nav={<nav />} surfaceClassName="bg-[var(--surface)]">
+        x
+      </AdminShell>,
+    );
+    expect((container.querySelector("header") as HTMLElement).className).toContain(
+      "bg-[var(--surface)]",
+    );
+    expect((screen.getByRole("main").previousElementSibling as HTMLElement).className).toContain(
+      "bg-[var(--surface)]",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "메뉴 열기" }));
+    expect(
+      (screen.getByRole("dialog").querySelector(".shadow-2xl") as HTMLElement).className,
+    ).toContain("bg-[var(--surface)]");
+  });
+});
