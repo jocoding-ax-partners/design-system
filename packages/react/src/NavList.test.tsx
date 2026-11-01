@@ -226,7 +226,10 @@ describe("NavList", () => {
     it("부모는 링크가 되고, 펼침은 별도 버튼이 맡는다", () => {
       render(<NavList sections={linked()} aria-label="주 메뉴" />);
       expect(screen.getByRole("link", { name: "프로젝트" })).toHaveAttribute("href", "/projects");
-      expect(screen.getByRole("button", { name: "프로젝트 하위 메뉴" })).toHaveAttribute("aria-expanded", "false");
+      expect(screen.getByRole("button", { name: "프로젝트 하위 메뉴" })).toHaveAttribute(
+        "aria-expanded",
+        "false",
+      );
     });
 
     it("펼침 버튼을 눌러야 자식이 보이고, 부모 링크를 눌러도 접히지 않는다", async () => {
@@ -241,7 +244,10 @@ describe("NavList", () => {
 
     it("부모 활성은 링크에만 aria-current 로 표시한다", () => {
       render(<NavList sections={linked(true)} aria-label="주 메뉴" />);
-      expect(screen.getByRole("link", { name: "프로젝트" })).toHaveAttribute("aria-current", "page");
+      expect(screen.getByRole("link", { name: "프로젝트" })).toHaveAttribute(
+        "aria-current",
+        "page",
+      );
     });
 
     it("parentLink 없이 href 만 있으면 기존처럼 단일 버튼이다", () => {
@@ -290,6 +296,64 @@ describe("NavList", () => {
       const { rerender } = render(<NavList sections={tree(false, false)} aria-label="주 메뉴" />);
       rerender(<NavList sections={tree(true, false)} aria-label="주 메뉴" />);
       expect(screen.queryByRole("link", { name: "SI" })).not.toBeInTheDocument();
+    });
+  });
+
+  describe("showChildren", () => {
+    const tree = (showChildren: boolean, childActive = false): NavSection[] => [
+      {
+        key: "main",
+        items: [
+          {
+            key: "projects",
+            href: "/projects/si",
+            label: "프로젝트",
+            showChildren,
+            className: "font-semibold",
+            children: [
+              { key: "si", href: "/projects/si", label: "SI 프로젝트", active: childActive },
+              { key: "own", href: "/projects/own", label: "자사 프로젝트" },
+            ],
+          },
+        ],
+      },
+    ];
+
+    it("부모는 링크이고 펼침 버튼이 없다", () => {
+      render(<NavList sections={tree(true)} aria-label="주 메뉴" />);
+      expect(screen.getByRole("link", { name: "프로젝트" })).toHaveAttribute(
+        "href",
+        "/projects/si",
+      );
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    });
+
+    it("값에 따라서만 자식이 보인다 — 경로가 바뀌면 함께 바뀐다", () => {
+      const { rerender } = render(<NavList sections={tree(false)} aria-label="주 메뉴" />);
+      expect(screen.queryByRole("link", { name: "SI 프로젝트" })).not.toBeInTheDocument();
+      rerender(<NavList sections={tree(true)} aria-label="주 메뉴" />);
+      expect(screen.getByRole("link", { name: "SI 프로젝트" })).toBeInTheDocument();
+      rerender(<NavList sections={tree(false)} aria-label="주 메뉴" />);
+      expect(screen.queryByRole("link", { name: "SI 프로젝트" })).not.toBeInTheDocument();
+    });
+
+    it("자식은 점과 함께 그리고, 활성이면 연한 배경과 aria-current 를 갖는다", () => {
+      render(<NavList sections={tree(true, true)} aria-label="주 메뉴" />);
+      const active = screen.getByRole("link", { name: "SI 프로젝트" });
+      expect(active).toHaveAttribute("aria-current", "page");
+      expect(active.className).toContain("bg-primary-soft");
+      expect(active.querySelector("[data-nav-dot]")).toBeInTheDocument();
+      const idle = screen.getByRole("link", { name: "자사 프로젝트" });
+      expect(idle).not.toHaveAttribute("aria-current");
+      expect(idle.className).not.toContain("bg-primary-soft");
+    });
+
+    it("showChildren 이 없으면 기존 아코디언 그대로다", () => {
+      render(<NavList sections={sections} aria-label="주 메뉴" />);
+      expect(screen.getByRole("button", { name: "환경설정" })).toHaveAttribute(
+        "aria-expanded",
+        "false",
+      );
     });
   });
 

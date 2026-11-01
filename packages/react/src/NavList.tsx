@@ -61,6 +61,12 @@ export interface NavEntry extends Omit<NavItemProps, "renderLink" | "activeColor
    * 다시 활성이 될 때 또 펼친다. `defaultOpen` 은 첫 렌더만 보므로 이 일을 못 한다.
    */
   expandWhenActive?: boolean;
+  /**
+   * 자식을 경로로 보여 주는 메뉴(프로젝트 > SI·자사). 값을 주면 아코디언이 아니다 — 부모는
+   * `href` 링크이고, 펼침 버튼이 없으며, 자식은 이 값이 true 일 때만 보인다. 사용자가 접을 수
+   * 없다. 자식은 점과 함께 그리고, 활성 자식은 연한 primary 배경을 쓴다.
+   */
+  showChildren?: boolean;
 }
 
 export interface NavSection {
@@ -87,9 +93,64 @@ function toItemProps(entry: NavEntry): NavItemProps {
     parentLink: _parentLink,
     toggleLabel: _toggleLabel,
     expandWhenActive: _expandWhenActive,
+    showChildren: _showChildren,
     ...item
   } = entry;
   return item;
+}
+
+/** `showChildren` 자식 행 — 들여쓴 점 + 라벨, 활성이면 연한 primary 배경. */
+function dotChildClass(active: boolean, className?: string) {
+  return cn(
+    "flex min-h-[30px] w-full items-center gap-[10px] rounded-[8px] pr-[12px] pl-[28px] text-[14px] transition-colors",
+    active
+      ? "bg-primary-soft font-bold"
+      : "text-secondary hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
+    className,
+  );
+}
+
+function RouteChildren({
+  entry,
+  renderLink,
+  activeColor,
+}: {
+  entry: NavEntry;
+  renderLink?: NavLinkRenderer;
+  activeColor?: string;
+}): ReactElement {
+  return (
+    <div className="flex flex-col gap-[2px]">
+      <NavItem {...toItemProps(entry)} renderLink={renderLink} activeColor={activeColor} />
+      {entry.showChildren && entry.children ? (
+        <div className="flex flex-col gap-[2px]">
+          {entry.children.map((child) => (
+            <Fragment key={child.key}>
+              {renderNavItem(
+                {
+                  ...toItemProps(child),
+                  label: (
+                    <>
+                      <span
+                        data-nav-dot=""
+                        aria-hidden="true"
+                        className="h-[5px] w-[5px] shrink-0 rounded-full bg-current opacity-60"
+                      />
+                      {child.label}
+                    </>
+                  ),
+                  renderLink,
+                  activeColor,
+                },
+                dotChildClass,
+                true,
+              )}
+            </Fragment>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
 }
 
 /**
@@ -120,7 +181,9 @@ function Accordion({
   const [wasChildActive, setWasChildActive] = useState(childActive);
   if (childActive !== wasChildActive) {
     setWasChildActive(childActive);
-    if (childActive) {setOpen(true);}
+    if (childActive) {
+      setOpen(true);
+    }
   }
   const IconComponent = entry.icon;
   const active = entry.active ?? false;
@@ -235,7 +298,14 @@ export function NavList({
     <nav aria-label={rest["aria-label"]} className={cn("flex flex-col gap-[8px]", className)}>
       {sections.map((section) => {
         const items: ReactNode = section.items.map((entry) =>
-          entry.children && entry.children.length > 0 ? (
+          entry.showChildren !== undefined ? (
+            <RouteChildren
+              key={entry.key}
+              entry={entry}
+              renderLink={renderLink}
+              activeColor={activeColor}
+            />
+          ) : entry.children && entry.children.length > 0 ? (
             <Accordion
               key={entry.key}
               entry={entry}
