@@ -1,5 +1,11 @@
 # @jocoding-ax-partners/react
 
+## 4.3.1
+
+### Patch Changes
+
+- 4593db6: `AdminAccount`: keep the menu inside the mobile drawer. It was 240px wide and anchored to the menu button, which pushed it 16px off the left edge at 390px.
+
 ## 4.3.0
 
 ### Minor Changes
