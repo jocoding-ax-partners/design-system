@@ -2,10 +2,15 @@
   .checkbox--primary {
     .checkbox__control {
       /* --border is for dividers; a control needs 3:1 against the surface (WCAG 1.4.11).
-         On the dark overlay surface --border is about 1:1, so the box disappeared. */
+         --fg-subtle clears that in dark (5.71:1 on the overlay surface) but only on pure white
+         in light (2.96:1 on the overlay surface), so light takes the next step up. */
       @apply bg-transparent shadow-none outline-2 -outline-offset-1 outline-solid;
 
-      outline-color: var(--fg-subtle);
+      outline-color: var(--fg-muted);
+
+      :is(.dark, [data-theme="dark"]) & {
+        outline-color: var(--fg-subtle);
+      }
     }
 
     &:is([data-selected="true"], [data-indeterminate="true"]) .checkbox__control {
