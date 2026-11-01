@@ -1,6 +1,11 @@
 {
   "name": "@jocoding-ax-partners/react",
   "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jocoding-ax-partners/design-system.git",
+    "directory": "packages/react"
+  },
   "license": "MIT",
   "type": "module",
   "sideEffects": [
