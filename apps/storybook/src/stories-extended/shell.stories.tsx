@@ -109,12 +109,48 @@ function AdminFrameStory() {
   );
 }
 
+/* 부모도 자기 화면이 있는 메뉴: 부모는 링크, 펼침은 캐럿 버튼, 자식이 활성이면 저절로 펼쳐진다. */
+function LinkedParent() {
+  return (
+    <Sidebar className="flex h-[320px] w-64">
+      <NavList
+        aria-label="주 메뉴"
+        className="px-2"
+        sections={[
+          {
+            key: "work",
+            label: "업무",
+            items: [
+              { key: "home", href: "#", label: "홈", icon: House },
+              {
+                key: "projects",
+                href: "#",
+                label: "프로젝트",
+                icon: SquaresFour,
+                active: true,
+                parentLink: true,
+                expandWhenActive: true,
+                children: [
+                  { key: "si", href: "#", label: "SI 프로젝트", active: true },
+                  { key: "own", href: "#", label: "자사 프로젝트" },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Sidebar>
+  );
+}
+
 const meta = {
   title: "Extended/Shell",
   parameters: { layout: "fullscreen" },
 } satisfies Meta;
 
 export default meta;
+
+export const NavLinkedParent: StoryObj = { render: () => <LinkedParent /> };
 
 export const AdminShellFrame: StoryObj = { render: () => <AdminFrameStory /> };
 

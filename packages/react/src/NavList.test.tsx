@@ -206,6 +206,93 @@ describe("NavList", () => {
     expect(teamLink.querySelector("span")).toBeNull();
   });
 
+  describe("parentLink", () => {
+    const linked = (childActive = false): NavSection[] => [
+      {
+        key: "main",
+        items: [
+          {
+            key: "projects",
+            href: "/projects",
+            label: "프로젝트",
+            parentLink: true,
+            active: childActive,
+            children: [{ key: "si", href: "/projects/si", label: "SI", active: childActive }],
+          },
+        ],
+      },
+    ];
+
+    it("부모는 링크가 되고, 펼침은 별도 버튼이 맡는다", () => {
+      render(<NavList sections={linked()} aria-label="주 메뉴" />);
+      expect(screen.getByRole("link", { name: "프로젝트" })).toHaveAttribute("href", "/projects");
+      expect(screen.getByRole("button", { name: "프로젝트 하위 메뉴" })).toHaveAttribute("aria-expanded", "false");
+    });
+
+    it("펼침 버튼을 눌러야 자식이 보이고, 부모 링크를 눌러도 접히지 않는다", async () => {
+      const user = userEvent.setup();
+      render(<NavList sections={linked()} aria-label="주 메뉴" />);
+      expect(screen.queryByRole("link", { name: "SI" })).not.toBeInTheDocument();
+      await user.click(screen.getByRole("button", { name: "프로젝트 하위 메뉴" }));
+      expect(screen.getByRole("link", { name: "SI" })).toBeInTheDocument();
+      await user.click(screen.getByRole("link", { name: "프로젝트" }));
+      expect(screen.getByRole("link", { name: "SI" })).toBeInTheDocument();
+    });
+
+    it("부모 활성은 링크에만 aria-current 로 표시한다", () => {
+      render(<NavList sections={linked(true)} aria-label="주 메뉴" />);
+      expect(screen.getByRole("link", { name: "프로젝트" })).toHaveAttribute("aria-current", "page");
+    });
+
+    it("parentLink 없이 href 만 있으면 기존처럼 단일 버튼이다", () => {
+      render(<NavList sections={sections} aria-label="주 메뉴" />);
+      expect(screen.queryByRole("link", { name: "환경설정" })).not.toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "환경설정" })).toBeInTheDocument();
+    });
+  });
+
+  describe("expandWhenActive", () => {
+    const tree = (active: boolean, expandWhenActive = true): NavSection[] => [
+      {
+        key: "main",
+        items: [
+          {
+            key: "projects",
+            href: "/projects",
+            label: "프로젝트",
+            expandWhenActive,
+            children: [{ key: "si", href: "/projects/si", label: "SI", active }],
+          },
+        ],
+      },
+    ];
+
+    it("처음부터 자식이 활성이면 펼쳐진다", () => {
+      render(<NavList sections={tree(true)} aria-label="주 메뉴" />);
+      expect(screen.getByRole("link", { name: "SI" })).toBeInTheDocument();
+    });
+
+    it("마운트 뒤 자식이 활성이 되면(경로 변경) 펼쳐진다", () => {
+      const { rerender } = render(<NavList sections={tree(false)} aria-label="주 메뉴" />);
+      expect(screen.queryByRole("link", { name: "SI" })).not.toBeInTheDocument();
+      rerender(<NavList sections={tree(true)} aria-label="주 메뉴" />);
+      expect(screen.getByRole("link", { name: "SI" })).toBeInTheDocument();
+    });
+
+    it("활성 상태에서 사용자가 접으면 접힌 채로 둔다", async () => {
+      const user = userEvent.setup();
+      render(<NavList sections={tree(true)} aria-label="주 메뉴" />);
+      await user.click(screen.getByRole("button", { name: "프로젝트" }));
+      expect(screen.queryByRole("link", { name: "SI" })).not.toBeInTheDocument();
+    });
+
+    it("옵션을 끄면 경로가 바뀌어도 펼치지 않는다", () => {
+      const { rerender } = render(<NavList sections={tree(false, false)} aria-label="주 메뉴" />);
+      rerender(<NavList sections={tree(true, false)} aria-label="주 메뉴" />);
+      expect(screen.queryByRole("link", { name: "SI" })).not.toBeInTheDocument();
+    });
+  });
+
   it("defaultOpen 이면 처음부터 펼쳐진다", () => {
     render(
       <NavList
