@@ -342,6 +342,8 @@ describe("NavList", () => {
       const active = screen.getByRole("link", { name: "SI 프로젝트" });
       expect(active).toHaveAttribute("aria-current", "page");
       expect(active.className).toContain("bg-primary-soft");
+      // primary 글자는 이 배경 위에서 AA 미달이다 (라이트 4.26:1, 다크 1.79:1).
+      expect(active.style.color).toBe("var(--accent-soft-foreground)");
       expect(active.querySelector("[data-nav-dot]")).toBeInTheDocument();
       const idle = screen.getByRole("link", { name: "자사 프로젝트" });
       expect(idle).not.toHaveAttribute("aria-current");
