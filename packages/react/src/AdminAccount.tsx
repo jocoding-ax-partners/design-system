@@ -112,7 +112,7 @@ export function AdminAccount({
             <div
               role="menu"
               aria-label="계정 메뉴"
-              className="border-border bg-content absolute right-0 bottom-full z-50 mb-2 flex w-[240px] flex-col rounded-[12px] border p-3 shadow-lg lg:right-auto lg:bottom-0 lg:left-full lg:mb-0 lg:ml-2"
+              className="border-border bg-content absolute right-0 bottom-full z-50 mb-2 flex w-[200px] flex-col rounded-[12px] border p-3 shadow-lg lg:right-auto lg:bottom-0 lg:left-full lg:mb-0 lg:ml-2 lg:w-[240px]"
             >
               {theme ? (
                 <div className="flex items-center justify-between gap-2 px-3 py-1.5">
