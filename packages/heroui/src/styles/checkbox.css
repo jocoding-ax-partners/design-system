@@ -1,7 +1,11 @@
 @layer components {
   .checkbox--primary {
     .checkbox__control {
-      @apply outline-border bg-transparent shadow-none outline-2 -outline-offset-1 outline-solid;
+      /* --border is for dividers; a control needs 3:1 against the surface (WCAG 1.4.11).
+         On the dark overlay surface --border is about 1:1, so the box disappeared. */
+      @apply bg-transparent shadow-none outline-2 -outline-offset-1 outline-solid;
+
+      outline-color: var(--fg-subtle);
     }
 
     &:is([data-selected="true"], [data-indeterminate="true"]) .checkbox__control {
