@@ -394,8 +394,13 @@ test("the console canvas ships as bg-canvas for both themes", () => {
   assert.match(css, /--background-color-canvas:\s*var\(--bg-canvas\)/);
 });
 
-test("the unchecked checkbox edge uses the non-text floor, not the divider color", () => {
-  const rule = /\.checkbox--primary\s*\{\s*\.checkbox__control\s*\{[^}]*\}/.exec(css)?.[0] ?? "";
-  assert.match(rule, /outline-color:\s*var\(--fg-subtle\)/);
+test("the unchecked checkbox edge clears 3:1 in both themes, not the divider color", () => {
+  const rule =
+    /\.checkbox--primary\s*\{\s*\.checkbox__control\s*\{[\s\S]*?\n {4}\}/.exec(css)?.[0] ?? "";
+  assert.match(rule, /outline-color:\s*var\(--fg-muted\)/);
+  assert.match(
+    rule,
+    /:is\(\.dark, \[data-theme="dark"\]\) &\s*\{\s*outline-color:\s*var\(--fg-subtle\)/,
+  );
   assert.doesNotMatch(rule, /outline-border/);
 });
