@@ -143,12 +143,47 @@ function LinkedParent() {
   );
 }
 
+/* 경로로 보이는 하위 메뉴: 프로젝트 화면에서만 SI·자사가 보이고, 접을 수 없다. */
+function RouteChildrenNav() {
+  return (
+    <Sidebar className="flex h-[320px] w-64">
+      <NavList
+        aria-label="주 메뉴"
+        className="px-2"
+        sections={[
+          {
+            key: "work",
+            label: "업무",
+            items: [
+              { key: "home", href: "#", label: "홈", icon: House },
+              {
+                key: "projects",
+                href: "#",
+                label: "프로젝트",
+                icon: SquaresFour,
+                showChildren: true,
+                className: "font-semibold",
+                children: [
+                  { key: "si", href: "#", label: "SI 프로젝트", active: true },
+                  { key: "own", href: "#", label: "자사 프로젝트" },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    </Sidebar>
+  );
+}
+
 const meta = {
   title: "Extended/Shell",
   parameters: { layout: "fullscreen" },
 } satisfies Meta;
 
 export default meta;
+
+export const NavRouteChildren: StoryObj = { render: () => <RouteChildrenNav /> };
 
 export const NavLinkedParent: StoryObj = { render: () => <LinkedParent /> };
 
