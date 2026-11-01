@@ -1,5 +1,11 @@
 # @jocoding-ax-partners/react
 
+## 4.4.1
+
+### Patch Changes
+
+- 4c966b6: `NavList` `showChildren`: the active child uses `--accent-soft-foreground` on its soft background. `--primary` measured 4.26:1 in light and 1.79:1 in dark.
+
 ## 4.4.0
 
 ### Minor Changes
