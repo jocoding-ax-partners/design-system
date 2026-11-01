@@ -47,6 +47,20 @@ export interface NavEntry extends Omit<NavItemProps, "renderLink" | "activeColor
   key: string;
   children?: NavEntry[];
   defaultOpen?: boolean;
+  /**
+   * 자식이 있어도 부모 행을 `href` 링크로 그리고, 펼침은 옆의 캐럿 버튼이 맡는다.
+   * 부모가 자기 화면을 가진 메뉴(프로젝트 > SI·자사)용이다. 끄면(기본) 정본대로 행 전체가
+   * 아코디언 버튼 하나다 — `href` 가 있어도 쓰지 않는다. `href` 가 없으면 이 값은 무시한다.
+   */
+  parentLink?: boolean;
+  /** `parentLink` 의 캐럿 버튼 접근성 이름. 기본은 `{label} 하위 메뉴`. */
+  toggleLabel?: string;
+  /**
+   * 자식이 활성이 되는 순간 펼친다 — 딥링크로 들어오거나 경로가 바뀐 경우.
+   * 활성인 동안 사용자가 접으면 접힌 채로 둔다. 다음에 다른 자식 없이 활성이 풀렸다
+   * 다시 활성이 될 때 또 펼친다. `defaultOpen` 은 첫 렌더만 보므로 이 일을 못 한다.
+   */
+  expandWhenActive?: boolean;
 }
 
 export interface NavSection {
@@ -66,7 +80,15 @@ export interface NavListProps {
 
 /** NavEntry 에서 NavItem 이 모르는 필드를 떼어낸다. */
 function toItemProps(entry: NavEntry): NavItemProps {
-  const { key: _key, children: _children, defaultOpen: _defaultOpen, ...item } = entry;
+  const {
+    key: _key,
+    children: _children,
+    defaultOpen: _defaultOpen,
+    parentLink: _parentLink,
+    toggleLabel: _toggleLabel,
+    expandWhenActive: _expandWhenActive,
+    ...item
+  } = entry;
   return item;
 }
 
@@ -91,50 +113,85 @@ function Accordion({
   renderLink?: NavLinkRenderer;
   activeColor?: string;
 }): ReactElement {
-  const [open, setOpen] = useState(entry.defaultOpen ?? false);
+  const childActive =
+    (entry.expandWhenActive ?? false) && (entry.children ?? []).some((child) => child.active);
+  const [open, setOpen] = useState((entry.defaultOpen ?? false) || childActive);
+  // 렌더 중 상태 조정 — effect 를 쓰면 접힌 프레임이 한 번 그려진다.
+  const [wasChildActive, setWasChildActive] = useState(childActive);
+  if (childActive !== wasChildActive) {
+    setWasChildActive(childActive);
+    if (childActive) {setOpen(true);}
+  }
   const IconComponent = entry.icon;
   const active = entry.active ?? false;
   const style: CSSProperties | undefined = active
     ? { color: activeColor ?? "var(--primary)" }
     : undefined;
 
+  const caretClass = cn(
+    "h-3.5 w-3.5 shrink-0 opacity-40 transition-transform duration-200",
+    open && "rotate-90",
+  );
+  const linkedParent = entry.parentLink && entry.href;
+
   return (
     <div>
-      <button
-        type="button"
-        aria-expanded={open}
-        onClick={() => {
-          if (!open) {
-            entry.onSelect?.();
-          }
-          setOpen((v) => !v);
-        }}
-        className={itemClass(active, entry.className)}
-        style={style}
-        onMouseEnter={entry.onMouseEnter}
-        onFocus={entry.onFocus}
-        {...entry.dataAttrs}
-      >
-        {IconComponent ? (
-          <IconComponent
+      {linkedParent ? (
+        <div className="flex items-center gap-[2px]">
+          <div className="min-w-0 flex-1">
+            {renderNavItem({ ...toItemProps(entry), renderLink, activeColor }, itemClass)}
+          </div>
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-label={
+              entry.toggleLabel ??
+              (typeof entry.label === "string" ? `${entry.label} 하위 메뉴` : "하위 메뉴")
+            }
+            onClick={() => setOpen((v) => !v)}
+            className="focus-visible:ring-focus focus-visible:ring-offset-background flex h-[32px] w-[28px] shrink-0 items-center justify-center rounded-[8px] transition-colors hover:bg-[var(--opacity-gray-50)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:bg-[var(--opacity-white-50)]"
+          >
+            <CaretRight
+              aria-hidden="true"
+              weight={active ? "fill" : "regular"}
+              className={caretClass}
+            />
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          aria-expanded={open}
+          onClick={() => {
+            if (!open) {
+              entry.onSelect?.();
+            }
+            setOpen((v) => !v);
+          }}
+          className={itemClass(active, entry.className)}
+          style={style}
+          onMouseEnter={entry.onMouseEnter}
+          onFocus={entry.onFocus}
+          {...entry.dataAttrs}
+        >
+          {IconComponent ? (
+            <IconComponent
+              aria-hidden="true"
+              weight={entry.iconWeight}
+              className="h-[18px] w-[18px] shrink-0"
+              style={active ? undefined : { color: "var(--icon-inactive)" }}
+            />
+          ) : null}
+          {/* 정본 아코디언 트리거의 라벨 span (InnerSidebar.tsx:236) — `min-w-0` 은 없다. */}
+          <span className="flex-1 truncate text-left">{entry.label}</span>
+          {entry.badge}
+          <CaretRight
             aria-hidden="true"
-            weight={entry.iconWeight}
-            className="h-[18px] w-[18px] shrink-0"
-            style={active ? undefined : { color: "var(--icon-inactive)" }}
+            weight={active ? "fill" : "regular"}
+            className={caretClass}
           />
-        ) : null}
-        {/* 정본 아코디언 트리거의 라벨 span (InnerSidebar.tsx:236) — `min-w-0` 은 없다. */}
-        <span className="flex-1 truncate text-left">{entry.label}</span>
-        {entry.badge}
-        <CaretRight
-          aria-hidden="true"
-          weight={active ? "fill" : "regular"}
-          className={cn(
-            "h-3.5 w-3.5 shrink-0 opacity-40 transition-transform duration-200",
-            open && "rotate-90",
-          )}
-        />
-      </button>
+        </button>
+      )}
       {open && entry.children ? (
         <div className="my-px flex flex-col pl-[16px]">
           <div className="pl-2">
