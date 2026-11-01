@@ -104,7 +104,7 @@ function dotChildClass(active: boolean, className?: string) {
   return cn(
     "flex min-h-[30px] w-full items-center gap-[10px] rounded-[8px] pr-[12px] pl-[28px] text-[14px] transition-colors",
     active
-      ? "bg-primary-soft font-bold"
+      ? "bg-accent-soft font-bold"
       : "text-secondary hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
     className,
   );
@@ -140,7 +140,7 @@ function RouteChildren({
                     </>
                   ),
                   renderLink,
-                  // primary 글자는 연한 배경 위에서 AA 미달이라 그 배경의 짝 토큰을 쓴다.
+                  // bg-accent-soft의 짝 토큰이다. primary 글자는 연한 배경 위에서 AA 미달이다.
                   activeColor: activeColor ?? "var(--accent-soft-foreground)",
                 },
                 dotChildClass,
