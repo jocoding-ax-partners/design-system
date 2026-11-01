@@ -27,6 +27,12 @@ export interface TopBarProps {
    * Topbar.tsx:49-51)의 `transparent`·`whiteWhenFilled` 두 상태를 이름으로 올린 것이다.
    */
   surface?: "default" | "transparent" | "content";
+  /**
+   * `rail` 이 보이기 시작하는 폭. 기본 `lg`(관리자 사이드바). 사용자 화면처럼 레일이 `md` 부터
+   * 보이는 셸은 `md` 를 준다 — 둘이 같은 경계여야 태블릿 폭에서 팀 전환 입구가 끊기지 않는다
+   * (정본 Topbar.tsx:58-62).
+   */
+  railBreakpoint?: "md" | "lg";
 }
 
 const SURFACE = {
@@ -57,6 +63,7 @@ export function TopBar({
   innerClassName,
   dataAttrs,
   surface = "default",
+  railBreakpoint = "lg",
 }: TopBarProps): ReactElement {
   return (
     // lg:border-b: 모바일엔 헤더 아래 사이드바가 없어 경계선이 떠 있는 줄처럼 보인다
@@ -65,13 +72,20 @@ export function TopBar({
       {...dataAttrs}
       className={cn(
         SURFACE[surface],
-        "relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
+        "relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center transition-colors lg:border-b",
         className,
       )}
       style={style}
     >
       {rail ? (
-        <div className="hidden w-[var(--sidebar-width)] shrink-0 lg:block">{rail}</div>
+        <div
+          className={cn(
+            "hidden w-[var(--sidebar-width)] shrink-0",
+            railBreakpoint === "md" ? "md:block" : "lg:block",
+          )}
+        >
+          {rail}
+        </div>
       ) : null}
       {/*
         안쪽 행은 정본(axhub-frontend Topbar.tsx:27-47)의 클래스 문자열 그대로다 —
