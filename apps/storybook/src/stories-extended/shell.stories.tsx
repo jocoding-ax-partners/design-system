@@ -2,10 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   canvasClass,
+  AdminShell as AdminFrame,
   Card,
   CardEmpty,
   NavList,
   PageContainer,
+  PageHeader,
   Rail,
   RailTile,
   Sidebar,
@@ -70,12 +72,51 @@ function MemberRail() {
   );
 }
 
+/* 관리자 화면 틀 — 정본 admin.axhub.ai. 앱은 brand·nav·계정만 채운다. */
+function AdminFrameStory() {
+  return (
+    <div className="h-[560px] [&>div]:h-full" style={{ fontFamily: "var(--font-sans)" }}>
+      <AdminFrame
+        brand={<span className="text-[16px] font-bold">AXHub Admin</span>}
+        topbarActions={<span className="text-muted text-[13px]">admin@jocodingax.ai</span>}
+        sidebarFooter={
+          <div className="border-border border-t p-3 text-[13px]">김관리 · 로그아웃</div>
+        }
+        nav={
+          <NavList
+            aria-label="관리자 메뉴"
+            sections={[
+              {
+                key: "main",
+                items: [
+                  { key: "home", href: "#", icon: SquaresFour, label: "대시보드", active: true },
+                  { key: "users", href: "#", icon: UsersThree, label: "사용자" },
+                  { key: "settings", href: "#", icon: Gear, label: "설정" },
+                ],
+              },
+            ]}
+          />
+        }
+      >
+        <PageHeader density="compact" title="대시보드" description="한 줄 설명" />
+        <div className="mt-8 grid gap-4">
+          <Card>
+            <div className="text-[15px] font-semibold">영역 카드</div>
+          </Card>
+        </div>
+      </AdminFrame>
+    </div>
+  );
+}
+
 const meta = {
   title: "Extended/Shell",
   parameters: { layout: "fullscreen" },
 } satisfies Meta;
 
 export default meta;
+
+export const AdminShellFrame: StoryObj = { render: () => <AdminFrameStory /> };
 
 export const AdminConsole: StoryObj = { render: () => <AdminShell /> };
 

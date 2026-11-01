@@ -21,6 +21,12 @@ export interface PageHeaderProps {
   center?: ReactNode;
   actions?: ReactNode;
   renderLink?: NavLinkRenderer;
+  /**
+   * `page`(기본)는 콘솔 정본 — 제목 32px·설명 18px, 아래 정렬. `compact` 는 관리자 화면
+   * 정본(admin.axhub.ai `shared/PageHeader.tsx`) — 56px 한 줄에 제목 24px·가운데 정렬,
+   * 설명 14px. `AdminShell` 안의 화면은 `compact` 를 쓴다.
+   */
+  density?: "page" | "compact";
 }
 
 const DEFAULT_LINK: NavLinkRenderer = (props) => <a {...props} />;
@@ -48,24 +54,45 @@ export function PageHeader({
   center,
   actions,
   renderLink = DEFAULT_LINK,
+  density = "page",
 }: PageHeaderProps): ReactElement {
+  const back = backTo
+    ? renderLink({
+        href: backTo,
+        className:
+          "inline-flex items-center gap-1.5 text-xs text-muted transition hover:text-default mb-0.5 focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+        children: (
+          <>
+            <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
+            {backLabel}
+          </>
+        ),
+      })
+    : null;
+
+  if (density === "compact") {
+    return (
+      <div className="shrink-0">
+        {back}
+        <div className="flex h-14 shrink-0 items-center justify-between gap-6">
+          <div className="flex min-w-0 items-center gap-6">
+            <h1 className={cn("text-default min-w-0 text-2xl font-bold", titleClassName)}>
+              {title}
+            </h1>
+            {center}
+          </div>
+          {actions ? <div className="flex shrink-0 items-center gap-3">{actions}</div> : null}
+        </div>
+        {description ? <p className="text-muted -mt-1 text-sm">{description}</p> : null}
+      </div>
+    );
+  }
+
   return (
     <div className="flex shrink-0 items-end gap-5">
       <div className="flex flex-1 items-end gap-6">
         <div className="min-w-0 flex-1">
-          {backTo
-            ? renderLink({
-                href: backTo,
-                className:
-                  "inline-flex items-center gap-1.5 text-xs text-muted transition hover:text-default mb-0.5 focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-                children: (
-                  <>
-                    <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
-                    {backLabel}
-                  </>
-                ),
-              })
-            : null}
+          {back}
           <h1 className={cn("text-default text-[32px] font-bold", titleClassName)}>{title}</h1>
           {description ? <p className="text-muted mt-3 text-[18px]">{description}</p> : null}
         </div>

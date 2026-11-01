@@ -1,5 +1,6 @@
 export { cn } from "./lib/cn.js";
 
+export { AdminShell } from "./AdminShell.js";
 export { AppHeader } from "./AppHeader.js";
 export { Breadcrumbs } from "./Breadcrumbs.js";
 export { canvasClass, Card, cardClass, CardEmpty, cardEmptyClass, cardFlushClass } from "./Card.js";
@@ -26,6 +27,7 @@ export * from "./StatCard.js";
 export * from "./StatusDot.js";
 export { TabNav } from "./TabNav.js";
 export { TopBar } from "./TopBar.js";
+export type { AdminShellProps } from "./AdminShell.js";
 export type {
   AppHeaderAccountItem,
   AppHeaderClassNames,

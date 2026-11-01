@@ -62,6 +62,13 @@
 | 카드 | `Card` (`padding: md | none`), `CardEmpty`, 클래스 `cardClass`·`cardFlushClass` | `layout/consoleCard.ts` |
 | 바닥 | `canvasClass` = `bg-canvas` | `CONSOLE_CANVAS` |
 | 본문 폭 | `PageContainer` (1600 · pt-5 md:pt-10) | `layout/PageContainer.tsx` |
+| **관리자 화면 틀** | `AdminShell` — GNB 60 + 사이드바 244 + 캔버스 본문, 모바일 드로어 포함 | admin.axhub.ai `layout/AdminLayout.tsx` |
+| 관리자 페이지 제목 | `PageHeader density="compact"` — 56px 한 줄 · 제목 24px · 설명 14px | admin.axhub.ai `shared/PageHeader.tsx` |
+
+**관리자 화면은 `AdminShell` 하나로 그린다** (2026-11-01 결정). 플랫폼 어드민·콘솔 관리·AXLMS 백오피스·
+APTA 운영·axacademy 관리자가 같은 `Sidebar` 를 써도 GNB 자리·바탕·제목 모양을 각자 조립해 다른 제품처럼
+보였다. 앱은 `brand`·`nav`·계정 슬롯만 채운다. 구성원 홈은 이 틀이 아니라 `Rail` 이다 — 레일은 영역(홈·앱·데이터·설정)을
+고르는 1단 탐색, 사이드바는 한 영역 안의 화면 목록(2단)이다.
 
 소비 앱은 이 패키지의 `dist` 를 Tailwind 가 훑게 한다: `@source "../node_modules/@jocoding-ax-partners/react/dist";`.
 
