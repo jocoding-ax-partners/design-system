@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { AdminAccount } from "./AdminAccount.js";
+import { AdminAppSwitch } from "./AdminAppSwitch.js";
 import { AdminShell } from "./AdminShell.js";
 import { PageHeader } from "./PageHeader.js";
 
@@ -106,5 +108,73 @@ describe("AdminShell surfaceClassName", () => {
     expect(
       (screen.getByRole("dialog").querySelector(".shadow-2xl") as HTMLElement).className,
     ).toContain("bg-[var(--surface)]");
+  });
+});
+
+describe("AdminShell 메뉴 접기", () => {
+  it("저장소 키를 주면 접기 단추가 서고, 누르면 틀 상태와 저장소가 함께 바뀐다", () => {
+    window.localStorage?.removeItem?.("t-collapse");
+    const { container } = render(
+      <AdminShell brand="B" nav={<nav />} collapseStorageKey="t-collapse" menuLabel="메뉴">
+        x
+      </AdminShell>,
+    );
+    const root = container.firstElementChild as HTMLElement;
+    expect(root.hasAttribute("data-sidebar-collapsed")).toBe(false);
+    fireEvent.click(screen.getByRole("button", { name: "메뉴 접기" }));
+    expect(root.hasAttribute("data-sidebar-collapsed")).toBe(true);
+    expect((screen.getByRole("main").previousElementSibling as HTMLElement).className).toContain(
+      "lg:w-14",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "메뉴 펼치기" }));
+    expect(root.hasAttribute("data-sidebar-collapsed")).toBe(false);
+  });
+
+  it("키가 없으면 접기 단추가 없다", () => {
+    render(
+      <AdminShell brand="B" nav={<nav />}>
+        x
+      </AdminShell>,
+    );
+    expect(screen.queryByRole("button", { name: "메뉴 접기" })).not.toBeInTheDocument();
+  });
+});
+
+describe("AdminAccount", () => {
+  it("이름·잔글씨를 그리고, ⋯ 메뉴에 테마·로그아웃이 있다", () => {
+    let out = 0;
+    render(
+      <AdminAccount
+        name="김운영"
+        detail="ops@ax.io"
+        initial="김"
+        theme={<button type="button">토글</button>}
+        onLogout={() => (out += 1)}
+      />,
+    );
+    expect(screen.getByText("김운영")).toBeInTheDocument();
+    expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "계정 메뉴" }));
+    expect(screen.getByRole("button", { name: "토글" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("menuitem", { name: "로그아웃" }));
+    expect(out).toBe(1);
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+  });
+});
+
+describe("AdminAppSwitch", () => {
+  it("현재 앱에만 aria-current 를 붙인 링크로 그린다", () => {
+    render(
+      <AdminAppSwitch
+        aria-label="운영 앱"
+        items={[
+          { key: "lms", href: "/admin", label: "AXLMS", active: true },
+          { key: "apta", href: "/apta-ops/", label: "APTA" },
+        ]}
+      />,
+    );
+    expect(screen.getByRole("link", { name: "AXLMS" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "APTA" })).not.toHaveAttribute("aria-current");
   });
 });

@@ -1,10 +1,63 @@
-import { List, X } from "@phosphor-icons/react";
-import { useCallback, useEffect, useState, type ReactElement, type ReactNode } from "react";
+import { List, SidebarSimple, X } from "@phosphor-icons/react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 import { canvasClass } from "./Card.js";
 import { cn } from "./lib/cn.js";
 import { Sidebar } from "./Sidebar.js";
 import { TopBar } from "./TopBar.js";
+
+/** 틀 안 슬롯이 접힘 상태를 읽는 자리 — 모바일 드로어 안은 늘 펼침이다. */
+const AdminShellContext = createContext<{ collapsed: boolean }>({ collapsed: false });
+
+export function useAdminShell(): { collapsed: boolean } {
+  return useContext(AdminShellContext);
+}
+
+// 접힘은 운영자 한 사람의 화면 취향이라 브라우저 저장소 한 칸에 둔다. 서버 첫 그림은 펼침 — useSyncExternalStore 가
+// 수화 뒤에 저장값으로 바꾼다. 저장소가 막힌 브라우저는 메모리 값으로 이번 화면에서만 산다.
+const collapseListeners = new Set<() => void>();
+const collapseMemory = new Map<string, boolean>();
+
+function readCollapsed(key: string): boolean {
+  try {
+    const stored = window.localStorage.getItem(key);
+    if (stored !== null) {
+      return stored === "1";
+    }
+  } catch {
+    // 저장소 막힘 — 아래 메모리 값.
+  }
+  return collapseMemory.get(key) ?? false;
+}
+
+function writeCollapsed(key: string, next: boolean): void {
+  collapseMemory.set(key, next);
+  try {
+    window.localStorage.setItem(key, next ? "1" : "0");
+  } catch {
+    // 저장소 막힘 — 메모리 값으로 이번 화면에서만.
+  }
+  collapseListeners.forEach((listener) => listener());
+}
+
+function subscribeCollapsed(listener: () => void): () => void {
+  collapseListeners.add(listener);
+  return () => collapseListeners.delete(listener);
+}
+
+/** 접힌 띠(56px) — 글자는 읽기용으로만 남기고(`sr-only`) 묶음 제목은 구분선이 된다. lg 미만은 드로어라 해당 없음. */
+const COLLAPSED_SIDEBAR =
+  "lg:w-14 [&_nav_a]:relative [&_nav_a]:justify-center [&_nav_a]:px-0 [&_nav_a>span.flex-1]:sr-only [&_nav_[id^=nav-sec-]]:mx-1.5 [&_nav_[id^=nav-sec-]]:my-2 [&_nav_[id^=nav-sec-]]:h-px [&_nav_[id^=nav-sec-]]:overflow-hidden [&_nav_[id^=nav-sec-]]:bg-[var(--border)] [&_nav_[id^=nav-sec-]]:p-0 [&_nav_[id^=nav-sec-]]:text-[0px]";
 
 export interface AdminShellProps {
   /** 로고 묶음. 데스크톱은 GNB 왼쪽(사이드바 폭 칸), 모바일은 GNB 맨 앞에 선다. */
@@ -15,6 +68,12 @@ export interface AdminShellProps {
   sidebarHeader?: ReactNode;
   /** 사이드바 아래 고정 영역 — 계정·로그아웃·테마. */
   sidebarFooter?: ReactNode;
+  /**
+   * 메뉴 접기(56px 아이콘 띠). 값은 이 브라우저 저장소 키에 남는다. 주면 GNB 에 접기 단추가 선다(lg 이상).
+   */
+  collapseStorageKey?: string;
+  /** 같은 주소의 다른 운영 앱으로 넘어가는 전환(`AdminAppSwitch`). GNB(lg 이상)와 드로어 맨 위에 그린다. */
+  appSwitch?: ReactNode;
   /** GNB 왼쪽 본문(브랜드 칸 오른쪽) — 경로·워크스페이스 표시. */
   topbarLeading?: ReactNode;
   /** GNB 오른쪽 — 테마·알림·계정. */
@@ -73,7 +132,18 @@ export function AdminShell({
   surfaceClassName,
   menuLabel = "메뉴",
   closeKey,
+  collapseStorageKey,
+  appSwitch,
 }: AdminShellProps): ReactElement {
+  const storedCollapsed = useSyncExternalStore(
+    subscribeCollapsed,
+    () => (collapseStorageKey ? readCollapsed(collapseStorageKey) : false),
+    () => false,
+  );
+  const collapsed = collapseStorageKey !== undefined && storedCollapsed;
+  const shellState = useMemo(() => ({ collapsed }), [collapsed]);
+  const expandedState = useMemo(() => ({ collapsed: false }), []);
+
   // 연 순간의 closeKey 를 기억한다 — 경로가 바뀌면 그 값과 달라져 저절로 닫힌다(이펙트로 setState 안 함).
   const [openedAt, setOpenedAt] = useState<{ key: unknown } | null>(null);
   const open = openedAt !== null && Object.is(openedAt.key, closeKey);
@@ -96,7 +166,10 @@ export function AdminShell({
   }, [open, setOpen]);
 
   return (
-    <div className={cn("bg-background text-foreground flex h-dvh flex-col", className)}>
+    <div
+      data-sidebar-collapsed={collapsed || undefined}
+      className={cn("bg-background text-foreground flex h-dvh flex-col", className)}
+    >
       <TopBar
         className={surfaceClassName}
         rail={<div className="flex h-full items-center px-5">{brand}</div>}
@@ -112,6 +185,19 @@ export function AdminShell({
               <List aria-hidden="true" className="size-5" />
             </button>
             <div className="lg:hidden">{brand}</div>
+            {collapseStorageKey ? (
+              <button
+                type="button"
+                aria-label={collapsed ? `${menuLabel} 펼치기` : `${menuLabel} 접기`}
+                title={collapsed ? `${menuLabel} 펼치기` : `${menuLabel} 접기`}
+                aria-pressed={collapsed}
+                onClick={() => writeCollapsed(collapseStorageKey, !collapsed)}
+                className="text-muted hover:text-default hidden size-9 items-center justify-center rounded-lg hover:bg-[var(--opacity-gray-50)] lg:flex dark:hover:bg-[var(--opacity-white-50)]"
+              >
+                <SidebarSimple aria-hidden="true" className="size-5" />
+              </button>
+            ) : null}
+            {appSwitch ? <div className="hidden lg:block">{appSwitch}</div> : null}
             {topbarLeading}
           </>
         }
@@ -119,13 +205,15 @@ export function AdminShell({
       />
 
       <div className="flex min-h-0 flex-1">
-        <Sidebar
-          className={cn(surfaceClassName, sidebarClassName)}
-          header={sidebarHeader}
-          footer={sidebarFooter}
-        >
-          {nav}
-        </Sidebar>
+        <AdminShellContext.Provider value={shellState}>
+          <Sidebar
+            className={cn(surfaceClassName, collapsed && COLLAPSED_SIDEBAR, sidebarClassName)}
+            header={sidebarHeader}
+            footer={sidebarFooter}
+          >
+            {nav}
+          </Sidebar>
+        </AdminShellContext.Provider>
         <main
           className={cn(
             canvasClass,
@@ -168,19 +256,22 @@ export function AdminShell({
                 <X aria-hidden="true" className="size-5" />
               </button>
             </div>
-            {sidebarHeader ? <div className="shrink-0">{sidebarHeader}</div> : null}
-            <div
-              className="min-h-0 flex-1 overflow-y-auto px-[8px] py-[12px]"
-              onClick={(e) => {
-                // 메뉴 링크를 누르면 닫는다 — 같은 경로를 다시 눌러 closeKey 가 안 바뀌어도.
-                if ((e.target as HTMLElement).closest("a")) {
-                  setOpen(false);
-                }
-              }}
-            >
-              {nav}
-            </div>
-            {sidebarFooter ? <div className="shrink-0">{sidebarFooter}</div> : null}
+            <AdminShellContext.Provider value={expandedState}>
+              {appSwitch ? <div className="shrink-0 px-2 pt-3">{appSwitch}</div> : null}
+              {sidebarHeader ? <div className="shrink-0">{sidebarHeader}</div> : null}
+              <div
+                className="min-h-0 flex-1 overflow-y-auto px-[8px] py-[12px]"
+                onClick={(e) => {
+                  // 메뉴 링크를 누르면 닫는다 — 같은 경로를 다시 눌러 closeKey 가 안 바뀌어도.
+                  if ((e.target as HTMLElement).closest("a")) {
+                    setOpen(false);
+                  }
+                }}
+              >
+                {nav}
+              </div>
+              {sidebarFooter ? <div className="shrink-0">{sidebarFooter}</div> : null}
+            </AdminShellContext.Provider>
           </div>
         </div>
       ) : null}
