@@ -140,7 +140,8 @@ function RouteChildren({
                     </>
                   ),
                   renderLink,
-                  activeColor,
+                  // primary 글자는 연한 배경 위에서 AA 미달이라 그 배경의 짝 토큰을 쓴다.
+                  activeColor: activeColor ?? "var(--accent-soft-foreground)",
                 },
                 dotChildClass,
                 true,
