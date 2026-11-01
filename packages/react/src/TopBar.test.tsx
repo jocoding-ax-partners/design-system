@@ -30,7 +30,7 @@ describe("TopBar", () => {
   it("header 클래스 문자열이 정본과 한 글자도 다르지 않다 — Topbar.tsx:16-18", () => {
     render(<TopBar />);
     expect(screen.getByRole("banner").className).toBe(
-      "bg-background border-border relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center lg:border-b",
+      "bg-background border-border relative z-20 flex h-[var(--topbar-height)] shrink-0 items-center transition-colors lg:border-b",
     );
   });
 
@@ -94,5 +94,21 @@ describe("TopBar", () => {
   it("style 을 그대로 전달한다 — AxHub 의 관리 패널 폭 보정", () => {
     render(<TopBar style={{ marginRight: "var(--mgmt-panel-width, 0px)" }} />);
     expect(screen.getByRole("banner").style.marginRight).toBe("var(--mgmt-panel-width, 0px)");
+  });
+
+  it("surface 로 투명·흰 바를 고른다 — 정본 Topbar.tsx:49-51", () => {
+    const { container, rerender } = render(<TopBar surface="transparent" />);
+    const header = container.querySelector("header") as HTMLElement;
+    expect(header.className).toContain("bg-transparent");
+    expect(header.className).not.toContain("bg-background");
+    rerender(<TopBar surface="content" />);
+    expect((container.querySelector("header") as HTMLElement).className).toContain("bg-content");
+  });
+
+  it("railBreakpoint=md 면 레일이 md 부터 보인다", () => {
+    const { container } = render(<TopBar rail={<span>팀</span>} railBreakpoint="md" />);
+    const rail = container.querySelector("header > div") as HTMLElement;
+    expect(rail.className).toContain("md:block");
+    expect(rail.className).not.toContain("lg:block");
   });
 });

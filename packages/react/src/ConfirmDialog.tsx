@@ -28,6 +28,8 @@ export interface ConfirmOptions {
   confirmLabel?: string;
   cancelLabel?: string;
   variant?: ConfirmVariant;
+  /** 테스트 훅. 주면 `${testId}-confirm` · `${testId}-cancel` · `${testId}-overlay` 를 data-testid 로 심는다. */
+  testId?: string;
 }
 
 type Resolver = (ok: boolean) => void;
@@ -102,7 +104,11 @@ function ConfirmModal({ opts, onClose }: { opts: ConfirmOptions; onClose: (ok: b
     <AlertDialog isOpen onOpenChange={(willOpen) => !willOpen && onClose(false)}>
       {/* AlertDialog 기본값은 isDismissable=false / isKeyboardDismissDisabled=true 라
           Radix 시절 동작(Esc·바깥 클릭 닫힘)을 유지하려면 둘 다 명시해야 한다. */}
-      <AlertDialog.Backdrop isDismissable isKeyboardDismissDisabled={false}>
+      <AlertDialog.Backdrop
+        isDismissable
+        isKeyboardDismissDisabled={false}
+        data-testid={opts.testId ? `${opts.testId}-overlay` : undefined}
+      >
         <AlertDialog.Container size="sm">
           <AlertDialog.Dialog>
             <AlertDialog.Header>
@@ -124,10 +130,19 @@ function ConfirmModal({ opts, onClose }: { opts: ConfirmOptions; onClose: (ok: b
               </AlertDialog.Body>
             )}
             <AlertDialog.Footer>
-              <Button variant="outline" onClick={() => onClose(false)}>
+              <Button
+                variant="outline"
+                onClick={() => onClose(false)}
+                data-testid={opts.testId ? `${opts.testId}-cancel` : undefined}
+              >
                 {opts.cancelLabel ?? "취소"}
               </Button>
-              <Button variant={buttonVariant} onClick={() => onClose(true)} autoFocus>
+              <Button
+                variant={buttonVariant}
+                onClick={() => onClose(true)}
+                autoFocus
+                data-testid={opts.testId ? `${opts.testId}-confirm` : undefined}
+              >
                 {opts.confirmLabel ?? "확인"}
               </Button>
             </AlertDialog.Footer>

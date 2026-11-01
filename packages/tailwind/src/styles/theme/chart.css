@@ -1,0 +1,45 @@
+/*
+ * Categorical chart colors — for series, legends and per-company slices, never for
+ * status. Promoted from admin.axhub.ai, the product with the most charts, where the
+ * eight hues were picked to stay apart from success/warning/danger and from each other
+ * in both themes. Series past the eighth fold into `--chart-other`.
+ *
+ * Plain custom properties so dark mode can redefine them; exposed as `bg-chart-1`,
+ * `text-chart-1`, `fill-chart-1` and so on through `@theme inline`.
+ */
+:root {
+  --chart-1: #3e6fd0;
+  --chart-2: #c97117;
+  --chart-3: #3e9e52;
+  --chart-4: #a24bc4;
+  --chart-5: #c2384e;
+  --chart-6: #1e9cb0;
+  --chart-7: #8c7b25;
+  --chart-8: #d0619b;
+  --chart-other: #8a9793;
+}
+
+.dark,
+[data-theme="dark"] {
+  --chart-1: #5e88de;
+  --chart-2: #c9791f;
+  --chart-3: #3eac63;
+  --chart-4: #af68d4;
+  --chart-5: #d4586a;
+  --chart-6: #2aa5bc;
+  --chart-7: #9a8b30;
+  --chart-8: #d06c9c;
+  --chart-other: #6c7b77;
+}
+
+@theme inline {
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+  --color-chart-other: var(--chart-other);
+}

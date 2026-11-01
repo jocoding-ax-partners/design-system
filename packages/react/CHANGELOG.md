@@ -1,5 +1,31 @@
 # @jocoding-ax-partners/react
 
+## 4.0.0
+
+### Minor Changes
+
+- bf1ee4e: Promote the rest of the console shell so every product draws the same sidebar, rail, top bar and card.
+  - `Card` (`padding: "md" | "none"`, `as`) and `CardEmpty`, plus the class strings `cardClass`, `cardFlushClass`, `cardEmptyClass` and `canvasClass` for places that cannot take a component. Values are the console's `consoleCard.ts`: radius 12, padding 16, `border-default`, on the new `bg-canvas` floor.
+  - `Rail`, `RailTile`, `RailTileContent` and `railTileClass`: the floating 52px tile rail from the console's member screens, with a `footer` slot under a separator and `renderLink` for any router.
+  - `TopBar` gains `surface` (`default`, `transparent`, `content`), the console's transparent and filled top bar states, and `railBreakpoint` (`md` | `lg`) for shells whose rail shows from `md`.
+  - `NavItem` text is now 15px and `PageContainer` is 1600px wide with `pt-5 md:pt-10`, matching the console again.
+
+### Patch Changes
+
+- Updated dependencies [bf1ee4e]
+  - @jocoding-ax-partners/design-system@5.1.0
+
+## 3.0.0
+
+### Minor Changes
+
+- fe3ec2a: `useConfirm` accepts `testId` and stamps `${testId}-confirm`, `${testId}-cancel` and `${testId}-overlay` as `data-testid`. `StatCard` accepts `tone` (`default | accent | danger | success | warning`) to color the value per metric, and its label now uses `text-muted` (readable) instead of the non-text `text-subtle`.
+
+### Patch Changes
+
+- Updated dependencies [fe3ec2a]
+  - @jocoding-ax-partners/design-system@5.0.0
+
 ## 2.2.0
 
 ### Minor Changes

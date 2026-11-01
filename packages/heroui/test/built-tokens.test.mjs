@@ -26,17 +26,39 @@ test("status -strong tokens are mapped into the --color-* namespace", () => {
 });
 
 test("status -strong tokens carry the pinned light values", () => {
-  assert.match(css, /--warning-strong:\s*#f4ab00\b/);
+  assert.match(css, /--warning-strong:\s*var\(--color-warning-700\)/);
   assert.match(css, /--info-strong:\s*#0f5fcc\b/);
-  assert.match(css, /--danger-strong:\s*var\(--danger\)/);
-  assert.match(css, /--success-strong:\s*var\(--success\)/);
+  assert.match(css, /--danger-strong:\s*var\(--color-danger-700\)/);
+  assert.match(css, /--success-strong:\s*var\(--color-success-700\)/);
+});
+
+test("the gray ramp owns 200, 300 and 400 instead of leaking Tailwind's defaults", () => {
+  assert.match(css, /--color-gray-200:\s*oklch\(92\.8% 0\.006 266deg\)/);
+  assert.match(css, /--color-gray-300:\s*oklch\(87\.2% 0\.01 267\.5deg\)/);
+  assert.match(css, /--color-gray-400:\s*oklch\(66\.5% 0\.019 270deg\)/);
+});
+
+test("light soft foregrounds use the dark steps that clear AA on their -soft fill", () => {
+  assert.match(css, /--accent-soft-foreground:\s*var\(--color-accent-700\)/);
+  assert.match(css, /--danger-soft-foreground:\s*var\(--color-danger-800\)/);
+  assert.match(css, /--success-soft-foreground:\s*var\(--color-success-800\)/);
+  assert.match(css, /--warning-soft-foreground:\s*var\(--color-warning-800\)/);
+  assert.match(css, /--info-soft-foreground:\s*var\(--info-strong\)/);
+});
+
+test("filled colors carry a readable label in both themes", () => {
+  assert.match(css, /--color-danger-500:\s*#e60f24\b/);
+  assert.match(css, /--danger:\s*var\(--color-danger-500\)/);
+  const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
+  assert.match(darkBlock, /--primary:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--danger-foreground:\s*var\(--eclipse\)/);
 });
 
 test("status -strong tokens carry the pinned dark values", () => {
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
   assert.match(darkBlock, /--success-strong:\s*#4dd488\b/);
   assert.match(darkBlock, /--warning-strong:\s*#f6c205\b/);
-  assert.match(darkBlock, /--danger-strong:\s*#f5475c\b/);
+  assert.match(darkBlock, /--danger-strong:\s*#ff6b7a\b/);
   assert.match(darkBlock, /--info-strong:\s*#3d8df7\b/);
 });
 
@@ -227,8 +249,8 @@ test("primary semantic tokens carry the pinned light values", () => {
 
 test("primary semantic tokens carry the pinned dark values", () => {
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
-  assert.match(darkBlock, /--primary:\s*var\(--primary-dark\)/);
-  assert.match(darkBlock, /--primary-hover:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--primary:\s*var\(--primary-base\)/);
+  assert.match(darkBlock, /--primary-hover:\s*var\(--color-accent-700\)/);
   assert.match(darkBlock, /--primary-soft:\s*rgb\(75 123 255 \/ 40%\)/);
   assert.match(darkBlock, /--primary-soft-hover:\s*rgb\(75 123 255 \/ 55%\)/);
 });
@@ -321,4 +343,53 @@ test("inactive nav icon color reaches dist in both themes", () => {
   assert.match(css, /--icon-inactive:\s*var\(--color-gray-300\)/);
   const darkBlock = css.slice(css.indexOf('[data-theme="dark"]'));
   assert.match(darkBlock, /--icon-inactive:\s*var\(--color-gray-500\)/);
+});
+
+test("the house typeface stack ships — Pretendard first", () => {
+  assert.match(css, /--font-sans:\s*"Pretendard Variable", "Pretendard"/);
+  assert.match(css, /--font-mono:\s*ui-monospace/);
+});
+
+test("motion steps ship as one rhythm for every product", () => {
+  assert.match(css, /--duration-fast:\s*150ms/);
+  assert.match(css, /--duration-base:\s*200ms/);
+  assert.match(css, /--duration-slow:\s*300ms/);
+  assert.match(css, /--ease-standard:\s*cubic-bezier\(0\.4, 0, 0\.2, 1\)/);
+});
+
+test("the primary ramp names the accent ramp step for step", () => {
+  for (const s of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
+    assert.match(
+      css,
+      new RegExp(`--color-primary-${s}:\\s*var\\(--color-accent-${s}\\)`),
+      `missing primary-${s}`,
+    );
+  }
+});
+
+test("a tenant brand derives the whole primary set from --primary", () => {
+  const i = css.indexOf(":root:is([data-brand-theme], [data-home-theme])");
+  assert.ok(i >= 0, "tenant brand rule missing");
+  const block = css.slice(i, css.indexOf("}", i));
+  assert.match(block, /--color-accent-600:\s*var\(--primary\)/);
+  assert.match(block, /--accent:\s*var\(--color-accent-600\)/);
+  assert.match(block, /--primary-hover:\s*color-mix\(in srgb, var\(--primary\) 80%, white\)/);
+});
+
+test("categorical chart colors ship for both themes", () => {
+  for (const n of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    assert.match(css, new RegExp(`--color-chart-${n}:\\s*var\\(--chart-${n}\\)`));
+  }
+  assert.match(css, /--chart-1:\s*#3e6fd0/);
+  const darkBlock = css.slice(css.indexOf("--chart-1: #5e88de") - 200);
+  assert.match(darkBlock, /\[data-theme="dark"\]/);
+});
+
+test("the console canvas ships as bg-canvas for both themes", () => {
+  assert.match(css, /--bg-canvas:\s*var\(--color-gray-100\)/);
+  assert.match(
+    css,
+    /--bg-canvas:\s*color-mix\(in oklab, var\(--color-gray-900\) 75%, var\(--color-gray-950\)\)/,
+  );
+  assert.match(css, /--background-color-canvas:\s*var\(--bg-canvas\)/);
 });

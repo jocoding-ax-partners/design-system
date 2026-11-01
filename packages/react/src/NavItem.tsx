@@ -80,9 +80,10 @@ export interface NavItemProps {
  * 표면을 사람 승인 없이 리팩 경로로 바꾸지 않는다. 넷이 색이 갈리는 건 인지된
  * 결과이고, 통일 여부는 사람이 정할 문제로 남겨 뒀다.
  */
+// 글자 15px — 정본이 2026-10-22 에 14px 에서 올렸다(axhub-frontend InnerSidebar.tsx:166).
 export function itemClass(active: boolean, className?: string) {
   return cn(
-    "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors",
+    "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[15px] transition-colors",
     "focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
     active
       ? "font-semibold"

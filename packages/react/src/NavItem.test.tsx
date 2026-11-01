@@ -75,7 +75,7 @@ describe("NavItem", () => {
 
   // `itemClass` 는 이 여덟 개 중 유일하게 AxHub 프로덕션에서 살아 도는 클래스인데,
   // 지금까지 `toContain("rounded-[8px]")` 같은 조각만 재고 있었다 — `h-[32px]`·
-  // `gap-[8px]`·`px-[12px]`·`text-[14px]`·`border border-transparent` 중 무엇이
+  // `gap-[8px]`·`px-[12px]`·`text-[15px]`·`border border-transparent` 중 무엇이
   // 바뀌어도 초록이었다. 문자열을 통째로 고정한다. 앞부분은 정본
   // (axhub-frontend InnerSidebar.tsx:128-133) 이고, `focus-visible:*` 줄은 정본에
   // 없는 **선언된** 접근성 확장이다(NavItem.tsx `itemClass` JSDoc 참고).
@@ -83,7 +83,7 @@ describe("NavItem", () => {
     render(<NavItem href="/r" label="회차" />);
     const link = screen.getByRole("link", { name: "회차" });
     expect(link.className).toBe(
-      "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
+      "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[15px] transition-colors focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none text-default hover:bg-[var(--opacity-gray-50)] dark:hover:bg-[var(--opacity-white-50)]",
     );
   });
 
@@ -91,7 +91,7 @@ describe("NavItem", () => {
     render(<NavItem href="/r" label="회차" active />);
     const link = screen.getByRole("link", { name: "회차" });
     expect(link.className).toBe(
-      "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[14px] transition-colors focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none font-semibold",
+      "flex h-[32px] w-full items-center gap-[8px] rounded-[8px] border border-transparent px-[12px] text-[15px] transition-colors focus-visible:ring-focus focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none font-semibold",
     );
   });
 
