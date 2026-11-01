@@ -1,5 +1,11 @@
 # @jocoding-ax-partners/design-system
 
+## 5.1.2
+
+### Patch Changes
+
+- e133575: The unchecked `Checkbox` edge uses `--fg-muted` in light. `--fg-subtle` measured 2.96:1 on the overlay surface, under the 3:1 floor; dark keeps it at 5.71:1.
+
 ## 5.1.1
 
 ### Patch Changes
