@@ -341,13 +341,13 @@ describe("NavList", () => {
       render(<NavList sections={tree(true, true)} aria-label="주 메뉴" />);
       const active = screen.getByRole("link", { name: "SI 프로젝트" });
       expect(active).toHaveAttribute("aria-current", "page");
-      expect(active.className).toContain("bg-primary-soft");
-      // primary 글자는 이 배경 위에서 AA 미달이다 (라이트 4.26:1, 다크 1.79:1).
+      // 짝 토큰이어야 AA를 넘는다 (라이트 5.74:1, 다크 6.39:1). primary-soft 위에서는 다크가 4.05:1이었다.
+      expect(active.className).toContain("bg-accent-soft");
       expect(active.style.color).toBe("var(--accent-soft-foreground)");
       expect(active.querySelector("[data-nav-dot]")).toBeInTheDocument();
       const idle = screen.getByRole("link", { name: "자사 프로젝트" });
       expect(idle).not.toHaveAttribute("aria-current");
-      expect(idle.className).not.toContain("bg-primary-soft");
+      expect(idle.className).not.toContain("bg-accent-soft");
     });
 
     it("showChildren 이 없으면 기존 아코디언 그대로다", () => {
