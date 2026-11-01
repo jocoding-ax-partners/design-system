@@ -7,6 +7,15 @@
    its letter spacing percentages are shares of the font size, which is what
    `em` already means. */
 @theme {
+  /* Pretendard is the house face — the corporate site (jocodingax.ai), the console,
+     admin and axclass all render it, but each declared the stack itself and admin's
+     variables still said `system-ui`. The stack ships here; the font files do not
+     (this package is CSS-only, and the products sit on isolated networks where a CDN
+     fails silently). Self-host `pretendard` in the app — see docs/brand.md. */
+  --font-sans:
+    "Pretendard Variable", "Pretendard", -apple-system, "BlinkMacSystemFont", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+
   /* display */
   --text-display-01: 5rem; /* 80px */
   --text-display-01--line-height: 1.2;

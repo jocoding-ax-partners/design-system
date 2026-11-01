@@ -2,6 +2,7 @@ export { cn } from "./lib/cn.js";
 
 export { AppHeader } from "./AppHeader.js";
 export { Breadcrumbs } from "./Breadcrumbs.js";
+export { canvasClass, Card, cardClass, CardEmpty, cardEmptyClass, cardFlushClass } from "./Card.js";
 export { CodeBlock } from "./CodeBlock.js";
 export { ConfirmProvider, useConfirm } from "./ConfirmDialog.js";
 export { HoverReadout, ReadoutSurface, useHoverReadout } from "./HoverReadout.js";
@@ -16,6 +17,7 @@ export { NavList } from "./NavList.js";
 export { PageContainer } from "./PageContainer.js";
 export { PageHeader } from "./PageHeader.js";
 export { buildItems, Pagination } from "./Pagination.js";
+export { Rail, RailTile, railTileClass, RailTileContent } from "./Rail.js";
 export { SearchBox } from "./SearchBox.js";
 export { Sidebar } from "./Sidebar.js";
 export { SidePanel, SidePanelFooter, SidePanelHeader } from "./SidePanel.js";
@@ -34,6 +36,7 @@ export type {
   AppHeaderUser,
 } from "./AppHeader.js";
 export type { BreadcrumbEntry, BreadcrumbsProps } from "./Breadcrumbs.js";
+export type { CardEmptyProps, CardProps } from "./Card.js";
 export type { ConfirmOptions } from "./ConfirmDialog.js";
 export type { ReadoutSpot } from "./HoverReadout.js";
 export type { KpiSearchButtonProps, KpiStatBarProps, KpiStatItem } from "./KpiStatBar.js";
@@ -41,6 +44,7 @@ export type { NavItemProps, NavLinkRenderer, NavLinkRenderProps } from "./NavIte
 export type { NavEntry, NavListProps, NavSection } from "./NavList.js";
 export type { PageContainerProps } from "./PageContainer.js";
 export type { PageHeaderProps } from "./PageHeader.js";
+export type { RailProps, RailTileContentProps, RailTileProps } from "./Rail.js";
 export type { SidebarProps } from "./Sidebar.js";
 export type { SidePanelProps } from "./SidePanel.js";
 export type { TabNavProps, TabNavTab } from "./TabNav.js";

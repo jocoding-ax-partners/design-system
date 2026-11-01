@@ -1,0 +1,23 @@
+/*
+ * Motion — the duration and easing steps every product was declaring for itself.
+ *
+ * axhub-frontend (jocodingax.axhub.ai) had these in its own globals.css; admin and
+ * axclass hard-coded `150ms`/`200ms`/`.25s` per rule. Owning them here gives the three
+ * one rhythm.
+ *
+ * Easings go through Tailwind's `--ease-*` namespace, so `ease-standard` is a utility.
+ * `--ease-out` deliberately replaces Tailwind's default (`cubic-bezier(0, 0, 0.2, 1)`):
+ * the console already shipped that override, so `ease-out` now means the same curve in
+ * every product. Tailwind has no duration namespace, so durations are plain custom
+ * properties — write `duration-(--duration-base)` or `var(--duration-base)`.
+ */
+@theme {
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+}
