@@ -72,3 +72,11 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: apps/storybook
           onlyChanged: true
+          # TurboSnap 은 번들러 stats 로 변경을 추적하는데, CSS `@import` 는 Tailwind 가
+          # 진입 파일에 합쳐 버려 stats 에는 `.storybook/index.css` 만 남는다. 토큰·컴포넌트
+          # CSS 를 고쳐도 "no frontend files were changed" 로 촬영 0건이 된다
+          # (#53·#55 에서 실측). 그래서 CSS 가 바뀌면 전량 촬영으로 돌린다.
+          # 이 파일을 넣은 이유: 게이트 설정이 바뀐 빌드는 전량을 다시 찍어 확인한다.
+          externals: |
+            packages/**/*.css
+            .github/workflows/chromatic.yml
